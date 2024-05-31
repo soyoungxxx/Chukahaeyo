@@ -12,16 +12,16 @@
     <!-- Enables the Spring MVC @Controller programming model -->
     <annotation-driven />
 
-<!--    &lt;!&ndash; Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory &ndash;&gt;-->
+    <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 <!--    <resources mapping="/resources/**" location="/resources/" />-->
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/view/" />
-        <beans:property name="suffix" value=".jsp" />
+        <beans:property name="suffix" value=".jsp" /><!-- viewname : member/abc => /WEB-INF/views/member/abc.jsp -->
     </beans:bean>
 
-    <context:component-scan base-package="chuka" />
+    <context:component-scan base-package="com.choikang.chukahaeyo" />
 
 
 

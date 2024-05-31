@@ -1,12 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <title>축하해요</title>
 </head>
 <body>
+<h2>< 내 생일 카드 > 가 만들어지는 중asdf</h2>
+<div class="edit-div">
 
+</div>
+<div class="preview-div">
+
+</div>
+<div class="button-div">
+
+</div>
+<div class="frame-div">
+
+</div>
 </body>
 </html>
