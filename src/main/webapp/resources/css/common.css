@@ -1,0 +1,33 @@
+a{ text-decoration: none;}
+
+/*body*/
+html , body{
+    height: 100%;
+    width: 100%;
+    min-width: 1400px;
+}
+
+/*background*/
+.main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.sticker1 {
+    width: 200px;
+    height: 100%;
+    background-image: url("/resources/img/left-stickers.png");
+    background-repeat: no-repeat;
+    background-position: 0px 100px;
+}
+
+.sticker2{
+    width: 200px;
+    height: 100%;
+    background-image: url("/resources/img/right-stickers.png");
+    background-repeat: no-repeat;
+    background-position: 0px 200px;
+}
