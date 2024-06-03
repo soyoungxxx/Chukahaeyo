@@ -52,10 +52,20 @@
             background-color: #E2E2E2;
             font-size: 24px;
         }
+
         /*버튼 눌렸을 때*/
         input[type="button"]:active{
             box-shadow: 0 0 #adadad;
             background-color: #acacac;
+        }
+
+        .file {
+            width : 90%;
+            margin-top: 10px;
+            background-color: #4171EA;
+            color: #FFFFFF;
+            border: 0;
+            height: 35px;
         }
 
         .frame-div {
@@ -82,6 +92,10 @@
             color:#FF0000;
         }
 
+        .emoji {
+            width: 15% !important;
+        }
+
         /*edit div 내의 text box*/
         input[type="text"] {
             margin-top: 10px;
@@ -101,6 +115,67 @@
         input[type="radio"] {
             margin: 20px 10px 10px 10px;
         }
+
+        textarea {
+            margin-top: 10px;
+            width: 90%;
+            height: 100px;
+            border: 0;
+            resize: none;
+        }
+
+        input[type="time"] {
+            margin-top: 10px;
+        }
+        /* 버튼 숨기기 */
+        .check {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        label {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+            background: #fff;
+            border: 2px solid #888888;
+            border-radius: 20px;
+            transition: 0.2s;
+        }
+        label:hover {
+            background: #efefef;
+        }
+        .onf_btn {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            display: inline-block;
+            width: 11px;
+            height: 11px;
+            border-radius: 20px;
+            background: #a8a8a8;
+            transition: 0.2s;
+        }
+        /* checking style */
+        .check:checked+label {
+            background: #463030;
+            border: 2px solid #453030;
+        }
+
+        /* move */
+        .check:checked+label .onf_btn {
+            left: 23px;
+            background: #fff;
+            box-shadow: 1px 2px 3px #00000020;
+        }
+
+        .select-button {
+            float: right;
+            margin-right: 15px;
+        }
+
     </style>
 
 
@@ -116,7 +191,7 @@
     <div style="width: 100%; height: 85%;">
         <h2>< 카드 종류 > 가 만들어지는 중</h2>
         <div class="main-div">
-            <div class="edit-div">
+            <div class="edit-div" style="overflow: auto;">
                 <div class="comp">
                     <span class="head-text">이름</span>
                     <span class="warn-text">필수 항목입니다.</span>
@@ -127,9 +202,54 @@
                     <span class="head-text">날짜</span>
                     <span class="warn-text">필수 항목입니다.</span> <br>
                     <input type="radio" checked id="dayRadio" name="day">하루 선택 <br>
-                    <input type="radio" id="daysRadio" name="days"/>여러날 선택
+                    <input type="radio" id="daysRadio" name="day"/>여러날 선택
                     <input type="text" id="day" value="" placeholder="날짜 선택"/>
                     <input type="text" id="days" value="" placeholder="날짜 선택"/>
+                </div>
+                <hr>
+                <div class="comp">
+                    <span class="head-text">사진</span>
+                    <span class="warn-text">필수 항목입니다.</span> <br>
+<%--                    사진 ㅊㅁ부하는 버튼--%>
+                    <input class="file" type="submit" value="첨부하기"/>
+                </div>
+                <hr>
+                <div class="comp">
+                    <span class="head-text">문구</span>
+                    <span class="warn-text">필수 항목입니다.</span> <br>
+                    <textarea maxlength="255" placeholder="문구를 입력하세요"></textarea>
+                </div>
+                <hr>
+                <div class="comp">
+                    <span class="head-text">이모티콘</span>
+                    <span class="warn-text">필수 항목입니다.</span> <br>
+                    <input class="emoji" type="text" name="emoji1"/>
+                    <input class="emoji" type="text" name="emoji2"/>
+                    <input class="emoji" type="text" name="emoji3"/>
+                    <input class="emoji" type="text" name="emoji4"/>
+                    <p style="font-size:14px; color:#686868; width:90%;">
+                        원하는 이모티콘을 <b>한 칸당 하나씩</b>
+                        작성해주세요! <br>
+                        양식을 지키지 않으면 이모티콘이 제대로 나오지 않을 수 있어요 😥 <br>
+                        ‘윈도우 키 + .’을 이용하면 이모티콘을 입력할 수 있어요!
+                    </p>
+                </div>
+                <hr>
+                <div class="comp">
+                    <span class="head-text">시간</span>
+                    <!-- 온오프 버튼 -->
+                    <span class="select-button">
+                        <input type="checkbox"  id="time-select" class="check"/>
+                        <label for="time-select">
+                            <span class="onf_btn"></span>
+                        </label>
+                    </span>
+                    <div class="showTime">
+                        <input type="radio" checked id="timeRadio" name="time">시각 선택 <br>
+                        <input type="radio" id="timesRadio" name="time"/>범위 시간 선택<br>
+                        <input type="time" id="time" value="" placeholder="시간 선택"/>
+                        <input type="time" id="times" value="" placeholder="시간 선택"/>
+                    </div>
                 </div>
                 <hr>
             </div>
@@ -154,29 +274,34 @@
 
 <script type="text/javascript">
     $(function() {
-        $('#day').daterangepicker({
+        $('#days').daterangepicker({
             autoUpdateInput: false,
             locale: {
                 cancelLabel: 'Clear'
             }
         });
-        $('#day').on('apply.daterangepicker', function(ev, picker) {
+        $('#days').on('apply.daterangepicker', function(ev, picker) {
             $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD'));
         });
 
-        $('#day').on('cancel.daterangepicker', function(ev, picker) {
+        $('#days').on('cancel.daterangepicker', function(ev, picker) {
             $(this).val('');
         });
 
-        $('input[name="birthday"]').daterangepicker({
+        $('#day').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             minYear: 1901,
             maxYear: parseInt(moment().format('YYYY'),10)
         });
+        // 각각 library를 이용해 초기값 세팅
 
+        // 처음 선택 => 시각과 날짜 하나기 때문에 여러 개 선택은 숨김
         $('#days').hide();
+        $('#times').hide();
+        $('.showTime').hide();
 
+        // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
         $('#dayRadio').click(function() {
             $('#days').hide();
             $('#day').show();
@@ -184,6 +309,20 @@
         $('#daysRadio').click(function() {
             $('#day').hide();
             $('#days').show();
+        })
+
+        // 어떤 버튼을 클릭하냐에 따라 hide and show - 시간
+        $('#timeRadio').click(function() {
+            $('#times').hide();
+            $('#time').show();
+        })
+        $('#timesRadio').click(function() {
+            $('#times').show();
+        })
+
+        // 체크박스 제어
+        $('#time-select').click(function() {
+            $('.showTime').toggle();
         })
     });
 
