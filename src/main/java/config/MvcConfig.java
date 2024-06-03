@@ -47,30 +47,31 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry reg) {
-        reg.addViewController("/edit");
+        reg.addViewController("/payments/edit");
+        reg.addViewController("/payments/process");
     }
 
-//    @Bean
-//    public HikariDataSource dataSource() {
-//        HikariDataSource dataSource = new HikariDataSource();
-//        dataSource.setDriverClassName(driver);
-//        dataSource.setJdbcUrl(url);
-//        dataSource.setUsername(username);
-//        dataSource.setPassword(password);
-//        return dataSource;
-//    }
-//
-//    @Bean
-//    public SqlSessionFactory sqlSessionFactory() throws Exception {
-//        SqlSessionFactoryBean ssf = new SqlSessionFactoryBean();
-//        ssf.setDataSource(dataSource()); // CP 객체 주입
-//        return ssf.getObject();
-//    }
-//
-//    @Bean
-//    public static PropertyPlaceholderConfigurer propreties() {
-//        PropertyPlaceholderConfigurer config = new PropertyPlaceholderConfigurer();
-//        config.setLocations(new ClassPathResource("db.properties"));
-//        return config;
-//    }
+    @Bean
+    public HikariDataSource dataSource() {
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setDriverClassName(driver);
+        dataSource.setJdbcUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        return dataSource;
+    }
+
+    @Bean
+    public SqlSessionFactory sqlSessionFactory() throws Exception {
+        SqlSessionFactoryBean ssf = new SqlSessionFactoryBean();
+        ssf.setDataSource(dataSource()); // CP 객체 주입
+        return ssf.getObject();
+    }
+
+    @Bean
+    public static PropertyPlaceholderConfigurer propreties() {
+        PropertyPlaceholderConfigurer config = new PropertyPlaceholderConfigurer();
+        config.setLocations(new ClassPathResource("db.properties"));
+        return config;
+    }
 }
