@@ -1,71 +1,122 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="utf-8">
-    <title>축하해요 로그인</title>
+    <title>로그인</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-
+    <link rel="stylesheet" href="/resources/img/common.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap"
+          rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
 
     <style>
+        .wrap {
+            position: relative;
+            margin: 90px auto;
+        }
+
         .sub_title {
+            display: block;
+            text-align: center;
+            font-family: "Noto Sans KR", sans-serif;
             font-size: 28px;
             line-height: 50px;
-            cursor: pointer; <!-- 추후 로그인 누르면 다시 로딩 되게 -->
-            text-align: center;
+            cursor: pointer;
         }
 
         .login_form {
+            display: block;
             border: 0px;
             position: relative;
             margin: 20px auto;
-            width: 20%;
-            height: 100px;
-            line-height: 30px; <!-- 칸 사이 거리 -->
+            height: 150px;
         }
 
-        .login_form > ul > li{
-            list-style: none;
-        }
-
-        .btn{
-            position: relative;
-            margin: 20px 0;
+        .login_form > ul > li {
+            display: block;
             text-align: center;
-            overflow: hidden;
+            list-style-type: none;
+            positon: relative;
+            padding-right: 60px;
+        }
 
+        .login_img {
+            width: 30px;
+            height: 30px;
+            padding-top: 5px;
+        }
+
+        .login_form > ul > li > input {
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 14px;
+            height: 34px;
+            width: 300px;
+            border-radius: 4px;
+            border: 2px solid #B5B5B5;
+            padding-left: 15px;
+        }
+
+        .login_btn {
+            display: block;
+            text-align: center;
+
+            font-family: "Noto Sans KR", sans-serif;
+            font-weight: bold;
             font-size: 20px;
-            text-decoration: none !important;
-            display: inline-block;
-            vertical-align: baseline;
 
             cursor: pointer;
-            padding: 4px 20px;
-            min-width: 64px;
-            color: #fff !important;
+            width: 320px;
+            margin: 20px auto;
+            padding: 7px 0px;
 
+            color: #FFFFFF;
             border-radius: 7px;
+            border: 0px;
+            background-color: #FFC2C2;
         }
 
-        .login_btn{
+        .register > hr {
+            width: 60%;
+            margin: 70px auto 35px;
+            border: 1px solid #B5B5B5;
+        }
 
-            background-color: #221f1f;
+        .register > p {
+            display: block;
+            text-align: center;
+
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 14px;
         }
 
         .register_btn {
+            display: block;
+            text-align: center;
 
-            background-color: #221f1f;
+            font-family: "Noto Sans KR", sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            text-decoration: none;
+
+            cursor: pointer;
+            width: 320px;
+            margin: 0px auto;
+            padding: 7px 0px;
+
+            color: #000000;
+            border: 1px solid #000000;
+            background-color: #FFFFFF;
+            border-radius: 7px;
         }
-
     </style>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
     <script>
         function loginCheck() {
             if ($("#email").val() == '') {
@@ -81,41 +132,51 @@
         }
     </script>
 </head>
+
 <body>
-<div class="wrap">
-    <%@ include file="/WEB-INF/view/include/header.jsp" %>
-
-    <form action="login.do" method="post"  onsubmit="return loginCheck();"> <!-- id, name 추가하기 -->
-        <div class="sub">
-            <div class="size">
-                <h3 class="sub_title">로그인</h3>
-
+<%@ include file="/WEB-INF/view/include/header.jsp" %>
+<main class="main">
+    <div class="sticker1"></div>
+    <div style="width: 100%;">
+        <form action="login" method="post" onsubmit="return loginCheck();">
+            <div class="wrap">
+                <h3 class="sub_title">Login</h3>
                 <div class="member">
                     <div class="box">
-                        <fieldset class="login_form">
+                        <div class="login_form">
                             <ul>
-                                <li><input type="text" id="email" name="email" placeholder="이메일"></li>
-                                <li><input type="password" id="pwd" name="pwd" placeholder="비밀번호"></li>
+                                <li>
+                                    <img src="/resources/img/login-user.png" class="login_img">
+                                    <input type="text" id="email" name="email" placeholder="이메일">
+                                </li>
+                                <li>
+                                    <img src="/resources/img/login-lock.png" class="login_img">
+                                    <input type="password" id="pwd" name="pwd" placeholder="비밀번호">
+                                </li>
                             </ul>
                             <div class="btn">
-                                <input type="submit" value="로그인" alt="로그인" />
-                            </div>
-                        </fieldset>
-
-                        <hr>
-
-                        <div class="btnSet clear">
-                            <div>
-                                <a href="register.do" class="btn">회원가입</a>
+                                <input type="submit" value="로그인" class="login_btn"/>
                             </div>
                         </div>
+
+                        <div class="register">
+                            <hr>
+                            <p>계정이 없으신가요?</p>
+                            <div>
+                                <a href="register" class="register_btn">회원가입</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
             </div>
-        </div>
-    </form>
-    <%@ include file="/WEB-INF/view/include/footer.jsp" %>
-</div>
+
+        </form>
+    </div>
+    <div class="sticker2"></div>
+</main>
+<%@ include file="/WEB-INF/view/include/footer.jsp" %>
 </body>
+
 </html>

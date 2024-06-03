@@ -1,13 +1,13 @@
 package com.choikang.chukahaeyo.member;
 
+import com.choikang.chukahaeyo.member.model.MemberVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper
-public class MemberMapper {
+public interface MemberMapper {
+    // 로그인
+    MemberVO login(MemberVO memberVO);
 
-    @Autowired
-    private MemberMapper memberMapper;
-
-
+    //회원 정보 조회
+    MemberVO detail(MemberVO memberVO);
 }
