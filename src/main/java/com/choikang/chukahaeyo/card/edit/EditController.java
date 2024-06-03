@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class EditController {
     @GetMapping("/edit")
     public String edit() {
-        return "index";
+        return "card/edit";
     }
 }
