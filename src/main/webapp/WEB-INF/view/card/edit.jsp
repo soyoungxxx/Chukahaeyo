@@ -59,7 +59,7 @@
             background-color: #acacac;
         }
 
-        .file {
+        input[type="submit"] {
             width : 90%;
             margin-top: 10px;
             background-color: #4171EA;
@@ -252,6 +252,50 @@
                     </div>
                 </div>
                 <hr>
+                <div class="comp">
+                    <span class="head-text">장소</span>
+                    <!-- 온오프 버튼 -->
+                    <span class="select-button">
+                        <input type="checkbox"  id="place-select" class="check"/>
+                        <label for="place-select">
+                            <span class="onf_btn"></span>
+                        </label>
+                    </span>
+                    <div class="place">
+                        <input type="submit" value="주소 찾기"/>
+                        <input type="text" placeholder="상세 주소 입력" name="place">
+                    </div>
+                </div>
+                <hr>
+                <div class="comp">
+                    <span class="head-text">준비물</span>
+                    <!-- 온오프 버튼 -->
+                    <span class="select-button">
+                        <input type="checkbox"  id="prepare-select" class="check"/>
+                        <label for="prepare-select">
+                            <span class="onf_btn"></span>
+                        </label>
+                    </span>
+                    <textarea class="prepare" maxlength="255" placeholder="준비물을 입력하세요"></textarea>
+                </div>
+                <hr>
+                <div class="comp">
+                    <span class="head-text">계좌 번호</span>
+                    <!-- 온오프 버튼 -->
+                    <span class="select-button">
+                        <input type="checkbox"  id="account-select" class="check"/>
+                        <label for="account-select">
+                            <span class="onf_btn"></span>
+                        </label>
+                    </span>
+                    <div class="account">
+                        <p style="margin-bottom:0;">은행</p>
+                        <input type="text" id="bank" name="bank"/>
+                        <p style="margin-bottom:0;">계좌 번호</p>
+                        <input type="text" id="account-number" name="accountNumber"/>
+                    </div>
+                </div>
+                <hr>
             </div>
             <div class="middle-div">
                 <div class="preview-div">
@@ -300,6 +344,9 @@
         $('#days').hide();
         $('#times').hide();
         $('.showTime').hide();
+        $('.place').hide();
+        $('.prepare').hide();
+        $('.account').hide();
 
         // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
         $('#dayRadio').click(function() {
@@ -324,10 +371,17 @@
         $('#time-select').click(function() {
             $('.showTime').toggle();
         })
+        $('#place-select').click(function() {
+            $('.place').toggle();
+        })
+        $('#prepare-select').click(function() {
+            $('.prepare').toggle();
+        })
+        $('#account-select').click(function() {
+            $('.account').toggle();
+        })
     });
 
 </script>
 </body>
-
-
 </html>
