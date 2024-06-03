@@ -39,7 +39,7 @@
 <main class="main" style="height: 95%">
     <div class="sticker1"></div>
     <div style="width: 100%;">
-        <img src="/resources/img/cart/cart_logo.png" alt="장바구니 logo" class="cart-logo">
+        <img src="/resources/img/logo/cart_logo.png" alt="장바구니 logo" class="cart-logo">
         <div class="container">
             <div class="cart-grid">
                 <c:forEach var="card" items="${cardList}">
