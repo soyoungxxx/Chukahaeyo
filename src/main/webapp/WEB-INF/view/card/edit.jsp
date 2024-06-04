@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>축하해요</title>
     <link rel="stylesheet" href="/resources/css/common.css"/>
+
     <style>
         /*카드 종류 나오는 부분*/
         h2 {
@@ -91,6 +93,9 @@
             height: 100%;
             margin-left: 20px;
             background-color: #EEEEEE;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /*edit div에 들어가는 각 항목들*/
@@ -194,6 +199,11 @@
             margin-right: 15px;
         }
 
+        .frame {
+            margin: 30px;
+            width: 80%;
+            height: auto;
+        }
     </style>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -315,7 +325,7 @@
             </div>
             <div class="middle-div">
                 <div class="preview-div">
-                    <% request.getAttribute("design"); %>
+
                 </div>
                 <div class="button-div">
                     <input class="grey-btn" type="button" value="장바구니 담기"/>
@@ -325,9 +335,11 @@
                     <input class="grey-btn" type="button" value="공개/비공개"/>
                 </div>
             </div>
-            <form action="/payments/edit/template" method="get" class="frame-div">
-                <input type="submit" value="test">
-            </form>
+            <div class="frame-div">
+                <c:forEach items="${list}" var="t">
+                    <img src="${t.thumbnail}" class="frame"> <br>
+                </c:forEach>
+            </div>
         </div>
     </div>
     <div class="sticker2" style="margin-left: 50px"></div>

@@ -1,9 +1,12 @@
 package com.choikang.chukahaeyo.card;
 
+import com.choikang.chukahaeyo.card.model.TemplateVO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface TemplateMapper {
     // 템플릿 불러오기
-    String selectTemplate(int category_id);
+    List<TemplateVO> selectFrames(int category_id);
 }
