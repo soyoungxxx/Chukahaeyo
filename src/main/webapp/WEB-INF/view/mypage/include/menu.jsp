@@ -1,39 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
-<style>
-    .mypage-menu{
-        width: 100%;
-    }
-
-    .mypage-menu > ul{
-        margin: 0px;
-        padding: 0;
-    }
-
-    .mypage-menu > ul > li {
-        display: block;
-        text-align: left;
-        list-style-type: none;
-
-        font-family: "Noto Sans KR", sans-serif;
-        font-size: 20px;
-        height: 30px;
-        margin: 40px 20px 40px 50px;
-        line-height: 30px;
-
-        cursor: pointer;
-    }
-
-    .v-line {
-        border-left : 2px solid #B5B5B5;
-        height : 650px;
-    }
-
-    #myCard{
-        font-weight: 800;
-        color: #4B5CFF;
-    }
-</style>
 
 <div class="menu">
     <div class="mypage-menu">

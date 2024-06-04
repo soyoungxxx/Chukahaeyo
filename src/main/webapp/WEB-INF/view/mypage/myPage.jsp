@@ -6,47 +6,6 @@
     <title>마이페이지</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/img/common.css"/>
-    <style>
-        .mypage{
-            width: 100%;
-            min-width: 1200px;
-            display: flex;
-            flex-direction: row;
-            align-items: end;
-            justify-content: center;
-        }
-
-        .mypage-header{
-            width: 100%;
-            margin: auto;
-        }
-
-        .mypage-header > img{
-            width: 160px;
-            margin: 35px 10px 15px 140px;
-        }
-
-        .mypage-header > hr{
-            margin: 0 auto;
-            width: 85%;
-            border: #B5B5B5 solid 1px;
-        }
-
-        .mypage-wrap{
-            display: flex;
-            width: 85%;
-            margin: 0 auto;
-            justify-content: flex-start;
-        }
-
-        .mypage-content{
-            width: 80%;
-        }
-
-        .menu{
-            width: 20%;
-        }
-    </style>
 </head>
 <body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
