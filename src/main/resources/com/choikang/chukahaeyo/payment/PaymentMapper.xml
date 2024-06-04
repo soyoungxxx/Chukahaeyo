@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choikang.chukahaeyo.payment.PaymentMapper">
+    <!-- 결제 정보 삽입 -->
+    <insert id="insertPayment" parameterType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        INSERT INTO payments (
+          apply_num,
+          buyer_email,
+          imp_uid,
+          merchant_uid,
+          paid_amount,
+          paid_at,
+          receipt_url,
+          user_id,
+          status)
+        VALUES (
+            #{applyNum},
+            #{buyerEmail},
+            #{impUid},
+            #{merchantUid},
+            #{paidAmount},
+            #{paidAt},
+            #{receiptUrl},
+            #{userId},
+            #{status}
+                )
+    </insert>
+
+
+</mapper>
