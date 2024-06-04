@@ -39,4 +39,8 @@ public class PaymentController {
             return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
         }
     }
+    @GetMapping("/success")
+    public String showSuccess(){
+        return "/card/successPay";
+    }
 }
