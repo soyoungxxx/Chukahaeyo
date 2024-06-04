@@ -12,7 +12,7 @@ public class PaymentVO {
     private boolean isOrdered; // 주문 여부 -> 주문 요청이 들어가면 true(결제 창이 켜지는 경우)
 
     private String applyNum; //카드 승인 번호
-    private String buyer_email; //구매자 이메일 주소
+    private String buyerEmail; //구매자 이메일 주소
     private String impUid; // 아임포트 결제 고유 번호
     private String merchantUid; //가맹점 주문 번호. 각 주문 건에 대해 유일한 식별자를 가짐
     private int paidAmount; //실제로 결제 된 금액
