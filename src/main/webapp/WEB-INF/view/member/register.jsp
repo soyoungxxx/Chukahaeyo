@@ -60,11 +60,12 @@
             margin: 20px auto;
         }
 
-        #email {
+        #userEmail {
             width: 300px;
         }
 
         .check_btn {
+            display: block;
             font-family: "Noto Sans KR", sans-serif;
             font-size: 15px;
             height: 45px;
@@ -147,19 +148,19 @@
         const pwdInfo = document.querySelector('.info');
 
         function loginCheck() {
-            if ($("#email").val() == '') {
+            if ($("#userEmail").val() == '') {
                 alert("이메일을 입력해주세요");
-                $("#email").focus();
+                $("#userEmail").focus();
                 return false;
             }
-            if ($("#pwd").val() == '') {
+            if ($("#userPwd").val() == '') {
                 alert("비밀번호를 입력해 주세요");
-                $("#pwd").focus();
+                $("#userPwd").focus();
                 return false;
             }
-            if ($("#pwd").val() == '') {
-                alert("내용을 모두 입력하세요");
-                $("#pwd").focus();
+            if ($("#pwdCheck").val() == '') {
+                alert("비밀번호를 한번 더 입력해주세요");
+                $("#pwdCheck").focus();
                 return false;
             }
         }
@@ -180,22 +181,25 @@
                         <div class="register_form">
                             <ul>
                                 <li>
-                                    <input type="text" id="email" name="email" placeholder="이메일">
+                                    <input type="text" id="userEmail" name="userEmail" placeholder="이메일">
+                                    <span class="email_check">
+                                        <a href="javascript:checkDupl();" class="check_btn" id="emailCheck">중복확인</a>
+                                    </span>
                                     <input type="button" class="check_btn" value="중복확인">
                                 </li>
                                 <li>
-                                    <input type="password" id="pwd" name="pwd"
+                                    <input type="password" id="userPwd" name="userPwd"
                                            placeholder="비밀번호(영어 대소문자, 숫자 포함 8자리 이상)">
                                 </li>
                                 <li>
-                                    <input type="password" id="pwd_check" name="email" placeholder="비밀번호 확인">
+                                    <input type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인">
                                 </li>
                                 <div class="check_result">
                                     <p id="check_success">비밀번호가 확인되었습니다.</p>
                                     <p id="check_fail">비밀번호가 일치하지 않습니다!</p>
                                 </div>
                                 <li>
-                                    <input type="text" id="name" name="email" placeholder="이름">
+                                    <input type="text" id="userName" name="userName" placeholder="이름">
                                 </li>
 
                             </ul>
