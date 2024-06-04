@@ -14,7 +14,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
-
     <style>
         .wrap {
             position: relative;
@@ -55,7 +54,8 @@
         .login_form > ul > li > input {
             font-family: "Noto Sans KR", sans-serif;
             font-size: 14px;
-            height: 34px;
+            height: 40px;
+            margin: 10px 0px;
             width: 300px;
             border-radius: 4px;
             border: 2px solid #B5B5B5;
@@ -71,7 +71,7 @@
             font-size: 20px;
 
             cursor: pointer;
-            width: 320px;
+            width: 300px;
             margin: 20px auto;
             padding: 7px 0px;
 
@@ -105,7 +105,7 @@
             text-decoration: none;
 
             cursor: pointer;
-            width: 320px;
+            width: 300px;
             margin: 0px auto;
             padding: 7px 0px;
 
@@ -129,6 +129,13 @@
                 $("#pwd").focus();
                 return false;
             }
+
+            // 정규 표현식 넣어서 수정하기
+            // if (true) {
+            //     alert("비밀번호를 형식이 올바르지 않습니다. (영어 대소문자, 숫자 포함 8자리 이상)");
+            //     $("#pwd").focus();
+            //     return false;
+            // }
         }
     </script>
 </head>
