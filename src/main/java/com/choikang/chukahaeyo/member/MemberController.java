@@ -31,12 +31,4 @@ public class MemberController {
             return "redirect:edit";
         }
     }
-
-    @PostMapping("/member/login")
-    public String register(Model model, MemberVO memberVO) {
-        service.register(memberVO);
-        return "redirect:member/login";
-    }
-
-
 }

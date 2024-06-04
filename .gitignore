@@ -1,6 +1,6 @@
 .idea
 .DS_Store
-.db.properties
+db.properties
 *.iml
 
 target/
