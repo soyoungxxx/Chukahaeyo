@@ -32,10 +32,10 @@ public class MemberController {
         }
     }
 
-    @PostMapping("/member/login")
+    @PostMapping("/member/register")
     public String register(Model model, MemberVO memberVO) {
         service.register(memberVO);
-        return "redirect:member/login";
+        return "redirect:edit";
     }
 
 
