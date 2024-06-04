@@ -6,6 +6,7 @@
     <title>로그인</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/css/common.css"/>
+    <link rel="stylesheet" href="/resources/css/member.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -13,109 +14,6 @@
           rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-
-    <style>
-        .wrap {
-            position: relative;
-            margin: 90px auto;
-        }
-
-        .sub_title {
-            display: block;
-            text-align: center;
-            font-family: "Noto Sans KR", sans-serif;
-            font-size: 28px;
-            line-height: 50px;
-            cursor: pointer;
-        }
-
-        .login_form {
-            display: block;
-            border: 0px;
-            position: relative;
-            margin: 20px auto;
-            height: 150px;
-        }
-
-        .login_form > ul > li {
-            display: block;
-            text-align: center;
-            list-style-type: none;
-            positon: relative;
-            padding-right: 60px;
-        }
-
-        .login_img {
-            width: 30px;
-            height: 30px;
-            padding-top: 5px;
-        }
-
-        .login_form > ul > li > input {
-            font-family: "Noto Sans KR", sans-serif;
-            font-size: 14px;
-            height: 40px;
-            margin: 10px 0px;
-            width: 300px;
-            border-radius: 4px;
-            border: 2px solid #B5B5B5;
-            padding-left: 15px;
-        }
-
-        .login_btn {
-            display: block;
-            text-align: center;
-
-            font-family: "Noto Sans KR", sans-serif;
-            font-weight: bold;
-            font-size: 20px;
-
-            cursor: pointer;
-            width: 300px;
-            margin: 20px auto;
-            padding: 7px 0px;
-
-            color: #FFFFFF;
-            border-radius: 7px;
-            border: 0px;
-            background-color: #FFC2C2;
-        }
-
-        .register > hr {
-            width: 60%;
-            margin: 70px auto 35px;
-            border: 1px solid #B5B5B5;
-        }
-
-        .register > p {
-            display: block;
-            text-align: center;
-
-            font-family: "Noto Sans KR", sans-serif;
-            font-size: 14px;
-        }
-
-        .register_btn {
-            display: block;
-            text-align: center;
-
-            font-family: "Noto Sans KR", sans-serif;
-            font-weight: 500;
-            font-size: 20px;
-            text-decoration: none;
-
-            cursor: pointer;
-            width: 300px;
-            margin: 0px auto;
-            padding: 7px 0px;
-
-            color: #000000;
-            border: 1px solid #000000;
-            background-color: #FFFFFF;
-            border-radius: 7px;
-        }
-    </style>
-
 
     <script>
         function loginCheck() {
@@ -166,7 +64,7 @@
                             </div>
                         </div>
 
-                        <div class="register">
+                        <div class="login_register">
                             <hr>
                             <p>계정이 없으신가요?</p>
                             <div>
