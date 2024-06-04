@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choikang.chukahaeyo.card.CardMapper">
+    <select id="previewCard" parameterType="com.choikang.chukahaeyo.member.model.MemberVO"
+            resultType="String">
+        SELECT design
+        FROM card
+        WHERE card_id = 1
+    </select>
+</mapper>
