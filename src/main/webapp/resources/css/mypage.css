@@ -1,14 +1,15 @@
 .mypage{
-    width: 100%;
-    min-width: 1200px;
+    width: 90%;
+    min-width: 1100px;
     display: flex;
+    margin: auto;
     flex-direction: row;
     align-items: end;
     justify-content: center;
 }
 
 .mypage-header{
-    width: 100%;
+    width: 90%;
     margin: auto;
 }
 
