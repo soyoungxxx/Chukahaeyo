@@ -44,6 +44,7 @@
         },  function (rsp) {
             if (rsp.success) {
                 console.log("결제 성공", rsp);
+                console.log("응답 객체 구조:", JSON.stringify(rsp, null, 2));
                 $.ajax({
                     url: '/payments/process',
                     type: 'POST',
