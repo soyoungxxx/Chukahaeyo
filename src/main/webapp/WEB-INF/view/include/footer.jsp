@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
 <link rel="stylesheet" href="/resources/css/footer.css"/>
-<link rel="stylesheet" href="/resources/img/common.css"/>
+<link rel="stylesheet" href="/resources/css/common.css"/>
 
 <footer class="footer">
     <div class="introduce">
