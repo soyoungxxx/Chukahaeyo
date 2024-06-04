@@ -11,5 +11,6 @@ public interface MemberMapper {
     //회원 정보 조회
     MemberVO detail(MemberVO memberVO);
 
+    // 회원 가입
     void register(MemberVO memberVO);
 }
