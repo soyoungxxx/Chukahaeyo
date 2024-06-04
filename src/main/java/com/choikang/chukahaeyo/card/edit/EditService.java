@@ -17,7 +17,4 @@ public class EditService {
         return templateMapper.selectTemplate(category_id);
     }
 
-    public String updateTemplate(String design) {
-        return cardMapper.updateTemplate(design);
-    }
 }

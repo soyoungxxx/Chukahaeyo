@@ -9,4 +9,9 @@ public class EditController {
     public String showEditPage() {
         return "card/edit";
     }
+
+    @GetMapping("/payments/edit/template")
+    public String getPreviewTemplate() {
+        return "card/edit";
+    }
 }

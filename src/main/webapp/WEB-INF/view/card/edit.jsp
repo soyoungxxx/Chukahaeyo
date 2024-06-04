@@ -315,7 +315,7 @@
             </div>
             <div class="middle-div">
                 <div class="preview-div">
-
+                    <% request.getAttribute("design"); %>
                 </div>
                 <div class="button-div">
                     <input class="grey-btn" type="button" value="장바구니 담기"/>
@@ -325,9 +325,9 @@
                     <input class="grey-btn" type="button" value="공개/비공개"/>
                 </div>
             </div>
-            <div class="frame-div">
-
-            </div>
+            <form action="/payments/edit/template" method="get" class="frame-div">
+                <input type="submit" value="test">
+            </form>
         </div>
     </div>
     <div class="sticker2" style="margin-left: 50px"></div>
