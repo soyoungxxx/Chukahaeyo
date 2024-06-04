@@ -119,14 +119,14 @@
 
     <script>
         function loginCheck() {
-            if ($("#email").val() == '') {
+            if ($("#userEmail").val() == '') {
                 alert("이메일을 입력해 주세요");
-                $("#email").focus();
+                $("#userEmail").focus();
                 return false;
             }
-            if ($("#pwd").val() == '') {
+            if ($("#userPwd").val() == '') {
                 alert("비밀번호를 입력해 주세요");
-                $("#pwd").focus();
+                $("#userPwd").focus();
                 return false;
             }
 
@@ -154,11 +154,11 @@
                             <ul>
                                 <li>
                                     <img src="/resources/img/login-user.png" class="login_img">
-                                    <input type="text" id="email" name="email" placeholder="이메일">
+                                    <input type="text" id="userEmail" name="userEmail" placeholder="이메일">
                                 </li>
                                 <li>
                                     <img src="/resources/img/login-lock.png" class="login_img">
-                                    <input type="password" id="pwd" name="pwd" placeholder="비밀번호">
+                                    <input type="password" id="userPwd" name="userPwd" placeholder="비밀번호">
                                 </li>
                             </ul>
                             <div class="btn">

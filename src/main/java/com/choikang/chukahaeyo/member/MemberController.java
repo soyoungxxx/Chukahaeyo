@@ -23,13 +23,19 @@ public class MemberController {
     public String login(Model model, MemberVO memberVO, HttpSession session) {
         MemberVO login = service.login(memberVO);
         if (login == null) {
-            model.addAttribute("msg", "아이디 혹은 비밀번호를 확인하세요.");
+            model.addAttribute("msg", "아이디 혹은 비밀번호를 다시 확인하세요.");
             model.addAttribute("url", "");
             return "include/alert";
         } else {
             session.setAttribute("login", login);
             return "redirect:edit";
         }
+    }
+
+    @PostMapping("/member/login")
+    public String register(Model model, MemberVO memberVO) {
+        service.register(memberVO);
+        return "redirect:member/login";
     }
 
 

@@ -12,4 +12,8 @@ public class MemberService {
     public MemberVO login(MemberVO memberVO) {
         return memberMapper.login(memberVO);
     }
+
+    public void register(MemberVO memberVO) {
+        memberMapper.register(memberVO);
+    }
 }
