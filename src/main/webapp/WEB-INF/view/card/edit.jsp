@@ -40,12 +40,21 @@
             background-color: #E4E4E4;
         }
         .button-div {
+            display:flex;
             text-align: center;
             height: 10%;
         }
 
+        #payment-form {
+            position: relative;
+            margin: 1% 6% 0 6%;
+            padding: 0;
+            width: 30%;
+            height: 90%;
+        }
+
         /*버튼 스타일*/
-        input[type="button"] {
+        .grey-btn {
             position:relative;
             width: 30%;
             height: 90%;
@@ -56,8 +65,14 @@
             font-size: 24px;
         }
 
+        #pay-button {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
         /*버튼 눌렸을 때*/
-        input[type="button"]:active{
+        .grey-btn:active{
             box-shadow: 0 0 #adadad;
             background-color: #acacac;
         }
@@ -303,11 +318,11 @@
 
                 </div>
                 <div class="button-div">
-                    <input type="button" value="장바구니 담기"/>
+                    <input class="grey-btn" type="button" value="장바구니 담기"/>
                     <form id="payment-form" action="/payments/process" method="post">
-                        <input type="button" id="pay-button" value="결제하기">
+                        <input class="grey-btn" type="button" id="pay-button" value="결제하기">
                     </form>
-                    <input type="button" value="공개/비공개"/>
+                    <input class="grey-btn" type="button" value="공개/비공개"/>
                 </div>
             </div>
             <div class="frame-div">
