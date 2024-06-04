@@ -9,6 +9,7 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -23,7 +24,8 @@ import com.zaxxer.hikari.HikariDataSource;
 @ComponentScan(basePackages = { "com.choikang.chukahaeyo" })
 @EnableWebMvc
 @MapperScan(basePackages = { "com.choikang.chukahaeyo" }, annotationClass = Mapper.class) // 인터페이스 스캔
-@EnableTransactionManagement
+//@EnableTransactionManagement
+//@PropertySource("classpath:db.properties")
 public class MvcConfig implements WebMvcConfigurer {
 
     @Value("${db.driver}")
