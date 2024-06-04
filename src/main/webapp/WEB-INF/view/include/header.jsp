@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <link rel="stylesheet" href="/resources/css/header.css"/>
-<link rel="stylesheet" href="/resources/img/common.css"/>
+<link rel="stylesheet" href="/resources/css/common.css"/>
 
 <div class="header">
     <div class="logo"></div>

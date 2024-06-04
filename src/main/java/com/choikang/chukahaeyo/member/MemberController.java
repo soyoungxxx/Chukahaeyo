@@ -31,6 +31,7 @@ public class MemberController {
             return "redirect:edit";
         }
     }
+<<<<<<< HEAD
 
     @PostMapping("/member/register")
     public String register(Model model, MemberVO memberVO) {
@@ -39,4 +40,6 @@ public class MemberController {
     }
 
 
+=======
+>>>>>>> 45e2efe48f51f7c809ed4df41026c5a55817893d
 }
