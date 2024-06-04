@@ -28,7 +28,8 @@ public class EditController {
 
     @ResponseBody
     @GetMapping("/payments/edit/template.do")
-    public String getPreviewTemplate(int template_id) {
-        return service.selectPreviewFrame(template_id);
+    public String getPreviewTemplate(int id) {
+        System.out.println(service.selectPreviewFrame(id));
+        return service.selectPreviewFrame(id);
     }
 }

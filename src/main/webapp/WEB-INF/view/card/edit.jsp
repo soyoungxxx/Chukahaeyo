@@ -324,7 +324,7 @@
                 <hr>
             </div>
             <div class="middle-div">
-                <div class="preview-div">
+                <div class="preview-div" style="overflow:scroll">
 
                 </div>
                 <div class="button-div">
@@ -480,7 +480,7 @@
             url:"/payments/edit/template.do",
             data:{id:template_id},
             success: function(data) {
-                $('.frame-div').innerHTML = data;
+                $('.preview-div').append(data);
             }
         })
     })
