@@ -1,4 +1,4 @@
 package com.choikang.chukahaeyo.card;
 
-public interface TeamplateMapper {
+public interface TemplateMapper {
 }
