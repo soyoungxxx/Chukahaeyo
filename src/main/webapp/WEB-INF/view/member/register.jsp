@@ -15,10 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
-        const pwdImg = document.querySelector('.pwd_info');
-        const pwdInfo = document.querySelector('.info');
-
-        function loginCheck() {
+        function inputCheck() {
             if ($("#userEmail").val() == '') {
                 alert("이메일을 입력해주세요");
                 $("#userEmail").focus();
@@ -43,7 +40,7 @@
 <main class="main">
     <div class="sticker1"></div>
     <div style="width: 100%; overflow: hidden;">
-        <form action="register" method="post" onsubmit="return loginCheck();">
+        <form action="register" method="post" onsubmit="return inputCheck();">
             <div class="wrap">
                 <h3 class="sub_title">회원가입</h3>
                 <hr>
@@ -61,7 +58,7 @@
 
                                 <li>
                                     <input type="password" id="userPwd" name="userPwd"
-                                           placeholder="비밀번호(영어 대소문자, 숫자 포함 8자리 이상)">
+                                           placeholder="비밀번호(영어 대소문자 숫자 모두 포함, 8자리 이상)">
                                 </li>
                                 <li>
                                     <input type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인">

@@ -8,7 +8,7 @@ public interface MemberMapper {
     // 로그인
     MemberVO login(MemberVO memberVO);
 
-    //회원 정보 조회
+    // 회원 정보 조회
     MemberVO detail(MemberVO memberVO);
 
     // 회원 가입
