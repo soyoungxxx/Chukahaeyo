@@ -9,9 +9,8 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -25,7 +24,8 @@ import com.zaxxer.hikari.HikariDataSource;
 @ComponentScan(basePackages = { "com.choikang.chukahaeyo" })
 @EnableWebMvc
 @MapperScan(basePackages = { "com.choikang.chukahaeyo" }, annotationClass = Mapper.class) // 인터페이스 스캔
-@EnableTransactionManagement
+//@EnableTransactionManagement
+//@PropertySource("classpath:db.properties")
 public class MvcConfig implements WebMvcConfigurer {
 
     @Value("${db.driver}")
@@ -49,11 +49,11 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry reg) {
+        reg.addViewController("/payments/edit");
+        reg.addViewController("/payments/process");
+        reg.addViewController("/payments/success");
         reg.addViewController("/member/login");
         reg.addViewController("/member/register");
-        reg.addViewController("/edit");
-        reg.addViewController("/card/cart");
-        reg.addViewController("/card/gallery");
     }
 
     @Bean
@@ -71,11 +71,6 @@ public class MvcConfig implements WebMvcConfigurer {
         SqlSessionFactoryBean ssf = new SqlSessionFactoryBean();
         ssf.setDataSource(dataSource()); // CP 객체 주입
         return ssf.getObject();
-    }
-
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
     }
 
     @Bean
