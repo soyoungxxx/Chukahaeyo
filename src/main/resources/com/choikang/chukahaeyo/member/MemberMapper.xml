@@ -6,15 +6,15 @@
         SELECT *
         FROM user
         WHERE email = #{userEmail}
-          AND pwd = #{userPwd}
+          AND pwd = MD5(#{userPwd})
     </select>
 
     <insert id="register" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
         INSERT INTO user{
-            email, pwd, name, auth
+            email, pwd, user_name, register_date, auth
             }
         VALUES {
-            #{userEmail}, #{userPwd}, #{userName}, true
+            #{userEmail}, MD5(#{userPwd}), #{userName}, NOW(), true
             }
     </insert>
 
