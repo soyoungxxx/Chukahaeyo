@@ -118,6 +118,9 @@
 
 
     <script>
+
+
+
         function loginCheck() {
             if ($("#userEmail").val() == '') {
                 alert("이메일을 입력해 주세요");
