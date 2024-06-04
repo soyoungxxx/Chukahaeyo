@@ -19,6 +19,11 @@ public class MemberController {
     public void login() {
     }
 
+    @GetMapping("/member/register")
+    public void register() {
+    }
+
+
     @PostMapping("/member/login")
     public String login(Model model, MemberVO memberVO, HttpSession session) {
         MemberVO login = service.login(memberVO);
@@ -31,4 +36,12 @@ public class MemberController {
             return "redirect:edit";
         }
     }
+
+
+    @PostMapping("/member/register")
+    public String register(Model model, MemberVO memberVO) {
+        service.register(memberVO);
+        return "redirect:edit";
+    }
+
 }
