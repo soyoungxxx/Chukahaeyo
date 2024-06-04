@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -25,9 +26,9 @@ public class EditController {
         return "card/edit";
     }
 
-//    @GetMapping("/payments/edit/template.do")
-//    public String getPreviewTemplate(HttpServletRequest req) {
-//        req.getParameter("first");
-//        return "card/edit";
-//    }
+    @ResponseBody
+    @GetMapping("/payments/edit/template.do")
+    public String getPreviewTemplate(int template_id) {
+        return service.selectPreviewFrame(template_id);
+    }
 }

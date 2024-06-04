@@ -20,4 +20,7 @@ public class EditService {
         return templateMapper.selectFrames(category_id);
     }
 
+    public String selectPreviewFrame(int template_id) {
+        return templateMapper.selectPreviewFrame(template_id);
+    }
 }

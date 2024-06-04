@@ -337,7 +337,7 @@
             </div>
             <div class="frame-div">
                 <c:forEach items="${list}" var="t">
-                    <img src="${t.thumbnail}" class="frame"> <br>
+                    <img src="${t.thumbnail}" class="frame" id="${t.template_id}" > <br>
                 </c:forEach>
             </div>
         </div>
@@ -473,6 +473,17 @@
     document.getElementById('pay-button').addEventListener('click', function () {
         requestPay();
     });
+
+    $('.frame').click(function() {
+        var template_id = $(this).attr("id");
+        $.ajax({
+            url:"/payments/edit/template.do",
+            data:{id:template_id},
+            success: function(data) {
+                $('.frame-div').innerHTML = data;
+            }
+        })
+    })
 </script>
 </body>
 </html>
