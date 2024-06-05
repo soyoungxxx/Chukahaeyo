@@ -120,7 +120,7 @@ html {
     width: 100%;
     height: auto;
     position: absolute;
-    text-align: center;
+    align-items: center;
     display: flex;
     flex-direction: column;
 
@@ -133,10 +133,9 @@ html {
 }
 
 .text {
-    width: 100%;
+    width: 80%;
     height: auto;
     margin-top: 100px;
-
     line-height: 60px;
     text-align: center;
 

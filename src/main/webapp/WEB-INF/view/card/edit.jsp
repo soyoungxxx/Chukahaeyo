@@ -27,7 +27,7 @@
                 <div class="comp">
                     <span class="head-text">이름</span>
                     <span class="warn-text">필수 항목입니다.</span>
-                    <input type="text" class="edit-text"/>
+                    <input type="text" class="edit-text" id="name"/>
                 </div>
                 <hr>
                 <div class="comp">
@@ -49,7 +49,7 @@
                 <div class="comp">
                     <span class="head-text">문구</span>
                     <span class="warn-text">필수 항목입니다.</span> <br>
-                    <textarea maxlength="255" placeholder="문구를 입력하세요"></textarea>
+                    <textarea id="text" maxlength="255" placeholder="문구를 입력하세요"></textarea>
                 </div>
                 <hr>
                 <div class="comp">
@@ -153,6 +153,23 @@
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
 <script type="text/javascript">
+    $('.all-content').ready(function(){
+        if ($('.all-content').val() !== undefined) {
+            console.log(1);
+            var text;
+            $('#name').on('input', function(){
+                // text = $(this).val();
+                // $('.text').text(text);
+                console.log(2);
+            });
+            $('#text').on('input', function(){
+                text = $(this).val();
+                $('.text').text(text);
+                console.log(1)
+            });
+        }
+    });
+
     $(function() {
         $('#days').daterangepicker({
             autoUpdateInput: false,
@@ -283,13 +300,16 @@
     $('.frame').click(function() {
         var template_id = $(this).attr("id");
         $.ajax({
+            type: "GET",
             url:"/payments/edit/template.do",
             data:{id:template_id},
+            contentType : "text/html; charset:UTF-8",
             success: function(data) {
                 $('.preview-div').html(data);
             }
         })
     })
 </script>
+안녕 언니 오늘도 파이팅💖
 </body>
 </html>
