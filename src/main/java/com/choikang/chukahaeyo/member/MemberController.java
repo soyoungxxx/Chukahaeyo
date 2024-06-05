@@ -34,7 +34,7 @@ public class MemberController {
             return "include/alert";
         } else {
             session.setAttribute("login", login);
-            return "redirect:main";
+            return "redirect:/";
         }
     }
 
