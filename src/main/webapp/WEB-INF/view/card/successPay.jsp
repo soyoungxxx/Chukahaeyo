@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>test</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
+    <link rel="stylesheet" href="/resources/img/common.css"/>
     <style>
 
 

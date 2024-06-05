@@ -7,7 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <title>축하해요</title>
-    <link rel="stylesheet" href="/resources/css/common.css"/>
+    <link rel="stylesheet" href="/resources/img/common.css"/>
     <style>
         /*카드 종류 나오는 부분*/
         h2 {
