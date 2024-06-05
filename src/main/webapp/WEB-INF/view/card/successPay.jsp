@@ -91,7 +91,7 @@
                     <button class="button copy">URL 복사하기</button>
                 </div>
                 <div class="button-main">
-                    <button class="button main">메인으로 이동</button>
+                    <button class="button main2">메인으로 이동</button>
                 </div>
             </div>
         </div>
