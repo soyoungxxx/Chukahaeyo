@@ -47,7 +47,7 @@
             }
         }
 
-        function checkDuplicate() {
+        function checkEmail(){
             if ($("#userEmail").val() == '') {
                 alert("이메일을 입력해주세요");
                 $("#userEmail").focus();
@@ -58,7 +58,20 @@
                 $("#userEmail").focus();
                 return false;
             }
+            checkDuplicate();
+        }
 
+        function openCheckEmail(){
+            const popup = document.querySelector('#emailAuthPopup');
+            popup.style.display = "flex";
+        }
+
+        function closeCheckEmail(){
+            const popup = document.querySelector('#emailAuthPopup');
+            popup.style.display = "none";
+        }
+
+        function checkDuplicate() {
             $.ajax({
                 url: '/member/register/checkEmailDuplicate',
                 data: {email: $("#userEmail").val()},
@@ -71,16 +84,18 @@
                         alert('중복된 이메일입니다.\r\n다른 이메일을 입력해 주세요');
                     }
                 }
+                // 사용 가능한 이메일일 시 추가 작업 해줘야 함
             })
+            openCheckEmail();
         }
 
         function openPopup() {
-            const popup = document.querySelector('.popup');
+            const popup = document.querySelector('#termOfUsePopup');
             popup.style.display = "flex";
         }
 
         function closePopup() {
-            const popup = document.querySelector('.popup');
+            const popup = document.querySelector('#termOfUsePopup');
             popup.style.display = "none";
         }
 
@@ -102,6 +117,7 @@
 
 <body>
 <%@ include file="/WEB-INF/view/member/include/termsOfUse.jsp" %>
+<%@ include file="/WEB-INF/view/member/include/emailAuth.jsp" %>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 <main class="main">
     <div class="sticker1"></div>

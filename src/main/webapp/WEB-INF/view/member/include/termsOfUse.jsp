@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<div class="popup">
+<div class="popup" id = "termOfUsePopup">
     <div class="popup-body">
         <h3>회원가입 약관</h3>
         <hr>

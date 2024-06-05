@@ -286,10 +286,7 @@
     cursor: pointer;
 }
 
-/* 이메일 인증 팝업 */
-
-
-/* 이용약관 팝업 */
+/* 팝업 공통 */
 .popup {
     position: fixed;
     display: none;
@@ -327,6 +324,7 @@
     transform: translateY(-50%);
 }
 
+/* 이용약관 팝업 */
 .popup-body > h3 {
     font-family: "Noto Sans KR", sans-serif;
     font-size: 26px;
@@ -364,4 +362,23 @@
     line-height: 50px;
 
     border-radius: 10px;
+}
+
+/* 이메일 인증 팝업 */
+.email-auth-popup{
+    margin-top: 65px;
+}
+
+.email-auth-popup > p {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 18px;
+}
+
+.email-auth-popup > img{
+    width: 270px;
+    width: 250px;
+}
+
+#authPopupClose {
+    margin-top: 20px;
 }
