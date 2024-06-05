@@ -18,5 +18,9 @@
             }
     </insert>
 
+    <select id="checkEmailDuplicate" parameterType="String" resultType="int">
+        SELECT count(*) FROM user WHERE email = #{email}
+    </select>
+
 
 </mapper>

@@ -16,24 +16,33 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <script>
+        const emailRegex = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+        const pwdRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,20}$/;
+
         function loginCheck() {
             if ($("#userEmail").val() == '') {
-                alert("이메일을 입력해 주세요");
+                alert("이메일을 입력해주세요.");
                 $("#userEmail").focus();
                 return false;
             }
+
+            if(!emailRegex.test($("#userEmail").val())){
+                alert("이메일를 올바른 형식으로 작성해주세요.");
+                $("#userEmail").focus();
+                return false;
+            }
+
             if ($("#userPwd").val() == '') {
                 alert("비밀번호를 입력해 주세요");
                 $("#userPwd").focus();
                 return false;
             }
 
-            // 정규 표현식 넣어서 수정하기
-            // if (true) {
-            //     alert("비밀번호를 형식이 올바르지 않습니다. (영어 대소문자, 숫자 포함 8자리 이상)");
-            //     $("#pwd").focus();
-            //     return false;
-            // }
+            if(!pwdRegex.test($("#userPwd").val())){
+                alert("비밀번호를 형식이 올바르지 않습니다. (영어 대소문자 숫자 모두 포함, 8자리 이상)");
+                $("#userPwd").focus();
+                return false;
+            }
         }
     </script>
 </head>
