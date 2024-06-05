@@ -43,8 +43,10 @@
                     <span class="head-text">사진</span>
                     <span class="warn-text">필수 항목입니다.</span> <br>
                     <%-- 사진 첨부하는 버튼 --%>
-                    <input class="inputFile" id="file" type="file" value="첨부하기"/>
-                    <label class="file-label" for="file">첨부하기</label>
+                    <form method="post" enctype="multipart/form-data">
+                        <input class="inputFile" id="file" type="file" value="첨부하기" onchange="loadFile(this)" accept="image/*"/>
+                        <label class="file-label" for="file">첨부하기</label>
+                    </form>
                 </div>
                 <hr>
                 <div class="comp">
@@ -131,9 +133,7 @@
                 <hr>
             </div>
             <div class="middle-div">
-                <div class="preview-div" style="overflow:scroll">
-
-                </div>
+                <div class="preview-div" style="overflow:scroll"></div>
                 <div class="button-div">
                     <input class="grey-btn" type="button" value="장바구니 담기"/>
                     <form id="payment-form" action="/payments/process" method="post">
@@ -154,6 +154,17 @@
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
 <script type="text/javascript">
+    function loadFile(input) {
+        var file = input.files[0];
+        // 파일 이름 표시
+        $('.file-label').text(file.name);
+        var newImage = document.createElement("img");
+        newImage.setAttribute("class", "uploadedImage");
+        newImage.src = URL.createObjectURL(file);
+        console.log(newImage)
+        // conponent 추가
+        $('.uploadedImage').replaceWith(newImage);
+    }
     $('.all-content').ready(function () {
         var text;
         // 이름
@@ -166,10 +177,6 @@
             text = $(this).val();
             $('.text').text(text);
         });
-        // 날짜 가져오기
-        var oneDayRadio = $('#dayRadio');
-        var daysRadio = $('#daysRadio');
-
     });
 
     $(function () {
