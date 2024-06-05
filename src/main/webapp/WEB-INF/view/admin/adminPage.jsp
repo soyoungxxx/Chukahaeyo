@@ -12,7 +12,8 @@
 <main class="main">
     <div style="width: 100%;">
         <div class="admin-header">
-            관리자페이지
+            <a href="admin/adminPage" class="logo">관리자페이지</a>
+            <a href="#" class="logout">로그아웃</a>
         </div>
         <hr>
         <div class="admin">
