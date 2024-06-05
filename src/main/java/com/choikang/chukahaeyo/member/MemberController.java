@@ -6,12 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class MemberController {
-
     @Autowired
     private MemberService service;
 
@@ -19,6 +19,12 @@ public class MemberController {
     public void login() {
     }
 
+    @GetMapping("/member/register")
+    public void register() {
+    }
+
+
+    // 로그인
     @PostMapping("/member/login")
     public String login(Model model, MemberVO memberVO, HttpSession session) {
         MemberVO login = service.login(memberVO);
@@ -28,7 +34,25 @@ public class MemberController {
             return "include/alert";
         } else {
             session.setAttribute("login", login);
-            return "redirect:edit";
+            return "redirect:/";
         }
     }
+
+    // 회원가입 시 이메일 중복체크
+    @ResponseBody
+    @GetMapping("/member/register/checkEmailDuplicate")
+    public boolean checkEmailDuplicate(String email) {
+        if(service.checkEmailDuplicate(email) == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    // 회원가입
+    @PostMapping("/member/register")
+    public String register(Model model, MemberVO memberVO) {
+        service.register(memberVO);
+        return "redirect:edit";
+    }
+
 }

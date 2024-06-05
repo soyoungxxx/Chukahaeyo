@@ -9,10 +9,17 @@ public class MemberService {
     @Autowired
     private MemberMapper memberMapper;
 
+    // 로그인
     public MemberVO login(MemberVO memberVO) {
         return memberMapper.login(memberVO);
     }
 
+    // 회원가입 시 이메일 중복체크
+    public int checkEmailDuplicate(String email) {
+        return memberMapper.checkEmailDuplicate(email);
+    }
+
+    // 회원가입
     public void register(MemberVO memberVO) {
         memberMapper.register(memberVO);
     }
