@@ -2,7 +2,6 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    font-family: "IBM Plex Sans KR", sans-serif;
 }
 
 .bg {
@@ -13,6 +12,7 @@
 }
 
 html {
+
     width: 100%;
     height: 100%;
     display: flex;
@@ -26,6 +26,7 @@ html {
 }
 
 .all-content {
+    font-family: "IBM Plex Sans KR", sans-serif;
     width: 100%;
     height: 100%;
     display: flex;

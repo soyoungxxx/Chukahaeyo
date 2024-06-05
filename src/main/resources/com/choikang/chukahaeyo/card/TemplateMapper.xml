@@ -7,7 +7,7 @@
         WHERE category_id = #{category_id}
     </select>
     <select id="selectPreviewFrame" parameterType="int" resultType="String">
-        SELECT design
+        SELECT CONVERT(design USING utf8)
         FROM template
         WHERE template_id = #{template_id}
     </select>

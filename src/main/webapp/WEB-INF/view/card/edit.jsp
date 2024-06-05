@@ -9,8 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>축하해요</title>
     <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/template/green.css">
     <link rel="stylesheet" href="/resources/css/edit.css">
+    <link rel="stylesheet" href="/resources/css/template/green.css?after">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -286,7 +286,7 @@
             url:"/payments/edit/template.do",
             data:{id:template_id},
             success: function(data) {
-                $('.preview-div').append(data);
+                $('.preview-div').html(data);
             }
         })
     })
