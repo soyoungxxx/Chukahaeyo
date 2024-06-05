@@ -15,6 +15,8 @@ public enum SuccessCode {
     GET_ALL_GUESTBOOK_SUCCESS(HttpStatus.OK, "방명록 조회에 성공했습니다"),
     GET_USER_INFO_SUCCESS(HttpStatus.OK, "사용자 정보 조회에 성공했습니다"),
     UNLINK_SUCCESS(HttpStatus.NO_CONTENT, "사용자 탈퇴에 성공했습니다"),
+    CREATE_SHORT_URL_SUCCESS(HttpStatus.CREATED, "단축 url 생성을 성공했습니다."),
+
 
     /**
      * 201 CREATED
