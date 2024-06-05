@@ -49,7 +49,7 @@
 }
 
 .mypage-menu a:hover {
-    color: black; /* a 태그 호버 시에도 글씨 색 검은색 유지 */
+    color: black;
 }
 
 .mypage-menu > ul{
