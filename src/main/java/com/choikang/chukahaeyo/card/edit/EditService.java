@@ -21,6 +21,7 @@ public class EditService {
     }
 
     public String selectPreviewFrame(int template_id) {
+        System.out.println(templateMapper.selectPreviewFrame(template_id));
         return templateMapper.selectPreviewFrame(template_id);
     }
 }
