@@ -19,11 +19,6 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
-    @GetMapping("/edit")
-    public String showEditPage() {
-        return "card/edit";
-    }
-
     @PostMapping("/process")
     public ResponseEntity<String> processPayment(@RequestBody PaymentDTO paymentDTO) {
         System.out.println("1");

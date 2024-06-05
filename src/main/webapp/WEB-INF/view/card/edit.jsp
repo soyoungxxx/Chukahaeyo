@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>축하해요</title>
     <link rel="stylesheet" href="/resources/css/common.css"/>
+
     <style>
         /*카드 종류 나오는 부분*/
         h2 {
@@ -40,12 +42,21 @@
             background-color: #E4E4E4;
         }
         .button-div {
+            display:flex;
             text-align: center;
             height: 10%;
         }
 
+        #payment-form {
+            position: relative;
+            margin: 1% 6% 0 6%;
+            padding: 0;
+            width: 30%;
+            height: 90%;
+        }
+
         /*버튼 스타일*/
-        input[type="button"] {
+        .grey-btn {
             position:relative;
             width: 30%;
             height: 90%;
@@ -56,8 +67,14 @@
             font-size: 24px;
         }
 
+        #pay-button {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
         /*버튼 눌렸을 때*/
-        input[type="button"]:active{
+        .grey-btn:active{
             box-shadow: 0 0 #adadad;
             background-color: #acacac;
         }
@@ -76,6 +93,9 @@
             height: 100%;
             margin-left: 20px;
             background-color: #EEEEEE;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /*edit div에 들어가는 각 항목들*/
@@ -179,6 +199,11 @@
             margin-right: 15px;
         }
 
+        .frame {
+            margin: 30px;
+            width: 80%;
+            height: auto;
+        }
     </style>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -299,19 +324,21 @@
                 <hr>
             </div>
             <div class="middle-div">
-                <div class="preview-div">
+                <div class="preview-div" style="overflow:scroll">
 
                 </div>
                 <div class="button-div">
-                    <input type="button" value="장바구니 담기"/>
+                    <input class="grey-btn" type="button" value="장바구니 담기"/>
                     <form id="payment-form" action="/payments/process" method="post">
-                        <input type="button" id="pay-button" value="결제하기">
+                        <input class="grey-btn" type="button" id="pay-button" value="결제하기">
                     </form>
-                    <input type="button" value="공개/비공개"/>
+                    <input class="grey-btn" type="button" value="공개/비공개"/>
                 </div>
             </div>
             <div class="frame-div">
-
+                <c:forEach items="${list}" var="t">
+                    <img src="${t.thumbnail}" class="frame" id="${t.template_id}" > <br>
+                </c:forEach>
             </div>
         </div>
     </div>
@@ -451,6 +478,17 @@
     document.getElementById('pay-button').addEventListener('click', function () {
         requestPay();
     });
+
+    $('.frame').click(function() {
+        var template_id = $(this).attr("id");
+        $.ajax({
+            url:"/payments/edit/template.do",
+            data:{id:template_id},
+            success: function(data) {
+                $('.preview-div').append(data);
+            }
+        })
+    })
 </script>
 </body>
 </html>
