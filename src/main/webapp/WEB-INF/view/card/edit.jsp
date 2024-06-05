@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
+<html style="text-align: justify;">
 <head>
     <meta charset="UTF-8">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -117,10 +117,13 @@
 
         .emoji {
             width: 15% !important;
+            margin-top: 10px;
+            height: 30px;
+            font-size: 15px;
         }
 
         /*edit div 내의 text box*/
-        input[type="text"] {
+        .edit-text {
             margin-top: 10px;
             width: 85%;
             height: 30px;
@@ -221,7 +224,7 @@
                 <div class="comp">
                     <span class="head-text">이름</span>
                     <span class="warn-text">필수 항목입니다.</span>
-                    <input type="text"/>
+                    <input type="text" class="edit-text"/>
                 </div>
                 <hr>
                 <div class="comp">
@@ -229,8 +232,8 @@
                     <span class="warn-text">필수 항목입니다.</span> <br>
                     <input type="radio" checked id="dayRadio" name="day">하루 선택 <br>
                     <input type="radio" id="daysRadio" name="day"/>여러날 선택
-                    <input type="text" id="day" value="" placeholder="날짜 선택"/>
-                    <input type="text" id="days" value="" placeholder="날짜 선택"/>
+                    <input type="text" id="day" class="edit-text" placeholder="날짜 선택"/>
+                    <input type="text" id="days" class="edit-text" placeholder="날짜 선택"/>
                 </div>
                 <hr>
                 <div class="comp">
@@ -273,8 +276,8 @@
                     <div class="showTime">
                         <input type="radio" checked id="timeRadio" name="time">시각 선택 <br>
                         <input type="radio" id="timesRadio" name="time"/>범위 시간 선택<br>
-                        <input type="time" id="time" value="" placeholder="시간 선택"/>
-                        <input type="time" id="times" value="" placeholder="시간 선택"/>
+                        <input type="time" id="time" placeholder="시간 선택"/>
+                        <input type="time" id="times" placeholder="시간 선택"/>
                     </div>
                 </div>
                 <hr>
@@ -289,7 +292,7 @@
                     </span>
                     <div class="place">
                         <input type="submit" value="주소 찾기"/>
-                        <input type="text" placeholder="상세 주소 입력" name="place">
+                        <input type="text" class="edit-text" placeholder="상세 주소 입력" name="place">
                     </div>
                 </div>
                 <hr>
@@ -316,9 +319,9 @@
                     </span>
                     <div class="account">
                         <p style="margin-bottom:0;">은행</p>
-                        <input type="text" id="bank" name="bank"/>
+                        <input type="text" id="bank" name="bank" class="edit-text"/>
                         <p style="margin-bottom:0;">계좌 번호</p>
-                        <input type="text" id="account-number" name="accountNumber"/>
+                        <input type="text" id="account-number" name="accountNumber" class="edit-text"/>
                     </div>
                 </div>
                 <hr>
