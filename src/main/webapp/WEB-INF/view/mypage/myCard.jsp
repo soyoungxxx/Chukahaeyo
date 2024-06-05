@@ -7,7 +7,7 @@
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/img/common.css"/>
     <link rel="stylesheet" href="/resources/css/mypage.css"/>
-    <link rel="stylesheet" href="/resources/css/cart.css"/>
+<%--    <link rel="stylesheet" href="/resources/css/cart.css"/>--%>
     <link rel="stylesheet" href="/resources/css/mypage/mycard.css"/>
 </head>
 <body>
