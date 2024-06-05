@@ -22,46 +22,46 @@
     <div class="sticker1" style="margin-right: 50px"></div>
     <div style="width: 100%; height: 85%;">
         <h2>< 카드 종류 > 가 만들어지는 중</h2>
-        <div class="main-div">
+        <div class="edit-main-div">
             <div class="edit-div" style="overflow: auto;">
-                <div class="comp">
+                <div class="edit-div-components">
                     <span class="head-text">이름</span>
                     <span class="warn-text">필수 항목입니다.</span>
-                    <input type="text" class="edit-text" id="name"/>
+                    <input type="text" class="edit-text" id="edit-name"/>
                 </div>
                 <hr>
-                <div class="comp">
+                <div class="edit-div-components">
                     <span class="head-text">날짜</span>
                     <span class="warn-text">필수 항목입니다.</span> <br>
-                    <input type="radio" checked id="dayRadio" name="day">하루 선택 <br>
-                    <input type="radio" id="daysRadio" name="day"/>여러날 선택
-                    <input type="text" id="day" class="edit-text" placeholder="날짜 선택"/>
-                    <input type="text" id="days" class="edit-text" placeholder="날짜 선택"/>
+                    <input type="radio" checked id="edit-dayRadio" name="day">하루 선택 <br>
+                    <input type="radio" id="edit-daysRadio" name="day"/>여러날 선택
+                    <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택"/>
+                    <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택"/>
                 </div>
                 <hr>
-                <div class="comp">
+                <div class="edit-div-components">
                     <span class="head-text">사진</span>
-                    <span class="warn-text">필수 항목입니다.</span> <br>
+                    <span class="edit-warn-text">필수 항목입니다.</span> <br>
                     <%-- 사진 첨부하는 버튼 --%>
                     <form method="post" enctype="multipart/form-data">
-                        <input class="inputFile" id="file" type="file" value="첨부하기" onchange="loadFile(this)" accept="image/*"/>
-                        <label class="file-label" for="file">첨부하기</label>
+                        <input class="edit-inputFile" id="edit-file" type="file" value="첨부하기" onchange="loadFile(this)" accept="image/*"/>
+                        <label class="edit-file-label" for="edit-file">첨부하기</label>
                     </form>
                 </div>
                 <hr>
-                <div class="comp">
+                <div class="edit-div-components">
                     <span class="head-text">문구</span>
-                    <span class="warn-text">필수 항목입니다.</span> <br>
-                    <textarea id="text" maxlength="255" placeholder="문구를 입력하세요"></textarea>
+                    <span class="edit-warn-text">필수 항목입니다.</span> <br>
+                    <textarea id="edit-text" maxlength="255" placeholder="문구를 입력하세요"></textarea>
                 </div>
                 <hr>
-                <div class="comp">
+                <div class="edit-div-components">
                     <span class="head-text">이모티콘</span>
-                    <span class="warn-text">필수 항목입니다.</span> <br>
-                    <input class="emoji" type="text" name="emoji1"/>
-                    <input class="emoji" type="text" name="emoji2"/>
-                    <input class="emoji" type="text" name="emoji3"/>
-                    <input class="emoji" type="text" name="emoji4"/>
+                    <span class="edit-warn-text">필수 항목입니다.</span> <br>
+                    <input class="edit-emoji" type="text" name="emoji1"/>
+                    <input class="edit-emoji" type="text" name="emoji2"/>
+                    <input class="edit-emoji" type="text" name="emoji3"/>
+                    <input class="edit-emoji" type="text" name="emoji4"/>
                     <p style="font-size:14px; color:#686868; width:90%;">
                         원하는 이모티콘을 <b>한 칸당 하나씩</b>
                         작성해주세요! <br>
@@ -70,81 +70,81 @@
                     </p>
                 </div>
                 <hr>
-                <div class="comp">
+                <div class="edit-div-components">
                     <span class="head-text">시간</span>
                     <!-- 온오프 버튼 -->
-                    <span class="select-button">
-                        <input type="checkbox" id="time-select" class="check"/>
-                        <label class="btn-label" for="time-select">
-                            <span class="onf_btn"></span>
+                    <span class="edit-select-button">
+                        <input type="checkbox" id="edit-time-select" class="edit-check"/>
+                        <label class="edit-btn-label" for="edit-time-select">
+                            <span class="edit-onf_btn"></span>
                         </label>
                     </span>
-                    <div class="showTime">
-                        <input type="radio" checked id="timeRadio" name="time">시각 선택 <br>
-                        <input type="radio" id="timesRadio" name="time"/>범위 시간 선택<br>
-                        <input type="time" id="time" placeholder="시간 선택"/>
-                        <input type="time" id="times" placeholder="시간 선택"/>
+                    <div class="edit-showTime">
+                        <input type="radio" checked id="edit-timeRadio" name="edit-time">시각 선택 <br>
+                        <input type="radio" id="edit-timesRadio" name="edit-time"/>범위 시간 선택<br>
+                        <input type="time" id="edit-time" placeholder="시간 선택"/>
+                        <input type="time" id="edit-times" placeholder="시간 선택"/>
                     </div>
                 </div>
                 <hr>
-                <div class="comp">
+                <div class="edit-div-components">
                     <span class="head-text">장소</span>
                     <!-- 온오프 버튼 -->
-                    <span class="select-button">
-                        <input type="checkbox" id="place-select" class="check"/>
-                        <label class="btn-label" for="place-select">
-                            <span class="onf_btn"></span>
+                    <span class="edit-select-button">
+                        <input type="checkbox" id="edit-place-select" class="edit-check"/>
+                        <label class="edit-btn-label" for="edit-place-select">
+                            <span class="edit-onf_btn"></span>
                         </label>
                     </span>
-                    <div class="place">
+                    <div class="edit-place">
                         <input type="submit" value="주소 찾기"/>
-                        <input type="text" class="edit-text" placeholder="상세 주소 입력" name="place">
+                        <input type="text" class="edit-edit-text" placeholder="상세 주소 입력" name="edit-place">
                     </div>
                 </div>
                 <hr>
-                <div class="comp">
+                <div class="edit-div-components">
                     <span class="head-text">준비물</span>
                     <!-- 온오프 버튼 -->
-                    <span class="select-button">
-                        <input type="checkbox" id="prepare-select" class="check"/>
-                        <label class="btn-label" for="prepare-select">
-                            <span class="onf_btn"></span>
+                    <span class="edit-select-button">
+                        <input type="checkbox" id="edit-prepare-select" class="edit-check"/>
+                        <label class="edit-btn-label" for="edit-prepare-select">
+                            <span class="edit-onf_btn"></span>
                         </label>
                     </span>
-                    <textarea class="prepare" maxlength="255" placeholder="준비물을 입력하세요"></textarea>
+                    <textarea class="edit-prepare" maxlength="255" placeholder="준비물을 입력하세요"></textarea>
                 </div>
                 <hr>
-                <div class="comp">
+                <div class="edit-div-components">
                     <span class="head-text">계좌 번호</span>
                     <!-- 온오프 버튼 -->
-                    <span class="select-button">
-                        <input type="checkbox" id="account-select" class="check"/>
-                        <label class="btn-label" for="account-select">
-                            <span class="onf_btn"></span>
+                    <span class="edit-select-button">
+                        <input type="checkbox" id="edit-account-select" class="edit-check"/>
+                        <label class="edit-btn-label" for="edit-account-select">
+                            <span class="edit-onf_btn"></span>
                         </label>
                     </span>
-                    <div class="account">
+                    <div class="edit-account">
                         <p style="margin-bottom:0;">은행</p>
-                        <input type="text" id="bank" name="bank" class="edit-text"/>
+                        <input type="text" id="edit-bank" name="edit-bank" class="edit-text"/>
                         <p style="margin-bottom:0;">계좌 번호</p>
-                        <input type="text" id="account-number" name="accountNumber" class="edit-text"/>
+                        <input type="text" id="edit-account-number" name="edit-accountNumber" class="edit-text"/>
                     </div>
                 </div>
                 <hr>
             </div>
-            <div class="middle-div">
-                <div class="preview-div" style="overflow:scroll"></div>
-                <div class="button-div">
-                    <input class="grey-btn" type="button" value="장바구니 담기"/>
-                    <form id="payment-form" action="/payments/process" method="post">
-                        <input class="grey-btn" type="button" id="pay-button" value="결제하기">
+            <div class="edit-middle-div">
+                <div class="edit-preview-div" style="overflow:scroll"></div>
+                <div class="edit-button-div">
+                    <input class="edit-grey-btn" type="button" value="장바구니 담기"/>
+                    <form id="edit-payment-form" action="/payments/process" method="post">
+                        <input class="edit-grey-btn" type="button" id="edit-pay-button" value="결제하기">
                     </form>
-                    <input class="grey-btn" type="button" value="공개/비공개"/>
+                    <input class="edit-grey-btn" type="button" value="공개/비공개"/>
                 </div>
             </div>
-            <div class="frame-div">
+            <div class="edit-frame-div">
                 <c:forEach items="${list}" var="t">
-                    <img src="${t.thumbnail}" class="frame" id="${t.template_id}"> <br>
+                    <img src="${t.thumbnail}" class="edit-frame" id="${t.template_id}"> <br>
                 </c:forEach>
             </div>
         </div>
@@ -154,10 +154,11 @@
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
 <script type="text/javascript">
+    // 이미지 업로드 기능
     function loadFile(input) {
         var file = input.files[0];
         // 파일 이름 표시
-        $('.file-label').text(file.name);
+        $('.edit-file-label').text(file.name);
         var newImage = document.createElement("img");
         newImage.setAttribute("class", "uploadedImage");
         newImage.src = URL.createObjectURL(file);
@@ -165,45 +166,52 @@
         // conponent 추가
         $('.uploadedImage').replaceWith(newImage);
     }
+
+    // 실시간 반영!
     $('.all-content').ready(function () {
         var text;
         // 이름
-        $('#name').on('input', function () {
+        $('#edit-name').on('input', function () {
             text = $(this).val();
             $('.card-name').text(text + originText);
         });
         // 설명
-        $('#text').on('input', function () {
+        $('#edit-text').on('input', function () {
             text = $(this).val();
             $('.text').text(text);
         });
+        // 시간
+
+        // 장소
+        // 준비물
+        // 계좌 번호
     });
 
     $(function () {
-        $('#days').daterangepicker({
+        $('#edit-days').daterangepicker({
             autoUpdateInput: false,
             locale: {
                 cancelLabel: 'Clear'
             }
         });
-        $('#days').on('apply.daterangepicker', function (ev, picker) {
+        $('#edit-days').on('apply.daterangepicker', function (ev, picker) {
             var selectDates = picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD');
             $(this).val(selectDates);
             $('.date').text(selectDates)
         });
 
-        $('#days').on('cancel.daterangepicker', function (ev, picker) {
+        $('#edit-days').on('cancel.daterangepicker', function (ev, picker) {
             $(this).val('');
         });
 
-        $('#day').daterangepicker({
+        $('#edit-day').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             autoUpdateInput: false,
             minYear: 1901,
             maxYear: parseInt(moment().format('YYYY'), 10)
         });
-        $('#day').on('apply.daterangepicker', function(ev, picker) {
+        $('#edit-day').on('apply.daterangepicker', function(ev, picker) {
             var selectDate = picker.startDate.format('YYYY/MM/DD');
             $(this).val(selectDate);
             $('.date').text(selectDate);
@@ -211,44 +219,44 @@
         // 각각 library를 이용해 초기값 세팅
 
         // 처음 선택 => 시각과 날짜 하나기 때문에 여러 개 선택은 숨김
-        $('#days').hide();
-        $('#times').hide();
-        $('.showTime').hide();
-        $('.place').hide();
-        $('.prepare').hide();
-        $('.account').hide();
+        $('#edit-days').hide();
+        $('#edit-times').hide();
+        $('.edit-showTime').hide();
+        $('.edit-place').hide();
+        $('.edit-prepare').hide();
+        $('.edit-account').hide();
 
         // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
-        $('#dayRadio').click(function () {
-            $('#days').hide();
-            $('#day').show();
+        $('#edit-dayRadio').click(function () {
+            $('#edit-days').hide();
+            $('#edit-day').show();
         })
-        $('#daysRadio').click(function () {
-            $('#day').hide();
-            $('#days').show();
+        $('#edit-daysRadio').click(function () {
+            $('#edit-day').hide();
+            $('#edit-days').show();
         })
 
         // 어떤 버튼을 클릭하냐에 따라 hide and show - 시간
-        $('#timeRadio').click(function () {
-            $('#times').hide();
-            $('#time').show();
+        $('#edit-timeRadio').click(function () {
+            $('#edit-times').hide();
+            $('#edit-time').show();
         })
-        $('#timesRadio').click(function () {
-            $('#times').show();
+        $('#edit-timesRadio').click(function () {
+            $('#edit-times').show();
         })
 
         // 체크박스 제어
-        $('#time-select').click(function () {
-            $('.showTime').toggle();
+        $('#edit-time-select').click(function () {
+            $('.edit-showTime').toggle();
         })
-        $('#place-select').click(function () {
-            $('.place').toggle();
+        $('#edit-place-select').click(function () {
+            $('.edit-place').toggle();
         })
-        $('#prepare-select').click(function () {
-            $('.prepare').toggle();
+        $('#edit-prepare-select').click(function () {
+            $('.edit-prepare').toggle();
         })
-        $('#account-select').click(function () {
-            $('.account').toggle();
+        $('#edit-account-select').click(function () {
+            $('.edit-account').toggle();
         })
     });
 
@@ -311,13 +319,13 @@
         });
     }
 
-    document.getElementById('pay-button').addEventListener('click', function () {
+    document.getElementById('edit-pay-button').addEventListener('click', function () {
         requestPay();
     });
 
     var originText;
 
-    $('.frame').click(function () {
+    $('.edit-frame').click(function () {
         var template_id = $(this).attr("id");
         $.ajax({
             type: "GET",
@@ -325,9 +333,9 @@
             data: {id: template_id},
             contentType: "text/html; charset:UTF-8",
             success: function (data) {
-                $('.preview-div').html(data);
+                $('.edit-preview-div').html(data);
                 originText = $('.card-name').text();
-                $('.date').text($('#day').val()); // 템플릿 선택 시 날짜 초기값 세팅
+                $('.date').text($('#edit-day').val()); // 템플릿 선택 시 날짜 초기값 세팅
             }
         })
     })

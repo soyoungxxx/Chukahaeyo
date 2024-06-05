@@ -4,7 +4,7 @@ h2 {
 }
 
 /*edit, preview, frame이 들어가는 공간*/
-.main-div {
+.edit-main-div {
     justify-content: center;
     width: 100%;
     height: 100%;
@@ -19,22 +19,22 @@ h2 {
     background-color: #EEEEEE;
     text-align: center;
 }
-.middle-div {
+.edit-middle-div {
     width: 60%;
     height: 100%;
 }
-.preview-div {
+.edit-preview-div {
     width: 100%;
     height: 90%;
     background-color: #E4E4E4;
 }
-.button-div {
+.edit-button-div {
     display:flex;
     text-align: center;
     height: 10%;
 }
 
-#payment-form {
+#edit-payment-form {
     position: relative;
     margin: 1% 6% 0 6%;
     padding: 0;
@@ -43,7 +43,7 @@ h2 {
 }
 
 /*버튼 스타일*/
-.grey-btn {
+.edit-grey-btn {
     position:relative;
     width: 30%;
     height: 90%;
@@ -54,19 +54,19 @@ h2 {
     font-size: 24px;
 }
 
-#pay-button {
+#edit-pay-button {
     width: 100%;
     height: 100%;
     margin: 0;
 }
 
 /*버튼 눌렸을 때*/
-.grey-btn:active{
+.edit-grey-btn:active{
     box-shadow: 0 0 #adadad;
     background-color: #acacac;
 }
 
-.inputFile {
+.edit-inputFile {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
@@ -75,7 +75,7 @@ h2 {
     z-index: -1;
 }
 
-.inputFile + .file-label {
+.edit-inputFile + .edit-file-label {
     font-family: "Noto Sans KR", sans-serif;
     font-size: 15px;
     padding: 5px;
@@ -88,8 +88,8 @@ h2 {
     display: inline-block;
 }
 
-.inputFile:focus + .file-label,
-.inputFile + .file-label:hover {
+.edit-inputFile:focus + .edit-file-label,
+.edit-inputFile + .edit-file-label:hover {
     background-color: #b23a3b;
 }
 
@@ -102,7 +102,7 @@ input[type="submit"] {
     height: 35px;
 }
 
-.frame-div {
+.edit-frame-div {
     width: 20%;
     height: 100%;
     margin-left: 20px;
@@ -113,7 +113,7 @@ input[type="submit"] {
 }
 
 /*edit div에 들어가는 각 항목들*/
-.comp {
+.edit-div-components {
     margin-top: 30px;
     text-align: left;
     margin-left: 20px
@@ -124,12 +124,12 @@ input[type="submit"] {
     font-size:20px;
     font-weight:bold;
 }
-.warn-text {
+.edit-warn-text {
     font-size:11px;
     color:#FF0000;
 }
 
-.emoji {
+.edit-emoji {
     width: 15% !important;
     margin-top: 10px;
     height: 30px;
@@ -168,12 +168,12 @@ input[type="time"] {
     margin-top: 10px;
 }
 /* 버튼 숨기기 */
-.check {
+.edit-check {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-.btn-label {
+.edit-btn-label {
     position: relative;
     cursor: pointer;
     display: inline-block;
@@ -184,10 +184,10 @@ input[type="time"] {
     border-radius: 20px;
     transition: 0.2s;
 }
-.btn-label:hover {
+.edit-btn-label:hover {
     background: #efefef;
 }
-.onf_btn {
+.edit-onf_btn {
     position: absolute;
     top: 5px;
     left: 5px;
@@ -199,24 +199,24 @@ input[type="time"] {
     transition: 0.2s;
 }
 /* checking style */
-.check:checked+.btn-label {
+.edit-check:checked+.edit-btn-label {
     background: #463030;
     border: 2px solid #453030;
 }
 
 /* move */
-.check:checked+.btn-label .onf_btn {
+.edit-check:checked+.edit-btn-label .edit-onf_btn {
     left: 23px;
     background: #fff;
     box-shadow: 1px 2px 3px #00000020;
 }
 
-.select-button {
+.edit-edit-select-button {
     float: right;
     margin-right: 15px;
 }
 
-.frame {
+.edit-frame {
     margin: 30px;
     width: 80%;
     height: auto;
