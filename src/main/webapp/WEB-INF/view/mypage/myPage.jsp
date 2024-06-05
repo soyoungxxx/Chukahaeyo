@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>마이페이지</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/img/common.css"/>
+    <link rel="stylesheet" href="/resources/css/common.css"/>
     <link rel="stylesheet" href="/resources/css/mypage.css"/>
 </head>
 <body>

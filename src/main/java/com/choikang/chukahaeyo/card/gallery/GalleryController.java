@@ -9,6 +9,7 @@ import java.util.List;
 
 @Controller
 public class GalleryController {
+
     @GetMapping("/gallery")
     public String gallery(Model model) {
         List<CardTest> cards = new ArrayList<>();
