@@ -382,3 +382,30 @@
 #authPopupClose {
     margin-top: 20px;
 }
+
+
+/* 이메일 인증 완료 팝업 */
+.success-auth-popup {
+    margin-top:20px;
+    margin-bottom: 60px;
+}
+.success-auth-popup > p{
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    margin-top:90px;
+    margin-bottom: 60px;
+}
+
+.success-auth-popup > img{
+    width: 220px;
+    height: 220px;
+}
+
+.success-auth-popup > a {
+    margin-top: 40px;
+}
+
+#successAuthPopup{
+
+}

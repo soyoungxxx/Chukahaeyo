@@ -62,12 +62,12 @@
         }
 
         function openCheckEmail(){
-            const popup = document.querySelector('#emailAuthPopup');
+            const popup = document.querySelector('#successAuthPopup');
             popup.style.display = "flex";
         }
 
         function closeCheckEmail(){
-            const popup = document.querySelector('#emailAuthPopup');
+            const popup = document.querySelector('#successAuthPopup');
             popup.style.display = "none";
         }
 
@@ -117,7 +117,8 @@
 
 <body>
 <%@ include file="/WEB-INF/view/member/include/termsOfUse.jsp" %>
-<%@ include file="/WEB-INF/view/member/include/emailAuth.jsp" %>
+<%--<%@ include file="/WEB-INF/view/member/include/emailAuth.jsp" %>--%>
+<%@ include file="/WEB-INF/view/member/include/successAuthPage.jsp" %>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 <main class="main">
     <div class="sticker1"></div>
