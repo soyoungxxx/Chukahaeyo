@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>장바구니</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
+    <link rel="stylesheet" href="/resources/img/common.css"/>
     <link rel="stylesheet" href="/resources/css/cart.css"/>
 
     <script>
