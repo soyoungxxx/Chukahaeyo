@@ -1,10 +1,14 @@
-/* 이미지에 position과 z-index 추가 */
 .navigator {
     display: flex; /* Flexbox 컨테이너로 설정 */
     justify-content: center; /* 자식 요소를 중앙에 정렬 */
     gap: 50px; /* 자식 요소 사이의 간격 설정 */
-    position: relative; /* 필요에 따라 relative 또는 absolute 설정 */
+    position: relative;
     margin-top: -50px;
+}
+
+/* font-family 통합 */
+body, .show-gallery, .overlay, .move-gallery {
+    font-family: "Jua", sans-serif;
 }
 
 .slideshow-container {
@@ -68,11 +72,10 @@
 }
 
 .mainBear {
-    display: block; /* a 태그가 inline 요소이므로 block으로 변환 */
-    /*margin: auto; !* 이미지를 a 태그 안에서 중앙 정렬 *!*/
+    display: block;
     width: 250px;
-    position: relative; /* 또는 absolute, 상황에 맞게 선택 */
-    /*z-index: 10; !* 큰 값을 주어 이미지를 맨 위로 배치 *!*/
+    position: relative;
+    z-index: 10; /* 큰 값을 주어 이미지를 맨 위로 배치 */
 }
 
 .show-gallery {
@@ -80,14 +83,12 @@
     justify-content: center;
     /*margin: auto;*/
     margin: 40px 0 0 0;
-    font-family: "Jua", sans-serif;
     font-size: 23px;
     position: relative;
 }
 
 .move-gallery {
     font-size: 23px;
-    font-family: "Jua", sans-serif;
     background-color: lightgray;
     border: none;
     padding: 7px 9px 7px 9px;
@@ -97,7 +98,7 @@
 .card-gallery {
     position: relative;
     width: 890px;
-    margin:auto;
+    margin: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -128,7 +129,6 @@
 }
 
 .overlay {
-    font-family: "Jua", sans-serif;
     font-size: 20px;
     color: whitesmoke;
     position: absolute;
