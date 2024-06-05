@@ -13,4 +13,7 @@ public interface MemberMapper {
 
     // 회원 가입
     void register(MemberVO memberVO);
+
+    // 중복 확인
+    int checkEmailDuplicate(String email);
 }
