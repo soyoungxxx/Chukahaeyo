@@ -15,16 +15,16 @@
     </nav>
     <nav class="nav2">
         <c:if test="${empty login}">
-            <a href="member/login">로그인</a>
+            <a href="/member/login">로그인</a>
             |
-            <a href="member/reg">회원가입</a>
+            <a href="/member/register">회원가입</a>
         </c:if>
         <c:if test="${not empty login}">
             <a href="#">로그아웃</a>
             |
-            <a href="mypage/myCard"><img src="${pageContext.request.contextPath}/resources/img/myinfo.png"></a>
+            <a href="/mypage/myCard"><img src="${pageContext.request.contextPath}/resources/img/myinfo.png"></a>
             |
-            <a href="cart"><img src="${pageContext.request.contextPath}/resources/img/cart.png"></a>
+            <a href="/cart"><img src="${pageContext.request.contextPath}/resources/img/cart.png"></a>
         </c:if>
     </nav>
 </div>
