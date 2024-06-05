@@ -39,14 +39,22 @@
     width: 20%;
 }
 
-.mypage-menu{
+.mypage-menu {
     width: 100%;
+}
+
+.mypage-menu a {
+    color: black; /* a 태그 글씨 색 검은색으로 설정 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+.mypage-menu a:hover {
+    color: black; /* a 태그 호버 시에도 글씨 색 검은색 유지 */
 }
 
 .mypage-menu > ul{
     margin: 0;
     padding: 0;
-    color: black;
 }
 
 .mypage-menu > ul > li {
@@ -59,7 +67,6 @@
     margin: 40px 20px 40px 50px;
     line-height: 30px;
     cursor: pointer;
-    color: black;
 }
 
 .v-line {
