@@ -32,10 +32,50 @@
                 return false;
             }
         }
+
+        function checkDuplicate() {
+            $.ajax({
+                url: '/member/register/checkEmailDuplicate',
+                data: {email: $("#userEmail").val()},
+                async: false,
+                success: function (res) {
+                    console.log(res);
+                    if (res == '0') {
+                        alert('사용 가능한 이메일입니다.');
+                    } else {
+                        alert('중복된 이메일입니다.\r\n다른 이메일을 입력해 주세요');
+                    }
+                }
+            })
+        }
+
+        function openPopup(){
+            const popup = document.querySelector('.popup');
+            popup.style.display = "flex";
+        }
     </script>
 </head>
 
 <body>
+
+<div class = "popup">
+    <div class = "popup-body">
+        <h3>회원가입 이용 약관</h3>
+        <h4>회원가입 이용약관</h4>
+        <hr>
+        <div>
+            <p>약관 내용</p>
+        </div>
+
+        <h4>개인정보 처리 이용약관</h4>
+        <hr>
+        <div>
+            <p>약관 내용</p>
+        </div>
+        <input type="button" value="닫기">
+    </div>
+</div>
+
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 <main class="main">
     <div class="sticker1"></div>
@@ -50,9 +90,9 @@
                             <ul>
                                 <li class="email_check">
                                     <input type="text" id="userEmail" name="userEmail" placeholder="이메일">
-                                    <%--                                    <input type="button" class="check_btn" value="중복확인">--%>
                                     <span>
-                                        <a href="javascript:checkDupl();" class="check_btn" id="emailCheck">중복확인</a>
+                                        <a href="javascript:checkDuplicate();" class="check_btn"
+                                           id="emailCheck">이메일 인증</a>
                                     </span>
                                 </li>
 
@@ -72,6 +112,12 @@
                                 </li>
 
                             </ul>
+
+                            <div class="register-agree-content">
+                                회원가입 약관에 모두 동의합니다.
+                                <a href="javascript:openPopup();">자세히 보기</a>
+                                <img src="/resources/img/agree-check-not.png" id="check-agree"/>
+                            </div>
 
                             <div class="btn">
                                 <input type="submit" value="가입하기" class="register_btn"/>
