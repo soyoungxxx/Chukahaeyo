@@ -169,7 +169,6 @@
     line-height: 43px;
     background-color: #efefef;
 
-    display: block;
     height: 43px;
     width: 145px;
 
@@ -247,15 +246,53 @@
     padding: 0;
 }
 
-h4{
+.register-agree {
+    text-align: center;
+    justify-content: center;
+}
+
+.register-agree-content {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.register-agree-content > p {
     font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    margin-right: 5px;
+}
+
+.register-agree > a {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #4B5CFF;
+    background-color: #efefef;
 
 }
 
-/* 이용약관 관련 내용 */
+.register-agree-img {
+    display: block;
+    margin-left: 3px;
+}
+
+#check-agree {
+    height: 23px;
+    width: 23px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+/* 이메일 인증 팝업 */
+
+
+/* 이용약관 팝업 */
 .popup {
     position: fixed;
-    display: flex;
+    display: none;
 
     justify-content: center;
     align-items: center;
@@ -290,7 +327,41 @@ h4{
     transform: translateY(-50%);
 }
 
-#check-agree {
-    width: 30px;
-    height: 30px;
+.popup-body > h3 {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 0px;
+}
+
+.popup-body > h4 {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 20px;
+}
+
+.popup-body > div > textarea {
+    width: 420px;
+    height: 350px;
+    resize: none;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 16px;
+}
+
+.popup-body > a {
+    display: block;
+    text-align: center;
+    margin: 40px auto;
+
+    background-color: #4B5CFF;
+    color: #FFFFFF;
+
+    font-size: 20px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
+
+    width: 400px;
+    height: 50px;
+    line-height: 50px;
+
+    border-radius: 10px;
 }
