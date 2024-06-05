@@ -305,8 +305,12 @@
                         status: rsp.status,
                         receiptUrl: rsp.receipt_url
                     }),
-                    success: function (response) {
-                        console.log("결제 후 DB 저장 성공", response);
+                    success: function(response) {
+                        console.log("response" + response)
+                        if(response.indexOf("결제") > -1){
+                            location.href = "/payments/success";
+                            console.log("결제 후 DB 저장 성공", response);
+                        }
                     },
                     error: function (xhr, status, error) {
                         console.log("결제 후 DB 저장 실패", error);
@@ -340,6 +344,5 @@
         })
     })
 </script>
-안녕 언니 오늘도 파이팅💖
 </body>
 </html>

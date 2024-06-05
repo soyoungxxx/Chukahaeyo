@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+.main {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.admin {
+    width: 90%;
+    min-width: 1100px;
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    align-items: end;
+    justify-content: center;
+}
+.admin-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0 20px;
+}
+
+.admin-header .logo {
+    font-size: 36px;
+    color: black;
+    margin-left: 200px;
+}
+
+.admin-header .logout {
+    font-size: 24px;
+    color: black;
+    margin-right: 200px;
+}
+
+
+.admin-header > hr {
+    margin: 0 auto;
+    width: 85%;
+    border: #B5B5B5 solid 1px;
+}
+
+.admin-wrap {
+    display: flex;
+    width: 85%;
+    margin: 0 auto;
+    justify-content: flex-start;
+}
+
+.admin-content {
+    width: 80%;
+}
+
+.menu {
+    width: 20%;
+}
+
+.admin-menu {
+    width: 100%;
+}
+
+.admin-menu > ul {
+    margin: 0;
+    padding: 0;
+}
+
+.admin-menu > ul > li {
+    display: block;
+    text-align: left;
+    list-style-type: none;
+    font-size: 26px;
+    height: 30px;
+    margin: 40px 20px 40px 50px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.v-line {
+    border-left: 2px solid #B5B5B5;
+    height: 650px;
+}
