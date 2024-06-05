@@ -14,7 +14,7 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 </head>
 <body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
@@ -42,8 +42,9 @@
                 <div class="comp">
                     <span class="head-text">사진</span>
                     <span class="warn-text">필수 항목입니다.</span> <br>
-<%--                    사진 ㅊㅁ부하는 버튼--%>
-                    <input class="file" type="submit" value="첨부하기"/>
+                    <%-- 사진 첨부하는 버튼 --%>
+                    <input class="inputFile" id="file" type="file" value="첨부하기"/>
+                    <label class="file-label" for="file">첨부하기</label>
                 </div>
                 <hr>
                 <div class="comp">
@@ -71,8 +72,8 @@
                     <span class="head-text">시간</span>
                     <!-- 온오프 버튼 -->
                     <span class="select-button">
-                        <input type="checkbox"  id="time-select" class="check"/>
-                        <label for="time-select">
+                        <input type="checkbox" id="time-select" class="check"/>
+                        <label class="btn-label" for="time-select">
                             <span class="onf_btn"></span>
                         </label>
                     </span>
@@ -88,8 +89,8 @@
                     <span class="head-text">장소</span>
                     <!-- 온오프 버튼 -->
                     <span class="select-button">
-                        <input type="checkbox"  id="place-select" class="check"/>
-                        <label for="place-select">
+                        <input type="checkbox" id="place-select" class="check"/>
+                        <label class="btn-label" for="place-select">
                             <span class="onf_btn"></span>
                         </label>
                     </span>
@@ -103,8 +104,8 @@
                     <span class="head-text">준비물</span>
                     <!-- 온오프 버튼 -->
                     <span class="select-button">
-                        <input type="checkbox"  id="prepare-select" class="check"/>
-                        <label for="prepare-select">
+                        <input type="checkbox" id="prepare-select" class="check"/>
+                        <label class="btn-label" for="prepare-select">
                             <span class="onf_btn"></span>
                         </label>
                     </span>
@@ -115,8 +116,8 @@
                     <span class="head-text">계좌 번호</span>
                     <!-- 온오프 버튼 -->
                     <span class="select-button">
-                        <input type="checkbox"  id="account-select" class="check"/>
-                        <label for="account-select">
+                        <input type="checkbox" id="account-select" class="check"/>
+                        <label class="btn-label" for="account-select">
                             <span class="onf_btn"></span>
                         </label>
                     </span>
@@ -143,7 +144,7 @@
             </div>
             <div class="frame-div">
                 <c:forEach items="${list}" var="t">
-                    <img src="${t.thumbnail}" class="frame" id="${t.template_id}" > <br>
+                    <img src="${t.thumbnail}" class="frame" id="${t.template_id}"> <br>
                 </c:forEach>
             </div>
         </div>
@@ -153,44 +154,53 @@
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
 <script type="text/javascript">
-    $('.all-content').ready(function(){
-        if ($('.all-content').val() !== undefined) {
-            console.log(1);
-            var text;
-            $('#name').on('input', function(){
-                // text = $(this).val();
-                // $('.text').text(text);
-                console.log(2);
-            });
-            $('#text').on('input', function(){
-                text = $(this).val();
-                $('.text').text(text);
-                console.log(1)
-            });
-        }
+    $('.all-content').ready(function () {
+        var text;
+        // 이름
+        $('#name').on('input', function () {
+            text = $(this).val();
+            $('.card-name').text(text + originText);
+        });
+        // 설명
+        $('#text').on('input', function () {
+            text = $(this).val();
+            $('.text').text(text);
+        });
+        // 날짜 가져오기
+        var oneDayRadio = $('#dayRadio');
+        var daysRadio = $('#daysRadio');
+
     });
 
-    $(function() {
+    $(function () {
         $('#days').daterangepicker({
             autoUpdateInput: false,
             locale: {
                 cancelLabel: 'Clear'
             }
         });
-        $('#days').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD'));
+        $('#days').on('apply.daterangepicker', function (ev, picker) {
+            var selectDates = picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD');
+            $(this).val(selectDates);
+            $('.date').text(selectDates)
         });
 
-        $('#days').on('cancel.daterangepicker', function(ev, picker) {
+        $('#days').on('cancel.daterangepicker', function (ev, picker) {
             $(this).val('');
         });
 
         $('#day').daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
+            autoUpdateInput: false,
             minYear: 1901,
-            maxYear: parseInt(moment().format('YYYY'),10)
+            maxYear: parseInt(moment().format('YYYY'), 10)
         });
+        $('#day').on('apply.daterangepicker', function(ev, picker) {
+            var selectDate = picker.startDate.format('YYYY/MM/DD');
+            $(this).val(selectDate);
+            $('.date').text(selectDate);
+        })
         // 각각 library를 이용해 초기값 세팅
 
         // 처음 선택 => 시각과 날짜 하나기 때문에 여러 개 선택은 숨김
@@ -202,35 +212,35 @@
         $('.account').hide();
 
         // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
-        $('#dayRadio').click(function() {
+        $('#dayRadio').click(function () {
             $('#days').hide();
             $('#day').show();
         })
-        $('#daysRadio').click(function() {
+        $('#daysRadio').click(function () {
             $('#day').hide();
             $('#days').show();
         })
 
         // 어떤 버튼을 클릭하냐에 따라 hide and show - 시간
-        $('#timeRadio').click(function() {
+        $('#timeRadio').click(function () {
             $('#times').hide();
             $('#time').show();
         })
-        $('#timesRadio').click(function() {
+        $('#timesRadio').click(function () {
             $('#times').show();
         })
 
         // 체크박스 제어
-        $('#time-select').click(function() {
+        $('#time-select').click(function () {
             $('.showTime').toggle();
         })
-        $('#place-select').click(function() {
+        $('#place-select').click(function () {
             $('.place').toggle();
         })
-        $('#prepare-select').click(function() {
+        $('#prepare-select').click(function () {
             $('.prepare').toggle();
         })
-        $('#account-select').click(function() {
+        $('#account-select').click(function () {
             $('.account').toggle();
         })
     });
@@ -262,7 +272,7 @@
             display: {
                 card_quota: [3]  // 할부개월 3개월까지 활성화
             }
-        },  function (rsp) {
+        }, function (rsp) {
             if (rsp.success) {
                 console.log("결제 성공", rsp);
                 console.log("응답 객체 구조:", JSON.stringify(rsp, null, 2));
@@ -280,10 +290,10 @@
                         status: rsp.status,
                         receiptUrl: rsp.receipt_url
                     }),
-                    success: function(response) {
+                    success: function (response) {
                         console.log("결제 후 DB 저장 성공", response);
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.log("결제 후 DB 저장 실패", error);
                     }
                 });
@@ -293,19 +303,24 @@
             }
         });
     }
+
     document.getElementById('pay-button').addEventListener('click', function () {
         requestPay();
     });
 
-    $('.frame').click(function() {
+    var originText;
+
+    $('.frame').click(function () {
         var template_id = $(this).attr("id");
         $.ajax({
             type: "GET",
-            url:"/payments/edit/template.do",
-            data:{id:template_id},
-            contentType : "text/html; charset:UTF-8",
-            success: function(data) {
+            url: "/payments/edit/template.do",
+            data: {id: template_id},
+            contentType: "text/html; charset:UTF-8",
+            success: function (data) {
                 $('.preview-div').html(data);
+                originText = $('.card-name').text();
+                $('.date').text($('#day').val()); // 템플릿 선택 시 날짜 초기값 세팅
             }
         })
     })
