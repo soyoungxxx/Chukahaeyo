@@ -40,7 +40,8 @@
                 $("#userName").focus();
                 return false;
             }
-            if ($("#check-agree").val() == '0') {
+
+            if ($("#checkAgree").getAttribute("value") != '1') {
                 alert("약관에 동의해야 회원가입이 가능합니다");
                 return false;
             }
@@ -84,7 +85,7 @@
         }
 
         function toggleCheckbox() {
-           var img = document.getElementById("check-agree");
+           var img = document.getElementById("checkAgree");
            var src = img.getAttribute("src");
 
            if(src.includes("agree-check-not")){
@@ -142,7 +143,7 @@
                                 <div class="register-agree-content">
                                     <p>회원가입 및 개인정보 이용약관에 모두 동의합니다.</p>
                                     <a class="register-agree-img" href="javascript:toggleCheckbox();">
-                                        <img src="/resources/img/agree-check-not.png" id="check-agree" value = "0"/>
+                                        <img src="/resources/img/agree-check-not.png" id="checkAgree" value = "0"/>
                                     </a>
                                 </div>
                                 <a href="javascript:openPopup();">약관내용 자세히 보기</a>
