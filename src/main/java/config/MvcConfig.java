@@ -55,6 +55,7 @@ public class MvcConfig implements WebMvcConfigurer {
         reg.addViewController("/member/login");
         reg.addViewController("/member/register");
         reg.addViewController("/mypage/myPage");
+        reg.addViewController("/mypage/myCard");
         reg.addViewController("/card/edit");
 
     }
