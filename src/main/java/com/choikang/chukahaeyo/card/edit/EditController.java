@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -27,9 +28,10 @@ public class EditController {
     }
 
     @ResponseBody
-    @GetMapping("/payments/edit/template.do")
-    public String getPreviewTemplate(int id) {
+    @GetMapping(value="/payments/edit/template.do", produces="text/html; charset=UTF-8")
+    public String getPreviewTemplate(int id, HttpServletResponse response) {
         System.out.println(service.selectPreviewFrame(id));
+        response.setCharacterEncoding("UTF-8");
         return service.selectPreviewFrame(id);
     }
 }
