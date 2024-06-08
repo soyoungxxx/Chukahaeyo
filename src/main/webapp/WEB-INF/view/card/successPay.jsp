@@ -83,7 +83,7 @@
             <img src="/resources/img/paySuccessCheck.png" alt="결제 성공 체크 이미지" style="width: 10%;"><br><br>
             <img src="/resources/img/successPayText.png" alt="결제 성공 텍스트 이미지" style="width: 20%;"><br><br><br>
             <div class="url-container">
-                카드 URL | <span class="url">url표시</span>
+                카드 URL | <span class="url">${shortUrl}</span>
             </div>
             <br><br>
             <div class="buttons">
