@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -54,6 +55,8 @@ public class MvcConfig implements WebMvcConfigurer {
         reg.addViewController("/mypage/myCard");
         reg.addViewController("/card/edit");
         reg.addViewController("/admin/adminPage");
+        reg.addViewController("/url/origin");
+        reg.addViewController("/url/short");
 
     }
 
@@ -79,5 +82,9 @@ public class MvcConfig implements WebMvcConfigurer {
         PropertyPlaceholderConfigurer config = new PropertyPlaceholderConfigurer();
         config.setLocations(new ClassPathResource("db.properties"));
         return config;
+    }
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }
