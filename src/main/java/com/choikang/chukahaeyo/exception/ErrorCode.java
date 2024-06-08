@@ -34,7 +34,16 @@ public enum ErrorCode {
     /**
      * 500 INTERNAL SERVER ERROR
      */
-    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "알 수 없는 서버 에러가 발생했습니다");
+    INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "내부 서버 오류가 발생했습니다."),
+
+
+
+    /**
+     * 505 HTTP VERSION NOT SUPPORTED
+     */
+    UNSUPPORTED_HTTP_ERROR(HttpStatus.HTTP_VERSION_NOT_SUPPORTED, "지원하지 않는 HTTP 버전입니다.")
+    ;
+
 
     private final HttpStatus httpStatus;
     private final String message;
@@ -42,5 +51,4 @@ public enum ErrorCode {
     public int getHttpStatusCode() {
         return httpStatus.value();
     }
-
 }
