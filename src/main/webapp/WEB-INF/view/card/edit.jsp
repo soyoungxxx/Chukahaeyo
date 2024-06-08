@@ -9,8 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>축하해요</title>
     <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/edit.css">
-    <link rel="stylesheet" href="/resources/css/template/green.css?after">
+    <link rel="stylesheet" href="/resources/css/edit.css?after">
+    <link rel="stylesheet" href="/resources/css/template/green.css">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -18,12 +18,12 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
-<main class="main">
+<main class="main" style="height: 50%;">
     <div class="sticker1" style="margin-right: 50px"></div>
-    <div style="width: 100%; height: 85%;">
+    <div style="width: 100%; height: 100%;">
         <h2>< 카드 종류 > 가 만들어지는 중</h2>
         <div class="edit-main-div">
-            <div class="edit-div" style="overflow: auto;">
+            <div class="edit-div" style="overflow: scroll;">
                 <div class="edit-div-components">
                     <span class="head-text">이름</span>
                     <span class="warn-text">필수 항목입니다.</span>
