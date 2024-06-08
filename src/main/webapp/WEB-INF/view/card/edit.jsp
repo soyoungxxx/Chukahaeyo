@@ -10,7 +10,7 @@
     <title>축하해요</title>
     <link rel="stylesheet" href="/resources/css/common.css"/>
     <link rel="stylesheet" href="/resources/css/edit.css?after">
-    <link rel="stylesheet" href="/resources/css/template/green.css">
+    <link rel="stylesheet" href="/resources/css/template/green.css?after">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -225,6 +225,7 @@
         $('.edit-place').hide();
         $('.edit-prepare').hide();
         $('.edit-account').hide();
+        $('#edit-time').hide();
 
         // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
         $('#edit-dayRadio').click(function () {
@@ -248,6 +249,7 @@
         // 체크박스 제어
         $('#edit-time-select').click(function () {
             $('.edit-showTime').toggle();
+            $('.extra-time').toggle();
         })
         $('#edit-place-select').click(function () {
             $('.edit-place').toggle();
@@ -260,6 +262,7 @@
         })
     });
 
+    // 결제
     var IMP = window.IMP;
     IMP.init("imp72336673");
 

@@ -1,4 +1,4 @@
-.bg {
+#green-bg {
     width: 150%;
     height: auto;
     position: absolute;
@@ -6,7 +6,6 @@
 }
 
 html {
-
     width: 100%;
     height: 100%;
     display: flex;
@@ -32,7 +31,7 @@ html {
     align-items: center;
 }
 
-.inner-container {
+.card-inner-container {
     width: 640px;
     height: 100%;
     display: flex;
@@ -51,14 +50,26 @@ html {
     z-index: 2;
 }
 
-.roof {
+/* 하트 */
+.card-top-img {
+    width: 70px;
+    height: 62.12px;
+    z-index: 3;
+
+    position: absolute;
+    top: 130px;
+
+    transform: rotate(-5.69deg);
+}
+
+.card-roof-img {
     width: 100%;
     height: 550px;
 }
 
 /* roof 내에 들어가는 카드 이름과 날짜 */
 /* 맨 위 텍스트 박스 */
-.text-container {
+.card-basic-container {
     width: 469px;
     height: 138px;
     z-index: 3;
@@ -73,34 +84,22 @@ html {
     text-align: center;
     color: #373B3C;
     font-size: 46px;
-    font-family: Jua;
+    font-family: Jua, serif;
 }
 
-.date {
+.card-date {
     width: 469px;
     height: 34px;
     text-align: center;
     color: #373B3C;
     font-size: 38px;
-    font-family: Quantico;
+    font-family: Quantico, serif;
     position: absolute;
     top: 104px;
 }
 
-/* 하트 */
-.rotated-image {
-    width: 70px;
-    height: 62.12px;
-    z-index: 3;
-
-    position: absolute;
-    top: 130px;
-
-    transform: rotate(-5.69deg);
-}
-
 /* roof 아래쪽, 모든 콘텐츠가 들어가는 곳 */
-.main-content {
+.card-main-content {
     width: 100%;
     height: 100%;
 
@@ -115,7 +114,7 @@ html {
 }
 
 /* 이미지와 텍스트 */
-.content {
+.card-content {
     top: 100px;
     width: 100%;
     height: auto;
@@ -127,12 +126,12 @@ html {
     background: #E0DFCC;
 }
 
-.content img {
+.card-content img {
     width: 540px;
     height: 540px;
 }
 
-.text {
+.card-message {
     word-break:break-all;
     width: 80%;
     height: auto;
@@ -146,14 +145,18 @@ html {
 }
 
 /* 추가 내용 */
-.extra {
+.card-extra {
     margin-top: 100px;
     width: 100%;
     height: auto;
 }
 
+.extra-time, .extra-place, .extra-preparation, .extra-account {
+    display: none;
+}
+
 /* 좋아요 section */
-.like-section {
+.card-like-section {
     margin-top: 100px;
     width: 100%;
     height: 196px;
@@ -163,7 +166,7 @@ html {
 }
 
 /* 좋아요이미지 */
-.like-section img {
+.card-like-section img {
     width: 88px;
     height: 88px;
 
@@ -172,7 +175,7 @@ html {
 }
 
 /* 좋아요 문구 */
-.like-text {
+.card-like-text {
     color: #373B3C;
     font-size: 23px;
     font-weight: 600;
@@ -202,20 +205,20 @@ html {
     margin-left: 20px;
 }
 
-.divider {
+.guestbook-divider {
     border: 1.5px #373B3C solid;
     width: 95%;
     margin: 10px auto 0 auto;
 }
 
-.nickname,
-.message {
+.guest-nickname,
+.guest-message {
     color: #373B3C;
     font-size: 18px;
     word-wrap: break-word;
 }
 
-.nickname {
+.guest-nickname {
     border: 2px #373B3C solid;
     border-radius: 7px;
     width: 90%;
@@ -226,14 +229,14 @@ html {
     text-indent: 3%;
 }
 
-.nickname::placeholder,
-.message::placeholder {
+.guest-nickname::placeholder,
+.guest-message::placeholder {
     color: #373B3C;
     font-weight: 550;
     opacity: 1;
 }
 
-.message {
+.guest-message {
     border: 2px #373B3C solid;
     border-radius: 7px;
     width: 90%;
@@ -244,7 +247,7 @@ html {
     text-indent: 3%;
 }
 
-.submit-button {
+.guestbook-submit-button {
     width: 81.36px;
     height: 35px;
     background: #373B3C;
