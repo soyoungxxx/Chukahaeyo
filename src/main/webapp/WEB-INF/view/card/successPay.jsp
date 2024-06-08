@@ -83,15 +83,16 @@
             <img src="/resources/img/paySuccessCheck.png" alt="결제 성공 체크 이미지" style="width: 10%;"><br><br>
             <img src="/resources/img/successPayText.png" alt="결제 성공 텍스트 이미지" style="width: 20%;"><br><br><br>
             <div class="url-container">
-                카드 URL | <span class="url">${shortUrl}</span>
+                카드 URL | <span class="url" id="shortUrl">${shortUrl}</span>
+                <span class="url">shortUrl 복사 test</span>
             </div>
             <br><br>
             <div class="buttons">
                 <div class="button-copy">
-                    <button class="button copy">URL 복사하기</button>
+                    <button class="button copy" onclick="copyUrl()">URL 복사하기</button>
                 </div>
                 <div class="button-main">
-                    <button class="button main2">메인으로 이동</button>
+                    <button class="button main2" onclick="goToMain()">메인으로 이동</button>
                 </div>
             </div>
         </div>
@@ -99,5 +100,22 @@
     <div class="sticker2"></div>
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
+
+<script>
+    function copyUrl() {
+        const urlElement = document.getElementById('shortUrl');
+        const url = urlElement.textContent;
+        navigator.clipboard.writeText(url).then(function() {
+            console.log(url);
+            alert('URL이 복사되었습니다.');
+        }, function(err) {
+            console.error('URL 복사 실패: ', err);
+        });
+    }
+
+    function goToMain() {
+        window.location.href = '/';
+    }
+</script>
 </body>
 </html>
