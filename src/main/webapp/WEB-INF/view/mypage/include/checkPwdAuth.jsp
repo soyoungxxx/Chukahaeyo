@@ -14,6 +14,6 @@
 
             </form>
         </div>
-        <a href="/mypage/mypage/myCard" id="authPwdClose">닫기</a>
+        <a href="/mypage/myCard" id="authPwdClose">닫기</a>
     </div>
 </div>
