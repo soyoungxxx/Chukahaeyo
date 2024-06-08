@@ -51,6 +51,9 @@
                 <%@ include file="/WEB-INF/view/mypage/include/checkPwdAuth.jsp" %>
                 <div class="mypage-content">
                     <div class="changeInfo">
+                        <h3>회원정보 수정</h3>
+                        <p>수정할 항목을 작성하고, 수정 버튼을 눌러주세요.</p>
+                        <p>이메일은 수정할 수 없습니다. </p>
                         <ul>
                             <li>
                                 <input type="text" id="userEmail" name="userEmail" placeholder="이메일" disabled>
@@ -62,7 +65,7 @@
 
                             <li>
                                 <input type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인">
-                                <p> 비밀번호가 확인되었습니다.</p>
+                                <p id="checkPwdMsg"> 비밀번호가 확인되었습니다.</p>
                             </li>
 
                             <li>
@@ -71,7 +74,7 @@
                         </ul>
 
                         <div class="changeInfo-btn">
-                            <input type="submit" value="변경하기" class="change_btn"/>
+                            <input type="submit" value="수정" class="change_btn"/>
                         </div>
                     </div>
                 </div>
