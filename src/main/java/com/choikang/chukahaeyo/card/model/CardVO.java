@@ -33,6 +33,7 @@ public class CardVO {
     private String account;
     private int pay_id;
     private String url; //단축 url
+    private String qr; //qr코드. 단축 URL의 끝에 .qr을 붙이면 그것이 이미지 주소
     private boolean isPayed;
     private int user_id;
 }
