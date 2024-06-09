@@ -262,6 +262,7 @@ html {
 
 /* 방명록 메시지 */
 .guest-messages {
+    width: 100%;
     margin-top: 30px;
     display: flex;
     flex-direction: column;
