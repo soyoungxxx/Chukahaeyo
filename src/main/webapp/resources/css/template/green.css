@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 #green-bg {
     width: 150%;
     height: auto;
@@ -19,7 +21,7 @@ html {
 }
 
 .all-content {
-    font-family: "IBM Plex Sans KR", sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
     width: 100%;
     height: 100%;
     display: flex;
@@ -84,7 +86,7 @@ html {
     text-align: center;
     color: #373B3C;
     font-size: 46px;
-    font-family: Jua, serif;
+    font-family: Jua;
 }
 
 .card-date {
@@ -93,7 +95,7 @@ html {
     text-align: center;
     color: #373B3C;
     font-size: 38px;
-    font-family: Quantico, serif;
+    font-family: Quantico;
     position: absolute;
     top: 104px;
 }

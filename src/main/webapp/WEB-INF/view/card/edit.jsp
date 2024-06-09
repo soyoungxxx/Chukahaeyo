@@ -169,28 +169,28 @@
 
     // 실시간 반영!
     $('.all-content').ready(function () {
-        var text;
         // 이름
         $('#edit-name').on('input', function () {
-            text = $(this).val();
-            $('.card-name').text(text + originText);
+            var name = $(this).val();
+            $('.card-name').text(name + originText);
         });
         // 설명
         $('#edit-text').on('input', function () {
-            text = $(this).val();
-            $('.text').text(text);
+            var editText = $(this).val();
+            editText = editText.replaceAll(/(\n|\r\n)/g, "<br>");
+            $('.card-message').html(editText);
         });
         // 시간
         $('#edit-time').change(function() {
-            var date = $('#edit-time').val();
-            $('.extra-time').text(date);
+            var time = $('#edit-time').val();
+            $('.extra-time').text(time);
         })
         // 장소
 
         // 준비물
         $('.edit-prepare').on('input', function () {
-            text = $(this).val();
-            $('.extra-preparation').text(text);
+            var pre = $(this).val();
+            $('.extra-preparation').text(pre);
         });
         // 계좌 번호
         $('#edit-bank').on('input', function() {
@@ -213,7 +213,7 @@
         $('#edit-days').on('apply.daterangepicker', function (ev, picker) {
             var selectDates = picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD');
             $(this).val(selectDates);
-            $('.date').text(selectDates)
+            $('.card-date').text(selectDates)
         });
 
         $('#edit-days').on('cancel.daterangepicker', function (ev, picker) {
@@ -230,7 +230,7 @@
         $('#edit-day').on('apply.daterangepicker', function(ev, picker) {
             var selectDate = picker.startDate.format('YYYY/MM/DD');
             $(this).val(selectDate);
-            $('.date').text(selectDate);
+            $('.card-date').text(selectDate);
         })
         // 각각 library를 이용해 초기값 세팅
 
