@@ -181,10 +181,26 @@
             $('.text').text(text);
         });
         // 시간
-
+        $('#edit-time').change(function() {
+            var date = $('#edit-time').val();
+            $('.extra-time').text(date);
+        })
         // 장소
+
         // 준비물
+        $('.edit-prepare').on('input', function () {
+            text = $(this).val();
+            $('.extra-preparation').text(text);
+        });
         // 계좌 번호
+        $('#edit-bank').on('input', function() {
+            var bank = $(this).val();
+            $('.extra-account-bank').text(bank);
+        })
+        $('#edit-account-number').on('input', function() {
+            var accountNumber = $(this).val();
+            $('.extra-account-number').text(" " + accountNumber);
+        })
     });
 
     $(function () {
@@ -225,7 +241,6 @@
         $('.edit-place').hide();
         $('.edit-prepare').hide();
         $('.edit-account').hide();
-        $('#edit-time').hide();
 
         // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
         $('#edit-dayRadio').click(function () {
@@ -253,12 +268,15 @@
         })
         $('#edit-place-select').click(function () {
             $('.edit-place').toggle();
+            $('.extra-place').toggle();
         })
         $('#edit-prepare-select').click(function () {
             $('.edit-prepare').toggle();
+            $('.extra-preparation').toggle();
         })
         $('#edit-account-select').click(function () {
             $('.edit-account').toggle();
+            $('.extra-account').toggle();
         })
     });
 
