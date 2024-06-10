@@ -5,22 +5,18 @@
             resultType="com.choikang.chukahaeyo.member.model.MemberVO">
         SELECT *
         FROM user
-        WHERE email = #{userEmail}
-          AND pwd = MD5(#{userPwd})
+        WHERE memberEmail = #{memberEmail}
+          AND memberPwd = MD5(#{memberPwd})
     </select>
 
     <insert id="register" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
-        INSERT INTO user{
-            email, pwd, user_name, register_date, auth
-            }
-        VALUES {
-            #{userEmail}, MD5(#{userPwd}), #{userName}, NOW(), true
-            }
+        INSERT INTO user(memberEmail, memberPwd, memberName, memberRegisterDate, memberAuth)
+        VALUES (#{memberEmail}, MD5(#{memberPwd}), #{memberName}, NOW(), false)
     </insert>
 
     <select id="checkEmailDuplicate" parameterType="String" resultType="int">
-        SELECT count(*) FROM user WHERE email = #{email}
+        SELECT count(*)
+        FROM user
+        WHERE memberEmail = #{memberEmail}
     </select>
-
-
 </mapper>

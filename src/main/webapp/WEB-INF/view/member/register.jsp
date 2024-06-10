@@ -21,15 +21,21 @@
         const pwdRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,20}$/;
 
         function inputCheck() {
-            if ($("#userEmail").val() == '') {
+            if ($("#memberEmail").val() == '') {
                 alert("이메일을 입력해주세요");
-                $("#userEmail").focus();
+                $("#memberEmail").focus();
                 return false;
             }
 
-            if ($("#userPwd").val() == '') {
+            if ($('#memberEmail').data("value") == '0') {
+                alert("이메일 중복체크를 진행해주세요.");
+                $("#memberEmail").focus();
+                return false;
+            }
+
+            if ($("#memberPwd").val() == '') {
                 alert("비밀번호를 입력해 주세요");
-                $("#userPwd").focus();
+                $("#memberPwd").focus();
                 return false;
             }
 
@@ -39,9 +45,9 @@
                 return false;
             }
 
-            if ($("#userName").val() == '') {
+            if ($("#memberName").val() == '') {
                 alert("이름을 입력해주세요");
-                $("#userName").focus();
+                $("#memberName").focus();
                 return false;
             }
 
@@ -51,34 +57,51 @@
                 return false;
             }
 
-            openCheckEmail();
-
+            regist();
         }
 
+
         function checkEmail() {
-            if ($("#userEmail").val() == '') {
+            if ($("#memberEmail").val() == '') {
                 alert("이메일을 입력해주세요");
-                $("#userEmail").focus();
+                $("#memberEmail").focus();
                 return false;
             }
-            if (!emailRegex.test($("#userEmail").val())) {
+            if (!emailRegex.test($("#memberEmail").val())) {
                 alert("이메일를 올바른 형식으로 작성해주세요.");
-                $("#userEmail").focus();
+                $("#memberEmail").focus();
                 return false;
             }
+
+            var emailCheckValue = $("#emailCheck").data('value');
+            if (emailCheckValue == '0') {
+                $("#emailCheck").data('value', '1');
+            } else {
+                alert("이미 중복 인증을 진행하였습니다.");
+                return;
+            }
+
             checkDuplicate();
         }
 
+        function changeValueCheckEmail() {
+            var emailCheckValue = $("#emailCheck").data('value');
+
+            if (emailCheckValue == '1') {
+                $("#emailCheck").data('value', '0');
+            }
+        }
+
         function checkPwd() {
-            if (!pwdRegex.test($("#userPwd").val())) {
+            if (!pwdRegex.test($("#memberPwd").val())) {
                 alert("비밀번호를 올바른 형식으로 작성해주세요.");
-                $("#userPwd").focus();
+                $("#memberPwd").focus();
                 return false;
             }
         }
 
         function checkDuplPwd() {
-            if ($("#pwdCheck").val() !== $("#userPwd").val()) {
+            if ($("#pwdCheck").val() !== $("#memberPwd").val()) {
                 alert("비밀번호가 일치하지 않습니다. 비밀번호 확인란을 다시 작성해주십시오.");
                 $("#pwdCheck").focus();
                 return false;
@@ -86,22 +109,22 @@
         }
 
         function openCheckEmail() {
-            const popup = $('#successAuthPopup');
+            console.log("실행됨");
+            const popup = $('#successRegisterPopup');
             popup.css('display', 'flex');
         }
 
         function closeCheckEmail() {
-            const popup = $('#successAuthPopup');
+            const popup = $('#successRegisterPopup');
             popup.css('display', 'none');
         }
 
         function checkDuplicate() {
             $.ajax({
                 url: '/member/register/checkEmailDuplicate',
-                data: {email: $("#userEmail").val()},
+                data: {email: $("#memberEmail").val()},
                 async: false,
                 success: function (res) {
-                    console.log(res);
                     if (res == '0') {
                         alert('사용 가능한 이메일입니다.');
                     } else {
@@ -133,13 +156,37 @@
                 img.attr('data-value', "0");
             }
         }
+
+        function regist() {
+            $.ajax({
+                type: "POST",
+                url: '/member/register',
+                data: {
+                    email: $("#memberEmail").val(),
+                    pwd: $("#memberPwd").val(),
+                    user_name: $("#memberName").val()
+                },
+                async: false,
+                success: function (res) {
+                    if (res == '1') {
+                        console.log("가입됨");
+                        openCheckEmail();
+                    } else {
+                        alert('가입 중 오류가 발생했습니다.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX 요청 중 에러 발생: ", status, error);
+                }
+            });
+        }
     </script>
 </head>
 
 <body>
 <%@ include file="/WEB-INF/view/member/include/termsOfUse.jsp" %>
 <%--<%@ include file="/WEB-INF/view/member/include/emailAuth.jsp" %>--%>
-<%@ include file="/WEB-INF/view/member/include/successAuthPage.jsp" %>
+<%@ include file="/WEB-INF/view/member/include/successRegisterPage.jsp" %>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 <main class="main">
     <div class="sticker1"></div>
@@ -153,15 +200,16 @@
                         <div class="register_form">
                             <ul>
                                 <li class="email_check">
-                                    <input type="text" id="userEmail" name="userEmail" placeholder="이메일">
+                                    <input type="text" id="memberEmail" name="memberEmail" placeholder="이메일"
+                                           onchange="changeValueCheckEmail();">
                                     <span>
                                         <a href="javascript:checkEmail();" class="check_btn"
-                                           id="emailCheck">이메일 인증</a>
+                                           id="emailCheck" data-value='0'>중복확인</a>
                                     </span>
                                 </li>
 
                                 <li>
-                                    <input type="password" id="userPwd" name="userPwd"
+                                    <input type="password" id="memberPwd" name="memberPwd"
                                            placeholder="비밀번호(영문자 및 숫자 포함, 8자리 이상)" onchange="return checkPwd();">
                                 </li>
                                 <li>
@@ -173,9 +221,8 @@
                                     <p id="check_fail">비밀번호가 일치하지 않습니다!</p>
                                 </div>
                                 <li>
-                                    <input type="text" id="userName" name="userName" placeholder="이름">
+                                    <input type="text" id="memberName" name="memberName" placeholder="이름">
                                 </li>
-
                             </ul>
 
                             <div class="register-agree">

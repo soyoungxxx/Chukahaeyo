@@ -49,10 +49,11 @@ public class MemberController {
     }
 
     // 회원가입
+    @ResponseBody
     @PostMapping("/member/register")
-    public String register(Model model, MemberVO memberVO) {
+    public boolean register(Model model, MemberVO memberVO) {
         service.register(memberVO);
-        return "redirect:edit";
+        return true;
     }
 
 }
