@@ -24,7 +24,7 @@
     <div style="width: 100%; height: 100%;">
         <h2>< 카드 종류 > 가 만들어지는 중</h2>
         <div class="edit-main-div">
-            <form class="edit-submit-form" action="/card/edit/card.do" method="post">
+            <form class="edit-submit-form" action="/card/edit/card.do" method="post" onsubmit="return checkRequires();">
             <div class="edit-div" style="overflow: scroll;">
                 <div class="edit-div-components">
                     <span class="head-text">이름</span>
@@ -59,10 +59,10 @@
                 <div class="edit-div-components">
                     <span class="head-text">이모티콘</span>
                     <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                    <input class="edit-emoji" type="text" name="emoji1"/>
-                    <input class="edit-emoji" type="text" name="emoji2"/>
-                    <input class="edit-emoji" type="text" name="emoji3"/>
-                    <input class="edit-emoji" type="text" name="emoji4"/>
+                    <input class="edit-emoji" type="text" name="emoji1" id="emoji1"/>
+                    <input class="edit-emoji" type="text" name="emoji2" id="emoji2"/>
+                    <input class="edit-emoji" type="text" name="emoji3" id="emoji3"/>
+                    <input class="edit-emoji" type="text" name="emoji4" id="emoji4"/>
                     <p style="font-size:14px; color:#686868; width:90%;">
                         원하는 이모티콘을 <b>한 칸당 하나씩</b>
                         작성해주세요! <br>
@@ -163,6 +163,21 @@
 
 
 <script type="text/javascript">
+    // 필수 항목 다 적었나 체크
+    function checkRequires() {
+        // 이름, 날짜, 사진, 문구 전부 작성해야 함
+        if ($('#edit-name').val() === '' || ($('#edit-day').val() === '' && $('#edit-days') === '') ||
+            $('.edit-file-label').text() === '첨부하기' || $('#edit-text').val() === '') {
+            alert("필수 항목을 다 작성하지 않으셨습니다.")
+            return false;
+        }
+        // 이모티콘 네 개 다 작성해야 함
+        if ($('#emoji1').val() === '' || $('#emoji2').val() === '' || $('#emoji3').val() === '' || $('#emoji4').val() === '') {
+            alert("이모티콘을 4개 적어주세요!");
+            return false;
+        }
+    }
+
     // 이미지 업로드 기능
     function loadFile(input) {
         var file = input.files[0];
