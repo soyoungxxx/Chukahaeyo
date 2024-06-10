@@ -24,7 +24,7 @@
     <div style="width: 100%; height: 100%;">
         <h2>< 카드 종류 > 가 만들어지는 중</h2>
         <div class="edit-main-div">
-            <form class="edit-submit-form" action="/card/edit/card.do" method="get" enctype="multipart/form-data">
+            <form class="edit-submit-form" action="/card/edit/card.do" method="post">
             <div class="edit-div" style="overflow: scroll;">
                 <div class="edit-div-components">
                     <span class="head-text">이름</span>
@@ -180,8 +180,8 @@
     $('.all-content').ready(function () {
         // 이름
         $('#edit-name').on('input', function () {
-            var name = $(this).val();
-            $('.card-name').text(name + originText);
+            var nameText = $(this).val();
+            $('.card-name').text(nameText + originText);
         });
         // 설명
         $('#edit-text').on('input', function () {
@@ -376,9 +376,6 @@
 
     $('#edit-cart-button').click(function () {
         $('#cart-submit-button').click();
-    })
-    $('#cart-submit-button').click(function () {
-        alert(1);
     })
 </script>
 </body>

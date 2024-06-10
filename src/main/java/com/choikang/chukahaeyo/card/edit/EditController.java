@@ -35,11 +35,15 @@ public class EditController {
         return service.selectPreviewFrame(id);
     }
 
-    @GetMapping("/edit/card.do")
+
+    @PostMapping("/edit/card.do")
     public String getCardInfo(CardVO cardVO) {
+        // 세션에 있는 값 가져와서 user_id setting 하기 - 아직 미구현
+        // url -> 일단 null값으로 두기
+        // pay_id => null
         System.out.println("!!!!!!!!!!!1");
-        System.out.println(cardVO.getBank());
-        return "card/edit";
+        System.out.println(cardVO.getReceiver());
+        return "redirect:/cart";
     }
 
 }
