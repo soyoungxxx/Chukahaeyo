@@ -12,8 +12,8 @@ public class CardVO {
     private int like_cnt;
     private int cost;
     private String receiver;
-    private Date start_date;
-    private Date end_date;
+    private String start_date;
+    private String end_date;
     private String text;
     private String img;
     private String emoji1;

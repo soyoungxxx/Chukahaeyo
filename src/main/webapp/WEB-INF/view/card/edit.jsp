@@ -1,3 +1,4 @@
+<%@ page import="com.choikang.chukahaeyo.card.model.CardVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -23,11 +24,12 @@
     <div style="width: 100%; height: 100%;">
         <h2>< 카드 종류 > 가 만들어지는 중</h2>
         <div class="edit-main-div">
+            <form class="edit-submit-form" action="/card/edit/card.do" method="get" enctype="multipart/form-data">
             <div class="edit-div" style="overflow: scroll;">
                 <div class="edit-div-components">
                     <span class="head-text">이름</span>
                     <span class="edit-warn-text">필수 항목입니다.</span>
-                    <input type="text" class="edit-text" id="edit-name"/>
+                    <input type="text" class="edit-text" id="edit-name" name="receiver"/>
                 </div>
                 <hr>
                 <div class="edit-div-components">
@@ -35,24 +37,23 @@
                     <span class="edit-warn-text">필수 항목입니다.</span> <br>
                     <input type="radio" checked id="edit-dayRadio" name="day">하루 선택 <br>
                     <input type="radio" id="edit-daysRadio" name="day"/>여러날 선택
-                    <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택"/>
-                    <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택"/>
+                    <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택" name="start_date"/>
+                    <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택" name="end_date"/>
                 </div>
                 <hr>
                 <div class="edit-div-components">
                     <span class="head-text">사진</span>
                     <span class="edit-warn-text">필수 항목입니다.</span> <br>
                     <%-- 사진 첨부하는 버튼 --%>
-                    <form method="post" enctype="multipart/form-data">
-                        <input class="edit-inputFile" id="edit-file" type="file" value="첨부하기" onchange="loadFile(this)" accept="image/*"/>
+                        <input class="edit-inputFile" id="edit-file" type="file" value="첨부하기"
+                               onchange="loadFile(this)" accept="image/*" name="img"/>
                         <label class="edit-file-label" for="edit-file">첨부하기</label>
-                    </form>
                 </div>
                 <hr>
                 <div class="edit-div-components">
                     <span class="head-text">문구</span>
                     <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                    <textarea id="edit-text" maxlength="255" placeholder="문구를 입력하세요"></textarea>
+                    <textarea id="edit-text" maxlength="255" placeholder="문구를 입력하세요" name="text"></textarea>
                 </div>
                 <hr>
                 <div class="edit-div-components">
@@ -82,8 +83,8 @@
                     <div class="edit-showTime">
                         <input type="radio" checked id="edit-timeRadio" name="edit-time">시각 선택 <br>
                         <input type="radio" id="edit-timesRadio" name="edit-time"/>범위 시간 선택<br>
-                        <input type="time" id="edit-time" placeholder="시간 선택"/>
-                        <input type="time" id="edit-times" placeholder="시간 선택"/>
+                        <input type="time" id="edit-time" placeholder="시간 선택" name="start_time"/>
+                        <input type="time" id="edit-times" placeholder="시간 선택" name="end_time"/>
                     </div>
                 </div>
                 <hr>
@@ -97,8 +98,8 @@
                         </label>
                     </span>
                     <div class="edit-place">
-                        <input type="submit" value="주소 찾기"/>
-                        <input type="text" class="edit-edit-text" placeholder="상세 주소 입력" name="edit-place">
+                        <input type="button" class="edit-search-addr" value="주소 찾기"/>
+                        <input type="text" class="edit-edit-text" placeholder="상세 주소 입력" name="addr2" />
                     </div>
                 </div>
                 <hr>
@@ -111,7 +112,8 @@
                             <span class="edit-onf_btn"></span>
                         </label>
                     </span>
-                    <textarea class="edit-prepare" maxlength="255" placeholder="준비물을 입력하세요"></textarea>
+                    <textarea class="edit-prepare" maxlength="255" placeholder="준비물을 입력하세요"
+                              name="preparation"></textarea>
                 </div>
                 <hr>
                 <div class="edit-div-components">
@@ -125,24 +127,25 @@
                     </span>
                     <div class="edit-account">
                         <p style="margin-bottom:0;">은행</p>
-                        <input type="text" id="edit-bank" name="edit-bank" class="edit-text"/>
+                        <input type="text" id="edit-bank" name="bank" class="edit-text"/>
                         <p style="margin-bottom:0;">계좌 번호</p>
-                        <input type="text" id="edit-account-number" name="edit-accountNumber" class="edit-text"/>
+                        <input type="text" id="edit-account-number" name="account" class="edit-text"/>
                     </div>
                 </div>
                 <hr>
+                <input type="submit" style="display:none" id="cart-submit-button">
             </div>
+            </form>
+
             <div class="edit-middle-div">
                 <div class="edit-preview-div" style="overflow:scroll"></div>
                 <div class="edit-button-div">
-                    <form class="edit-form">
-                        <input class="edit-grey-btn" type="button" value="장바구니 담기"/>
-                    </form>
+                    <input class="edit-grey-btn" type="button" id="edit-cart-button" value="장바구니 담기">
                     <form id="edit-payment-form" class="edit-form" action="/payments/process" method="post">
                         <input class="edit-grey-btn" type="button" id="edit-pay-button" value="결제하기">
                     </form>
                     <form class="edit-form">
-                        <input class="edit-grey-btn" type="button" value="공개/비공개"/>
+                        <input class="edit-grey-btn" id="publicButton" type="button" value="공개"/>
                     </form>
                 </div>
             </div>
@@ -152,10 +155,12 @@
                 </c:forEach>
             </div>
         </div>
+
     </div>
     <div class="sticker2" style="margin-left: 50px"></div>
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
+
 
 <script type="text/javascript">
     // 이미지 업로드 기능
@@ -185,7 +190,7 @@
             $('.card-message').html(editText);
         });
         // 시간
-        $('#edit-time').change(function() {
+        $('#edit-time').change(function () {
             var time = $('#edit-time').val();
             $('.extra-time').text(time);
         })
@@ -197,11 +202,11 @@
             $('.extra-preparation').text(pre);
         });
         // 계좌 번호
-        $('#edit-bank').on('input', function() {
+        $('#edit-bank').on('input', function () {
             var bank = $(this).val();
             $('.extra-account-bank').text(bank);
         })
-        $('#edit-account-number').on('input', function() {
+        $('#edit-account-number').on('input', function () {
             var accountNumber = $(this).val();
             $('.extra-account-number').text(" " + accountNumber);
         })
@@ -231,7 +236,7 @@
             minYear: 1901,
             maxYear: parseInt(moment().format('YYYY'), 10)
         });
-        $('#edit-day').on('apply.daterangepicker', function(ev, picker) {
+        $('#edit-day').on('apply.daterangepicker', function (ev, picker) {
             var selectDate = picker.startDate.format('YYYY/MM/DD');
             $(this).val(selectDate);
             $('.card-date').text(selectDate);
@@ -330,9 +335,9 @@
                         status: rsp.status,
                         receiptUrl: rsp.receipt_url
                     }),
-                    success: function(response) {
+                    success: function (response) {
                         console.log("response" + response)
-                        if(response.indexOf("결제") > -1){
+                        if (response.indexOf("결제") > -1) {
                             location.href = "/payments/success";
                             console.log("결제 후 DB 저장 성공", response);
                         }
@@ -358,7 +363,7 @@
         var template_id = $(this).attr("id");
         $.ajax({
             type: "GET",
-            url: "/payments/edit/template.do",
+            url: "/card/edit/template.do",
             data: {id: template_id},
             contentType: "text/html; charset:UTF-8",
             success: function (data) {
@@ -367,6 +372,13 @@
                 $('.date').text($('#edit-day').val()); // 템플릿 선택 시 날짜 초기값 세팅
             }
         })
+    })
+
+    $('#edit-cart-button').click(function () {
+        $('#cart-submit-button').click();
+    })
+    $('#cart-submit-button').click(function () {
+        alert(1);
     })
 </script>
 </body>
