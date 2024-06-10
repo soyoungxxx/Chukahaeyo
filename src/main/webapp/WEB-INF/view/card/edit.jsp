@@ -8,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/resources/js/card/apikey.js"></script>
     <title>축하해요</title>
     <link rel="stylesheet" href="/resources/css/common.css"/>
     <link rel="stylesheet" href="/resources/css/edit.css?after">
@@ -165,7 +166,8 @@
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript">
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
+<script>
     // 주소 api 호출
     $('.edit-search-addr').click(function() {
         new daum.Postcode({
@@ -191,10 +193,34 @@
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                $("#zipcode").val(data.zonecode);
                 $("#addr1").val(roadAddr);
-                $(".extra-place").text(roadAddr + " " + extraRoadAddr);
+                $("#addr2").val(extraRoadAddr);
+                $(".extra-address").text(roadAddr + " " + extraRoadAddr);
 
+                var mapContainer = document.getElementById('map'),
+                    mapOption = {
+                        center: new kakao.maps.LatLng(37.56691, 126.97873), // 지도의 중심좌표
+                        level: 1, // 지도의 확대 레벨
+                        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+                    };
+
+                // 지도를 생성한다
+                var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                var geocoder = new kakao.maps.services.Geocoder();
+                geocoder.addressSearch(roadAddr, function(result, status) {
+                    if (status === kakao.maps.services.Status.OK) {
+                        console.log(1);
+                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                        var marker = new kakao.maps.Marker({
+                            map: map,
+                            position: coords
+                        });
+
+                        map.setCenter(coords);
+                    }
+                });
 
                 // $.ajax({
                 //     type: "GET",

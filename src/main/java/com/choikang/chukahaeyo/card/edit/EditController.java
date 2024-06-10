@@ -47,10 +47,10 @@ public class EditController {
         return "redirect:/cart";
     }
 
-    @Value("${REST_API_KEY}")
-    private String REST_API_KEY;
-    @Value("${API_URL}")
-    private String API_URL;
+//    @Value("${REST_API_KEY}")
+//    private String REST_API_KEY;
+//    @Value("${API_URL}")
+//    private String API_URL;
 
 //    @GetMapping("/map")
 //    public String getKakaoApiFromAddress(@RequestParam("query") String roadFullAddr) {
