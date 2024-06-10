@@ -14,6 +14,12 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping("/board")
 public class BoardController {
 
+    @GetMapping("/service")
+    public String serviceFaq() {
+
+        return "board/service/faq";
+    }
+
 
     @GetMapping("/community/list")
     public String communityList() {
