@@ -36,4 +36,27 @@ public class BoardController {
         return "board/communityPost";
     }
 
+
+
+    @GetMapping("/inquiry/list")
+    public String inquiryList() {
+
+        return "mypage/inquiry/inquiryList";
+    }
+
+
+
+    @GetMapping("/inquiry/write")
+    public String inquiryWrite() {
+
+        return "mypage/inquiry/inquiryPost";
+    }
+
+
+    @GetMapping("/inquiry/detail")
+    public String inquiryDetail() {
+
+        return "mypage/inquiry/inquiryDetail";
+    }
+
 }
