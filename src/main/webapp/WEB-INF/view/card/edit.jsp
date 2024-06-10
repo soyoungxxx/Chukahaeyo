@@ -9,6 +9,12 @@
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="/resources/js/card/apikey.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script id="map-api-script"></script>
+    <script>
+        const API_KEY = config.apikey;
+        document.getElementById("map-api-script").src="//dapi.kakao.com/v2/maps/sdk.js?appkey="+API_KEY+"&libraries=services&autoload=false";
+    </script>
     <title>축하해요</title>
     <link rel="stylesheet" href="/resources/css/common.css"/>
     <link rel="stylesheet" href="/resources/css/edit.css?after">
@@ -165,8 +171,7 @@
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
+
 <script>
     // 주소 api 호출
     $('.edit-search-addr').click(function() {
