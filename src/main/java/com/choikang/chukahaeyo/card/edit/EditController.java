@@ -42,7 +42,6 @@ public class EditController {
         // url -> 일단 null값으로 두기
         // pay_id => null
         System.out.println("!!!!!!!!!!!1");
-        System.out.println(cardVO.getReceiver());
         return "redirect:/cart";
     }
 

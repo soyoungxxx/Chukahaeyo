@@ -99,7 +99,10 @@
                     </span>
                     <div class="edit-place">
                         <input type="button" class="edit-search-addr" value="주소 찾기"/>
-                        <input type="text" class="edit-edit-text" placeholder="상세 주소 입력" name="addr2" />
+                        <input type="hidden" name="addr1" id="addr1" />
+                        <input type="hidden" name="x" id="x" />
+                        <input type="hidden" name="y" id="y" />
+                        <input type="text" class="edit-text" placeholder="상세 주소 입력" name="addr2" />
                     </div>
                 </div>
                 <hr>
@@ -133,6 +136,7 @@
                     </div>
                 </div>
                 <hr>
+                <input type="hidden" name="public" value="false" id="public">
                 <input type="submit" style="display:none" id="cart-submit-button">
             </div>
             </form>
@@ -144,9 +148,8 @@
                     <form id="edit-payment-form" class="edit-form" action="/payments/process" method="post">
                         <input class="edit-grey-btn" type="button" id="edit-pay-button" value="결제하기">
                     </form>
-                    <form class="edit-form">
-                        <input class="edit-grey-btn" id="publicButton" type="button" value="공개"/>
-                    </form>
+                    <input class="edit-grey-btn" id="publicButton" type="button" value="비공개"/>
+
                 </div>
             </div>
             <div class="edit-frame-div">
@@ -163,6 +166,11 @@
 
 
 <script type="text/javascript">
+    // 주소 api 호출
+    $('#addr1').click(function() {
+
+    })
+
     // 필수 항목 다 적었나 체크
     function checkRequires() {
         // 이름, 날짜, 사진, 문구 전부 작성해야 함
@@ -265,44 +273,44 @@
         $('.edit-place').hide();
         $('.edit-prepare').hide();
         $('.edit-account').hide();
-
-        // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
-        $('#edit-dayRadio').click(function () {
-            $('#edit-days').hide();
-            $('#edit-day').show();
-        })
-        $('#edit-daysRadio').click(function () {
-            $('#edit-day').hide();
-            $('#edit-days').show();
-        })
-
-        // 어떤 버튼을 클릭하냐에 따라 hide and show - 시간
-        $('#edit-timeRadio').click(function () {
-            $('#edit-times').hide();
-            $('#edit-time').show();
-        })
-        $('#edit-timesRadio').click(function () {
-            $('#edit-times').show();
-        })
-
-        // 체크박스 제어
-        $('#edit-time-select').click(function () {
-            $('.edit-showTime').toggle();
-            $('.extra-time').toggle();
-        })
-        $('#edit-place-select').click(function () {
-            $('.edit-place').toggle();
-            $('.extra-place').toggle();
-        })
-        $('#edit-prepare-select').click(function () {
-            $('.edit-prepare').toggle();
-            $('.extra-preparation').toggle();
-        })
-        $('#edit-account-select').click(function () {
-            $('.edit-account').toggle();
-            $('.extra-account').toggle();
-        })
     });
+
+    // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
+    $('#edit-dayRadio').click(function () {
+        $('#edit-days').hide();
+        $('#edit-day').show();
+    })
+    $('#edit-daysRadio').click(function () {
+        $('#edit-day').hide();
+        $('#edit-days').show();
+    })
+
+    // 어떤 버튼을 클릭하냐에 따라 hide and show - 시간
+    $('#edit-timeRadio').click(function () {
+        $('#edit-times').hide();
+        $('#edit-time').show();
+    })
+    $('#edit-timesRadio').click(function () {
+        $('#edit-times').show();
+    })
+
+    // 체크박스 제어
+    $('#edit-time-select').click(function () {
+        $('.edit-showTime').toggle();
+        $('.extra-time').toggle();
+    })
+    $('#edit-place-select').click(function () {
+        $('.edit-place').toggle();
+        $('.extra-place').toggle();
+    })
+    $('#edit-prepare-select').click(function () {
+        $('.edit-prepare').toggle();
+        $('.extra-preparation').toggle();
+    })
+    $('#edit-account-select').click(function () {
+        $('.edit-account').toggle();
+        $('.extra-account').toggle();
+    })
 
     // 결제
     var IMP = window.IMP;
@@ -391,6 +399,17 @@
 
     $('#edit-cart-button').click(function () {
         $('#cart-submit-button').click();
+    })
+
+    $('#publicButton').click(function () {
+        var isPublicValue = $('#public').val();
+        if (isPublicValue === 'true') {
+            $('#public').val('false');
+            $('#publicButton').val('비공개');
+        } else {
+            $('#public').val('true');
+            $('#publicButton').val('공개');
+        }
     })
 </script>
 </body>

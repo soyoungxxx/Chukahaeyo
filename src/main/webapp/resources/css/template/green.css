@@ -157,6 +157,39 @@ html {
     display: none;
 }
 
+.extra-time{
+    width: 100%;
+    margin-top: 100px;
+    height: auto;
+    color: #373B3C;
+    font-size: 30px;
+    font-family: Quantico;
+}
+
+.extra-place {
+    width: 100%;
+    margin-top: 100px;
+}
+
+.extra-preparation {
+    word-break:break-all;
+    width: 80%;
+    height: auto;
+    margin-top: 100px;
+    line-height: 60px;
+    text-align: center;
+
+    color: #373B3C;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.extra-account {
+    margin-top: 100px;
+    width: 100%;
+    font-size: 25px;
+}
+
 /* 좋아요 section */
 .card-like-section {
     margin-top: 100px;
