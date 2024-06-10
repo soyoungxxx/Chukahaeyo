@@ -164,11 +164,53 @@
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
     // 주소 api 호출
-    $('#addr1').click(function() {
+    $('.edit-search-addr').click(function() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                //document.getElementById('sample4_postcode').value = data.zonecode;
+                //document.getElementById("sample4_roadAddress").value = roadAddr;
+                //document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+                $("#zipcode").val(data.zonecode);
+                $("#addr1").val(roadAddr);
+                $(".extra-place").text(roadAddr + " " + extraRoadAddr);
+                $.ajax({
+                    type: "GET",
+                    url: "/card/map",
+                    data: {query: roadAddr},
+                    success: function (data) {
+                        alert(data);
+                    },
+                    error: function (data) {
+                        alert("error");
+                    }
+                })
+            }
+        }).open();
     })
 
     // 필수 항목 다 적었나 체크
@@ -216,7 +258,7 @@
         $('#edit-time').change(function () {
             var time = $('#edit-time').val();
             $('.extra-time').text(time);
-        })
+        });
         // 장소
 
         // 준비물
@@ -273,44 +315,46 @@
         $('.edit-place').hide();
         $('.edit-prepare').hide();
         $('.edit-account').hide();
+
+
+        // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
+        $('#edit-dayRadio').click(function () {
+            $('#edit-days').hide();
+            $('#edit-day').show();
+        })
+        $('#edit-daysRadio').click(function () {
+            $('#edit-day').hide();
+            $('#edit-days').show();
+        })
+
+        // 어떤 버튼을 클릭하냐에 따라 hide and show - 시간
+        $('#edit-timeRadio').click(function () {
+            $('#edit-times').hide();
+            $('#edit-time').show();
+        })
+        $('#edit-timesRadio').click(function () {
+            $('#edit-times').show();
+        })
+
+        // 체크박스 제어
+        $('#edit-time-select').click(function () {
+            $('.edit-showTime').toggle();
+            $('.extra-time').toggle();
+        })
+        $('#edit-place-select').click(function () {
+            $('.edit-place').toggle();
+            $('.extra-place').toggle();
+        })
+        $('#edit-prepare-select').click(function () {
+            $('.edit-prepare').toggle();
+            $('.extra-preparation').toggle();
+        })
+        $('#edit-account-select').click(function () {
+            $('.edit-account').toggle();
+            $('.extra-account').toggle();
+        })
     });
 
-    // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
-    $('#edit-dayRadio').click(function () {
-        $('#edit-days').hide();
-        $('#edit-day').show();
-    })
-    $('#edit-daysRadio').click(function () {
-        $('#edit-day').hide();
-        $('#edit-days').show();
-    })
-
-    // 어떤 버튼을 클릭하냐에 따라 hide and show - 시간
-    $('#edit-timeRadio').click(function () {
-        $('#edit-times').hide();
-        $('#edit-time').show();
-    })
-    $('#edit-timesRadio').click(function () {
-        $('#edit-times').show();
-    })
-
-    // 체크박스 제어
-    $('#edit-time-select').click(function () {
-        $('.edit-showTime').toggle();
-        $('.extra-time').toggle();
-    })
-    $('#edit-place-select').click(function () {
-        $('.edit-place').toggle();
-        $('.extra-place').toggle();
-    })
-    $('#edit-prepare-select').click(function () {
-        $('.edit-prepare').toggle();
-        $('.extra-preparation').toggle();
-    })
-    $('#edit-account-select').click(function () {
-        $('.edit-account').toggle();
-        $('.extra-account').toggle();
-    })
 
     // 결제
     var IMP = window.IMP;

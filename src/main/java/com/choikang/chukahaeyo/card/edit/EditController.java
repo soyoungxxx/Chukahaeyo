@@ -3,6 +3,7 @@ package com.choikang.chukahaeyo.card.edit;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.card.model.TemplateVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.HttpRequestHandler;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Controller
@@ -45,4 +48,19 @@ public class EditController {
         return "redirect:/cart";
     }
 
+    @Value("${REST_API_KEY}")
+    private String REST_API_KEY;
+    @Value("${API_URL}")
+    private String API_URL;
+
+    @GetMapping(value="/map", produces = "application/text; charset=utf8")
+    public String getKakaoApiFromAddress(@RequestParam("query") String roadFullAddr) {
+        try {
+            roadFullAddr = URLEncoder.encode(roadFullAddr, StandardCharsets.UTF_8);
+            System.out.println(roadFullAddr);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/";
+    }
 }
