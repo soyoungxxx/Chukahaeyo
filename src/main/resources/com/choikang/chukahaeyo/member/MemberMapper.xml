@@ -4,19 +4,19 @@
     <select id="login" parameterType="com.choikang.chukahaeyo.member.model.MemberVO"
             resultType="com.choikang.chukahaeyo.member.model.MemberVO">
         SELECT *
-        FROM user
+        FROM members
         WHERE memberEmail = #{memberEmail}
           AND memberPwd = MD5(#{memberPwd})
     </select>
 
     <insert id="register" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
-        INSERT INTO user(memberEmail, memberPwd, memberName, memberRegisterDate, memberAuth)
+        INSERT INTO members(memberEmail, memberPwd, memberName, memberRegisterDate, memberAuth)
         VALUES (#{memberEmail}, MD5(#{memberPwd}), #{memberName}, NOW(), false)
     </insert>
 
     <select id="checkEmailDuplicate" parameterType="String" resultType="int">
         SELECT count(*)
-        FROM user
+        FROM members
         WHERE memberEmail = #{memberEmail}
     </select>
 </mapper>

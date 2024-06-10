@@ -122,7 +122,7 @@
         function checkDuplicate() {
             $.ajax({
                 url: '/member/register/checkEmailDuplicate',
-                data: {email: $("#memberEmail").val()},
+                data: {memberEmail: $("#memberEmail").val()},
                 async: false,
                 success: function (res) {
                     if (res == '0') {
@@ -162,9 +162,9 @@
                 type: "POST",
                 url: '/member/register',
                 data: {
-                    email: $("#memberEmail").val(),
-                    pwd: $("#memberPwd").val(),
-                    user_name: $("#memberName").val()
+                    memberEmail: $("#memberEmail").val(),
+                    memberPwd: $("#memberPwd").val(),
+                    memberName: $("#memberName").val()
                 },
                 async: false,
                 success: function (res) {

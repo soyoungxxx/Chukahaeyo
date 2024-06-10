@@ -32,7 +32,12 @@ public class MemberController {
             model.addAttribute("msg", "아이디 혹은 비밀번호를 다시 확인하세요.");
             model.addAttribute("url", "");
             return "include/alert";
-        } else {
+        } else if (!login.isMemberAuth()){
+            model.addAttribute("msg", "인증되지 않은 유저입니다. 메일 인증을 완료해주세요.");
+            model.addAttribute("url", "");
+            return "include/alert";
+        }
+        else {
             session.setAttribute("login", login);
             return "redirect:/";
         }
@@ -51,7 +56,7 @@ public class MemberController {
     // 회원가입
     @ResponseBody
     @PostMapping("/member/register")
-    public boolean register(Model model, MemberVO memberVO) {
+    public boolean register(MemberVO memberVO) {
         service.register(memberVO);
         return true;
     }
