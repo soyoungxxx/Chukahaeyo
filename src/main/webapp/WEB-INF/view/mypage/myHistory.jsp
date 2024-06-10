@@ -21,8 +21,51 @@
             <div class="mypage-wrap">
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <div class="mypage-content">
-                    본문 들어갈 자리
-                    여기에 내용 작성하면 됨
+                    <div class="payment-list">
+                        <div class="payment-items">
+                            <a href="#">
+                                <img src="/resources/img/template/template01.png" alt="템플릿1" class="payment-item-img">
+                            </a>
+                            <a href="#">
+                                <img src="/resources/img/template/template02.png" alt="템플릿1" class="payment-item-img">
+                            </a>
+
+                        </div>
+                        <div class="payment-info">
+                            <p>주문일자: 2024.06.10.</p>
+                            <p>금액: 12,345원</p>
+                            <a href="#">취소</a>
+                        </div>
+                    </div>
+
+                    <div class="payment-list">
+                        <div class="payment-items">
+                            <a href="#">
+                                <img src="/resources/img/template/template01.png" alt="템플릿1" class="payment-item-img">
+                            </a>
+                            <a href="#">
+                                <img src="/resources/img/template/template02.png" alt="템플릿1" class="payment-item-img">
+                            </a>
+                            <a href="#">
+                                <img src="/resources/img/template/template03.png" alt="템플릿1" class="payment-item-img">
+                            </a>
+                            <a href="#">
+                                <img src="/resources/img/template/template02.png" alt="템플릿1" class="payment-item-img">
+                            </a>
+                            <a href="#">
+                                <img src="/resources/img/template/template03.png" alt="템플릿1" class="payment-item-img">
+                            </a>
+                            <a href="#">
+                                <img src="/resources/img/template/template01.png" alt="템플릿1" class="payment-item-img">
+                            </a>
+                        </div>
+                        <div class="payment-info">
+                            <p>주문일자: 2024.06.10.</p>
+                            <p>금액: 12,345원</p>
+                            <a href="#">취소</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
