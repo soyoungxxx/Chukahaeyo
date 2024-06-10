@@ -62,6 +62,8 @@ public class MvcConfig implements WebMvcConfigurer {
         reg.addViewController("/url/origin");
         reg.addViewController("/url/short");
 
+        reg.addViewController("/errorPage/404");
+        reg.addViewController("/errorPage/500");
 
     }
 
