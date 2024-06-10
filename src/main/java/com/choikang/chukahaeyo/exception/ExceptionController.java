@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value = "/errorPage", produces = "application/text; charset=utf8")
-
 public class ExceptionController {
     @GetMapping("404")
     public String show404ErrorPage(){
