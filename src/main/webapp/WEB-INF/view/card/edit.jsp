@@ -26,13 +26,13 @@
             <div class="edit-div" style="overflow: scroll;">
                 <div class="edit-div-components">
                     <span class="head-text">이름</span>
-                    <span class="warn-text">필수 항목입니다.</span>
+                    <span class="edit-warn-text">필수 항목입니다.</span>
                     <input type="text" class="edit-text" id="edit-name"/>
                 </div>
                 <hr>
                 <div class="edit-div-components">
                     <span class="head-text">날짜</span>
-                    <span class="warn-text">필수 항목입니다.</span> <br>
+                    <span class="edit-warn-text">필수 항목입니다.</span> <br>
                     <input type="radio" checked id="edit-dayRadio" name="day">하루 선택 <br>
                     <input type="radio" id="edit-daysRadio" name="day"/>여러날 선택
                     <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택"/>
@@ -135,11 +135,15 @@
             <div class="edit-middle-div">
                 <div class="edit-preview-div" style="overflow:scroll"></div>
                 <div class="edit-button-div">
-                    <input class="edit-grey-btn" type="button" value="장바구니 담기"/>
-                    <form id="edit-payment-form" action="/payments/process" method="post">
+                    <form class="edit-form">
+                        <input class="edit-grey-btn" type="button" value="장바구니 담기"/>
+                    </form>
+                    <form id="edit-payment-form" class="edit-form" action="/payments/process" method="post">
                         <input class="edit-grey-btn" type="button" id="edit-pay-button" value="결제하기">
                     </form>
-                    <input class="edit-grey-btn" type="button" value="공개/비공개"/>
+                    <form class="edit-form">
+                        <input class="edit-grey-btn" type="button" value="공개/비공개"/>
+                    </form>
                 </div>
             </div>
             <div class="edit-frame-div">
