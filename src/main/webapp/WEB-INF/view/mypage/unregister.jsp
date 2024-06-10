@@ -7,6 +7,38 @@
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/css/common.css"/>
     <link rel="stylesheet" href="/resources/css/mypage.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        function inputCheck() {
+            if ($("#pwdCheck").val() == '') {
+                alert("비밀번호를 입력해 주세요");
+                $("#pwdCheck").focus();
+                return false;
+            }
+
+            if ($("#checkAgree").val() != '1') {
+                alert("약관에 동의해야 회원가입이 가능합니다");
+                return false;
+            }
+        //     비밀번호 틀렸을 때 실행되는 함수 추가
+        }
+
+
+        function toggleCheckbox() {
+            var img = document.getElementById("checkAgree");
+            var src = img.getAttribute("src");
+
+            if(src.includes("agree-check-not")){
+                img.setAttribute("src", "/resources/img/agree-check.png");
+                img.setAttribute("value", "1");
+            }
+            else{
+                img.setAttribute("src", "/resources/img/agree-check-not.png")
+                img.setAttribute("value", "0");
+            }
+        }
+    </script>
 </head>
 <body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
@@ -21,35 +53,36 @@
             <div class="mypage-wrap">
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <div class="mypage-content">
-                    <form action="unregister">
+                    <form action="unregister" method="post" class="unregister-page" onsubmit="return inputCheck();">
                         <h3>이메일</h3>
+                        <%--                        이메일 불러와서 placeholder에 들어갈 수 있게 하기--%>
                         <input type="text" id="userEmail" name="userEmail" placeholder="user@email.com" disabled>
-                        <div>
+                        <div class="unregister-check">
                             <h3>탈퇴하시기 전 꼭 확인하세요!</h3>
                             <ul>
-                                <li>회원에서 탈퇴하시면 현재 사용 중이신 계정을 더 이상 사용할 수 없게 됩니다. 또한 사용 중이신 계정으로 로그인 되어 있던 모든 디바이스에서 자동으로
-                                    로그아웃
-                                    됩니다.
+                                <li>✅ 회원에서 탈퇴하시면 현재 사용 중이신 계정을 더 이상 사용할 수 없게 됩니다. 또한 사용 중이신 계정으로 로그인 되어 있던 모든 디바이스에서
+                                    자동으로 로그아웃 됩니다.
                                 </li>
-                                <li>한 번 삭제된 계정은 이전 상태로 복구할 수 없습니다. 또한 계정이 삭제되면 해당 계정의 정보 및 사용 이력을 더 이상 조회할 수 없습니다.</li>
-                                <li>한 번 탈퇴한 사용자라 하더라도 언제든 다시 회원 가입을 할 수 있습니다. 단, 이미 사용한 이메일은 다시 사용할 수 없기 때문에 새 이메일 주소를
-                                    사용하셔야
-                                    합니다.
+                                <li>✅ 한 번 삭제된 계정은 이전 상태로 복구할 수 없습니다. 또한 계정이 삭제되면 해당 계정의 정보 및 사용 이력을 더 이상 조회할 수 없습니다.
+                                </li>
+                                <li>✅ 한 번 탈퇴한 사용자라 하더라도 언제든 다시 회원 가입을 할 수 있습니다. 단, 이미 사용한 이메일은 다시 사용할 수 없기 때문에 새 이메일 주소를
+                                    사용하셔야 합니다.
                                 </li>
                             </ul>
                             <h3>비밀번호 확인</h3>
                             <input type="password" id="pwdCheck" name="pwdCheck" placeholder="현재 비밀번호 입력">
                         </div>
                         <div class="unregister-agree-content">
-                            <a class="unregister-agree-img" href="#">
-                                <img src="/resources/img/agree-check-not.png" id="checkAgree" value="0"
-                                     style="width: 50px; height: 50px"/>
+                            <a class="unregister-agree-img" href="javascript:toggleCheckbox();">
+                                <img src="/resources/img/agree-check-not.png" id="checkAgree" value="0"/>
                             </a>
-                            <p>회원가입 및 개인정보 이용약관에 모두 동의합니다.</p>
+                            <p>상기 내용에 모두 동의합니다.</p>
                         </div>
-
-                        <input type="submit" value="탈퇴하기" class="unregister_btn"/>
+                        <div class="unregister-btn">
+                            <input type="submit" value="탈퇴하기" id="unregisterBtn"/>
+                        </div>
                     </form>
+
                 </div>
             </div>
         </div>

@@ -41,10 +41,12 @@
                 return false;
             }
 
-            if ($("#checkAgree").getAttribute("value") != '1') {
+            if ($("#checkAgree").val() != '1') {
                 alert("약관에 동의해야 회원가입이 가능합니다");
                 return false;
             }
+
+            openCheckEmail();
         }
 
         function checkEmail(){
@@ -86,7 +88,6 @@
                 }
                 // 사용 가능한 이메일일 시 추가 작업 해줘야 함
             })
-            openCheckEmail();
         }
 
         function openPopup() {
