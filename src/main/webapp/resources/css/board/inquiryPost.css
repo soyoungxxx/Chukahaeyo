@@ -1,0 +1,106 @@
+
+/*font*/
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+body .container{
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    font-style: normal;
+  }  
+/*font*/
+
+
+
+
+
+
+
+.container {
+
+    width: 1000px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+
+/*inquiry-logo*/
+.inquiry-logo {
+    font-size: 20px;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+
+
+
+/*title-container*/
+.title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+.title-container .title-title{
+    font-size: 20px;
+    color: #535353;
+    margin-right: 50px;
+
+}
+.title-container .title-text{
+    width: 600px;
+    height: 30px;
+    font-size: 15px;
+    border: none; /* <-- This thing here */
+    border:solid 1px #ccc;
+    border-radius: 10px;
+}
+
+
+/*data-container*/
+
+.data-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.data-container .data-title{
+    font-size: 20px;
+    color: #535353;
+    margin-right: 50px;
+}
+.data-container .data-text{
+    
+}
+
+
+
+
+
+
+
+/*write-button*/
+.write-button{
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #949FFF;
+    color: white;
+    align-self: self-end;
+    margin-top: 50px;
+    margin-right: 150px;
+    cursor: pointer;
+    border-radius: 10px;
+}

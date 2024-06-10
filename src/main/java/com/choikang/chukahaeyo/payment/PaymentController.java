@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(value = "/payments", produces = "application/text; charset=utf8")
-public class PaymentController {
+public class  PaymentController {
     @Autowired
     private PaymentService paymentService;
 

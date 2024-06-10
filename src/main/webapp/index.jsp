@@ -20,7 +20,7 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="container">
-            <div class="main-ad">
+<%--            <div style="width: 100%; height: 100%;">--%>
                 <!-- 이미지 슬라이드 영역 -->
                 <div class="slideshow-container">
                     <div class="slides fade">
@@ -35,7 +35,7 @@
                     <a class="prev-slide" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next-slide" onclick="plusSlides(1)">&#10095;</a>
                 </div>
-            </div>
+<%--            </div>--%>
 
             <div class="navigator">
                 <!-- 내생일, 반려동물 생일, 단체 행사 링크 -->
