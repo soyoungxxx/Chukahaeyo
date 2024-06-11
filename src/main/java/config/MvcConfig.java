@@ -1,5 +1,6 @@
 package config;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -9,17 +10,13 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 
-import com.zaxxer.hikari.HikariDataSource;
+import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = { "com.choikang.chukahaeyo" })
@@ -33,8 +30,8 @@ public class MvcConfig implements WebMvcConfigurer {
     private String driver;
     @Value("${db.url}")
     private String url;
-    @Value("${db.memberName}")
-    private String memberName;
+    @Value("${db.username}")
+    private String username;
     @Value("${db.password}")
     private String password;
 
@@ -50,7 +47,6 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry reg) {
-        reg.addViewController("/member/register");
         reg.addViewController("/mypage/myPage");
         reg.addViewController("/mypage/myCard");
         reg.addViewController("/card/edit");
@@ -72,7 +68,7 @@ public class MvcConfig implements WebMvcConfigurer {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setDriverClassName(driver);
         dataSource.setJdbcUrl(url);
-        dataSource.setUsername(memberName);
+        dataSource.setUsername(username);
         dataSource.setPassword(password);
         return dataSource;
     }
@@ -94,4 +90,26 @@ public class MvcConfig implements WebMvcConfigurer {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
+
+    @Bean
+    public JavaMailSender getJavaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.naver.com");
+        mailSender.setPort(465);
+        mailSender.setUsername("dawndawnchoi@naver.com");
+        mailSender.setPassword("rnlcksgek0");
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.ssl.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
+    }
+
+
 }

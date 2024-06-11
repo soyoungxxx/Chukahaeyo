@@ -10,17 +10,25 @@
     </select>
 
     <insert id="register" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
-        INSERT INTO Members{
+        INSERT INTO Members(
             memberEmail, memberPwd, memberName, memberRegisterDate , memberAuth
-            }
-        VALUES {
-            #{memberEmail}, MD5(#{memberPwd}), #{memberName}, NOW(), true
-            }
+            )
+        VALUES (
+            #{memberEmail}, MD5(#{memberPwd}), #{memberName}, NOW(), false
+            )
     </insert>
 
     <select id="checkEmailDuplicate" parameterType="String" resultType="int">
         SELECT count(*) FROM Members WHERE memberEmail = #{memberEmail}
     </select>
+
+    <select id="selectMemberId" parameterType="String" resultType="int">
+        SELECT memberId FROM Members WHERE memberEmail = #{memberEmail}
+    </select>
+
+    <update id="memberVerify" parameterType="int">
+        UPDATE Members SET memberAuth=true WHERE memberId = #{memberId}
+    </update>
 
 
 </mapper>
