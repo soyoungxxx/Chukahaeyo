@@ -17,25 +17,37 @@
                 return false;
             }
 
-            if ($("#checkAgree").val() != '1') {
-                alert("약관에 동의해야 회원가입이 가능합니다");
+            var checkAgreeValue = $("#checkAgree").attr('data-value');
+            console.log(checkAgreeValue);
+            if (checkAgreeValue == '0') {
+                alert("상기 동의란을 체크해야 탈퇴 가능합니다");
                 return false;
             }
-        //     비밀번호 틀렸을 때 실행되는 함수 추가
+            // unsign();
         }
 
+        // function unsign(){
+        //     $.ajax({
+        //         url: '/mypage/unregister',
+        //         data: {memberPwd: $("#memberPwd").val()},
+        //         async: false,
+        //         success: function (res) {
+        //             console.log(res);
+        //             window.location = "/";
+        //         }
+        //     })
+        // }
 
         function toggleCheckbox() {
-            var img = document.getElementById("checkAgree");
-            var src = img.getAttribute("src");
+            var img = $('#checkAgree');
+            var src = img.attr('src');
 
-            if(src.includes("agree-check-not")){
-                img.setAttribute("src", "/resources/img/agree-check.png");
-                img.setAttribute("value", "1");
-            }
-            else{
-                img.setAttribute("src", "/resources/img/agree-check-not.png")
-                img.setAttribute("value", "0");
+            if (src.includes("agree-check-not")) {
+                img.attr('src', "/resources/img/agree-check.png");
+                img.attr('data-value', "1");
+            } else {
+                img.attr('src', "/resources/img/agree-check-not.png");
+                img.attr('data-value', "0");
             }
         }
     </script>
@@ -56,7 +68,7 @@
                     <form action="unregister" method="post" class="unregister-page" onsubmit="return inputCheck();">
                         <h3>이메일</h3>
                         <%--                        이메일 불러와서 placeholder에 들어갈 수 있게 하기--%>
-                        <input type="text" id="userEmail" name="userEmail" placeholder="user@email.com" disabled>
+                        <input type="text" id="memberEmail" name="memberEmail" placeholder="${memberEmail}" disabled>
                         <div class="unregister-check">
                             <h3>탈퇴하시기 전 꼭 확인하세요!</h3>
                             <ul>
@@ -70,11 +82,11 @@
                                 </li>
                             </ul>
                             <h3>비밀번호 확인</h3>
-                            <input type="password" id="pwdCheck" name="pwdCheck" placeholder="현재 비밀번호 입력">
+                            <input type="password" id="memberPwd" name="memberPwd" placeholder="현재 비밀번호 입력">
                         </div>
                         <div class="unregister-agree-content">
                             <a class="unregister-agree-img" href="javascript:toggleCheckbox();">
-                                <img src="/resources/img/agree-check-not.png" id="checkAgree" value="0"/>
+                                <img src="/resources/img/agree-check-not.png" id="checkAgree" data-value="0"/>
                             </a>
                             <p>상기 내용에 모두 동의합니다.</p>
                         </div>

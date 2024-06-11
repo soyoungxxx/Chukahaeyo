@@ -8,8 +8,11 @@ public interface MemberMapper {
     // 로그인
     MemberVO login(MemberVO memberVO);
 
-    // 회원 정보 조회
-    MemberVO detail(MemberVO memberVO);
+    // 이메일을 통해 회원 정보 조회
+    MemberVO getUserInfoByEmail(String memberEmail);
+
+    // 아이디를 통해서 회원 정보 조회
+    MemberVO getUserInfoById(int memberId);
 
     // 회원 가입
     void register(MemberVO memberVO);
@@ -17,9 +20,8 @@ public interface MemberMapper {
     // 중복 확인
     int checkEmailDuplicate(String memberEmail);
 
-    // 이메일을 통해 멤버 아이디 조회
-    int selectMemberId(String memberEmail);
-
     // 가입 인증
     void memberVerify(int memberId);
+
+    int unsign(MemberVO memberVO);
 }

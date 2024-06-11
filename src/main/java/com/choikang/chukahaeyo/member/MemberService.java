@@ -21,6 +21,16 @@ public class MemberService {
         return memberMapper.login(memberVO);
     }
 
+    // 이메일을 통해 회원 정보 조회
+    public MemberVO getUserInfoByEmail(String memberEmail) {
+        return memberMapper.getUserInfoByEmail(memberEmail);
+    }
+
+    // id를 통해서 회원 정보 조회
+    public MemberVO getUserInfoById(int memberId) {
+        return memberMapper.getUserInfoById(memberId);
+    }
+
     // 회원가입 시 이메일 중복체크
     public int checkEmailDuplicate(String memberEmail) {
         return memberMapper.checkEmailDuplicate(memberEmail);
@@ -32,7 +42,9 @@ public class MemberService {
     }
 
     // 이메일을 통해 멤버 아이디 조회
-    public int selectMemberId(String memberEmail) {return memberMapper.selectMemberId(memberEmail);}
+    public int selectMemberId(String memberEmail) {
+        return getUserInfoByEmail(memberEmail).getMemberId();
+    }
 
     // 가입 인증, 메일 체크
     public void mailAuthCheck(String memberEmail, String memberName) {
@@ -73,6 +85,14 @@ public class MemberService {
     }
 
     // 가입 인증
-    public void memberVerify(int memberId){ memberMapper.memberVerify(memberId);}
+    public void memberVerify(int memberId) {
+        memberMapper.memberVerify(memberId);
+    }
+
+    // 패스워드 확인
+    public int unsign(MemberVO memberVO) {
+        return  memberMapper.unsign(memberVO);
+    }
+
 
 }
