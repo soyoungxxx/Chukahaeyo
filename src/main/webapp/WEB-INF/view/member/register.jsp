@@ -27,7 +27,7 @@
                 return false;
             }
 
-            if ($('#memberEmail').data("value") == '0') {
+            if ($("#emailCheck").data('value') == '0') {
                 alert("이메일 중복체크를 진행해주세요.");
                 $("#memberEmail").focus();
                 return false;
@@ -44,6 +44,16 @@
                 $("#pwdCheck").focus();
                 return false;
             }
+            if (!pwdRegex.test($("#memberPwd").val())) {
+                alert("비밀번호를 올바른 형식으로 작성해주세요.");
+                $("#memberPwd").focus();
+                return false;
+            }
+            if ($("#pwdCheck").val() !== $("#memberPwd").val()) {
+                alert("비밀번호 확인란과 비밀번호가 일치하지 않습니다. 비밀번호 확인란을 다시 작성해주십시오.");
+                $("#pwdCheck").focus();
+                return false;
+            }
 
             if ($("#memberName").val() == '') {
                 alert("이름을 입력해주세요");
@@ -56,6 +66,7 @@
                 alert("약관에 동의해야 회원가입이 가능합니다");
                 return false;
             }
+
 
             regist();
         }
@@ -102,14 +113,13 @@
 
         function checkDuplPwd() {
             if ($("#pwdCheck").val() !== $("#memberPwd").val()) {
-                alert("비밀번호가 일치하지 않습니다. 비밀번호 확인란을 다시 작성해주십시오.");
+                alert("비밀번호 확인란과 비밀번호가 일치하지 않습니다.");
                 $("#pwdCheck").focus();
                 return false;
             }
         }
 
         function openCheckEmail() {
-            console.log("실행됨");
             const popup = $('#successRegisterPopup');
             popup.css('display', 'flex');
         }
@@ -169,7 +179,7 @@
                 async: false,
                 success: function (res) {
                     if (res == '1') {
-                        console.log("가입됨");
+                        sendEmail();
                         openCheckEmail();
                     } else {
                         alert('가입 중 오류가 발생했습니다.');
@@ -177,6 +187,25 @@
                 },
                 error: function (xhr, status, error) {
                     console.error("AJAX 요청 중 에러 발생: ", status, error);
+                }
+            });
+
+
+        }
+
+        function sendEmail(){
+            // 이메일 인증 구현
+            $.ajax({
+                url: './emailAuth',
+                data: {
+                    memberEmail: $("#memberEmail").val(),
+                },
+                type: 'POST',
+                success: function (res) {
+                    console.log("result: " + res);
+                },
+                error: function (xhr, status, error) {
+                    console.error("email AJAX 요청 중 에러 발생: ", status, error);
                 }
             });
         }

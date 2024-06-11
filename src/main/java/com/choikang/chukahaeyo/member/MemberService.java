@@ -23,4 +23,5 @@ public class MemberService {
     public void register(MemberVO memberVO) {
         memberMapper.register(memberVO);
     }
+
 }
