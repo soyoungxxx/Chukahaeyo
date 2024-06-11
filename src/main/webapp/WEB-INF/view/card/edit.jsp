@@ -219,18 +219,6 @@
                         map.setCenter(coords);
                     }
                 });
-
-                // $.ajax({
-                //     type: "GET",
-                //     url: "/card/map",
-                //     data: {query: roadAddr},
-                //     success: function (data) {
-                //         alert(data);
-                //     },
-                //     error: function (data) {
-                //         alert("error");
-                //     }
-                // })
             }
         }).open();
     })
