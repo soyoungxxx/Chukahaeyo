@@ -138,10 +138,10 @@
                     </div>
                 </div>
                 <hr>
+                <input type="hidden" name="design" id="card-design">
                 <input type="hidden" name="public" value="false" id="public">
                 <input type="submit" style="display:none" id="cart-submit-button">
             </div>
-            </form>
 
             <div class="edit-middle-div">
                 <div class="edit-preview-div" style="overflow:scroll"></div>
@@ -154,6 +154,7 @@
 
                 </div>
             </div>
+            </form>
             <div class="edit-frame-div">
                 <c:forEach items="${list}" var="t">
                     <img src="${t.thumbnail}" class="edit-frame" id="${t.template_id}"> <br>
@@ -302,6 +303,7 @@
     });
 
     $(function () {
+
         $('#edit-days').daterangepicker({
             autoUpdateInput: false,
             locale: {
@@ -466,6 +468,7 @@
     })
 
     $('#edit-cart-button').click(function () {
+        $("#card-design").val($('.edit-preview-div').html());
         $('#cart-submit-button').click();
     })
 
