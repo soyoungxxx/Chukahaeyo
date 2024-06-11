@@ -148,6 +148,11 @@ body .container{
     text-align: start;
     padding-left: 50px;
 }
+.list .list-board .list-data .title a{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
 
 .list .list-board .list-data .writer {
     width: 100px;
@@ -197,7 +202,10 @@ body .container{
     cursor: pointer;
     border-radius: 10px;
 }
-
+.write-button a{
+    text-decoration: none;
+    color: white;
+}
 
 
 
@@ -232,3 +240,15 @@ body .container{
 
 }
 
+.paging .current{
+    display: inline-block;
+    text-decoration: none;
+    color: #949FFF;
+    border: 1px solid #949FFF;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin: 5px;
+
+}
