@@ -7,9 +7,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/resources/js/card/apikey.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
     <title>축하해요</title>
     <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/edit.css">
+    <link rel="stylesheet" href="/resources/css/edit.css?after">
     <link rel="stylesheet" href="/resources/css/template/green.css?after">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -18,50 +21,50 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
-<main class="main">
+<main class="main" style="height: 50%;">
     <div class="sticker1" style="margin-right: 50px"></div>
-    <div style="width: 100%; height: 85%;">
+    <div style="width: 100%; height: 100%;">
         <h2>< 카드 종류 > 가 만들어지는 중</h2>
         <div class="edit-main-div">
-            <div class="edit-div" style="overflow: auto;">
+            <form class="edit-submit-form" action="/card/edit/card.do" method="post" onsubmit="return checkRequires();">
+            <div class="edit-div" style="overflow: scroll;">
                 <div class="edit-div-components">
                     <span class="head-text">이름</span>
-                    <span class="warn-text">필수 항목입니다.</span>
-                    <input type="text" class="edit-text" id="edit-name"/>
+                    <span class="edit-warn-text">필수 항목입니다.</span>
+                    <input type="text" class="edit-text" id="edit-name" name="receiver"/>
                 </div>
                 <hr>
                 <div class="edit-div-components">
                     <span class="head-text">날짜</span>
-                    <span class="warn-text">필수 항목입니다.</span> <br>
+                    <span class="edit-warn-text">필수 항목입니다.</span> <br>
                     <input type="radio" checked id="edit-dayRadio" name="day">하루 선택 <br>
                     <input type="radio" id="edit-daysRadio" name="day"/>여러날 선택
-                    <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택"/>
-                    <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택"/>
+                    <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택" name="start_date"/>
+                    <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택" name="end_date"/>
                 </div>
                 <hr>
                 <div class="edit-div-components">
                     <span class="head-text">사진</span>
                     <span class="edit-warn-text">필수 항목입니다.</span> <br>
                     <%-- 사진 첨부하는 버튼 --%>
-                    <form method="post" enctype="multipart/form-data">
-                        <input class="edit-inputFile" id="edit-file" type="file" value="첨부하기" onchange="loadFile(this)" accept="image/*"/>
+                        <input class="edit-inputFile" id="edit-file" type="file" value="첨부하기"
+                               onchange="loadFile(this)" accept="image/*" name="img"/>
                         <label class="edit-file-label" for="edit-file">첨부하기</label>
-                    </form>
                 </div>
                 <hr>
                 <div class="edit-div-components">
                     <span class="head-text">문구</span>
                     <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                    <textarea id="edit-text" maxlength="255" placeholder="문구를 입력하세요"></textarea>
+                    <textarea id="edit-text" maxlength="255" placeholder="문구를 입력하세요" name="text"></textarea>
                 </div>
                 <hr>
                 <div class="edit-div-components">
                     <span class="head-text">이모티콘</span>
                     <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                    <input class="edit-emoji" type="text" name="emoji1"/>
-                    <input class="edit-emoji" type="text" name="emoji2"/>
-                    <input class="edit-emoji" type="text" name="emoji3"/>
-                    <input class="edit-emoji" type="text" name="emoji4"/>
+                    <input class="edit-emoji" type="text" name="emoji1" id="emoji1"/>
+                    <input class="edit-emoji" type="text" name="emoji2" id="emoji2"/>
+                    <input class="edit-emoji" type="text" name="emoji3" id="emoji3"/>
+                    <input class="edit-emoji" type="text" name="emoji4" id="emoji4"/>
                     <p style="font-size:14px; color:#686868; width:90%;">
                         원하는 이모티콘을 <b>한 칸당 하나씩</b>
                         작성해주세요! <br>
@@ -82,8 +85,8 @@
                     <div class="edit-showTime">
                         <input type="radio" checked id="edit-timeRadio" name="edit-time">시각 선택 <br>
                         <input type="radio" id="edit-timesRadio" name="edit-time"/>범위 시간 선택<br>
-                        <input type="time" id="edit-time" placeholder="시간 선택"/>
-                        <input type="time" id="edit-times" placeholder="시간 선택"/>
+                        <input type="time" id="edit-time" placeholder="시간 선택" name="start_time"/>
+                        <input type="time" id="edit-times" placeholder="시간 선택" name="end_time"/>
                     </div>
                 </div>
                 <hr>
@@ -97,8 +100,11 @@
                         </label>
                     </span>
                     <div class="edit-place">
-                        <input type="submit" value="주소 찾기"/>
-                        <input type="text" class="edit-edit-text" placeholder="상세 주소 입력" name="edit-place">
+                        <input type="button" class="edit-search-addr" value="주소 찾기"/>
+                        <input type="hidden" name="addr1" id="addr1" />
+                        <input type="hidden" name="x" id="x" />
+                        <input type="hidden" name="y" id="y" />
+                        <input type="text" class="edit-text" placeholder="상세 주소 입력" name="addr2" />
                     </div>
                 </div>
                 <hr>
@@ -111,7 +117,8 @@
                             <span class="edit-onf_btn"></span>
                         </label>
                     </span>
-                    <textarea class="edit-prepare" maxlength="255" placeholder="준비물을 입력하세요"></textarea>
+                    <textarea class="edit-prepare" maxlength="255" placeholder="준비물을 입력하세요"
+                              name="preparation"></textarea>
                 </div>
                 <hr>
                 <div class="edit-div-components">
@@ -125,21 +132,26 @@
                     </span>
                     <div class="edit-account">
                         <p style="margin-bottom:0;">은행</p>
-                        <input type="text" id="edit-bank" name="edit-bank" class="edit-text"/>
+                        <input type="text" id="edit-bank" name="bank" class="edit-text"/>
                         <p style="margin-bottom:0;">계좌 번호</p>
-                        <input type="text" id="edit-account-number" name="edit-accountNumber" class="edit-text"/>
+                        <input type="text" id="edit-account-number" name="account" class="edit-text"/>
                     </div>
                 </div>
                 <hr>
+                <input type="hidden" name="public" value="false" id="public">
+                <input type="submit" style="display:none" id="cart-submit-button">
             </div>
+            </form>
+
             <div class="edit-middle-div">
                 <div class="edit-preview-div" style="overflow:scroll"></div>
                 <div class="edit-button-div">
-                    <input class="edit-grey-btn" type="button" value="장바구니 담기"/>
-                    <form id="edit-payment-form" action="/payments/process" method="post">
+                    <input class="edit-grey-btn" type="button" id="edit-cart-button" value="장바구니 담기">
+                    <form id="edit-payment-form" class="edit-form" action="/payments/process" method="post">
                         <input class="edit-grey-btn" type="button" id="edit-pay-button" value="결제하기">
                     </form>
-                    <input class="edit-grey-btn" type="button" value="공개/비공개"/>
+                    <input class="edit-grey-btn" id="publicButton" type="button" value="비공개"/>
+
                 </div>
             </div>
             <div class="edit-frame-div">
@@ -148,12 +160,98 @@
                 </c:forEach>
             </div>
         </div>
+
     </div>
     <div class="sticker2" style="margin-left: 50px"></div>
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
-<script type="text/javascript">
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
+<script>
+    // 주소 api 호출
+    $('.edit-search-addr').click(function() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                $("#addr1").val(roadAddr);
+                $("#addr2").val(extraRoadAddr);
+                $(".extra-address").text(roadAddr + " " + extraRoadAddr);
+
+                var mapContainer = document.getElementById('map'),
+                    mapOption = {
+                        center: new kakao.maps.LatLng(37.56691, 126.97873), // 지도의 중심좌표
+                        level: 1, // 지도의 확대 레벨
+                        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+                    };
+
+                // 지도를 생성한다
+                var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                var geocoder = new kakao.maps.services.Geocoder();
+                geocoder.addressSearch(roadAddr, function(result, status) {
+                    if (status === kakao.maps.services.Status.OK) {
+                        console.log(1);
+                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                        var marker = new kakao.maps.Marker({
+                            map: map,
+                            position: coords
+                        });
+
+                        map.setCenter(coords);
+                    }
+                });
+
+                // $.ajax({
+                //     type: "GET",
+                //     url: "/card/map",
+                //     data: {query: roadAddr},
+                //     success: function (data) {
+                //         alert(data);
+                //     },
+                //     error: function (data) {
+                //         alert("error");
+                //     }
+                // })
+            }
+        }).open();
+    })
+
+    // 필수 항목 다 적었나 체크
+    function checkRequires() {
+        // 이름, 날짜, 사진, 문구 전부 작성해야 함
+        if ($('#edit-name').val() === '' || ($('#edit-day').val() === '' && $('#edit-days') === '') ||
+            $('.edit-file-label').text() === '첨부하기' || $('#edit-text').val() === '') {
+            alert("필수 항목을 다 작성하지 않으셨습니다.")
+            return false;
+        }
+        // 이모티콘 네 개 다 작성해야 함
+        if ($('#emoji1').val() === '' || $('#emoji2').val() === '' || $('#emoji3').val() === '' || $('#emoji4').val() === '') {
+            alert("이모티콘을 4개 적어주세요!");
+            return false;
+        }
+    }
+
     // 이미지 업로드 기능
     function loadFile(input) {
         var file = input.files[0];
@@ -169,22 +267,38 @@
 
     // 실시간 반영!
     $('.all-content').ready(function () {
-        var text;
         // 이름
         $('#edit-name').on('input', function () {
-            text = $(this).val();
-            $('.card-name').text(text + originText);
+            var nameText = $(this).val();
+            $('.card-name').text(nameText + originText);
         });
         // 설명
         $('#edit-text').on('input', function () {
-            text = $(this).val();
-            $('.text').text(text);
+            var editText = $(this).val();
+            editText = editText.replaceAll(/(\n|\r\n)/g, "<br>");
+            $('.card-message').html(editText);
         });
         // 시간
-
+        $('#edit-time').change(function () {
+            var time = $('#edit-time').val();
+            $('.extra-time').text(time);
+        });
         // 장소
+
         // 준비물
+        $('.edit-prepare').on('input', function () {
+            var pre = $(this).val();
+            $('.extra-preparation').text(pre);
+        });
         // 계좌 번호
+        $('#edit-bank').on('input', function () {
+            var bank = $(this).val();
+            $('.extra-account-bank').text(bank);
+        })
+        $('#edit-account-number').on('input', function () {
+            var accountNumber = $(this).val();
+            $('.extra-account-number').text(" " + accountNumber);
+        })
     });
 
     $(function () {
@@ -197,7 +311,7 @@
         $('#edit-days').on('apply.daterangepicker', function (ev, picker) {
             var selectDates = picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD');
             $(this).val(selectDates);
-            $('.date').text(selectDates)
+            $('.card-date').text(selectDates)
         });
 
         $('#edit-days').on('cancel.daterangepicker', function (ev, picker) {
@@ -211,10 +325,10 @@
             minYear: 1901,
             maxYear: parseInt(moment().format('YYYY'), 10)
         });
-        $('#edit-day').on('apply.daterangepicker', function(ev, picker) {
+        $('#edit-day').on('apply.daterangepicker', function (ev, picker) {
             var selectDate = picker.startDate.format('YYYY/MM/DD');
             $(this).val(selectDate);
-            $('.date').text(selectDate);
+            $('.card-date').text(selectDate);
         })
         // 각각 library를 이용해 초기값 세팅
 
@@ -225,6 +339,7 @@
         $('.edit-place').hide();
         $('.edit-prepare').hide();
         $('.edit-account').hide();
+
 
         // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
         $('#edit-dayRadio').click(function () {
@@ -248,18 +363,24 @@
         // 체크박스 제어
         $('#edit-time-select').click(function () {
             $('.edit-showTime').toggle();
+            $('.extra-time').toggle();
         })
         $('#edit-place-select').click(function () {
             $('.edit-place').toggle();
+            $('.extra-place').toggle();
         })
         $('#edit-prepare-select').click(function () {
             $('.edit-prepare').toggle();
+            $('.extra-preparation').toggle();
         })
         $('#edit-account-select').click(function () {
             $('.edit-account').toggle();
+            $('.extra-account').toggle();
         })
     });
 
+
+    // 결제
     var IMP = window.IMP;
     IMP.init("imp72336673");
 
@@ -305,9 +426,9 @@
                         status: rsp.status,
                         receiptUrl: rsp.receipt_url
                     }),
-                    success: function(response) {
+                    success: function (response) {
                         console.log("response" + response)
-                        if(response.indexOf("결제") > -1){
+                        if (response.indexOf("결제") > -1) {
                             location.href = "/payments/success";
                             console.log("결제 후 DB 저장 성공", response);
                         }
@@ -333,7 +454,7 @@
         var template_id = $(this).attr("id");
         $.ajax({
             type: "GET",
-            url: "/payments/edit/template.do",
+            url: "/card/edit/template.do",
             data: {id: template_id},
             contentType: "text/html; charset:UTF-8",
             success: function (data) {
@@ -342,6 +463,21 @@
                 $('.date').text($('#edit-day').val()); // 템플릿 선택 시 날짜 초기값 세팅
             }
         })
+    })
+
+    $('#edit-cart-button').click(function () {
+        $('#cart-submit-button').click();
+    })
+
+    $('#publicButton').click(function () {
+        var isPublicValue = $('#public').val();
+        if (isPublicValue === 'true') {
+            $('#public').val('false');
+            $('#publicButton').val('비공개');
+        } else {
+            $('#public').val('true');
+            $('#publicButton').val('공개');
+        }
     })
 </script>
 </body>
