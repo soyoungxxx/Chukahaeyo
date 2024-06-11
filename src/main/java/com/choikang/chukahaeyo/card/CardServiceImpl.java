@@ -1,7 +1,5 @@
 package com.choikang.chukahaeyo.card;
 
-import com.choikang.chukahaeyo.card.CardMapper;
-import com.choikang.chukahaeyo.card.CardService;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
