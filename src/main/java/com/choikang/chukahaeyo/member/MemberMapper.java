@@ -15,5 +15,11 @@ public interface MemberMapper {
     void register(MemberVO memberVO);
 
     // 중복 확인
-    int checkEmailDuplicate(String email);
+    int checkEmailDuplicate(String memberEmail);
+
+    // 이메일을 통해 멤버 아이디 조회
+    int selectMemberId(String memberEmail);
+
+    // 가입 인증
+    void memberVerify(int memberId);
 }

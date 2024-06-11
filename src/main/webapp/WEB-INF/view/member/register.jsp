@@ -79,7 +79,7 @@
                 return false;
             }
             if (!emailRegex.test($("#memberEmail").val())) {
-                alert("이메일를 올바른 형식으로 작성해주세요.");
+                alert("이메일을 올바른 형식으로 작성해주세요.");
                 $("#memberEmail").focus();
                 return false;
             }
@@ -136,6 +136,7 @@
                 data: {memberEmail: $("#memberEmail").val()},
                 async: false,
                 success: function (res) {
+                    console.log(res);
                     if (!res) {
                         alert('사용 가능한 이메일입니다.');
                     } else {
@@ -181,7 +182,7 @@
                 },
                 async: false,
                 success: function (res) {
-                    if (res == '1') {
+                    if (res != null) {
                         sendEmail();
                         openCheckEmail();
                     } else {
@@ -202,6 +203,7 @@
                 url: '/member/emailAuth',
                 data: {
                     memberEmail: $("#memberEmail").val(),
+                    memberName: $("#memberName").val()
                 },
                 type: 'POST',
                 cache: false,
