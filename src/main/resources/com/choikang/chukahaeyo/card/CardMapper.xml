@@ -5,9 +5,11 @@
         INSERT INTO short_urls(cardUrl, cardQR)
         VALUES (#{cardUrl}, #{cardQR})
     </insert>
+
     <select id="getCardList" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT * FROM Card WHERE memberId = #{memberId}
     </select>
+
     <delete id="deleteCard" parameterType="int">
         DELETE FROM Card WHERE cardId = #{cardId}
     </delete>

@@ -57,7 +57,7 @@
             <div class="data-container">
                 <div class="data-title">내용</div>
                 <form method="post">
-                    <textarea class="data-text" id="summernote" name="editordata">안녕</textarea>
+                    <textarea class="data-text" id="summernote" name="editordata"></textarea>
                 </form>
 
             </div>

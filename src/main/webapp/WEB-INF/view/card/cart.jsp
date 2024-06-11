@@ -18,17 +18,29 @@
             document.getElementById('totalAmount').innerText = total.toLocaleString() + '원';
         }
 
+        function updateReceipt() {
+            let receiptList = document.querySelector('.cart-list');
+            receiptList.innerHTML = ''; // 기존 영수증 목록 비우기
+            document.querySelectorAll('.card-checkbox:checked').forEach(function (checkbox, index) {
+                let card = checkbox.closest('.card');
+                let cardPrice = card.querySelector('.card-checkbox').value;
+                let cardText = card.querySelector('.card-text').textContent;
+                receiptList.innerHTML += '<p><span>' + (index + 1) + '&nbsp;&nbsp;&nbsp;&nbsp;' + cardText + '</span> <span style="float: right;">' + parseInt(cardPrice).toLocaleString() + '원</span></p>';
+            });
+        }
+
         function deleteCard(cardId, event) {
             if (confirm("정말로 삭제하겠습니까?")) {
                 $.ajax({
                     url: '/deleteCard',
                     type: 'POST',
                     data: {cardId: cardId},
-                    success: function(response) {
-                        if(response.status === 'success') {
+                    success: function (response) {
+                        if (response.status === 'success') {
                             alert("카드가 삭제되었습니다.");
-                            $(event.target).closest('.card').remove(); // Remove card from DOM
-                            updateTotal(); // Recalculate total after deletion
+                            $(event.target).closest('.card').remove(); // DOM에서 카드 제거
+                            updateTotal(); // 삭제 후 합계 금액 재계산
+                            updateReceipt(); // 삭제 후 영수증 목록 재계산
                         } else {
                             alert("삭제 실패: " + response.message);
                         }
@@ -37,14 +49,27 @@
             }
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const cards = document.querySelectorAll('.card');
             if (cards.length % 2 !== 0) {
-                cards[cards.length - 1].classList.add('align-to-left'); // 마지막 카드에 클래스 추가
+                cards[cards.length - 1].classList.add('align-to-left'); // 마지막 카드 정렬
             }
+            updateReceipt(); // 페이지 로드 시 영수증 목록 초기화
         });
 
         function proceedToPayment() {
+            let selectedCards = []; // 결제할 카드 목록을 담은 리스트
+            document.querySelectorAll('.card-checkbox:checked').forEach(function (checkbox) {
+                let card = checkbox.closest('.card');
+                let cardInfo = {
+                    cardId: card.querySelector('.close-button').getAttribute('onclick').match(/\d+/)[0],
+                    cardName: card.querySelector('.card-text').textContent,
+                    cardPrice: card.querySelector('.card-checkbox').value
+                };
+                selectedCards.push(cardInfo);
+            });
+
+            console.log("Selected Cards:", selectedCards);
             if (confirm("결제하시겠습니까?")) {
                 // 여기에 결제 로직 추가
                 alert("결제가 완료되었습니다.");
@@ -70,8 +95,9 @@
                         </div>
                         <button class="close-button" onclick="deleteCard(${card.cardId}, event)">X</button>
                         <div class="card-content">
-                            <p class="card-text">${card.cardReceiver}님의 ${card.cardName}</p>
-                            <input type="checkbox" class="card-checkbox" value="${card.cardPrice}" onclick="updateTotal()">
+                            <p class="card-text">${card.cardName}</p>
+                            <input type="checkbox" class="card-checkbox" value="${card.cardPrice}"
+                                   onclick="updateTotal(); updateReceipt();">
                         </div>
                     </div>
                 </c:forEach>
@@ -80,13 +106,9 @@
                 <div class="cart-receipt">
                     <h1>선택 카드 목록</h1>
                     <hr>
-                    <div class="cart-list">
-                        <c:forEach var="card" items="${cardList}" varStatus="status">
-                            <p><span>${status.index + 1}번</span> <span style="float: right;">${card.cardPrice}원</span></p>
-                        </c:forEach>
-                    </div>
+                    <div class="cart-list"></div>
                     <hr>
-                    <h2>합계 <span id="totalAmount" style="float: right;">0${card.cardPrice}원</span></h2>
+                    <h2>합계 <span id="totalAmount" style="float: right;">0원</span></h2>
                 </div>
                 <input type="button" value="결제하기" onclick="proceedToPayment()">
             </div>

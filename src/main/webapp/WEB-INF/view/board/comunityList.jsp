@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,14 +35,14 @@
 
             <div class="community-logo"></div>
             <div class="search">
-                <form>
-                    <select class="selectbox" name="">
-                        <option value="">전체</option>
-                        <option value="">제목+내용</option>
-                        <option value="">작성자</option>
+                <form action="list" >
+                    <select class="selectbox" name="querytype">
+                        <option value="all" <c:if test="${communityVO.querytype == 'all'}">selected</c:if>>전체</option>
+                        <option value="titlecontent" <c:if test="${communityVO.querytype == 'titlecontent'}">selected</c:if>>제목+내용</option>
+                        <option value="writer" <c:if test="${communityVO.querytype == 'writer'}">selected</c:if>>작성자</option>
                     </select>
-                    <input class="textbox" type="text" placeholder="검색어" name="" />
-                    <input class="submitbox" type="button" value="검색" />
+                    <input class="textbox" type="text" placeholder="검색어" name="query" value="${communityVO.query}" />
+                    <input class="submitbox" type="submit" value="검색" />
                 </form>
             </div>
             <div class="list">
@@ -57,118 +58,56 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="list-data">
-                        <th class="no">1123</th>
-                        <th class="title">제목 입니다.</th>
-                        <th class="writer">서현오</th>
-                        <th class="regdate">24.01.20</th>
-                        <th class="read-cnt">4</th>
-                        <th class="like">50</th>
-                    </tr>
-                    <tr class="list-data">
-                        <th class="no">1123</th>
-                        <th class="title">제목 입니다.</th>
-                        <th class="writer">서현오</th>
-                        <th class="regdate">24.01.20</th>
-                        <th class="read-cnt">4</th>
-                        <th class="like">50</th>
-                    </tr>
-                    <tr class="list-data">
-                        <th class="no">1123</th>
-                        <th class="title">제목 입니다.</th>
-                        <th class="writer">서현오</th>
-                        <th class="regdate">24.01.20</th>
-                        <th class="read-cnt">4</th>
-                        <th class="like">50</th>
-                    </tr>
-                    <tr class="list-data">
-                        <th class="no">1123</th>
-                        <th class="title">제목 입니다.</th>
-                        <th class="writer">서현오</th>
-                        <th class="regdate">24.01.20</th>
-                        <th class="read-cnt">4</th>
-                        <th class="like">50</th>
-                    </tr>
-                    <tr class="list-data">
-                        <th class="no">1123</th>
-                        <th class="title">제목 입니다.</th>
-                        <th class="writer">서현오</th>
-                        <th class="regdate">24.01.20</th>
-                        <th class="read-cnt">4</th>
-                        <th class="like">50</th>
-                    </tr>
-                    <tr class="list-data">
-                        <th class="no">1123</th>
-                        <th class="title">제목 입니다.</th>
-                        <th class="writer">서현오</th>
-                        <th class="regdate">24.01.20</th>
-                        <th class="read-cnt">4</th>
-                        <th class="like">50</th>
-                    </tr>
-                    <tr class="list-data">
-                        <th class="no">1123</th>
-                        <th class="title">제목 입니다.</th>
-                        <th class="writer">서현오</th>
-                        <th class="regdate">24.01.20</th>
-                        <th class="read-cnt">4</th>
-                        <th class="like">50</th>
-                    </tr>
-                    <tr class="list-data">
-                        <th class="no">1123</th>
-                        <th class="title">제목 입니다.</th>
-                        <th class="writer">서현오</th>
-                        <th class="regdate">24.01.20</th>
-                        <th class="read-cnt">4</th>
-                        <th class="like">50</th>
-                    </tr>
-                    <tr class="list-data">
-                        <th class="no">1123</th>
-                        <th class="title">제목 입니다.</th>
-                        <th class="writer">서현오</th>
-                        <th class="regdate">24.01.20</th>
-                        <th class="read-cnt">4</th>
-                        <th class="like">50</th>
-                    </tr>
-                    <tr class="list-data">
-                        <th class="no">1123</th>
-                        <th class="title">제목 입니다.</th>
-                        <th class="writer">서현오</th>
-                        <th class="regdate">24.01.20</th>
-                        <th class="read-cnt">4</th>
-                        <th class="like">50</th>
-                    </tr>
-                    <tr class="list-no-data">
-                        <td class="no-data" colspan='6'>작성글이 없습니다.</td>
-                    </tr>
+                    <c:forEach var="vo" items="${map.list}">
+                        <tr class="list-data">
+                            <th class="no">${vo.commId}</th>
+                            <th class="title"><a href="detail?no=${vo.commId}">${vo.commTitle}</a></th>
+                            <th class="writer">${vo.memberName}</th>
+                            <th class="regdate"><fmt:formatDate value="${vo.commPostDate }" pattern="YYYY.MM.dd"/></th>
+                            <th class="read-cnt">${vo.commViewCount}</th>
+                            <th class="like">${vo.boardLike}</th>
+                        </tr>
+                    </c:forEach>
+
+                    <c:if test="${empty map.list}">
+                        <tr class="list-no-data">
+                            <td class="no-data" colspan='6'>작성글이 없습니다.</td>
+                        </tr>
+                    </c:if>
+
                     </tbody>
                 </table>
 
             </div>
             <div class="write-button">
-                글쓰기
+                <a href="write">글쓰기</a>
             </div>
 
+
+
+
+
+
+
+
+
+
             <ul class='paging'>
-
-                <li><a href="#;"> < </a></li>
-                <li><a href='#;' class='current'>1</a></li>
-                <li><a href='#;'>2</a></li>
-                <li><a href='#;'>3</a></li>
-                <li><a href='#;'>4</a></li>
-                <li><a href='#;'>5</a></li>
-                <li><a href='#;'>6</a></li>
-                <li><a href='#;'>7</a></li>
-                <li><a href='#;'>8</a></li>
-                <li><a href='#;'>9</a></li>
-                <li><a href='#;'>10</a></li>
-                <li><a href="#;"> > </a></li>
-
+                <c:if test="${map.isPrev }">
+                    <li><a href="list?page=${map.startPage-1 }&querytype=${communityVO.querytype}&query=${communityVO.query}"> < </a></li>
+                </c:if>
+                <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
+                    <c:if test="${p == communityVO.page}">
+                        <li><a href='#;' class='current'>${p}</a></li>
+                    </c:if>
+                    <c:if test="${p != communityVO.page}">
+                        <li><a href='list?page=${p}&querytype=${communityVO.querytype}&query=${communityVO.query}'>${p}</a></li>
+                    </c:if>
+                </c:forEach>
+                <c:if test="${map.isNext }">
+                    <li><a href="list?page=${map.endPage+1 }&querytype=${communityVO.querytype}&query=${communityVO.query}"> > </a></li>
+                </c:if>
             </ul>
-
-
-
-
-
 
         </div>
 
