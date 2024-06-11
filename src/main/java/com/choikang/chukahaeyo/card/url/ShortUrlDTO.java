@@ -7,13 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ShortUrlDTO {
-    private String url; //단축 url
-    private String qr;
+    private String cardUrl; //단축 url
+    private String cardQR;
 
     public static CardVO of(ShortUrlDTO shortUrlDTO){
         CardVO cardVO = new CardVO();
-        cardVO.setUrl(shortUrlDTO.getUrl());
-        cardVO.setQr(shortUrlDTO.getQr());
+        cardVO.setCardUrl(shortUrlDTO.getCardUrl());
+        cardVO.setCardQR(shortUrlDTO.getCardQR());
         return cardVO;
     }
 }

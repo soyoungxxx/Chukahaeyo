@@ -20,5 +20,5 @@ public class PaymentVO {
     private String status; // 결제 여부
     private String receiptUrl; //영수증 url
 
-    private int userId; // 추후에 member table과 join
+    private int memberId; // 추후에 member table과 join
 }

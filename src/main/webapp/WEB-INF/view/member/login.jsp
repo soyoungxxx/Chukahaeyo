@@ -20,27 +20,27 @@
         const pwdRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,20}$/;
 
         function loginCheck() {
-            if ($("#userEmail").val() == '') {
+            if ($("#memberEmail").val() == '') {
                 alert("이메일을 입력해주세요.");
-                $("#userEmail").focus();
+                $("#memberEmail").focus();
                 return false;
             }
 
-            if(!emailRegex.test($("#userEmail").val())){
+            if(!emailRegex.test($("#memberEmail").val())){
                 alert("이메일를 올바른 형식으로 작성해주세요.");
-                $("#userEmail").focus();
+                $("#memberEmail").focus();
                 return false;
             }
 
-            if ($("#userPwd").val() == '') {
+            if ($("#memberPwd").val() == '') {
                 alert("비밀번호를 입력해 주세요");
-                $("#userPwd").focus();
+                $("#memberPwd").focus();
                 return false;
             }
 
-            if(!pwdRegex.test($("#userPwd").val())){
+            if(!pwdRegex.test($("#memberPwd").val())){
                 alert("비밀번호를 형식이 올바르지 않습니다. (영어 대소문자 숫자 모두 포함, 8자리 이상)");
-                $("#userPwd").focus();
+                $("#memberPwd").focus();
                 return false;
             }
         }
@@ -61,11 +61,11 @@
                             <ul>
                                 <li>
                                     <img src="/resources/img/login-user.png" class="login_img">
-                                    <input type="text" id="userEmail" name="userEmail" placeholder="이메일">
+                                    <input type="text" id="memberEmail" name="memberEmail" placeholder="이메일">
                                 </li>
                                 <li>
                                     <img src="/resources/img/login-lock.png" class="login_img">
-                                    <input type="password" id="userPwd" name="userPwd" placeholder="비밀번호">
+                                    <input type="password" id="memberPwd" name="memberPwd" placeholder="비밀번호">
                                 </li>
                             </ul>
                             <div class="btn">

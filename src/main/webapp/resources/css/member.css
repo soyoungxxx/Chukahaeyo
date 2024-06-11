@@ -155,7 +155,7 @@
     display: block;
 }
 
-.register_form #userEmail {
+.register_form #memberEmail {
     display: block;
     width: 300px;
 }

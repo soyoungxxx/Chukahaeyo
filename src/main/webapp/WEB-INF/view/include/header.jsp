@@ -14,13 +14,13 @@
         <div class="community"><a class="gallery-community" href="#">커뮤니티</a></div>
     </nav>
     <nav class="nav2">
-        <c:if test="${empty login}">
+        <c:if test="${empty sessionScope.login}">
             <a href="/member/login">로그인</a>
             |
             <a href="/member/register">회원가입</a>
         </c:if>
-        <c:if test="${not empty login}">
-            <a href="#">로그아웃</a>
+        <c:if test="${not empty sessionScope.login}">
+            <a href="/">로그아웃</a>
             |
             <a href="/mypage/myCard"><img src="${pageContext.request.contextPath}/resources/img/myinfo.png"></a>
             |

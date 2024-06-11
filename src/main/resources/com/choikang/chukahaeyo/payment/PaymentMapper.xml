@@ -11,7 +11,7 @@
             paid_amount,
             paid_at,
             receipt_url,
-            user_id,
+            memberId,
             status)
         VALUES (
                    #{applyNum},
@@ -21,7 +21,7 @@
                    #{paidAmount},
                    #{paidAt},
                    #{receiptUrl},
-                   #{userId},
+                   #{memberId},
                    #{status}
                )
     </insert>
