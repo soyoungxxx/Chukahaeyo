@@ -89,10 +89,12 @@ public class MemberService {
         memberMapper.memberVerify(memberId);
     }
 
-    // 패스워드 확인
+    // 패스워드 확인 후 회원 탈퇴
     public int unsign(MemberVO memberVO) {
         return  memberMapper.unsign(memberVO);
     }
 
+    // 아이디와 패스워드 일치하는지 조회
+    public int validatePwd(MemberVO memberVO) {return memberMapper.validatePwd(memberVO);}
 
 }

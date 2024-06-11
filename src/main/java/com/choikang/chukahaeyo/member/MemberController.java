@@ -23,15 +23,18 @@ public class MemberController {
     @Autowired
     private MemberService service;
 
+    // 로그인: 페이지 접근
     @GetMapping("/member/login")
     public void login() {
     }
 
+    // 회원가입: 페이지 접근
     @GetMapping("/member/register")
     public void register() {
     }
 
     // 로그인
+    // 로그인: 회원인 유저 로그인
     @PostMapping("/member/login")
     public String login(Model model, MemberVO memberVO, HttpSession session) {
         MemberVO login = service.login(memberVO);
@@ -57,28 +60,28 @@ public class MemberController {
     }
 
     // 회원가입
+    // 회원가입 : DB에 회원 정보 등록
     @PostMapping("/member/register")
     public String register(MemberVO memberVO, Model model) {
         service.register(memberVO);
         return "redirect:/member/login"; // 로그인 페이지로 리다이렉션
     }
 
-    // 회원가입 시 이메일 중복체크
+    // 회원가입 : 이메일 중복체크
     @ResponseBody
     @GetMapping("/member/register/checkEmailDuplicate")
     public boolean checkEmailDuplicate(String memberEmail) {
         return service.checkEmailDuplicate(memberEmail) > 0;
     }
 
-    // 인증 링크 이메일 발송
+    // 회원가입 : 멤버 인증, 인증 링크 이메일 발송
     @ResponseBody
     @PostMapping("/member/emailAuth")
     public void mailChcek(String memberEmail, String memberName) {
         service.mailAuthCheck(memberEmail, memberName);
-
     }
 
-    // 이메일 체크 시 DB상의 인증 상태 변경
+    // 회원가입: 멤버 인증, 이메일을 통해 링크 인증 완료 시 DB상의 isAuth 상태 변경
     @GetMapping("/member/verify")
     public String verify(Model model, @RequestParam("memberId") int memberId) {
         service.memberVerify(memberId);
@@ -87,14 +90,32 @@ public class MemberController {
         return "include/alert";
     }
 
-    // 로그인한 유저 email 조회
-    @GetMapping("/mypage/unregister")
-    public String getLoginMemberEmail(HttpSession session, Model model) {
+    // 회원 정보 수정
+    // 회원 정보 수정: 페이지 접근 전 이메일 조회
+    @GetMapping("/mypage/changeInfo")
+    public String changeInfo(HttpSession session, Model model) {
         int id = (int) session.getAttribute("memberId");
         String memberEmail = (service.getUserInfoById(id)).getMemberEmail();
         model.addAttribute("memberEmail", memberEmail);
-        return "/mypage/unregister";
+        return "/mypage/changeInfo";
     }
+    
+    // 회원 정보 수정: 비밀번호 인증
+    @PostMapping("/mypage/changeInfo")
+    public boolean validatePwd(HttpSession session, String memberCheckPwd) {
+        // 세션에 있는 id값 가져옴
+        int id = (int) session.getAttribute("memberId");
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberId(id);
+        memberVO.setMemberPwd(memberCheckPwd);
+
+        // 패스워드 확인
+        if (service.validatePwd(memberVO) > 0) {
+            return true;
+        }
+        return false;
+    }
+
 
     // 로그아웃
     @GetMapping("/logout")
@@ -105,7 +126,18 @@ public class MemberController {
         return "include/alert";
     }
 
+
     // 회원탈퇴
+    // 회원탈퇴: 로그인한 유저 email 조회
+    @GetMapping("/mypage/unregister")
+    public String getLoginMemberEmail(HttpSession session, Model model) {
+        int id = (int) session.getAttribute("memberId");
+        String memberEmail = (service.getUserInfoById(id)).getMemberEmail();
+        model.addAttribute("memberEmail", memberEmail);
+        return "/mypage/unregister";
+    }
+
+    // 회원탈퇴 : 비밀번호 확인 일치하는 경우 탈퇴
     @PostMapping("/mypage/unregister")
     public String unregister(HttpSession session, Model model, String memberPwd, RedirectAttributes redirectAttributes) {
         int id = (int) session.getAttribute("memberId");
@@ -123,10 +155,12 @@ public class MemberController {
         return "include/alert";
     }
 
+    // 회원탈퇴 : 탈퇴 후 alert 띄어줌
     @GetMapping("/unsign-msg")
     public String mainPage(Model model, @ModelAttribute("msg") String msg) {
         model.addAttribute("msg", msg);
         model.addAttribute("url", "/");
         return "include/alert";
     }
+
 }

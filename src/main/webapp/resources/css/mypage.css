@@ -225,7 +225,7 @@
     margin-top: 35px;
 }
 
-.pwd-auth-form > div > #userInputPwd {
+.pwd-auth-form > div > #memberCheckPwd {
     font-family: "Noto Sans KR", sans-serif;
     font-size: 14px;
     height: 34px;

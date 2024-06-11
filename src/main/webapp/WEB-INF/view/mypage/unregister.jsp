@@ -23,20 +23,7 @@
                 alert("상기 동의란을 체크해야 탈퇴 가능합니다");
                 return false;
             }
-            // unsign();
         }
-
-        // function unsign(){
-        //     $.ajax({
-        //         url: '/mypage/unregister',
-        //         data: {memberPwd: $("#memberPwd").val()},
-        //         async: false,
-        //         success: function (res) {
-        //             console.log(res);
-        //             window.location = "/";
-        //         }
-        //     })
-        // }
 
         function toggleCheckbox() {
             var img = $('#checkAgree');

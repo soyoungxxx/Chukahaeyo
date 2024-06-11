@@ -7,30 +7,40 @@
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/css/common.css"/>
     <link rel="stylesheet" href="/resources/css/mypage.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
     <script>
-        // 임시로 만든 이벤트, 추후 기능 구현시 수정
-        document.addEventListener("DOMContentLoaded", function (){
-            var btn = document.querySelector("#btnAuthPwd");
-
-            btn.addEventListener('click', function (){
-                var popup = document.querySelector("#checkPwdAuthPopup");
-                popup.style.display = "none";
-            })
-
-        })
-
-        function authPwd(){
-            if ($("#userInputPwd").val() == '') {
+        function authPwd() {
+            if ($("#memberCheckPwd").val() == '') {
                 alert("비밀번호를 입력해 주세요");
                 $("#userPwd").focus();
                 return false;
             }
 
-            if(!pwdRegex.test($("#userInputPwd").val())){
-                alert("비밀번호를 형식이 올바르지 않습니다. (영어 대소문자 숫자 모두 포함, 8자리 이상)");
-                $("#userPwd").focus();
-                return false;
-            }
+            $.ajax({
+                url: '/mypage/changeInfo',
+                data: {memberCheckPwd: $("#memberCheckPwd").val()},
+                type: 'post',
+                async: false,
+                success: function (res) {
+                    console.log(res);
+                    if (res) {
+                        var btn = $("#btnAuthPwd");
+                        btn.addEventListener('click', function () {
+                            var popup = document.querySelector("#checkPwdAuthPopup");
+                            popup.style.display = "none";
+                        })
+                    } else {
+                        alert('비밀번호가 일치하지 않습니다.');
+                    }
+                }
+            })
+        }
+
+        function clickEmail() {
+            alert("이메일은 변경하실 수 없습니다.");
+            return false;
         }
 
     </script>
@@ -56,11 +66,13 @@
                         <p>이메일은 수정할 수 없습니다. </p>
                         <ul>
                             <li>
-                                <input type="text" id="userEmail" name="userEmail" placeholder="이메일" disabled>
+                                <input type="text" id="userEmail" name="userEmail" placeholder="${memberEmail}" disabled
+                                       onclick="clickEmail()">
                             </li>
 
                             <li>
-                                <input type="password" id="userPwd" name="userPwd" placeholder="비밀번호(영어 대소문자 숫자 모두 포함, 8자리 이상)">
+                                <input type="password" id="userPwd" name="userPwd"
+                                       placeholder="비밀번호(영어 대소문자 숫자 모두 포함, 8자리 이상)">
                             </li>
 
                             <li>
