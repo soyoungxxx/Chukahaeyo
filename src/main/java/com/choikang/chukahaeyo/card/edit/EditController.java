@@ -27,9 +27,9 @@ public class EditController {
 
     @GetMapping("/edit")
     public String showEditPage(HttpServletRequest request, Model model) {
-//      int category_id = (int) request.getAttribute("category_id");
-        int category_id = 2;
-        List<TemplateVO> list = service.selectFrames(category_id);
+//      int categoryId = (int) request.getAttribute("categoryId");
+        int categoryId = 2;
+        List<TemplateVO> list = service.selectFrames(categoryId);
         model.addAttribute("list", list);
         return "card/edit";
     }

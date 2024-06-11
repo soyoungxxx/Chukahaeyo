@@ -33,7 +33,7 @@
                         <%--                                </div>--%>
                         <%--                                <button class="close-button" onclick="deleteCard(${card.id})">X</button>--%>
                         <%--                                <div class="card-content">--%>
-                        <%--                                    <p class="card-text">${card.receiver}님의 ${card.cardname}</p>--%>
+                        <%--                                    <p class="card-text">${card.cardReceiver}님의 ${card.cardname}</p>--%>
                         <%--                                    <input type="checkbox" class="card-checkbox" value="${card.price}"--%>
                         <%--                                           onclick="updateTotal()">--%>
                         <%--                                </div>--%>

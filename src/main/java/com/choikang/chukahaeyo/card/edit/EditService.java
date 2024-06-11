@@ -16,12 +16,12 @@ public class EditService {
     @Autowired
     private TemplateMapper templateMapper;
 
-    public List<TemplateVO> selectFrames(int category_id) {
-        return templateMapper.selectFrames(category_id);
+    public List<TemplateVO> selectFrames(int categoryId) {
+        return templateMapper.selectFrames(categoryId);
     }
 
-    public String selectPreviewFrame(int template_id) {
-        System.out.println(templateMapper.selectPreviewFrame(template_id));
-        return templateMapper.selectPreviewFrame(template_id);
+    public String selectPreviewFrame(int templateId) {
+        System.out.println(templateMapper.selectPreviewFrame(templateId));
+        return templateMapper.selectPreviewFrame(templateId);
     }
 }
