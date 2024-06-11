@@ -20,7 +20,7 @@
             <a href="/member/register">회원가입</a>
         </c:if>
         <c:if test="${not empty sessionScope.login}">
-            <a href="/">로그아웃</a>
+            <a href="/logout">로그아웃</a>
             |
             <a href="/mypage/myCard"><img src="${pageContext.request.contextPath}/resources/img/myinfo.png"></a>
             |

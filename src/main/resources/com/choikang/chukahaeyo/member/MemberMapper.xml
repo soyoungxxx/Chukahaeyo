@@ -22,13 +22,21 @@
         SELECT count(*) FROM Members WHERE memberEmail = #{memberEmail}
     </select>
 
-    <select id="selectMemberId" parameterType="String" resultType="int">
-        SELECT memberId FROM Members WHERE memberEmail = #{memberEmail}
+    <select id="getUserInfoByEmail" parameterType="String" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
+        SELECT * FROM Members WHERE memberEmail = #{memberEmail}
+    </select>
+
+    <select id="getUserInfoById" parameterType="int" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
+        SELECT * FROM Members WHERE memberId = #{memberId}
     </select>
 
     <update id="memberVerify" parameterType="int">
         UPDATE Members SET memberAuth=true WHERE memberId = #{memberId}
     </update>
+
+    <delete id="unsign" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
+        DELETE from Members where memberId = #{memberId} AND memberPwd = MD5(#{memberPwd})
+    </delete>
 
 
 </mapper>
