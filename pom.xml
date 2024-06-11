@@ -237,6 +237,12 @@
             <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
+        <!-- aws-java-sdk-s3 -->
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>1.12.739</version>
+        </dependency>
         <dependency>
             <groupId>com.github.iamport</groupId>
             <artifactId>iamport-rest-client-java</artifactId>
