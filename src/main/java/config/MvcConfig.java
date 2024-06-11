@@ -33,8 +33,8 @@ public class MvcConfig implements WebMvcConfigurer {
     private String driver;
     @Value("${db.url}")
     private String url;
-    @Value("${db.username}")
-    private String username;
+    @Value("${db.memberName}")
+    private String memberName;
     @Value("${db.password}")
     private String password;
 
@@ -72,7 +72,7 @@ public class MvcConfig implements WebMvcConfigurer {
         HikariDataSource dataSource = new HikariDataSource();
         dataSource.setDriverClassName(driver);
         dataSource.setJdbcUrl(url);
-        dataSource.setUsername(username);
+        dataSource.setUsername(memberName);
         dataSource.setPassword(password);
         return dataSource;
     }
