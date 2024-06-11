@@ -36,4 +36,19 @@
     </select>
 
 
+
+    <insert id="insertCommunity" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        INSERT INTO Community (
+        memberId,
+        commTitle ,
+        commContents ,
+        commPostDate
+        ) VALUES (
+        #{memberId} , #{commTitle}, #{commContents}, CURDATE()
+        )
+        <selectKey keyProperty="commId" order="AFTER" resultType="string">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
 </mapper>

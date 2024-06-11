@@ -12,4 +12,6 @@ public interface BoardMapper {
 
 
     int count(CommunityVO vo);
+
+    int insertCommunity(CommunityVO vo);
 }

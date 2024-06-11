@@ -38,4 +38,10 @@ public class BoardService {
         map.put("isNext", isNext);
         return map;
     }
+
+    public void insertCommunity(CommunityVO vo) {
+        boardMapper.insertCommunity(vo);
+
+
+    }
 }
