@@ -14,6 +14,12 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping("/board")
 public class BoardController {
 
+    @GetMapping("/service")
+    public String serviceFaq() {
+
+        return "board/service/faq";
+    }
+
 
     @GetMapping("/community/list")
     public String communityList() {
@@ -34,6 +40,29 @@ public class BoardController {
     public String communityWrite(HttpServletRequest req) throws UnsupportedEncodingException {
         req.setCharacterEncoding("utf-8");
         return "board/communityPost";
+    }
+
+
+
+    @GetMapping("/inquiry/list")
+    public String inquiryList() {
+
+        return "mypage/inquiry/inquiryList";
+    }
+
+
+
+    @GetMapping("/inquiry/write")
+    public String inquiryWrite() {
+
+        return "mypage/inquiry/inquiryPost";
+    }
+
+
+    @GetMapping("/inquiry/detail")
+    public String inquiryDetail() {
+
+        return "mypage/inquiry/inquiryDetail";
     }
 
 }

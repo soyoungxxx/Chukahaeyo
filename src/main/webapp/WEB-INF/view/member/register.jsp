@@ -130,14 +130,17 @@
         }
 
         function checkDuplicate() {
+            console.log($("#memberEmail").val());
             $.ajax({
                 url: '/member/register/checkEmailDuplicate',
                 data: {memberEmail: $("#memberEmail").val()},
                 async: false,
                 success: function (res) {
-                    if (res == '0') {
+                    if (!res) {
                         alert('사용 가능한 이메일입니다.');
                     } else {
+                        var email = $("#memberEmail");
+                        email.val("");
                         alert('중복된 이메일입니다.\r\n다른 이메일을 입력해 주세요');
                     }
                 }
@@ -196,11 +199,12 @@
         function sendEmail(){
             // 이메일 인증 구현
             $.ajax({
-                url: './emailAuth',
+                url: '/member/emailAuth',
                 data: {
                     memberEmail: $("#memberEmail").val(),
                 },
                 type: 'POST',
+                cache: false,
                 success: function (res) {
                     console.log("result: " + res);
                 },

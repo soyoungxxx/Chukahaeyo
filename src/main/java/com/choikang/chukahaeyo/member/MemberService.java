@@ -15,8 +15,8 @@ public class MemberService {
     }
 
     // 회원가입 시 이메일 중복체크
-    public int checkEmailDuplicate(String email) {
-        return memberMapper.checkEmailDuplicate(email);
+    public int checkEmailDuplicate(String memberEmail) {
+        return memberMapper.checkEmailDuplicate(memberEmail);
     }
 
     // 회원가입

@@ -384,16 +384,20 @@
 }
 
 
-/* 이메일 인증 완료 팝업 */
+/* 이메일 인증 전 회원가입 완료 팝업 */
+#successRegisterPopup > .popup-body{
+    width: 420px;
+    height: 540px;
+}
 .success-auth-popup {
     margin-top:20px;
     margin-bottom: 60px;
 }
-.success-auth-popup > p{
+.success-auth-popup > p {
     font-family: "Noto Sans KR", sans-serif;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 500;
-    margin-top:90px;
+    margin-top:60px;
     margin-bottom: 60px;
 }
 
@@ -403,9 +407,5 @@
 }
 
 .success-auth-popup > a {
-    margin-top: 40px;
-}
-
-#successAuthPopup{
-
+    margin-top: 10px;
 }

@@ -1,5 +1,6 @@
 package config;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -9,19 +10,11 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.web.servlet.config.annotation.*;
 
 import java.util.Properties;
 
@@ -66,6 +59,8 @@ public class MvcConfig implements WebMvcConfigurer {
         reg.addViewController("/url/origin");
         reg.addViewController("/url/short");
 
+        reg.addViewController("/errorPage/404");
+        reg.addViewController("/errorPage/500");
 
     }
 
@@ -97,24 +92,25 @@ public class MvcConfig implements WebMvcConfigurer {
         return new RestTemplate();
     }
 
+
     @Bean
-    public JavaMailSender mailSender() {
+    public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.naver.com");
         mailSender.setPort(465);
-        mailSender.setUsername("cms0755@naver.com");
+        mailSender.setUsername("dawndawnchoi@naver.com");
         mailSender.setPassword("rnlcksgek0");
 
-        Properties javaMailProperties = new Properties();
-        javaMailProperties.put("mail.smtp.auth", "true");
-        javaMailProperties.put("mail.smtp.starttls.enable", "true");
-        javaMailProperties.put("mail.smtps.checkserveridentity", "true");
-        javaMailProperties.put("mail.smtps.ssl.trust", "*");
-        javaMailProperties.put("mail.debug", "true");
-        javaMailProperties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-        mailSender.setJavaMailProperties(javaMailProperties);
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.starttls.required", "true");
+        props.put("mail.smtp.ssl.enable", "true");
+        props.put("mail.debug", "true");
 
         return mailSender;
     }
+
+
 }
