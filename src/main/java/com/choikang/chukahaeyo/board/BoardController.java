@@ -1,9 +1,11 @@
 package com.choikang.chukahaeyo.board;
 
 
-
+import com.choikang.chukahaeyo.board.model.CommunityVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,11 @@ import java.io.UnsupportedEncodingException;
 @RequestMapping("/board")
 public class BoardController {
 
+    @Autowired
+    BoardService boardService;
+
+
+
     @GetMapping("/service")
     public String serviceFaq() {
 
@@ -22,7 +29,13 @@ public class BoardController {
 
 
     @GetMapping("/community/list")
-    public String communityList() {
+    public String communityList(@ModelAttribute CommunityVO vo , HttpServletRequest req) {
+
+
+
+        req.setAttribute("map",boardService.getCommunityList(vo));
+
+
 
         return "board/comunityList";
     }
