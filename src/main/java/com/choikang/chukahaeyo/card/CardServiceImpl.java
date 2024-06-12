@@ -13,8 +13,8 @@ public class CardServiceImpl implements CardService {
     private CardMapper cardMapper;
 
     @Override
-    public List<CardVO> getCardList(int memberId) {
-        return cardMapper.getCardList(memberId);
+    public List<CardVO> getPersonalCardList(int memberId) {
+        return cardMapper.getPersonalCardList(memberId);
     }
 
     @Override
@@ -22,4 +22,8 @@ public class CardServiceImpl implements CardService {
         cardMapper.deleteCard(cardId);
     }
 
+    @Override
+    public List<CardVO> getPublicCardList() {
+        return cardMapper.getPublicCardList();
+    }
 }
