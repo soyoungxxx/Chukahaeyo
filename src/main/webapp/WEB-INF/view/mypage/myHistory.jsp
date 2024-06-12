@@ -21,6 +21,21 @@
             <div class="mypage-wrap">
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <div class="mypage-content">
+                    <c:forEach var="card" items="${cardList}">
+                        <div class="card">
+                            <img src="${card.templateThumbnail}" alt="템플릿">
+                            <div class="card-overlay">
+                                <p>${card.cardName}</p>
+                                <p>${card.cardStartDate}</p>
+                            </div>
+                            <button class="close-button" onclick="deleteCard(${card.cardId}, event)">X</button>
+                            <div class="card-content">
+                                <p class="card-text">${card.cardName}</p>
+                                <input type="checkbox" class="card-checkbox" value="${card.cardPrice}"
+                                       onclick="updateTotal(); updateReceipt();">
+                            </div>
+                        </div>
+                    </c:forEach>
                     <div class="payment-list">
                         <div class="payment-items">
                             <a href="#">

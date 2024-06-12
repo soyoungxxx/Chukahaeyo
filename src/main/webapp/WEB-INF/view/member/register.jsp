@@ -245,7 +245,7 @@
 
                                 <li>
                                     <input type="password" id="memberPwd" name="memberPwd"
-                                           placeholder="비밀번호(영문자 및 숫자 포함, 8자리 이상)" onchange="return checkPwd();">
+                                           placeholder="비밀번호(영문자 및 숫자, 기호 포함 8자리 이상)" onchange="return checkPwd();">
                                 </li>
                                 <li>
                                     <input type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인"

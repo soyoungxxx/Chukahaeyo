@@ -1,10 +1,12 @@
 package config;
 
+import com.choikang.chukahaeyo.exception.LoginInterceptor;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
@@ -52,10 +54,19 @@ public class MvcConfig implements WebMvcConfigurer {
         reg.addViewController("/mypage/myCard");
         reg.addViewController("/card/edit");
         reg.addViewController("/admin/adminPage");
-        reg.addViewController("/mypage/changeInfo");
-//        reg.addViewController("/mypage/unregister");
         reg.addViewController("/mypage/myHistory");
 
+    }
+
+    @Autowired
+    private LoginInterceptor loginInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoginInterceptor())
+                // "/card/edit/**"
+                .addPathPatterns("/mypage/**", "/cart/**")
+                .excludePathPatterns("/member/login", "/member/register", "/member/emailAuth", "/member/verify");
     }
 
     @Bean
