@@ -22,9 +22,9 @@
         <c:if test="${not empty sessionScope.login}">
             <a href="/logout">로그아웃</a>
             |
-            <a href="/mypage/myCard"><img src="${pageContext.request.contextPath}/resources/img/myinfo.png"></a>
+            <a href="/mypage/myCard"><img src="${pageContext.request.contextPath}/resources/img/header/myinfo.png"></a>
             |
-            <a href="/cart"><img src="${pageContext.request.contextPath}/resources/img/cart.png"></a>
+            <a href="/cart"><img src="${pageContext.request.contextPath}/resources/img/header/cart.png"></a>
         </c:if>
     </nav>
 </div>

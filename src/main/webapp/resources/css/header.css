@@ -10,6 +10,7 @@
     align-items: end;
     border-bottom: 1px solid black;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 /* 로고 */
@@ -68,12 +69,14 @@
 
 /*nav2*/
 .nav2 {
+    width: 230px;
     display: flex;
     font-family: "Noto Sans KR", sans-serif;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
+    margin-bottom: 5px;
 }
 .nav2 a {
     color: black;
-    margin: 10px;
+    margin: 0 10px 0 10px;
 }
