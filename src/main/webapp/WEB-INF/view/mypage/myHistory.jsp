@@ -62,10 +62,9 @@
                             </div>
 
                             <div class="payment-info">
-                                <fmt:formatDate var="orderDay" pattern="yyyy.MM.dd" value="${payment.orderDate}"/>
-                                <p>주문일자: ${orderDay}</p>
+                                <p>주문일자: <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.orderDate}"/></p>
                                 <p>금액: <fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.paidAmount}"/>원</p>
-                                <c:if test="<%${twoDaysAgo}.after(${payment.orderDate})%>">
+                                <c:if test="${payment.isWithinTwoDays}=1">
                                     <a href="javascript:canclePayment();">취소</a>
                                 </c:if>
                             </div>

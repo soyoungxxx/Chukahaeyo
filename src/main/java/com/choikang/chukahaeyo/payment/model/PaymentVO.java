@@ -21,4 +21,5 @@ public class PaymentVO {
     private String receiptUrl; //영수증 url
 
     private int memberId; // 추후에 member table과 join
+    private int isWithinTwoDays; // 결제일이 오늘로부터 이틀 이내인지 저장
 }

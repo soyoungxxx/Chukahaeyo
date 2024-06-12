@@ -150,6 +150,15 @@ public class MemberController {
         List<CardVO> cardList = service.getCardList(memberId);
         List<PaymentVO> paymentList = service.getPaymentList(memberId);
 
+        Date twoDaysAgo = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+        for(int i = 0; i < paymentList.size(); i++) {
+            if(twoDaysAgo.after(paymentList.get(i).getOrderDate())){
+                paymentList.get(i).setIsWithinTwoDays(1);
+            }
+            else {
+                paymentList.get(i).setIsWithinTwoDays(0);
+            }
+        }
         model.addAttribute("cardList", cardList);
         model.addAttribute("paymentList", paymentList);
         return "/mypage/myHistory";
