@@ -407,12 +407,12 @@
                     data: JSON.stringify({
                         applyNum: rsp.apply_num,
                         buyer_email: rsp.buyer_email,
-                        impUid: rsp.imp_uid,
+                        payNo: rsp.imp_uid,
                         merchantUid: rsp.merchant_uid,
-                        paidAmount: rsp.paid_amount,
+                        payAmount: rsp.paid_amount,
                         paidAt: rsp.paid_at,
                         status: rsp.status,
-                        receiptUrl: rsp.receipt_url
+                        receiptURL: rsp.receipt_url
                     }),
                     success: function (response) {
                         console.log("response" + response)
