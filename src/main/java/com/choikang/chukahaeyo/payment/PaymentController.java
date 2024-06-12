@@ -37,43 +37,43 @@ public class  PaymentController {
         return "/card/successPay";
     }
 
-//    @PostMapping("/cancle")
-//    public void cancelPayment(@RequestParam("payID") int paymentId,@RequestBody PaymentDTO paymentDTO){
-//
-//    }
+    @PostMapping("/cancle")
+    public void cancelPayment(@RequestParam("payID") int paymentId,@RequestBody PaymentDTO paymentDTO){
 
-//    @Value("${imp.key}")
-//    private String key;
-//
-//    @Value("${imp.secret}")
-//    private String secretKey;
-//
-//    @PostMapping("/getToken")
-//    public ResponseEntity<String> getToken(){
-//
-//        System.out.println("key : " + key);
-//        System.out.println("secret Key : " + secretKey);
-//
-//        try{
-//            String apiUrl = "https://api.iamport.kr/users/getToken"; //요청을 보낼 api 주소
-//
-//            RestTemplate restTemplate = new RestTemplate(); //body 설정
-//
-//            HttpHeaders headers = new HttpHeaders(); //header 설정
-//            headers.setContentType(MediaType.APPLICATION_JSON); //콘텐츠 타입을 JSON으로 설정
-//
-//            Map<String, String> keyMap = new HashMap<>();
-//            keyMap.put("imp_key",key);
-//            keyMap.put("imp_secret", secretKey);
-//            ObjectMapper objectMapper = new ObjectMapper();
-//            String keyJson = objectMapper.writeValueAsString(keyMap);
-//            System.out.println(keyJson);
-//            HttpEntity<String> requestEntity = new HttpEntity<>(keyJson, headers); //HttpEntity 객체 생성
-//
-//            return restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntity, String.class);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return ResponseEntity.status(500).body("토큰 발급에 실패하였습니다.");
-//        }
-//    }
+    }
+
+    @Value("${imp.key}")
+    private String key;
+
+    @Value("${imp.secret}")
+    private String secretKey;
+
+    @PostMapping("/getToken")
+    public ResponseEntity<String> getToken(){
+
+        System.out.println("key : " + key);
+        System.out.println("secret Key : " + secretKey);
+
+        try{
+            String apiUrl = "https://api.iamport.kr/users/getToken"; //요청을 보낼 api 주소
+
+            RestTemplate restTemplate = new RestTemplate(); //body 설정
+
+            HttpHeaders headers = new HttpHeaders(); //header 설정
+            headers.setContentType(MediaType.APPLICATION_JSON); //콘텐츠 타입을 JSON으로 설정
+
+            Map<String, String> keyMap = new HashMap<>();
+            keyMap.put("imp_key",key);
+            keyMap.put("imp_secret", secretKey);
+            ObjectMapper objectMapper = new ObjectMapper();
+            String keyJson = objectMapper.writeValueAsString(keyMap);
+            System.out.println(keyJson);
+            HttpEntity<String> requestEntity = new HttpEntity<>(keyJson, headers); //HttpEntity 객체 생성
+
+            return restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntity, String.class);
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("토큰 발급에 실패하였습니다.");
+        }
+    }
 }
