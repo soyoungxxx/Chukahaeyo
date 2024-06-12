@@ -6,6 +6,7 @@ import lombok.Data;
 import java.util.Date;
 @Data
 public class PaymentDTO {
+    private int paymentId; //결제 건 아이디
     private String applyNum; //카드 승인 번호
     private String buyer_email; //구매자 이메일 주소
     private String impUid; // 아임포트 결제 고유 번호
