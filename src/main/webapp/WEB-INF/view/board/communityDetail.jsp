@@ -11,8 +11,8 @@
     <title>Document</title>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="/resources/js/board/board-detail.js"></script>
-    <link rel="stylesheet" href="/resources/css/reset.css" />
-    <link rel="stylesheet" href="/resources/css/common.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css" />
     <link rel="stylesheet" href="/resources/css/board/board-detail.css" />
 
     <!--font-->
@@ -95,7 +95,7 @@
 
 
                 <div class="sub-data-comment">
-                    <img class="sub-data-comment-img" src="/resources/img/re-comment.png" >
+                    <img class="sub-data-comment-img" src="/resources/img/board/re-comment.png" >
                     <div class="sub-data-comment-inner">
                         <div class="sub-data-comment-inner-writer">김정화</div>
                         <div class="sub-data-comment-inner-content">대댓글 입니다~~~~</div>

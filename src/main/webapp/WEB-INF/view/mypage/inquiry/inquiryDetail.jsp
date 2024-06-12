@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <title>마이페이지</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css" />
-    <link rel="stylesheet" href="/resources/css/mypage.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css" />
     <link rel="stylesheet" href="/resources/css/board/inquiryDetail.css" />
-    <link rel="stylesheet" href="/resources/css/reset.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
 </head>
 
 <body>
@@ -18,7 +18,7 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="mypage-header">
-            <img src="/resources/img/logo_mypage.png">
+            <img src="/resources/img/logo/logo_mypage.png">
             <hr>
         </div>
         <div class="mypage">

@@ -29,7 +29,7 @@ body .container{
 
 /*community-logo*/
 .community-logo {
-    background-image: url("/resources/img/community.png");
+    background-image: url("/resources/img/logo/community.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 100px;

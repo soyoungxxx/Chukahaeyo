@@ -7,9 +7,9 @@
     <title>고객센터</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="/resources/css/common.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css" />
     <link rel="stylesheet" href="/resources/css/board/faq.css" />
-    <link rel="stylesheet" href="/resources/css/reset.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
     <script src="/resources/js/board/faq.js"></script>
 </head>
 

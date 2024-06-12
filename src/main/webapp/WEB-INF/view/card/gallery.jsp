@@ -9,8 +9,8 @@
     <meta charset="UTF-8">
     <title>명예의 전당</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/gallery.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/gallery.css"/>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

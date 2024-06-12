@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <title>회원정보 수정</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+
     <link rel="stylesheet" href="/resources/css/common.css"/>
     <link rel="stylesheet" href="/resources/css/mypage.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-
     <script>
         const pwdRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,20}$/;
 
@@ -104,7 +104,7 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="mypage-header">
-            <img src="/resources/img/logo_mypage.png">
+            <img src="/resources/img/logo/logo_mypage.png">
             <hr>
         </div>
 
