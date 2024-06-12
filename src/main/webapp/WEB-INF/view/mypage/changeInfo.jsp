@@ -11,10 +11,12 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <script>
+        const pwdRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,20}$/;
+
         function authPwd() {
             if ($("#memberCheckPwd").val() == '') {
                 alert("비밀번호를 입력해 주세요");
-                $("#userPwd").focus();
+                $("#memberPwd").focus();
                 return false;
             }
 
@@ -34,7 +36,7 @@
                         alert('비밀번호가 일치하지 않습니다.');
                     }
                 },
-                error: function (res, status, error){
+                error: function (res, status, error) {
                     console.error("AJAX: ", status, error);
                 }
             })
@@ -43,6 +45,25 @@
         function clickEmail() {
             alert("이메일은 변경하실 수 없습니다.");
             return false;
+        }
+
+        function checkPwd() {
+            if (!pwdRegex.test($("#memberPwd").val())) {
+                alert("비밀번호를 올바른 형식으로 작성해주세요.");
+                $("#memberPwd").focus();
+                return false;
+            }
+        }
+
+        function checkDuplPwd() {
+            if ($("#pwdCheck").val() !== $("#memberPwd").val()) {
+                alert("비밀번호 확인란과 비밀번호가 일치하지 않습니다.");
+                $("#pwdCheck").focus();
+                return false;
+            } else {
+                var text = document.getElementById("checkPwdMsg");
+                text.style.display = "block";
+            }
         }
 
     </script>
@@ -62,35 +83,39 @@
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <%@ include file="/WEB-INF/view/mypage/include/checkPwdAuth.jsp" %>
                 <div class="mypage-content">
-                    <div class="changeInfo">
-                        <h3>회원정보 수정</h3>
-                        <p>수정할 항목을 작성하고, 수정 버튼을 눌러주세요.</p>
-                        <p>이메일은 수정할 수 없습니다. </p>
-                        <ul>
-                            <li>
-                                <input type="text" id="userEmail" name="userEmail" placeholder="${memberEmail}" disabled
-                                       onclick="clickEmail()">
-                            </li>
+                    <form action="/mypage/changeInfo" method="post">
+                        <div class="changeInfo">
+                            <h3>회원정보 수정</h3>
+                            <p>수정할 항목을 작성하고, 수정 버튼을 눌러주세요.</p>
+                            <p>이메일은 수정할 수 없습니다. </p>
+                            <ul>
+                                <li>
+                                    <input type="text" id="memberEmail" name="memberEmail" placeholder="${memberEmail}"
+                                           readonly
+                                           onclick="clickEmail();">
+                                </li>
 
-                            <li>
-                                <input type="password" id="userPwd" name="userPwd"
-                                       placeholder="비밀번호(영어 대소문자 숫자 모두 포함, 8자리 이상)">
-                            </li>
+                                <li>
+                                    <input type="password" id="memberPwd" name="memberPwd"
+                                           placeholder="비밀번호(영문자 및 숫자, 기호 포함 8자리 이상)" onchange="return checkPwd();">
+                                </li>
 
-                            <li>
-                                <input type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인">
-                                <p id="checkPwdMsg"> 비밀번호가 확인되었습니다.</p>
-                            </li>
+                                <li>
+                                    <input type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인"
+                                           onchange="return checkDuplPwd();">
+                                    <p id="checkPwdMsg"> 비밀번호가 확인되었습니다 ✅</p>
+                                </li>
 
-                            <li>
-                                <input type="text" id="userName" name="userName" placeholder="이름">
-                            </li>
-                        </ul>
+                                <li>
+                                    <input type="text" id="memberName" name="memberName" placeholder="이름">
+                                </li>
+                            </ul>
 
-                        <div class="changeInfo-btn">
-                            <input type="submit" value="수정" class="change_btn"/>
+                            <div class="changeInfo-btn">
+                                <input type="submit" value="수정" class="change_btn"/>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

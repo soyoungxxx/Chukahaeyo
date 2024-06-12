@@ -91,10 +91,17 @@ public class MemberService {
 
     // 패스워드 확인 후 회원 탈퇴
     public int unsign(MemberVO memberVO) {
-        return  memberMapper.unsign(memberVO);
+        return memberMapper.unsign(memberVO);
     }
 
     // 아이디와 패스워드 일치하는지 조회 후 아이디 반환
-    public Integer validatePwd(MemberVO memberVO) {return memberMapper.validatePwd(memberVO);}
+    public Integer validatePwd(MemberVO memberVO) {
+        return memberMapper.validatePwd(memberVO);
+    }
+
+    // 회원 정보 수정
+    public int changeMemberInfo(MemberVO memberVO) {
+        return memberMapper.changeMemberInfo(memberVO);
+    }
 
 }

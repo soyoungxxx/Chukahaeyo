@@ -42,4 +42,8 @@
         SELECT memberId from Members where (memberId = #{memberId} AND memberPwd = MD5(#{memberPwd}))
     </select>
 
+    <update id="changeMemberInfo" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
+        UPDATE Members SET memberName = #{memberName}, memberPwd = MD5(#{memberPwd}) WHERE memberId = #{memberId}
+    </update>
+
 </mapper>

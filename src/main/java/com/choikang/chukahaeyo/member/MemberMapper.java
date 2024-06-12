@@ -28,4 +28,6 @@ public interface MemberMapper {
 
     // 아이디 패스워드 맞는지 확인, null일 가능성이 있어서 integer
     Integer validatePwd(MemberVO memberVO);
+
+    int changeMemberInfo(MemberVO memberVO);
 }

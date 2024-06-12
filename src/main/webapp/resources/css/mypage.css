@@ -64,7 +64,7 @@
     text-align: left;
     list-style-type: none;
     font-family: "Noto Sans KR", sans-serif;
-    font-size: 120%;
+    font-size: 130%;
     height: 30px;
     margin: 40px auto;
     line-height: 30px;
@@ -132,12 +132,16 @@
     margin: 20px auto;
 }
 
-#checkPwdMsg {
-    margin: 0;
-    padding-top: 0;
-    font-size: 16px;
-    font-weight: bold;
+.changeInfo > ul > li > #userEmail{
+    background-color: #FAFAFA;
+}
 
+#checkPwdMsg {
+    margin: -8px 280px;
+    padding-top: 0;
+    font-size: 12px;
+    font-weight: 500;
+    width: 450px;
     color: forestgreen;
     display: none;
 }

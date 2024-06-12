@@ -40,11 +40,11 @@ public class MemberController {
         MemberVO login = service.login(memberVO);
         if (login == null) {
             model.addAttribute("msg", "아이디 혹은 비밀번호를 다시 확인하세요.");
-            model.addAttribute("url", "/");
+            model.addAttribute("url", "/member/login");
             return "include/alert";
         } else if (!login.isMemberAuth()) {
             model.addAttribute("msg", "인증되지 않은 유저입니다. 메일 인증을 완료해주세요.");
-            model.addAttribute("url", "");
+            model.addAttribute("url", "/member/login");
             return "include/alert";
         } else {
             session.setAttribute("login", login); // login 객체 또는 true 설정
@@ -99,11 +99,11 @@ public class MemberController {
         model.addAttribute("memberEmail", memberEmail);
         return "/mypage/changeInfo";
     }
-    
+
     // 회원 정보 수정: 비밀번호 인증
     @PostMapping("/mypage/changeInfo/checkPwd")
     @ResponseBody
-    public int validatePwd(HttpSession session, Model model, String memberCheckPwd) {
+    public int validatePwd(HttpSession session, String memberCheckPwd) {
         // 세션에 있는 id값 가져옴
         int id = (int) session.getAttribute("memberId");
         MemberVO memberVO = new MemberVO();
@@ -117,6 +117,23 @@ public class MemberController {
         return result;
     }
 
+    // 회원 정보 수정: 회원 정보 수정
+    @PostMapping("/mypage/changeInfo")
+    public String changeMemberInfo(HttpSession session, Model model, MemberVO memberVO) {
+        int id = (int) session.getAttribute("memberId");
+        memberVO.setMemberId(id);
+        System.out.println(memberVO);
+
+        if (service.changeMemberInfo(memberVO) != 0) {
+            model.addAttribute("msg", "회원 정보가 수정되었습니다");
+            model.addAttribute("url", "/");
+            return "include/alert";
+        } else {
+            model.addAttribute("msg", "저장 중 오류가 발생했습니다. 다시 시도해주세요.");
+            model.addAttribute("url", "/mypage/changeInfo");
+            return "include/alert";
+        }
+    }
 
     // 로그아웃
     @GetMapping("/logout")
