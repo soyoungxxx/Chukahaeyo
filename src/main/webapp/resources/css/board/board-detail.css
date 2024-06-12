@@ -29,7 +29,7 @@ body .container{
 
 /*community-logo*/
 .community-logo {
-    background-image: url("/resources/img/community.png");
+    background-image: url("/resources/img/logo/community.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 100px;
@@ -71,7 +71,7 @@ body .container{
     margin-bottom: 50px;
 }
 .title-container .heartred{
-    background-image: url("/resources/img/heartred.png");
+    background-image: url("/resources/img/board/heartred.png");
     background-size: contain;
     width: 50px;
     height: 50px;
@@ -80,7 +80,7 @@ body .container{
 
 }
 .title-container .heartblack{
-    background-image: url("/resources/img/heartblack.png");
+    background-image: url("/resources/img/board/heartblack.png");
     background-size: contain;
     width: 50px;
     height: 50px;
@@ -196,6 +196,7 @@ body .container{
     font-size: 20px;
     text-align: center;
     margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 /*main data comment*/
@@ -214,6 +215,29 @@ body .container{
     color: #C6CED1;
     margin-top: 5px;
 }
+
+.main-data-comment-replytext{
+    margin-top : 10px;
+    width: 400px;
+    height: 24px;
+    border-radius: 10px;
+    border : 1px solid #777777;
+}
+
+.main-data-comment-replybutton{
+    margin-top : 10px;
+    height: 30px;
+    color: white;
+    background-color: #949FFF;
+    border: none;
+    border-radius: 10px;
+
+}
+.main-data-comment-replyshow{
+    cursor: pointer;
+}
+
+
 
 
 /*sub data comment*/
@@ -254,10 +278,30 @@ body .container{
 
 
 
+/*main-comment-write*/
+.main-comment-write{
+    display: flex;
+    flex-direction: row;
 
+}
 
+.main-comment-write-text{
+    width: 400px;
+    height: 30px;
+    margin-top: 30px;
+}
 
-
+.main-comment-write-button{
+    width: 80px;
+    background-color: #949FFF;
+    color: white;
+    border : none;
+    cursor: pointer;
+    height: 40px;
+    margin-top: 28px;
+    margin-left: 5px;
+    border-radius: 10px;
+}
 
 
 

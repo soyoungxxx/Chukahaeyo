@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>test</title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
     <style>
         .sticker3 {
             display: block;
@@ -80,8 +80,8 @@
 
     <div style="width: 100%; position: relative">
         <div class="sticker3">
-            <img src="/resources/img/paySuccessCheck.png" alt="결제 성공 체크 이미지" style="width: 10%;"><br><br>
-            <img src="/resources/img/successPayText.png" alt="결제 성공 텍스트 이미지" style="width: 20%;"><br><br><br>
+            <img src="/resources/img/payment/paySuccessCheck.png" alt="결제 성공 체크 이미지" style="width: 10%;"><br><br>
+            <img src="/resources/img/payment/successPayText.png" alt="결제 성공 텍스트 이미지" style="width: 20%;"><br><br><br>
             <div class="url-container">
                 카드 URL | <span class="url" id="shortUrl">${shortUrl}</span>
                 <span class="url">shortUrl 복사 test</span>

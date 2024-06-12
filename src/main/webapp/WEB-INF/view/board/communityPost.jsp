@@ -10,8 +10,8 @@
     <title>Document</title>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="/resources/js/board/board-write.js"></script>
-    <link rel="stylesheet" href="/resources/css/reset.css" />
-    <link rel="stylesheet" href="/resources/css/common.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css" />
     <link rel="stylesheet" href="/resources/css/board/board-write.css" />
 
     <!--font-->

@@ -29,7 +29,7 @@ public class CartController {
     public String cart(HttpSession session, Model model) {
         Integer memberId = (Integer) session.getAttribute("memberId");
         if (memberId != null) {
-            List<CardVO> cardList = cardService.getCardList(memberId);
+            List<CardVO> cardList = cardService.getPersonalCardList(memberId);
             model.addAttribute("cardList", cardList);
         }
         return "card/cart";

@@ -6,8 +6,8 @@
     <title>회원가입</title>
 
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/member.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/member.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -245,7 +245,7 @@
 
                                 <li>
                                     <input type="password" id="memberPwd" name="memberPwd"
-                                           placeholder="비밀번호(영문자 및 숫자 포함, 8자리 이상)" onchange="return checkPwd();">
+                                           placeholder="비밀번호(영문자 및 숫자, 기호 포함 8자리 이상)" onchange="return checkPwd();">
                                 </li>
                                 <li>
                                     <input type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인"
@@ -264,7 +264,7 @@
                                 <div class="register-agree-content">
                                     <p>회원가입 및 개인정보 이용약관에 모두 동의합니다.</p>
                                     <a class="register-agree-img" href="javascript:toggleCheckbox();">
-                                        <img src="/resources/img/agree-check-not.png" id="checkAgree" data-value="0"/>
+                                        <img src="/resources/img/member/agree-check-not.png" id="checkAgree" data-value="0"/>
                                     </a>
                                 </div>
                                 <a href="javascript:openPopup();">약관내용 자세히 보기</a>

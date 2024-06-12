@@ -4,16 +4,20 @@
 <html style="text-align: justify;">
 <head>
     <meta charset="UTF-8">
+    <title>축하해요</title>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@0.9.0/dist/js-confetti.browser.js"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
+    <script src="/resources/js/card/card.js"></script>
 
-    <title>축하해요</title>
-    <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/edit.css?after">
-    <link rel="stylesheet" href="/resources/css/template/green.css?after">
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/edit.css?after">
+    <link rel="stylesheet" href="/resources/css/template/cardCommon.css?after">
+    <link rel="stylesheet" href="/resources/css/template/1.css?after" id="cardCss">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -101,9 +105,6 @@
                     </span>
                         <div class="edit-place">
                             <input type="button" class="edit-search-addr" value="주소 찾기"/>
-                            <input type="hidden" id="addr1"/>
-                            <input type="hidden" id="x"/>
-                            <input type="hidden" id="y"/>
                             <input type="text" class="edit-text" placeholder="상세 주소 입력"/>
                         </div>
                     </div>
@@ -137,13 +138,16 @@
                         </div>
                     </div>
                     <hr>
+                    <input type="hidden" name="cardName" id="cardName">
                     <input type="hidden" name="cardDesign" id="card-design">
                     <input type="hidden" name="cardIsPublic" value="false" id="public">
+                    <input type="hidden" name="templateThumbnail" id="submit-templateThumbnail">
+                    <input type="hidden" name="categoryId" id="submit-categoryId">
                     <input type="submit" style="display:none" id="cart-submit-button">
                 </div>
             </form>
             <div class="edit-middle-div">
-                <div class="edit-preview-div" style="overflow:scroll"></div>
+                <div class="edit-preview-div"></div>
                 <div class="edit-button-div">
                     <input class="edit-grey-btn" type="button" id="edit-cart-button" value="장바구니 담기">
                     <form id="edit-payment-form" class="edit-form" action="/payments/process" method="post">
@@ -168,8 +172,10 @@
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
 <script>
+    let categoryId;
+    let templateThumbnail;
+
     // 주소 api 호출
     $('.edit-search-addr').click(function () {
         new daum.Postcode({
@@ -252,7 +258,19 @@
             var time = $('#edit-time').val();
             $('.extra-time').text(time);
         });
-        // 장소
+        // 이모지
+        $('#emoji1').change(function () {
+            emoji[0] = $("#emoji1").val();
+        });
+        $('#emoji2').change(function () {
+            emoji[1] = $("#emoji2").val();
+        });
+        $('#emoji3').change(function () {
+            emoji[2] = $("#emoji3").val();
+        });
+        $('#emoji4').change(function () {
+            emoji[3] = $("#emoji4").val();
+        });
 
         // 준비물
         $('.edit-prepare').on('input', function () {
@@ -422,6 +440,8 @@
 
     $('.edit-frame').click(function () {
         var template_id = $(this).attr("id");
+        categoryId = ${categoryId};
+        templateThumbnail = $(this).attr("src");
         $.ajax({
             type: "GET",
             url: "/card/edit/template.do",
@@ -431,6 +451,8 @@
                 $('.edit-preview-div').html(data);
                 originText = $('.card-name').text();
                 $('.date').text($('#edit-day').val()); // 템플릿 선택 시 날짜 초기값 세팅
+                // 템플릿 선택시.. css 선택
+                $('#cardCss').prop("href","/resources/css/template/"+template_id+".css");
             }
         })
     })
@@ -440,6 +462,9 @@
         $('#map').removeAttr("style");
         $("#card-design").val($('.edit-preview-div').html());
 
+        $('#cardName').val($('.card-name').text());
+        $('#submit-templateThumbnail').val(templateThumbnail);
+        $('#submit-categoryId').val(categoryId);
         $('#cart-submit-button').click();
     })
 

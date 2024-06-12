@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="utf-8">
     <title>로그인</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/member.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/member.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -26,7 +27,7 @@
                 return false;
             }
 
-            if(!emailRegex.test($("#memberEmail").val())){
+            if (!emailRegex.test($("#memberEmail").val())) {
                 alert("이메일를 올바른 형식으로 작성해주세요.");
                 $("#memberEmail").focus();
                 return false;
@@ -38,10 +39,20 @@
                 return false;
             }
 
-            if(!pwdRegex.test($("#memberPwd").val())){
+            if (!pwdRegex.test($("#memberPwd").val())) {
                 alert("비밀번호를 형식이 올바르지 않습니다. (영어 대소문자 숫자 모두 포함, 8자리 이상)");
                 $("#memberPwd").focus();
                 return false;
+            }
+        }
+    </script>
+
+    <script>
+        window.onload = function() {
+            const msg = '<c:out value="${sessionScope.msg}"/>';
+            if (msg) {
+                alert(msg);
+                <c:remove var="msg" scope="session" />
             }
         }
     </script>
@@ -60,11 +71,11 @@
                         <div class="login_form">
                             <ul>
                                 <li>
-                                    <img src="/resources/img/login-user.png" class="login_img">
+                                    <img src="/resources/img/member/login-user.png" class="login_img">
                                     <input type="text" id="memberEmail" name="memberEmail" placeholder="이메일">
                                 </li>
                                 <li>
-                                    <img src="/resources/img/login-lock.png" class="login_img">
+                                    <img src="/resources/img/member/login-lock.png" class="login_img">
                                     <input type="password" id="memberPwd" name="memberPwd" placeholder="비밀번호">
                                 </li>
                             </ul>
@@ -80,17 +91,13 @@
                                 <a href="register" class="register_btn">회원가입</a>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
-
         </form>
     </div>
     <div class="sticker2"></div>
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 </body>
-
 </html>

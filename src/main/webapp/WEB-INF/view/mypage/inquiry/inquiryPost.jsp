@@ -15,10 +15,10 @@
     <script src="/resources/summernote/summernote-lite.js"></script>
     <!--summernote-->
 
-    <link rel="stylesheet" href="/resources/css/common.css" />
-    <link rel="stylesheet" href="/resources/css/mypage.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css" />
     <link rel="stylesheet" href="/resources/css/board/inquiryPost.css" />
-    <link rel="stylesheet" href="/resources/css/reset.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
     <script src="/resources/js/board/inquiryPost.js"></script>
 
 </head>
@@ -29,7 +29,7 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="mypage-header">
-            <img src="/resources/img/logo_mypage.png">
+            <img src="/resources/img/logo/logo_mypage.png">
             <hr>
         </div>
         <div class="mypage">

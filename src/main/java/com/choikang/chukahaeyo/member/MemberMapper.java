@@ -23,5 +23,11 @@ public interface MemberMapper {
     // 가입 인증
     void memberVerify(int memberId);
 
+    // 회원 탈퇴
     int unsign(MemberVO memberVO);
+
+    // 아이디 패스워드 맞는지 확인, null일 가능성이 있어서 integer
+    Integer validatePwd(MemberVO memberVO);
+
+    int changeMemberInfo(MemberVO memberVO);
 }
