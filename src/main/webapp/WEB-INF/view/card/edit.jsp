@@ -7,8 +7,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="/resources/js/card/apikey.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@0.9.0/dist/js-confetti.browser.js"></script>
 
     <title>축하해요</title>
     <link rel="stylesheet" href="/resources/css/common.css"/>
@@ -31,7 +31,7 @@
                     <div class="edit-div-components">
                         <span class="head-text">이름</span>
                         <span class="edit-warn-text">필수 항목입니다.</span>
-                        <input type="text" class="edit-text" id="edit-name" name="cardReceiver"/>
+                        <input type="text" class="edit-text" id="edit-name"/>
                     </div>
                     <hr>
                     <div class="edit-div-components">
@@ -48,23 +48,23 @@
                         <span class="edit-warn-text">필수 항목입니다.</span> <br>
                         <%-- 사진 첨부하는 버튼 --%>
                         <input class="edit-inputFile" id="edit-file" type="file" value="첨부하기"
-                               onchange="loadFile(this)" accept="image/*" name="cardImg"/>
+                               onchange="loadFile(this)" accept="image/*"/>
                         <label class="edit-file-label" for="edit-file">첨부하기</label>
                     </div>
                     <hr>
                     <div class="edit-div-components">
                         <span class="head-text">문구</span>
                         <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                        <textarea id="edit-text" maxlength="255" placeholder="문구를 입력하세요" name="cardText"></textarea>
+                        <textarea id="edit-text" maxlength="255" placeholder="문구를 입력하세요"></textarea>
                     </div>
                     <hr>
                     <div class="edit-div-components">
                         <span class="head-text">이모티콘</span>
                         <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                        <input class="edit-emoji" type="text" name="cardEmoji1" id="emoji1"/>
-                        <input class="edit-emoji" type="text" name="cardEmoji2" id="emoji2"/>
-                        <input class="edit-emoji" type="text" name="cardEmoji3" id="emoji3"/>
-                        <input class="edit-emoji" type="text" name="cardEmoji4" id="emoji4"/>
+                        <input class="edit-emoji" type="text" id="emoji1"/>
+                        <input class="edit-emoji" type="text" id="emoji2"/>
+                        <input class="edit-emoji" type="text" id="emoji3"/>
+                        <input class="edit-emoji" type="text" id="emoji4"/>
                         <p style="font-size:14px; color:#686868; width:90%;">
                             원하는 이모티콘을 <b>한 칸당 하나씩</b>
                             작성해주세요! <br>
@@ -85,8 +85,8 @@
                         <div class="edit-showTime">
                             <input type="radio" checked id="edit-timeRadio" name="edit-time">시각 선택 <br>
                             <input type="radio" id="edit-timesRadio" name="edit-time"/>범위 시간 선택<br>
-                            <input type="time" id="edit-time" placeholder="시간 선택" name="cardStartTime"/>
-                            <input type="time" id="edit-times" placeholder="시간 선택" name="cardEndTime"/>
+                            <input type="time" id="edit-time" placeholder="시간 선택"/>
+                            <input type="time" id="edit-times" placeholder="시간 선택"/>
                         </div>
                     </div>
                     <hr>
@@ -101,10 +101,10 @@
                     </span>
                         <div class="edit-place">
                             <input type="button" class="edit-search-addr" value="주소 찾기"/>
-                            <input type="hidden" name="cardAddr1" id="addr1" />
-                            <input type="hidden" name="cardX" id="x" />
-                            <input type="hidden" name="cardY" id="y" />
-                            <input type="text" class="edit-text" placeholder="상세 주소 입력" name="cardAddr2" />
+                            <input type="hidden" id="addr1"/>
+                            <input type="hidden" id="x"/>
+                            <input type="hidden" id="y"/>
+                            <input type="text" class="edit-text" placeholder="상세 주소 입력"/>
                         </div>
                     </div>
                     <hr>
@@ -117,8 +117,7 @@
                             <span class="edit-onf_btn"></span>
                         </label>
                     </span>
-                        <textarea class="edit-prepare" maxlength="255" placeholder="준비물을 입력하세요"
-                                  name="cardPreparation"></textarea>
+                        <textarea class="edit-prepare" maxlength="255" placeholder="준비물을 입력하세요"></textarea>
                     </div>
                     <hr>
                     <div class="edit-div-components">
@@ -132,17 +131,17 @@
                     </span>
                         <div class="edit-account">
                             <p style="margin-bottom:0;">은행</p>
-                            <input type="text" id="edit-bank" name="cardBank" class="edit-text"/>
+                            <input type="text" id="edit-bank" class="edit-text"/>
                             <p style="margin-bottom:0;">계좌 번호</p>
-                            <input type="text" id="edit-account-number" name="cardAccount" class="edit-text"/>
+                            <input type="text" id="edit-account-number" class="edit-text"/>
                         </div>
                     </div>
                     <hr>
+                    <input type="hidden" name="templateDesign" id="card-design">
                     <input type="hidden" name="cardIsPublic" value="false" id="public">
                     <input type="submit" style="display:none" id="cart-submit-button">
                 </div>
             </form>
-
             <div class="edit-middle-div">
                 <div class="edit-preview-div" style="overflow:scroll"></div>
                 <div class="edit-button-div">
@@ -151,12 +150,11 @@
                         <input class="edit-grey-btn" type="button" id="edit-pay-button" value="결제하기">
                     </form>
                     <input class="edit-grey-btn" id="publicButton" type="button" value="비공개"/>
-
                 </div>
             </div>
             <div class="edit-frame-div">
                 <c:forEach items="${list}" var="t">
-                    <img src="${t.thumbnail}" class="edit-frame" id="${t.template_id}"> <br>
+                    <img src="${t.templateThumbnail}" class="edit-frame" id="${t.templateId}"> <br>
                 </c:forEach>
             </div>
         </div>
@@ -169,9 +167,9 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
 <script>
     // 주소 api 호출
-    $('.edit-search-addr').click(function() {
+    $('.edit-search-addr').click(function () {
         new daum.Postcode({
-            oncomplete: function(data) {
+            oncomplete: function (data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
                 // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
@@ -180,15 +178,15 @@
 
                 // 법정동명이 있을 경우 추가한다. (법정리는 제외)
                 // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
                     extraRoadAddr += data.bname;
                 }
                 // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
+                if (data.buildingName !== '' && data.apartment === 'Y') {
                     extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
                 // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
+                if (extraRoadAddr !== '') {
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
 
@@ -197,42 +195,7 @@
                 $("#addr2").val(extraRoadAddr);
                 $(".extra-address").text(roadAddr + " " + extraRoadAddr);
 
-                var mapContainer = document.getElementById('map'),
-                    mapOption = {
-                        center: new kakao.maps.LatLng(37.56691, 126.97873), // 지도의 중심좌표
-                        level: 1, // 지도의 확대 레벨
-                        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
-                    };
-
-                // 지도를 생성한다
-                var map = new kakao.maps.Map(mapContainer, mapOption);
-
-                var geocoder = new kakao.maps.services.Geocoder();
-                geocoder.addressSearch(roadAddr, function(result, status) {
-                    if (status === kakao.maps.services.Status.OK) {
-                        console.log(1);
-                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                        var marker = new kakao.maps.Marker({
-                            map: map,
-                            position: coords
-                        });
-
-                        map.setCenter(coords);
-                    }
-                });
-
-                // $.ajax({
-                //     type: "GET",
-                //     url: "/card/map",
-                //     data: {query: roadAddr},
-                //     success: function (data) {
-                //         alert(data);
-                //     },
-                //     error: function (data) {
-                //         alert("error");
-                //     }
-                // })
+                getMap(roadAddr);
             }
         }).open();
     })
@@ -302,6 +265,7 @@
     });
 
     $(function () {
+
         $('#edit-days').daterangepicker({
             autoUpdateInput: false,
             locale: {
@@ -466,6 +430,9 @@
     })
 
     $('#edit-cart-button').click(function () {
+        $('#map').text("");
+        $('#map').removeAttr("style");
+        $("#card-design").val($('.edit-preview-div').html());
         $('#cart-submit-button').click();
     })
 
