@@ -15,9 +15,9 @@
     <script src="/resources/js/card/card.js"></script>
 
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
-    <link rel="stylesheet" href="/resources/css/pageFrame/edit.css">
-    <link rel="stylesheet" href="/resources/css/template/green.css">
-    <link rel="stylesheet" href="/resources/css/template/cardCommon.css">
+    <link rel="stylesheet" href="/resources/css/pageFrame/edit.css?after">
+    <link rel="stylesheet" href="/resources/css/template/cardCommon.css?after">
+    <link rel="stylesheet" href="/resources/css/template/1.css?after" id="cardCss">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -451,6 +451,8 @@
                 $('.edit-preview-div').html(data);
                 originText = $('.card-name').text();
                 $('.date').text($('#edit-day').val()); // 템플릿 선택 시 날짜 초기값 세팅
+                // 템플릿 선택시.. css 선택
+                $('#cardCss').prop("href","/resources/css/template/"+template_id+".css");
             }
         })
     })

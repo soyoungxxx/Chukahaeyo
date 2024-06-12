@@ -6,12 +6,6 @@
     object-position: top;
 }
 
-.card-inner-container {
-    width: 640px;
-    height: 100%;
-    position: relative;
-}
-
 /* 하트 */
 .card-top-img {
     content: url("/resources/img/card/invitation/green/heart.png");
