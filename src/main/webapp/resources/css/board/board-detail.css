@@ -29,7 +29,7 @@ body .container{
 
 /*community-logo*/
 .community-logo {
-    background-image: url("/resources/img/community.png");
+    background-image: url("/resources/img/logo/community.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 100px;
@@ -71,7 +71,7 @@ body .container{
     margin-bottom: 50px;
 }
 .title-container .heartred{
-    background-image: url("/resources/img/heartred.png");
+    background-image: url("/resources/img/board/heartred.png");
     background-size: contain;
     width: 50px;
     height: 50px;
@@ -80,7 +80,7 @@ body .container{
 
 }
 .title-container .heartblack{
-    background-image: url("/resources/img/heartblack.png");
+    background-image: url("/resources/img/board/heartblack.png");
     background-size: contain;
     width: 50px;
     height: 50px;

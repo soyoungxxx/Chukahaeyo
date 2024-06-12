@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>회원정보 수정</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/mypage.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css"/>
     <script>
         // 임시로 만든 이벤트, 추후 기능 구현시 수정
         document.addEventListener("DOMContentLoaded", function (){
@@ -41,7 +41,7 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="mypage-header">
-            <img src="/resources/img/logo_mypage.png">
+            <img src="/resources/img/logo/logo_mypage.png">
             <hr>
         </div>
 

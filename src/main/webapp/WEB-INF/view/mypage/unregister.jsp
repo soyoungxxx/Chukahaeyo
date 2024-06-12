@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>마이페이지</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/mypage.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
@@ -58,7 +58,7 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="mypage-header">
-            <img src="/resources/img/logo_mypage.png">
+            <img src="/resources/img/logo/logo_mypage.png">
             <hr>
         </div>
         <div class="mypage">
@@ -86,7 +86,7 @@
                         </div>
                         <div class="unregister-agree-content">
                             <a class="unregister-agree-img" href="javascript:toggleCheckbox();">
-                                <img src="/resources/img/agree-check-not.png" id="checkAgree" data-value="0"/>
+                                <img src="/resources/img/member/agree-check-not.png" id="checkAgree" data-value="0"/>
                             </a>
                             <p>상기 내용에 모두 동의합니다.</p>
                         </div>
