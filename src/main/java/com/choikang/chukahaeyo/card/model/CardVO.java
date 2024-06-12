@@ -14,7 +14,7 @@ public class CardVO {
     private Date cardDate;
     private String cardStartDate;
     private String cardEndDate;
-    private String templateDesign;
+    private String cardDesign;
     private String templateThumbnail;
     private int categoryId;
     private int payId;
