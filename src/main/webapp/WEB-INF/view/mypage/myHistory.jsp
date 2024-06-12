@@ -1,4 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -7,10 +10,34 @@
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/css/common.css"/>
     <link rel="stylesheet" href="/resources/css/mypage.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <script>
+        function canclePayment() {
+            $.ajax({
+                url: '/',
+                data: {
+                    memberCheckPwd: $("#memberCheckPwd").val()
+                },
+                type: 'POST',
+                async: false,
+                dataType: 'json',
+                success: function (res) {
+                    console.log(res);
+                    // 성공 실패 여부에 따른 alert 보내주기
+                },
+                error: function (res, status, error) {
+                    console.error("AJAX: ", status, error);
+                }
+            })
+        }
+    </script>
 </head>
 <body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 <main class="main">
+    <%@ page import="java.util.Date" %>
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="mypage-header">
@@ -21,66 +48,29 @@
             <div class="mypage-wrap">
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <div class="mypage-content">
-                    <c:forEach var="card" items="${cardList}">
-                        <div class="card">
-                            <img src="${card.templateThumbnail}" alt="템플릿">
-                            <div class="card-overlay">
-                                <p>${card.cardName}</p>
-                                <p>${card.cardStartDate}</p>
+                    <% Date twoDaysAgo = new Date(new Date().getTime() - 3600*1000*2*24);%>
+                    <c:forEach var="payment" items="${paymentList}">
+                        <div class="payment-list">
+                            <div class="payment-items">
+                                <c:forEach var="card" items="${cardList}">
+                                    <c:if test="${card.payId == payment.id}">
+                                        <a href="#">
+                                            <img src="${card.templateThumbnail}" class="payment-item-img">
+                                        </a>
+                                    </c:if>
+                                </c:forEach>
                             </div>
-                            <button class="close-button" onclick="deleteCard(${card.cardId}, event)">X</button>
-                            <div class="card-content">
-                                <p class="card-text">${card.cardName}</p>
-                                <input type="checkbox" class="card-checkbox" value="${card.cardPrice}"
-                                       onclick="updateTotal(); updateReceipt();">
+
+                            <div class="payment-info">
+                                <fmt:formatDate var="orderDay" pattern="yyyy.MM.dd" value="${payment.orderDate}"/>
+                                <p>주문일자: ${orderDay}</p>
+                                <p>금액: <fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.paidAmount}"/>원</p>
+                                <c:if test="<%${twoDaysAgo}.after(${payment.orderDate})%>">
+                                    <a href="javascript:canclePayment();">취소</a>
+                                </c:if>
                             </div>
                         </div>
                     </c:forEach>
-                    <div class="payment-list">
-                        <div class="payment-items">
-                            <a href="#">
-                                <img src="/resources/img/template/template01.png" alt="템플릿1" class="payment-item-img">
-                            </a>
-                            <a href="#">
-                                <img src="/resources/img/template/template02.png" alt="템플릿1" class="payment-item-img">
-                            </a>
-
-                        </div>
-                        <div class="payment-info">
-                            <p>주문일자: 2024.06.10.</p>
-                            <p>금액: 12,345원</p>
-                            <a href="#">취소</a>
-                        </div>
-                    </div>
-
-                    <div class="payment-list">
-                        <div class="payment-items">
-                            <a href="#">
-                                <img src="/resources/img/template/template01.png" alt="템플릿1" class="payment-item-img">
-                            </a>
-                            <a href="#">
-                                <img src="/resources/img/template/template02.png" alt="템플릿1" class="payment-item-img">
-                            </a>
-                            <a href="#">
-                                <img src="/resources/img/template/template03.png" alt="템플릿1" class="payment-item-img">
-                            </a>
-                            <a href="#">
-                                <img src="/resources/img/template/template02.png" alt="템플릿1" class="payment-item-img">
-                            </a>
-                            <a href="#">
-                                <img src="/resources/img/template/template03.png" alt="템플릿1" class="payment-item-img">
-                            </a>
-                            <a href="#">
-                                <img src="/resources/img/template/template01.png" alt="템플릿1" class="payment-item-img">
-                            </a>
-                        </div>
-                        <div class="payment-info">
-                            <p>주문일자: 2024.06.10.</p>
-                            <p>금액: 12,345원</p>
-                            <a href="#">취소</a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
