@@ -46,7 +46,7 @@ public class MemberService {
 
     // 이메일을 통해 멤버 아이디 조회
     public int selectMemberId(String memberEmail) {
-        return getUserInfoByEmail(memberEmail).getMemberId();
+        return getUserInfoByEmail(memberEmail).getMemberID();
     }
 
     // 가입 인증, 메일 체크

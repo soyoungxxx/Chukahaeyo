@@ -50,10 +50,10 @@ public class MemberController {
             return "include/alert";
         } else {
             session.setAttribute("login", login); // login 객체 또는 true 설정
-            session.setAttribute("memberId", login.getMemberId());
+            session.setAttribute("memberId", login.getMemberID());
 
             // System.out.println으로 로그 출력
-            System.out.println("Logged-in user ID: " + login.getMemberId());
+            System.out.println("Logged-in user ID: " + login.getMemberID());
             System.out.println("Logged-in user details: " + login);
 
             // 리다이렉트할 URI 확인
@@ -115,7 +115,7 @@ public class MemberController {
         // 세션에 있는 id값 가져옴
         int id = (int) session.getAttribute("memberId");
         MemberVO memberVO = new MemberVO();
-        memberVO.setMemberId(id);
+        memberVO.setMemberID(id);
         memberVO.setMemberPwd(memberCheckPwd);
 
         Integer result = service.validatePwd(memberVO);
@@ -129,7 +129,7 @@ public class MemberController {
     @PostMapping("/mypage/changeInfo")
     public String changeMemberInfo(HttpSession session, Model model, MemberVO memberVO) {
         int id = (int) session.getAttribute("memberId");
-        memberVO.setMemberId(id);
+        memberVO.setMemberID(id);
         System.out.println(memberVO);
 
         if (service.changeMemberInfo(memberVO) != 0) {
@@ -191,7 +191,7 @@ public class MemberController {
     public String unregister(HttpSession session, Model model, String memberPwd, RedirectAttributes redirectAttributes) {
         int id = (int) session.getAttribute("memberId");
         MemberVO memberVO = new MemberVO();
-        memberVO.setMemberId(id);
+        memberVO.setMemberID(id);
         memberVO.setMemberPwd(memberPwd);
         // 패스워드 확인
         if (service.unsign(memberVO) == 1) {
