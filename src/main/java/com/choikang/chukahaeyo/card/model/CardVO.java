@@ -14,7 +14,7 @@ public class CardVO {
     private Date cardDate;
     private String cardStartDate;
     private String cardEndDate;
-    private String templateDesign;
+    private String cardDesign;
     private String templateThumbnail;
     private int categoryId;
     private int payId;
@@ -22,4 +22,8 @@ public class CardVO {
     private String cardQR; //qr코드. 단축 URL의 끝에 .qr을 붙이면 그것이 이미지 주소
     private boolean isPayed;
     private int memberId;
+
+    public boolean getCardIsPublic() {
+        return cardIsPublic;
+    }
 }

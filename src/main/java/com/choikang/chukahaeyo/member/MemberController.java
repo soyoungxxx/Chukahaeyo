@@ -10,8 +10,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.internet.MimeMessage;
@@ -23,7 +21,6 @@ import java.util.Random;
 
 @Controller
 public class MemberController {
-    private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
     @Autowired
     private MemberService service;
@@ -53,14 +50,20 @@ public class MemberController {
             return "include/alert";
         } else {
             session.setAttribute("login", login); // login 객체 또는 true 설정
-//            session.setAttribute("memberId", 1);
             session.setAttribute("memberId", login.getMemberId());
 
             // System.out.println으로 로그 출력
             System.out.println("Logged-in user ID: " + login.getMemberId());
             System.out.println("Logged-in user details: " + login);
 
-            return "redirect:/";
+            // 리다이렉트할 URI 확인
+            String redirectURI = (String) session.getAttribute("redirectURI");
+            if (redirectURI != null) {
+                session.removeAttribute("redirectURI");
+                return "redirect:" + redirectURI;
+            } else {
+                return "redirect:/";
+            }
         }
     }
 
@@ -82,7 +85,7 @@ public class MemberController {
     // 회원가입 : 멤버 인증, 인증 링크 이메일 발송
     @ResponseBody
     @PostMapping("/member/emailAuth")
-    public void mailChcek(String memberEmail, String memberName) {
+    public void mailCheck(String memberEmail, String memberName) {
         service.mailAuthCheck(memberEmail, memberName);
     }
 

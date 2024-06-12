@@ -101,9 +101,6 @@
                     </span>
                         <div class="edit-place">
                             <input type="button" class="edit-search-addr" value="주소 찾기"/>
-                            <input type="hidden" id="addr1"/>
-                            <input type="hidden" id="x"/>
-                            <input type="hidden" id="y"/>
                             <input type="text" class="edit-text" placeholder="상세 주소 입력"/>
                         </div>
                     </div>
@@ -137,8 +134,11 @@
                         </div>
                     </div>
                     <hr>
-                    <input type="hidden" name="templateDesign" id="card-design">
+                    <input type="hidden" name="cardName" id="cardName">
+                    <input type="hidden" name="cardDesign" id="card-design">
                     <input type="hidden" name="cardIsPublic" value="false" id="public">
+                    <input type="hidden" name="templateThumbnail" id="submit-templateThumbnail">
+                    <input type="hidden" name="categoryId" id="submit-categoryId">
                     <input type="submit" style="display:none" id="cart-submit-button">
                 </div>
             </form>
@@ -150,6 +150,10 @@
                         <input class="edit-grey-btn" type="button" id="edit-pay-button" value="결제하기">
                     </form>
                     <input class="edit-grey-btn" id="publicButton" type="button" value="비공개"/>
+                    <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="uploaded-file-url" name="uploadedFileUrl">
+                    </form>
+
                 </div>
             </div>
             <div class="edit-frame-div">
@@ -166,6 +170,9 @@
 
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
 <script>
+    let categoryId;
+    let templateThumbnail;
+
     // 주소 api 호출
     $('.edit-search-addr').click(function () {
         new daum.Postcode({
@@ -214,18 +221,20 @@
             return false;
         }
     }
-
+    var file;
     // 이미지 업로드 기능
     function loadFile(input) {
-        var file = input.files[0];
+        file = input.files[0];
         // 파일 이름 표시
         $('.edit-file-label').text(file.name);
         var newImage = document.createElement("img");
         newImage.setAttribute("class", "uploadedImage");
         newImage.src = URL.createObjectURL(file);
         console.log(newImage)
+
         // conponent 추가
         $('.uploadedImage').replaceWith(newImage);
+
     }
 
     // 실시간 반영!
@@ -246,7 +255,19 @@
             var time = $('#edit-time').val();
             $('.extra-time').text(time);
         });
-        // 장소
+        // 이모지
+        $('#emoji1').change(function () {
+            emoji[0] = $("#emoji1").val();
+        });
+        $('#emoji2').change(function () {
+            emoji[1] = $("#emoji2").val();
+        });
+        $('#emoji3').change(function () {
+            emoji[2] = $("#emoji3").val();
+        });
+        $('#emoji4').change(function () {
+            emoji[3] = $("#emoji4").val();
+        });
 
         // 준비물
         $('.edit-prepare').on('input', function () {
@@ -416,6 +437,8 @@
 
     $('.edit-frame').click(function () {
         var template_id = $(this).attr("id");
+        categoryId = ${categoryId};
+        templateThumbnail = $(this).attr("src");
         $.ajax({
             type: "GET",
             url: "/card/edit/template.do",
@@ -433,6 +456,10 @@
         $('#map').text("");
         $('#map').removeAttr("style");
         $("#card-design").val($('.edit-preview-div').html());
+
+        $('#cardName').val($('.card-name').text());
+        $('#submit-templateThumbnail').val(templateThumbnail);
+        $('#submit-categoryId').val(categoryId);
         $('#cart-submit-button').click();
     })
 
