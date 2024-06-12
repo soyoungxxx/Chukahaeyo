@@ -147,7 +147,7 @@
                 </div>
             </form>
             <div class="edit-middle-div">
-                <div class="edit-preview-div" style="overflow:scroll"></div>
+                <div class="edit-preview-div"></div>
                 <div class="edit-button-div">
                     <input class="edit-grey-btn" type="button" id="edit-cart-button" value="장바구니 담기">
                     <form id="edit-payment-form" class="edit-form" action="/payments/process" method="post">
