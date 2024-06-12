@@ -2,12 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ page import="java.util.List" %>
-<%@ page import="com.choikang.chukahaeyo.card.gallery.CardTest" %>
+<%@ page import="com.choikang.chukahaeyo.card.model.CardVO" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>장바구니</title>
+    <title>명예의 전당</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/css/common.css"/>
     <link rel="stylesheet" href="/resources/css/gallery.css"/>
@@ -49,7 +49,6 @@
                 gallery.innerHTML = "";
                 sortedCards.forEach(card => gallery.appendChild(card));
             }
-
             filterAndSortCards();
         });
     </script>
@@ -63,17 +62,15 @@
         <div class="top-bar">
             <img src="/resources/img/logo/gallery_logo.png" alt="갤러리 로고" class="gallery-logo">
             <div class="filters">
-                <%--                <label for="category">카테고리:</label>--%>
                 <div class="select-wrapper">
                     <select id="category">
                         <option value="all">카테고리 선택</option>
-                        <option value="template01">Template 01</option>
-                        <option value="template02">Template 02</option>
-                        <option value="template03">Template 03</option>
+                        <option value="1">카테고리 1</option>
+                        <option value="2">카테고리 2</option>
+                        <option value="3">카테고리 3</option>
                     </select>
                 </div>
                 <div class="category-wrapper">
-<%--                    <label>정렬:</label>--%>
                     <input type="radio" id="popular" name="sortOrder" value="popular" checked> 인기순
                     <input type="radio" id="latest" name="sortOrder" value="latest"> 최신순
                 </div>
@@ -81,38 +78,19 @@
         </div>
 
         <div class="card-gallery">
-            <%
-                // 예시 데이터, 실제로는 데이터베이스에서 가져와야 합니다.
-                List<CardTest> cards = (List<CardTest>) request.getAttribute("cards");
-
-                if (cards != null) {
-                    for (CardTest card : cards) {
-            %>
-            <div class="card" data-template="<%= card.getTemplate() %>" data-likes="<%= card.getLikes() %>"
-                 data-date="<%= card.getDate() %>">
-                <div class="card-image">
-                    <img src="/resources/img/template/<%=card.getTemplate()%>.png" alt="Card Image">
-                    <%--                    <img src="<%= card.getImageUrl() %>" alt="Card Image">--%>
-                    <%--                    <div class="overlay">--%>
-                    <%--                        <div class="text"><%= card.getName() %> - <%= card.getDate() %>--%>
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
+            <c:forEach var="card" items="${cards}">
+                <div class="card" data-category="${card.categoryId}" data-likes="${card.cardLikeCnt}" data-date="${card.cardDate}">
+                    <div class="card-image">
+                        <img src="${card.templateThumbnail}" alt="Card Image">
+                    </div>
+                    <div class="card-info">
+                        <h3>${card.cardName}</h3>
+                        <p>${card.cardDate}</p>
+                        <p>👍 Like ${card.cardLikeCnt}</p>
+                    </div>
                 </div>
-                <div class="card-info">
-                    <h3><%= card.getName() %>
-                    </h3>
-                    <p><%= card.getDate() %>
-                    </p>
-                    <p>👍 Like <%= card.getLikes() %>
-                    </p>
-                </div>
-            </div>
-            <%
-                    }
-                }
-            %>
+            </c:forEach>
         </div>
-
     </div>
     <div class="sticker2"></div>
 </main>
