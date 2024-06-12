@@ -137,7 +137,7 @@
                         </div>
                     </div>
                     <hr>
-                    <input type="hidden" name="cardDesign" id="card-design">
+                    <input type="hidden" name="templateDesign" id="card-design">
                     <input type="hidden" name="cardIsPublic" value="false" id="public">
                     <input type="submit" style="display:none" id="cart-submit-button">
                 </div>
@@ -195,30 +195,7 @@
                 $("#addr2").val(extraRoadAddr);
                 $(".extra-address").text(roadAddr + " " + extraRoadAddr);
 
-                var mapContainer = document.getElementById('map'),
-                    mapOption = {
-                        center: new kakao.maps.LatLng(37.56691, 126.97873), // 지도의 중심좌표
-                        level: 1, // 지도의 확대 레벨
-                        mapTypeId: kakao.maps.MapTypeId.ROADMAP // 지도종류
-                    };
-
-                // 지도를 생성한다
-                var map = new kakao.maps.Map(mapContainer, mapOption);
-
-                var geocoder = new kakao.maps.services.Geocoder();
-                geocoder.addressSearch(roadAddr, function (result, status) {
-                    if (status === kakao.maps.services.Status.OK) {
-                        console.log(1);
-                        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-                        var marker = new kakao.maps.Marker({
-                            map: map,
-                            position: coords
-                        });
-
-                        map.setCenter(coords);
-                    }
-                });
+                getMap(roadAddr);
             }
         }).open();
     })
@@ -453,6 +430,8 @@
     })
 
     $('#edit-cart-button').click(function () {
+        $('#map').text("");
+        $('#map').removeAttr("style");
         $("#card-design").val($('.edit-preview-div').html());
         $('#cart-submit-button').click();
     })
