@@ -24,10 +24,10 @@
                     <div class="payment-list">
                         <div class="payment-items">
                             <a href="#">
-                                <img src="/resources/img/template/template01.png" alt="템플릿1" class="payment-item-img">
+                                <img src="/resources/img/template/templateGreen.png" alt="템플릿1" class="payment-item-img">
                             </a>
                             <a href="#">
-                                <img src="/resources/img/template/template02.png" alt="템플릿1" class="payment-item-img">
+                                <img src="/resources/img/template/templateNavy.png" alt="템플릿1" class="payment-item-img">
                             </a>
 
                         </div>
@@ -41,22 +41,22 @@
                     <div class="payment-list">
                         <div class="payment-items">
                             <a href="#">
-                                <img src="/resources/img/template/template01.png" alt="템플릿1" class="payment-item-img">
+                                <img src="/resources/img/template/templateGreen.png" alt="템플릿1" class="payment-item-img">
                             </a>
                             <a href="#">
-                                <img src="/resources/img/template/template02.png" alt="템플릿1" class="payment-item-img">
+                                <img src="/resources/img/template/templateNavy.png" alt="템플릿1" class="payment-item-img">
                             </a>
                             <a href="#">
-                                <img src="/resources/img/template/template03.png" alt="템플릿1" class="payment-item-img">
+                                <img src="/resources/img/template/templateBaseBall.png" alt="템플릿1" class="payment-item-img">
                             </a>
                             <a href="#">
-                                <img src="/resources/img/template/template02.png" alt="템플릿1" class="payment-item-img">
+                                <img src="/resources/img/template/templateNavy.png" alt="템플릿1" class="payment-item-img">
                             </a>
                             <a href="#">
-                                <img src="/resources/img/template/template03.png" alt="템플릿1" class="payment-item-img">
+                                <img src="/resources/img/template/templateBaseBall.png" alt="템플릿1" class="payment-item-img">
                             </a>
                             <a href="#">
-                                <img src="/resources/img/template/template01.png" alt="템플릿1" class="payment-item-img">
+                                <img src="/resources/img/template/templateGreen.png" alt="템플릿1" class="payment-item-img">
                             </a>
                         </div>
                         <div class="payment-info">
