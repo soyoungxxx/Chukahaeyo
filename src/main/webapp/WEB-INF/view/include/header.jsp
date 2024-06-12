@@ -7,11 +7,11 @@
 <div class="header">
     <a href="/"><div class="logo"></div></a>
     <nav class="nav1">
-        <div class="my-birth-card"><a href="/card/edit/myCard">내 생일 카드</a></div>
+        <div class="my-birth-card"><a href="/card/edit/myCard">생일 카드</a></div>
         <div class="pet-birth-card"><a href="/card/edit/myPet">반려동물 생일 카드</a></div>
         <div class="party-invite-card"><a href="/card/edit/invitation">파티 초대 카드</a></div>
-        <div class="gallery"><a class="gallery-community" href="gallery">명예의 전당</a></div>
-        <div class="community"><a class="gallery-community" href="#">커뮤니티</a></div>
+        <div class="gallery"><a class="gallery-community" href="/gallery">&nbsp;&nbsp;&nbsp;&nbsp;명예의 전당</a></div>
+        <div class="community"><a class="gallery-community" href="/board/community/list">커뮤니티</a></div>
     </nav>
     <nav class="nav2">
         <c:if test="${empty sessionScope.login}">
@@ -28,4 +28,3 @@
         </c:if>
     </nav>
 </div>
-
