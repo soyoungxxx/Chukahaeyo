@@ -21,4 +21,5 @@ public class PaymentVO {
     private String buyerEmail; //구매자 이메일 주소
     private Date paidAt; // 결제 완료 시간
     private String status; // 결제 여부
+    private int isWithinTwoDays; // 결제일이 오늘로부터 이틀 이내인지 저장
 }

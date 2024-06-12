@@ -1,12 +1,15 @@
 package com.choikang.chukahaeyo.member;
 
+import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
+import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
+import java.util.List;
 
 @Service
 public class MemberService {
@@ -102,6 +105,16 @@ public class MemberService {
     // 회원 정보 수정
     public int changeMemberInfo(MemberVO memberVO) {
         return memberMapper.changeMemberInfo(memberVO);
+    }
+
+    // 카드 내역 가져오기
+    public List<CardVO> getCardList(int memberId){
+        return memberMapper.getCardList(memberId);
+    }
+
+    // 카드 내역 가져오기
+    public List<PaymentVO> getPaymentList(int memberId){
+        return memberMapper.getPaymentList(memberId);
     }
 
 }

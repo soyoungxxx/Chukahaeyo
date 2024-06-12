@@ -1,6 +1,8 @@
 package com.choikang.chukahaeyo.member;
 
+import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
+import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -12,6 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Controller
@@ -138,8 +143,28 @@ public class MemberController {
         }
     }
 
-    // 결제 내역
-    
+    // 결제 내역: 회원의 결제 내역 가져오기
+    @GetMapping("/mypage/myHistory")
+    public String getPayHistoryCard(HttpSession session, Model model) {
+        int memberId = (int) session.getAttribute("memberId");
+        List<CardVO> cardList = service.getCardList(memberId);
+        List<PaymentVO> paymentList = service.getPaymentList(memberId);
+
+        Date twoDaysAgo = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+        for(int i = 0; i < paymentList.size(); i++) {
+            Date tempDate = (paymentList.get(i)).getPayDate();
+            if(twoDaysAgo.before(tempDate)){
+                paymentList.get(i).setIsWithinTwoDays(1);
+            }
+            else {
+                paymentList.get(i).setIsWithinTwoDays(0);
+            }
+        }
+        model.addAttribute("cardList", cardList);
+        model.addAttribute("paymentList", paymentList);
+        return "/mypage/myHistory";
+    }
+
 
     // 로그아웃
     @GetMapping("/logout")

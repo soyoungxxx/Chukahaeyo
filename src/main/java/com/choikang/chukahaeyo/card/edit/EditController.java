@@ -25,7 +25,6 @@ public class EditController {
 
         List<TemplateVO> list = service.selectFrames(category_id);
         model.addAttribute("list", list);
-        System.out.println(list);
         model.addAttribute("categoryId", category_id);
         return "card/edit";
     }

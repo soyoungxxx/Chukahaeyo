@@ -45,5 +45,13 @@
     <update id="changeMemberInfo" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
         UPDATE Members SET memberName = #{memberName}, memberPwd = MD5(#{memberPwd}) WHERE memberID = #{memberID}
     </update>
+    
+    <select id="getCardList"  parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        select * from Card where memberId = #{memberId};
+    </select>
+
+    <select id="getPaymentList"  parameterType="int" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        select * from Payment where memberId = #{memberId};
+    </select>
 
 </mapper>
