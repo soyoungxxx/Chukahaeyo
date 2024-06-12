@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,7 +27,7 @@
                 return false;
             }
 
-            if(!emailRegex.test($("#memberEmail").val())){
+            if (!emailRegex.test($("#memberEmail").val())) {
                 alert("이메일를 올바른 형식으로 작성해주세요.");
                 $("#memberEmail").focus();
                 return false;
@@ -38,10 +39,20 @@
                 return false;
             }
 
-            if(!pwdRegex.test($("#memberPwd").val())){
+            if (!pwdRegex.test($("#memberPwd").val())) {
                 alert("비밀번호를 형식이 올바르지 않습니다. (영어 대소문자 숫자 모두 포함, 8자리 이상)");
                 $("#memberPwd").focus();
                 return false;
+            }
+        }
+    </script>
+
+    <script>
+        window.onload = function() {
+            const msg = '<c:out value="${sessionScope.msg}"/>';
+            if (msg) {
+                alert(msg);
+                <c:remove var="msg" scope="session" />
             }
         }
     </script>
@@ -80,17 +91,13 @@
                                 <a href="register" class="register_btn">회원가입</a>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
-
         </form>
     </div>
     <div class="sticker2"></div>
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 </body>
-
 </html>
