@@ -25,11 +25,12 @@ public class EditController {
     @Autowired
     private EditService service;
 
-    @GetMapping("/edit")
-    public String showEditPage(HttpServletRequest request, Model model) {
-//      int categoryId = (int) request.getAttribute("categoryId");
-        int categoryId = 2;
-        List<TemplateVO> list = service.selectFrames(categoryId);
+    @GetMapping("/edit/{category}")
+    public String showEditPage(@PathVariable String category, Model model) {
+        int category_id = 3;
+        if (category.equals("myCard")) category_id = 1;
+        else if (category.equals("myPet")) category_id = 2;
+        List<TemplateVO> list = service.selectFrames(category_id);
         model.addAttribute("list", list);
         return "card/edit";
     }
