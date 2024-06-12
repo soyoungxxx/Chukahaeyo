@@ -135,6 +135,9 @@ public class MemberController {
         }
     }
 
+    // 결제 내역
+    
+
     // 로그아웃
     @GetMapping("/logout")
     public String logout(HttpSession session, Model model) {
