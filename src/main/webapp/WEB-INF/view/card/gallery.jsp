@@ -32,13 +32,13 @@
                 let sortedCards = Array.from(cards);
 
                 if (sortOrder === 'latest') {
-                    sortedCards.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
+                    sortedCards.sort((a, b) => new Date(a.dataset.date) - new Date(b.dataset.date));
                 } else if (sortOrder === 'popular') {
                     sortedCards.sort((a, b) => b.dataset.likes - a.dataset.likes);
                 }
 
                 sortedCards.forEach(card => {
-                    if (selectedCategory === "all" || card.dataset.template === selectedCategory) {
+                    if (selectedCategory === "all" || card.dataset.category == selectedCategory) {
                         card.style.display = "block";
                     } else {
                         card.style.display = "none";
@@ -85,7 +85,16 @@
                     </div>
                     <div class="card-info">
                         <h3>${card.cardName}</h3>
-                        <p>${card.cardDate}</p>
+                        <p>
+                            <c:choose>
+                                <c:when test="${not empty card.cardEndDate}">
+                                    ${card.cardStartDate} - ${card.cardEndDate}
+                                </c:when>
+                                <c:otherwise>
+                                    ${card.cardStartDate}
+                                </c:otherwise>
+                            </c:choose>
+                        </p>
                         <p>👍 Like ${card.cardLikeCnt}</p>
                     </div>
                 </div>
