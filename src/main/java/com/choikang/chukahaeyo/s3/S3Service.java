@@ -70,7 +70,8 @@ public class S3Service {
         System.out.println("파일 업로드 성공");
         System.out.println("업로드한 파일 이름 : " + fileName);
 
-        return amazonS3.getUrl(bucket, fileName).toString(); //S3에 저장된 URL을 갖고 오는 로직
+        String S3Url = amazonS3.getUrl(bucket, fileName).toString();
+        return S3Url; //S3에 저장된 URL을 갖고 오는 로직
     }
 
     //파일 이름 중복 방지를 위한 파일명 생성
