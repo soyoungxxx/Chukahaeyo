@@ -61,7 +61,7 @@
                     <c:forEach var="vo" items="${map.list}">
                         <tr class="list-data">
                             <th class="no">${vo.commId}</th>
-                            <th class="title"><a href="detail?no=${vo.commId}">${vo.commTitle}</a></th>
+                            <th class="title"><a href="detail?commId=${vo.commId}">${vo.commTitle}</a></th>
                             <th class="writer">${vo.memberName}</th>
                             <th class="regdate"><fmt:formatDate value="${vo.commPostDate }" pattern="YYYY.MM.dd"/></th>
                             <th class="read-cnt">${vo.commViewCount}</th>

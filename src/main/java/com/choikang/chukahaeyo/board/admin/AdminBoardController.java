@@ -1,4 +1,4 @@
-package com.choikang.chukahaeyo.board;
+package com.choikang.chukahaeyo.board.admin;
 
 
 import org.springframework.stereotype.Controller;

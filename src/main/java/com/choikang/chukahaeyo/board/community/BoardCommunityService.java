@@ -1,4 +1,4 @@
-package com.choikang.chukahaeyo.board;
+package com.choikang.chukahaeyo.board.community;
 
 import com.choikang.chukahaeyo.board.model.CommunityVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,17 +9,17 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class BoardService {
+public class BoardCommunityService {
 
     @Autowired
-    BoardMapper boardMapper;
+    BoardCommunityMapper boardCommunityMapper;
 
     public Map<String, Object> getCommunityList(CommunityVO vo) {
-        int count = boardMapper.count(vo); // 총개수
+        int count = boardCommunityMapper.count(vo); // 총개수
         // 총페이지수
         int totalPage = count / 10;
         if (count % 10 > 0) totalPage++;
-        List<CommunityVO> list = boardMapper.getCommunityList(vo); // 목록
+        List<CommunityVO> list = boardCommunityMapper.getCommunityList(vo); // 목록
 
         Map<String, Object> map = new HashMap<>();
         map.put("count", count);
@@ -40,8 +40,12 @@ public class BoardService {
     }
 
     public void insertCommunity(CommunityVO vo) {
-        boardMapper.insertCommunity(vo);
+        boardCommunityMapper.insertCommunity(vo);
 
 
+    }
+
+    public CommunityVO getCommunityDetail(CommunityVO vo) {
+        return boardCommunityMapper.getCommunityDetail(vo);
     }
 }
