@@ -66,6 +66,36 @@
             }
         }
 
+        function checkInput(){
+            if ($("#memberPwd").val() == '') {
+                alert("비밀번호를 입력해 주세요");
+                $("#memberPwd").focus();
+                return false;
+            }
+
+            if ($("#pwdCheck").val() == '') {
+                alert("비밀번호 확인란을 입력해주세요");
+                $("#pwdCheck").focus();
+                return false;
+            }
+            if (!pwdRegex.test($("#memberPwd").val())) {
+                alert("비밀번호를 올바른 형식으로 작성해주세요.");
+                $("#memberPwd").focus();
+                return false;
+            }
+            if ($("#pwdCheck").val() !== $("#memberPwd").val()) {
+                alert("비밀번호 확인란과 비밀번호가 일치하지 않습니다. 비밀번호 확인란을 다시 작성해주십시오.");
+                $("#pwdCheck").focus();
+                return false;
+            }
+
+            if ($("#memberName").val() == '') {
+                alert("이름을 입력해주세요");
+                $("#memberName").focus();
+                return false;
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -83,7 +113,7 @@
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <%@ include file="/WEB-INF/view/mypage/include/checkPwdAuth.jsp" %>
                 <div class="mypage-content">
-                    <form action="/mypage/changeInfo" method="post">
+                    <form action="/mypage/changeInfo" method="post" onsubmit="return checkInput();">
                         <div class="changeInfo">
                             <h3>회원정보 수정</h3>
                             <p>수정할 항목을 작성하고, 수정 버튼을 눌러주세요.</p>
