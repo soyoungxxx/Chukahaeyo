@@ -252,7 +252,19 @@
             var time = $('#edit-time').val();
             $('.extra-time').text(time);
         });
-        // 장소
+        // 이모지
+        $('#emoji1').change(function () {
+            emoji[0] = $("#emoji1").val();
+        });
+        $('#emoji2').change(function () {
+            emoji[1] = $("#emoji2").val();
+        });
+        $('#emoji3').change(function () {
+            emoji[2] = $("#emoji3").val();
+        });
+        $('#emoji4').change(function () {
+            emoji[3] = $("#emoji4").val();
+        });
 
         // 준비물
         $('.edit-prepare').on('input', function () {
