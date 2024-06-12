@@ -11,10 +11,6 @@
     content: url("/resources/img/card/invitation/green/heart.png");
 }
 
-.uploadedImage {
-    content: url("/resources/img/card/invitation/green/image.png")
-}
-
 .card-roof-img {
     content: url("/resources/img/card/invitation/green/roof.png");
 }
@@ -32,6 +28,7 @@
 /* 좋아요이미지 */
 #like {
     background: url('/resources/img/card/common/likeHeart.png') no-repeat center center;
+    background-size: contain;
 }
 
 .message-block.odd {
