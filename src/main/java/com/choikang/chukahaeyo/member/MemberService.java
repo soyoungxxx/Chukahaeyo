@@ -94,7 +94,7 @@ public class MemberService {
         return  memberMapper.unsign(memberVO);
     }
 
-    // 아이디와 패스워드 일치하는지 조회
-    public int validatePwd(MemberVO memberVO) {return memberMapper.validatePwd(memberVO);}
+    // 아이디와 패스워드 일치하는지 조회 후 아이디 반환
+    public Integer validatePwd(MemberVO memberVO) {return memberMapper.validatePwd(memberVO);}
 
 }

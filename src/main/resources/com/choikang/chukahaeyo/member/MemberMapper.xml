@@ -38,8 +38,8 @@
         DELETE from Members where memberId = #{memberId} AND memberPwd = MD5(#{memberPwd})
     </delete>
 
-    <select id="validatePwd" parameterType="com.choikang.chukahaeyo.member.model.MemberVO" resultType="int">
-        SELECT count(*) from Members where memberId = #{memberId} AND memberPwd = MD5(#{memberPwd})
+    <select id="validatePwd" parameterType="com.choikang.chukahaeyo.member.model.MemberVO" resultType="java.lang.Integer">
+        SELECT memberId from Members where (memberId = #{memberId} AND memberPwd = MD5(#{memberPwd}))
     </select>
 
 </mapper>

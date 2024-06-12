@@ -101,19 +101,20 @@ public class MemberController {
     }
     
     // 회원 정보 수정: 비밀번호 인증
-    @PostMapping("/mypage/changeInfo")
-    public boolean validatePwd(HttpSession session, String memberCheckPwd) {
+    @PostMapping("/mypage/changeInfo/checkPwd")
+    @ResponseBody
+    public int validatePwd(HttpSession session, Model model, String memberCheckPwd) {
         // 세션에 있는 id값 가져옴
         int id = (int) session.getAttribute("memberId");
         MemberVO memberVO = new MemberVO();
         memberVO.setMemberId(id);
         memberVO.setMemberPwd(memberCheckPwd);
 
-        // 패스워드 확인
-        if (service.validatePwd(memberVO) > 0) {
-            return true;
+        Integer result = service.validatePwd(memberVO);
+        if (result == null) {
+            return 0;
         }
-        return false;
+        return result;
     }
 
 

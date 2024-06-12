@@ -19,21 +19,23 @@
             }
 
             $.ajax({
-                url: '/mypage/changeInfo',
+                url: '/mypage/changeInfo/checkPwd',
                 data: {memberCheckPwd: $("#memberCheckPwd").val()},
-                type: 'post',
+                type: 'POST',
                 async: false,
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                dataType: 'json',
                 success: function (res) {
                     console.log(res);
-                    if (res) {
-                        var btn = $("#btnAuthPwd");
-                        btn.addEventListener('click', function () {
-                            var popup = document.querySelector("#checkPwdAuthPopup");
-                            popup.style.display = "none";
-                        })
+                    if (res > 0) {
+                        var popup = document.getElementById("checkPwdAuthPopup");
+                        popup.style.display = "none";
                     } else {
                         alert('비밀번호가 일치하지 않습니다.');
                     }
+                },
+                error: function (res, status, error){
+                    console.error("AJAX: ", status, error);
                 }
             })
         }
