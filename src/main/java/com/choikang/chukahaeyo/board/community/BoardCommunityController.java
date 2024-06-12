@@ -1,4 +1,4 @@
-package com.choikang.chukahaeyo.board;
+package com.choikang.chukahaeyo.board.community;
 
 
 import com.choikang.chukahaeyo.board.model.CommunityVO;
@@ -12,10 +12,10 @@ import java.io.UnsupportedEncodingException;
 
 @Controller
 @RequestMapping("/board")
-public class BoardController {
+public class BoardCommunityController {
 
     @Autowired
-    BoardService boardService;
+    BoardCommunityService boardCommunityService;
 
 
 
@@ -31,7 +31,7 @@ public class BoardController {
 
 
 
-        req.setAttribute("map",boardService.getCommunityList(vo));
+        req.setAttribute("map", boardCommunityService.getCommunityList(vo));
 
 
 
@@ -40,8 +40,8 @@ public class BoardController {
 
 
     @GetMapping("/community/detail")
-    public String communityDetail() {
-
+    public String communityDetail(CommunityVO vo,HttpServletRequest req) {
+        req.setAttribute("object" , boardCommunityService.getCommunityDetail(vo));
         return "board/communityDetail";
     }
 
@@ -61,12 +61,12 @@ public class BoardController {
         vo.setMemberId("1");
 
         //서비스 타고 no 받는다.
-        boardService.insertCommunity(vo);
+        boardCommunityService.insertCommunity(vo);
 
 
 
 
-        return "redirect:detail?no="+vo.getCommId();
+        return "redirect:detail?commId="+vo.getCommId();
     }
 
 

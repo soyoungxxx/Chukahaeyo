@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.choikang.chukahaeyo.board.BoardMapper">
+<mapper namespace="com.choikang.chukahaeyo.board.community.BoardCommunityMapper">
     <sql id="searchSql">
         <where>
             <if test="query != null and query != ''">
@@ -29,11 +29,11 @@
 
 
 
-
     <select id="count" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="int">
         SELECT COUNT(*) FROM community c left join members m on m.memberId = c.memberId
         <include refid="searchSql"/>
     </select>
+
 
 
 
@@ -44,11 +44,19 @@
         commContents ,
         commPostDate
         ) VALUES (
-        #{memberId} , #{commTitle}, #{commContents}, CURDATE()
+        #{memberId} , #{commTitle}, #{commContents}, NOW()
         )
         <selectKey keyProperty="commId" order="AFTER" resultType="string">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
+
+
+    <select id="getCommunityDetail" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        SELECT commId , c.memberId , commTitle , commContents , commPostDate , commEditedDate , commViewCount , memberEmail , memberPwd , memberName ,(select count(*) from boardlike where boardId = c.commId) as boardLike FROM community c left join members m on m.memberId = c.memberId
+        where commId = #{commId}
+    </select>
+
+
 
 </mapper>

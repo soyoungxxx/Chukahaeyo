@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,255 +50,22 @@
 
             <div class="community-logo"></div>
 
-
+            <input type="hidden" class="board-id" value="${object.commId}"/>
             <div class="writer-container">
-                <div class="writer-text">서현오목</div>
-                <div class="writer-date">08/21 18:30</div>
+                <div class="writer-text">${object.memberName}</div>
+                <div class="writer-date"><fmt:formatDate value="${object.commPostDate }" pattern="yy/MM/dd hh:mm"/></div>
             </div>
 
 
             <div class="title-container">
-                <div class="title">제목 입니다.제목 입니다.제목 입니다.제목 입니다.제목 입니다.제목 입니다.제목 입니다.제목 입니다.제목 입니다.제목 입니다.제목 입니다.제목
-                    입니다.</div>
+                <div class="title">${object.commTitle}</div>
                 <div class="like heartblack"></div>
                 <!--<div class="like heartbred"></div>-->
             </div>
 
             <div class="content">
 
-
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
-                내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용 lorem내용
-                lorem.
+                ${object.commContents}
 
             </div>
 
@@ -320,29 +88,11 @@
                 <div class="main-data-comment">
                     <div class="main-data-comment-writer">박대기</div>
                     <div class="main-data-comment-content">댓글 입니다 !!~~~~~</div>
-                    <div class="main-data-comment-date">08/21 19:00</div>
+                    <div class="main-data-comment-date">08/21 19:00 <a class="main-data-comment-replyshow">대댓글 달기</a></div>
+                    <input type="text" class="main-data-comment-replytext" > <input value="등록" type="button" class="main-data-comment-replybutton" >
                 </div>
 
-                <div class="main-data-comment">
-                    <div class="main-data-comment-writer">박대기</div>
-                    <div class="main-data-comment-content">댓글 입니다 !!~~~~~</div>
-                    <div class="main-data-comment-date">08/21 19:00</div>
-                </div>
-                <div class="main-data-comment">
-                    <div class="main-data-comment-writer">박대기</div>
-                    <div class="main-data-comment-content">댓글 입니다 !!~~~~~</div>
-                    <div class="main-data-comment-date">08/21 19:00</div>
-                </div>
-                <div class="main-data-comment">
-                    <div class="main-data-comment-writer">박대기</div>
-                    <div class="main-data-comment-content">댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~댓글 입니다 !!~~~~~</div>
-                    <div class="main-data-comment-date">08/21 19:00</div>
-                </div>
-                <div class="main-data-comment">
-                    <div class="main-data-comment-writer">박대기</div>
-                    <div class="main-data-comment-content">댓글 입니다 !!~~~~~</div>
-                    <div class="main-data-comment-date">08/21 19:00</div>
-                </div>
+
 
                 <div class="sub-data-comment">
                     <img class="sub-data-comment-img" src="/resources/img/re-comment.png" >
@@ -359,11 +109,13 @@
 
 
 
-                <div class="main-data-comment">
-                    <div class="main-data-comment-writer">박대기</div>
-                    <div class="main-data-comment-content">댓글 입니다 !!~~~~~</div>
-                    <div class="main-data-comment-date">08/21 19:00</div>
+
+
+                <div class="main-comment-write">
+                    <input class="main-comment-write-text" type="text" > <input class="main-comment-write-button" type="button" value="등록">
+
                 </div>
+
 
 
 
