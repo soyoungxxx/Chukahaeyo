@@ -8,15 +8,15 @@
     <meta charset="utf-8">
     <title>마이페이지</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/mypage.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <script>
         function canclePayment() {
             $.ajax({
-                url: '/',
+                url: '/', // 이부분 추후 작성
                 data: {
                     memberCheckPwd: $("#memberCheckPwd").val()
                 },
@@ -64,7 +64,7 @@
                             <div class="payment-info">
                                 <p>주문일자: <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.orderDate}"/></p>
                                 <p>금액: <fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.paidAmount}"/>원</p>
-                                <c:if test="${payment.isWithinTwoDays}=1">
+                                <c:if test="${payment.isWithinTwoDays == '1'}">
                                     <a href="javascript:canclePayment();">취소</a>
                                 </c:if>
                             </div>

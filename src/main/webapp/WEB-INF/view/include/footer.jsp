@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 
-<link rel="stylesheet" href="/resources/css/footer.css"/>
-<link rel="stylesheet" href="/resources/css/common.css"/>
+<link rel="stylesheet" href="/resources/css/include/footer.css"/>
+<link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
 
 <footer class="footer">
     <div class="introduce">
@@ -14,6 +14,6 @@
         <a href="#">자주 묻는 질문</a>
     </div>
     <div>
-        <img src="${pageContext.request.contextPath}/resources/img/gray-logo.png" style="width: 180px; height: 55px;">
+        <img src="${pageContext.request.contextPath}/resources/img/logo/gray-logo.png" style="width: 180px; height: 55px;">
     </div>
 </footer>

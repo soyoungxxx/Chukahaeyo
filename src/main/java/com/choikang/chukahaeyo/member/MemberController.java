@@ -152,7 +152,8 @@ public class MemberController {
 
         Date twoDaysAgo = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
         for(int i = 0; i < paymentList.size(); i++) {
-            if(twoDaysAgo.after(paymentList.get(i).getOrderDate())){
+            Date tempDate = (paymentList.get(i)).getOrderDate();
+            if(twoDaysAgo.before(tempDate)){
                 paymentList.get(i).setIsWithinTwoDays(1);
             }
             else {

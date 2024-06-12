@@ -1,0 +1,39 @@
+#card-bg {
+    content: url("/resources/img/card/invitation/green/background.png");
+    width: 153%;
+    position:absolute;
+    object-fit: cover;
+    object-position: top;
+}
+
+/* 하트 */
+.card-top-img {
+    content: url("/resources/img/card/invitation/green/heart.png");
+}
+
+.uploadedImage {
+    content: url("/resources/img/card/invitation/green/image.png")
+}
+
+.card-roof-img {
+    content: url("/resources/img/card/invitation/green/roof.png");
+}
+
+/* roof 아래쪽, 모든 콘텐츠가 들어가는 곳 */
+.card-main-content {
+    background: #E0DFCC;
+}
+
+/* 이미지와 텍스트 */
+.card-content {
+    background: #E0DFCC;
+}
+
+/* 좋아요이미지 */
+#like {
+    background: url('/resources/img/card/common/likeHeart.png') no-repeat center center;
+}
+
+.message-block.odd {
+    background-color: #CACCB0;
+}

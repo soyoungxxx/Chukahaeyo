@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choikang.chukahaeyo.board.community.BoardCommunityMapper">
+    <sql id="searchSql">
+        <where>
+            <if test="query != null and query != ''">
+                <if test="querytype == 'all'">
+                    commTitle LIKE '%${query}%' OR commContents LIKE '%${query}%' OR memberName LIKE '%${query}%'
+                </if>
+                <if test="querytype == 'titlecontent'">
+                    commTitle LIKE '%${query}%' OR commContents LIKE '%${query}%'
+                </if>
+                <if test="querytype == 'writer'">
+                    memberName LIKE '%${query}%'
+                </if>
+            </if>
+        </where>
+    </sql>
+
+    <select id="getCommunityList" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
+               (SELECT count(*) FROM BoardLike WHERE commID = c.commID) AS BoardLike
+        FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
+        <include refid="searchSql"/>
+        ORDER BY commPostDate ASC
+        LIMIT #{startIdx}, 10
+    </select>
+
+    <select id="count" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="int">
+        SELECT COUNT(*)
+        FROM Community c
+            LEFT JOIN Members m ON m.memberID = c.memberID
+        <include refid="searchSql"/>
+    </select>
+
+    <insert id="insertCommunity" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        INSERT INTO Community (memberID, commTitle, commContents, commPostDate)
+        VALUES (#{memberID} , #{commTitle}, #{commContents}, NOW())
+        <selectKey keyProperty="commId" order="AFTER" resultType="string">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="getCommunityDetail" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
+               (SELECT COUNT(*) FROM BoardLike WHERE boardID = c.commID) AS boardLike
+        FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
+        where commID = #{commID}
+    </select>
+</mapper>

@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <title>1:1 문의</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css" />
-    <link rel="stylesheet" href="/resources/css/mypage.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css" />
     <link rel="stylesheet" href="/resources/css/board/inquiryList.css" />
-    <link rel="stylesheet" href="/resources/css/reset.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
 </head>
 
 <body>
@@ -18,7 +18,7 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="mypage-header">
-            <img src="/resources/img/logo_mypage.png">
+            <img src="/resources/img/logo/logo_mypage.png">
             <hr>
         </div>
         <div class="mypage">
@@ -78,42 +78,42 @@
                                     <th class="title">제목 입니다.</th>
                                     <th class="writer">서현오</th>
                                     <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/checked.png"></th>
+                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/board/checked.png"></th>
                                 </tr>
                                 <tr class="list-data">
                                     <th class="no">1123</th>
                                     <th class="title">제목 입니다.</th>
                                     <th class="writer">서현오</th>
                                     <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/checked.png"></th>
+                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/board/checked.png"></th>
                                 </tr>
                                 <tr class="list-data">
                                     <th class="no">1123</th>
                                     <th class="title">제목 입니다.</th>
                                     <th class="writer">서현오</th>
                                     <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/checked.png"></th>
+                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/board/checked.png"></th>
                                 </tr>
                                 <tr class="list-data">
                                     <th class="no">1123</th>
                                     <th class="title">제목 입니다.</th>
                                     <th class="writer">서현오</th>
                                     <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/checked.png"></th>
+                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/board/checked.png"></th>
                                 </tr>
                                 <tr class="list-data">
                                     <th class="no">1123</th>
                                     <th class="title">제목 입니다.</th>
                                     <th class="writer">서현오</th>
                                     <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/checked.png"></th>
+                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/board/checked.png"></th>
                                 </tr>
                                 <tr class="list-data">
                                     <th class="no">1123</th>
                                     <th class="title">제목 입니다.</th>
                                     <th class="writer">서현오</th>
                                     <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/checked.png"></th>
+                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/board/checked.png"></th>
                                 </tr>
                                 <tr class="list-data">
                                     <th class="no">1123</th>
@@ -127,21 +127,21 @@
                                     <th class="title">제목 입니다.</th>
                                     <th class="writer">서현오</th>
                                     <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/checked.png"></th>
+                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/board/checked.png"></th>
                                 </tr>
                                 <tr class="list-data">
                                     <th class="no">1123</th>
                                     <th class="title">제목 입니다.</th>
                                     <th class="writer">서현오</th>
                                     <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/checked.png"></th>
+                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/board/checked.png"></th>
                                 </tr>
                                 <tr class="list-data">
                                     <th class="no">1123</th>
                                     <th class="title">제목 입니다.</th>
                                     <th class="writer">서현오</th>
                                     <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/checked.png"></th>
+                                    <th class="is-answered"><img class="is-answered-img" src="/resources/img/board/checked.png"></th>
                                 </tr>
                                 <tr class="list-no-data">
                                     <td class="no-data" colspan='6'>작성글이 없습니다.</td>

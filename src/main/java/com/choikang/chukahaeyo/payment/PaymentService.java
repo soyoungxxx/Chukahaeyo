@@ -6,7 +6,7 @@ import com.choikang.chukahaeyo.exception.model.CustomException;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 
 @Service
@@ -24,4 +24,8 @@ public class PaymentService {
             throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "PaymentDTO를 PaymentVO로 변환 실패");
         }
     }
+
+//    public void cancelPayment(){
+//
+//    }
 }

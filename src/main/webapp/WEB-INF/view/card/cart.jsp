@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <title>장바구니</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/cart.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/cart.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function updateTotal() {

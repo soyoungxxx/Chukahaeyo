@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <title>로그인</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/member.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/member.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -71,11 +71,11 @@
                         <div class="login_form">
                             <ul>
                                 <li>
-                                    <img src="/resources/img/login-user.png" class="login_img">
+                                    <img src="/resources/img/member/login-user.png" class="login_img">
                                     <input type="text" id="memberEmail" name="memberEmail" placeholder="이메일">
                                 </li>
                                 <li>
-                                    <img src="/resources/img/login-lock.png" class="login_img">
+                                    <img src="/resources/img/member/login-lock.png" class="login_img">
                                     <input type="password" id="memberPwd" name="memberPwd" placeholder="비밀번호">
                                 </li>
                             </ul>

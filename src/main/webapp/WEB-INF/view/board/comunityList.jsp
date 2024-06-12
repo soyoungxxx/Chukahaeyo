@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="/resources/css/reset.css" />
-    <link rel="stylesheet" href="/resources/css/common.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css" />
     <link rel="stylesheet" href="/resources/css/board/board-list.css" />
 
     <!--font-->
@@ -61,7 +61,7 @@
                     <c:forEach var="vo" items="${map.list}">
                         <tr class="list-data">
                             <th class="no">${vo.commId}</th>
-                            <th class="title"><a href="detail?no=${vo.commId}">${vo.commTitle}</a></th>
+                            <th class="title"><a href="detail?commId=${vo.commId}">${vo.commTitle}</a></th>
                             <th class="writer">${vo.memberName}</th>
                             <th class="regdate"><fmt:formatDate value="${vo.commPostDate }" pattern="YYYY.MM.dd"/></th>
                             <th class="read-cnt">${vo.commViewCount}</th>
