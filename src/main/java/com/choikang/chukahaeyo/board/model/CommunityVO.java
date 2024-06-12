@@ -7,7 +7,13 @@ import java.util.Date;
 
 @Data
 public class CommunityVO {
-
+    private String commID;
+    private String memberID;
+    private String commTitle;
+    private String commContents;
+    private Date commPostDate;
+    private Date commEditedDate;
+    private String commViewCount;
 
     public CommunityVO() {
         this.query = "";
@@ -15,26 +21,15 @@ public class CommunityVO {
         this.page = "1";
     }
 
-    private String query;
-    private String page;
-    private String querytype;
-
-
-
-    private String commId;
-    private String memberId;
-    private String commTitle;
-    private String commContents;
-    private Date commPostDate;
-    private Date commEditedDate;
-    private String commViewCount;
-
     private String boardLike;
 
     private String memberEmail;
     private String memberPwd;
     private String memberName;
 
+    private String query;
+    private String page;
+    private String querytype;
 
     private int startIdx;
 

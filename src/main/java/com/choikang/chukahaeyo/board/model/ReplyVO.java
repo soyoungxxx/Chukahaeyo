@@ -5,22 +5,15 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class CommentVO {
-
-
-
-
-
-
-    private String replyId;
+public class ReplyVO {
+    private String replyID;
     private String replyContent;
     private int replyGno;
     private int replyOno;
     private int replyNested;
     private Date replyPostDate;
-    private String memberId;
-    private String boardId;
+    private String memberID;
+    private String commID;
+
     private String memberName;
-
-
 }
