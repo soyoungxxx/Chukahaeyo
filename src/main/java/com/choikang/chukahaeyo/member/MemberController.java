@@ -2,15 +2,19 @@ package com.choikang.chukahaeyo.member;
 
 import com.choikang.chukahaeyo.member.model.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
+import java.util.Random;
 
 @Controller
 public class MemberController {
@@ -27,7 +31,6 @@ public class MemberController {
     public void register() {
     }
 
-
     // 로그인
     @PostMapping("/member/login")
     public String login(Model model, MemberVO memberVO, HttpSession session) {
@@ -35,6 +38,10 @@ public class MemberController {
         if (login == null) {
             model.addAttribute("msg", "아이디 혹은 비밀번호를 다시 확인하세요.");
             model.addAttribute("url", "/");
+            return "include/alert";
+        } else if (!login.isMemberAuth()) {
+            model.addAttribute("msg", "인증되지 않은 유저입니다. 메일 인증을 완료해주세요.");
+            model.addAttribute("url", "");
             return "include/alert";
         } else {
             session.setAttribute("login", login); // login 객체 또는 true 설정
@@ -52,11 +59,6 @@ public class MemberController {
     // 회원가입
     @PostMapping("/member/register")
     public String register(MemberVO memberVO, Model model) {
-        if (service.checkEmailDuplicate(memberVO.getMemberEmail()) > 0) {
-            model.addAttribute("msg", "이미 사용 중인 이메일입니다.");
-            model.addAttribute("url", "/member/register");
-            return "alert"; // 알림 페이지로 리다이렉트
-        }
         service.register(memberVO);
         return "redirect:/member/login"; // 로그인 페이지로 리다이렉션
     }
@@ -64,9 +66,67 @@ public class MemberController {
     // 회원가입 시 이메일 중복체크
     @ResponseBody
     @GetMapping("/member/register/checkEmailDuplicate")
-    public boolean checkEmailDuplicate(String email) {
-        return service.checkEmailDuplicate(email) > 0;
+    public boolean checkEmailDuplicate(String memberEmail) {
+        return service.checkEmailDuplicate(memberEmail) > 0;
     }
 
+    // 인증 링크 이메일 발송
+    @ResponseBody
+    @PostMapping("/member/emailAuth")
+    public void mailChcek(String memberEmail, String memberName) {
+        service.mailAuthCheck(memberEmail, memberName);
 
+    }
+
+    // 이메일 체크 시 DB상의 인증 상태 변경
+    @GetMapping("/member/verify")
+    public String verify(Model model, @RequestParam("memberId") int memberId) {
+        service.memberVerify(memberId);
+        model.addAttribute("msg", "인증이 완료되었습니다.");
+        model.addAttribute("url", "/member/login");
+        return "include/alert";
+    }
+
+    // 로그인한 유저 email 조회
+    @GetMapping("/mypage/unregister")
+    public String getLoginMemberEmail(HttpSession session, Model model) {
+        int id = (int) session.getAttribute("memberId");
+        String memberEmail = (service.getUserInfoById(id)).getMemberEmail();
+        model.addAttribute("memberEmail", memberEmail);
+        return "/mypage/unregister";
+    }
+
+    // 로그아웃
+    @GetMapping("/logout")
+    public String logout(HttpSession session, Model model) {
+        session.invalidate();
+        model.addAttribute("msg", "로그아웃 되었습니다.");
+        model.addAttribute("url", "/");
+        return "include/alert";
+    }
+
+    // 회원탈퇴
+    @PostMapping("/mypage/unregister")
+    public String unregister(HttpSession session, Model model, String memberPwd, RedirectAttributes redirectAttributes) {
+        int id = (int) session.getAttribute("memberId");
+        MemberVO memberVO = new MemberVO();
+        memberVO.setMemberId(id);
+        memberVO.setMemberPwd(memberPwd);
+        // 패스워드 확인
+        if (service.unsign(memberVO) == 1) {
+            session.invalidate();
+            redirectAttributes.addFlashAttribute("msg", "회원탈퇴 되었습니다.");
+            return "redirect:/unsign-msg";
+        }
+        model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+        model.addAttribute("url", "/mypage/unregister");
+        return "include/alert";
+    }
+
+    @GetMapping("/unsign-msg")
+    public String mainPage(Model model, @ModelAttribute("msg") String msg) {
+        model.addAttribute("msg", msg);
+        model.addAttribute("url", "/");
+        return "include/alert";
+    }
 }
