@@ -4,16 +4,20 @@
 <html style="text-align: justify;">
 <head>
     <meta charset="UTF-8">
+    <title>축하해요</title>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@0.9.0/dist/js-confetti.browser.js"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
+    <script src="/resources/js/card/card.js"></script>
 
-    <title>축하해요</title>
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
-    <link rel="stylesheet" href="/resources/css/pageFrame/edit.css?after">
-    <link rel="stylesheet" href="/resources/css/template/green.css?after">
+    <link rel="stylesheet" href="/resources/css/pageFrame/edit.css">
+    <link rel="stylesheet" href="/resources/css/template/green.css">
+    <link rel="stylesheet" href="/resources/css/template/cardCommon.css">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -168,7 +172,6 @@
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
 <script>
     let categoryId;
     let templateThumbnail;
