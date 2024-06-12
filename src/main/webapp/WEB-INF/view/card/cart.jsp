@@ -93,7 +93,7 @@
                             <p>${card.cardName}</p>
                             <p>${card.cardStartDate}</p>
                         </div>
-                        <button class="close-button" onclick="deleteCard(${card.cardId}, event)">X</button>
+                        <button class="close-button" onclick="deleteCard(${card.cardID}, event)">X</button>
                         <div class="card-content">
                             <p class="card-text">${card.cardName}</p>
                             <input type="checkbox" class="card-checkbox" value="${card.cardPrice}"

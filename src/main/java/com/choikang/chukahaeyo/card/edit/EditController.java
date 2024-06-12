@@ -38,7 +38,7 @@ public class EditController {
 
     @PostMapping("/edit/card.do")
     public String getCardInfo(CardVO cardVO, HttpServletRequest request, HttpSession session) {
-        cardVO.setMemberId((Integer) session.getAttribute("memberId"));
+        cardVO.setMemberID((Integer) session.getAttribute("memberId"));
         service.insertCardInCart(cardVO);
         return "redirect:/cart";
     }

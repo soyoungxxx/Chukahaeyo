@@ -9,10 +9,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-confetti@0.9.0/dist/js-confetti.browser.js"></script>
-    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
-    <script src="/resources/js/card/card.js"></script>
 
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/edit.css?after">
@@ -142,7 +138,7 @@
                     <input type="hidden" name="cardDesign" id="card-design">
                     <input type="hidden" name="cardIsPublic" value="false" id="public">
                     <input type="hidden" name="templateThumbnail" id="submit-templateThumbnail">
-                    <input type="hidden" name="categoryId" id="submit-categoryId">
+                    <input type="hidden" name="categoryID" id="submit-categoryId">
                     <input type="submit" style="display:none" id="cart-submit-button">
                 </div>
             </form>
@@ -155,14 +151,14 @@
                     </form>
                     <input class="edit-grey-btn" id="publicButton" type="button" value="비공개"/>
                     <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
-                        <input type="hidden" id="uploaded-file-url" name="uploadedFileUrl">
+                        <input type="hidden" id="uploaded-file-url" name="uploadedFileURL">
                     </form>
 
                 </div>
             </div>
             <div class="edit-frame-div">
                 <c:forEach items="${list}" var="t">
-                    <img src="${t.templateThumbnail}" class="edit-frame" id="${t.templateId}"> <br>
+                    <img src="${t.templateThumbnail}" class="edit-frame" id="${t.templateID}"> <br>
                 </c:forEach>
             </div>
         </div>
@@ -171,6 +167,11 @@
     <div class="sticker2" style="margin-left: 50px"></div>
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
+
+<script src="https://cdn.jsdelivr.net/npm/js-confetti@0.9.0/dist/js-confetti.browser.js"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/resources/js/card/card.js"></script>
 
 <script>
     let categoryId;
@@ -233,11 +234,8 @@
         var newImage = document.createElement("img");
         newImage.setAttribute("class", "uploadedImage");
         newImage.src = URL.createObjectURL(file);
-        console.log(newImage)
-
         // conponent 추가
         $('.uploadedImage').replaceWith(newImage);
-
     }
 
     // 실시간 반영!
@@ -452,7 +450,7 @@
                 originText = $('.card-name').text();
                 $('.date').text($('#edit-day').val()); // 템플릿 선택 시 날짜 초기값 세팅
                 // 템플릿 선택시.. css 선택
-                $('#cardCss').prop("href","/resources/css/template/"+template_id+".css");
+                $('#cardCss').prop("href","/resources/css/template/"+template_id+".css?after");
             }
         })
     })

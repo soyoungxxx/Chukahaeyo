@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class TemplateVO {
-    private int templateId;
+    private int templateID;
     private String templateDesign;
-    private int categoryId;
+    private int categoryID;
     private String templateThumbnail;
 }

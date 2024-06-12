@@ -7,15 +7,15 @@
 
     <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
         INSERT INTO Card
-            (cardName, cardIsPublic, isPayed, cardStartDate, cardEndDate,
-            cardDesign, templateThumbnail, categoryId, memberId)
+            (cardName, cardIsPublic, cardIsPayed, cardStartDate, cardEndDate,
+            cardDesign, templateThumbnail, categoryID, memberID)
         VALUES
             (#{cardName}, #{cardIsPublic}, false, #{cardStartDate}, #{cardEndDate},
-            #{cardDesign}, #{templateThumbnail}, #{categoryId}, #{memberId})
+            #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID})
     </insert>
 
     <select id="getPersonalCardList" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
-        SELECT * FROM Card WHERE memberId = #{memberId}
+        SELECT * FROM Card WHERE memberID = #{memberId}
     </select>
 
     <select id="getPublicCardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
@@ -23,7 +23,7 @@
     </select>
 
     <delete id="deleteCard" parameterType="int">
-        DELETE FROM Card WHERE cardId = #{cardId}
+        DELETE FROM Card WHERE cardID = #{cardId}
     </delete>
 
 </mapper>

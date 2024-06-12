@@ -7,7 +7,7 @@ const imageBasicHeight = image.height();
 image.height(0);
 
 window.addEventListener('load', getHeight)
-window.addEventListener('load', getMap($(".extra-address").text()))
+// window.addEventListener('load', getMap($(".extra-address").text()))
 window.addEventListener('resize', getHeight);
 
 function getHeight() {
@@ -23,6 +23,7 @@ function getHeight() {
 // like 버튼 클릭 시 숫자 올라가고, 이모티콘 컨페티 터지는 효과
 var emoji = ["🎉", "🎊", "✨", "🎈"];
 $("#like").click(function () {
+    console.log(1);
     const likeNumber = Number($(".like-number").text() + 1);
     $.ajax({
         url: '/card/like.do',
@@ -32,6 +33,7 @@ $("#like").click(function () {
             $(".like-number").text(likeNumber);
         }
     })
+    console.log(1);
     jsConfetti.addConfetti({
         emojis: emoji,
         emojiSize: 200,
