@@ -33,7 +33,7 @@ public class EditController {
 
     @PostMapping("/edit/card.do")
     public String getCardInfo(CardVO cardVO) {
-        System.out.println("map" + cardVO.getTemplateDesign());
+        System.out.println("map" + cardVO.getCardDesign());
         return "redirect:/cart";
     }
 }
