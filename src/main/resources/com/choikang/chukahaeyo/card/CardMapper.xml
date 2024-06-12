@@ -6,6 +6,15 @@
         VALUES (#{cardUrl}, #{cardQR})
     </insert>
 
+    <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
+        INSERT INTO Card
+            (cardName, cardIsPublic, isPayed, cardStartDate, cardEndDate,
+         cardDesign, templateThumbnail, categoryId, memberId)
+        VALUES
+            (#{cardName}, #{cardIsPublic}, false, #{cardStartDate}, #{cardEndDate},
+             #{cardDesign}, #{templateThumbnail}, #{categoryId}, #{memberId})
+    </insert>
+
     <select id="getCardList" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT * FROM Card WHERE memberId = #{memberId}
     </select>
