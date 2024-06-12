@@ -46,6 +46,7 @@ body, .edit-preview-div {
 
 #like {
     background: url('/resources/img/card/invitation/rainbow/pig-button.png') no-repeat center center;
+    background-size: contain;
 }
 
 #like:active {

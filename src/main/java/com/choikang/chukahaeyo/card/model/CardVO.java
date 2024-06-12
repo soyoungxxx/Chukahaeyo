@@ -6,7 +6,7 @@ import java.sql.Date;
 
 @Data
 public class CardVO {
-    private int cardId;
+    private int cardID;
     private String cardName;
     private boolean cardIsPublic;
     private int cardLikeCnt;
@@ -16,12 +16,12 @@ public class CardVO {
     private String cardEndDate;
     private String cardDesign;
     private String templateThumbnail;
-    private int categoryId;
-    private int payId;
-    private String cardUrl; //단축 url
+    private int categoryID;
+    private int payID;
+    private String cardURL; //단축 url
     private String cardQR; //qr코드. 단축 URL의 끝에 .qr을 붙이면 그것이 이미지 주소
     private boolean isPayed;
-    private int memberId;
+    private int memberID;
 
     public boolean getCardIsPublic() {
         return cardIsPublic;

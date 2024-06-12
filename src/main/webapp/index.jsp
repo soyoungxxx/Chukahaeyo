@@ -58,16 +58,16 @@
                 <%
                     // 예시 데이터
                     List<CardTest> cards = new ArrayList<>();
-                    cards.add(new CardTest("홍길동<br>생일카드", "2023-06-01", 1, "", "template01"));
-                    cards.add(new CardTest("초코<br>생일카드", "2023-05-15", 20, "", "template02"));
-                    cards.add(new CardTest("야구장<br>초대카드", "2023-04-30", 5, "", "template03"));
+                    cards.add(new CardTest("홍길동<br>생일카드", "2023-06-01", 1, "", "templateGreen"));
+                    cards.add(new CardTest("초코<br>생일카드", "2023-05-15", 20, "", "templateNavy"));
+                    cards.add(new CardTest("야구장<br>초대카드", "2023-04-30", 5, "", "templateRainbow"));
                     if (cards != null) {
                         for (CardTest card : cards) {
                 %>
                 <div class="card" data-template="<%= card.getTemplate() %>" data-likes="<%= card.getLikes() %>"
                      data-date="<%= card.getDate() %>">
                     <div class="card-image">
-                        <img src="/resources/img/template/<%=card.getTemplate()%>.png" alt="Card Image">
+                        <img src="/resources/img/thumbnail/<%=card.getTemplate()%>.png" alt="Card Image">
                         <div class="overlay">
                             <div class="text"><%= card.getName() %>
                             </div>

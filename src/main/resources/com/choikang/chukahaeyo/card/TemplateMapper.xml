@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.choikang.chukahaeyo.card.TemplateMapper">
     <select id="selectFrames" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.TemplateVO">
-        SELECT templateId, templateThumbnail
+        SELECT templateID, templateThumbnail
         FROM Template
-        WHERE categoryId = #{categoryId}
+        WHERE categoryID = #{categoryId}
     </select>
     <select id="selectPreviewFrame" parameterType="int" resultType="String">
         SELECT CONVERT(templateDesign USING utf8mb4)
         FROM Template
-        WHERE templateId = #{templateId}
+        WHERE templateID = #{templateId}
     </select>
 </mapper>
