@@ -1,13 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.choikang.chukahaeyo.board.comment.BoardCommentMapper">
-    <select id="count" parameterType="com.choikang.chukahaeyo.board.model.CommentVO" resultType="int">
-        select count(*) from reply
-        where boardId = #{boardId}
+    <select id="count" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO" resultType="int">
+        SELECT COUNT(*)
+        FROM Reply
+        WHERE commID = #{commID}
     </select>
 
-    <select id="list" parameterType="com.choikang.chukahaeyo.board.model.CommentVO" resultType="com.choikang.chukahaeyo.board.model.CommentVO">
-        SELECT replyId , replyContent , replyGno , replyOno , replyNested , replyPostDate , memberId , boardId , (select memberName from members where memberId=memberId) as memberName  FROM reply where boardId = #{boardId} order by replyGno ASC , replyOno ASC
+    <select id="list" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO" resultType="com.choikang.chukahaeyo.board.model.ReplyVO">
+        SELECT replyID,
+               replyContent,
+               replyGno,
+               replyOno,
+               replyNested,
+               replyPostDate,
+               memberID,
+               commID,
+               (SELECT memberName FROM Members WHERE memberID = memberID) AS memberName
+        FROM Reply
+        WHERE commID = #{COMMID}
+        ORDER BY replyGno ASC, replyOno ASC
     </select>
 
 </mapper>

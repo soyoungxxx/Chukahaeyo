@@ -58,7 +58,7 @@ public class BoardCommunityController {
         System.out.println(vo.getCommContents());
 
         //세션에서 memberId 넣어주고
-        vo.setMemberId("1");
+        vo.setMemberID("1");
 
         //서비스 타고 no 받는다.
         boardCommunityService.insertCommunity(vo);
@@ -66,7 +66,7 @@ public class BoardCommunityController {
 
 
 
-        return "redirect:detail?commId="+vo.getCommId();
+        return "redirect:detail?commId="+vo.getCommID();
     }
 
 

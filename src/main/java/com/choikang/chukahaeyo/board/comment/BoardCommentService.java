@@ -1,7 +1,7 @@
 package com.choikang.chukahaeyo.board.comment;
 
 
-import com.choikang.chukahaeyo.board.model.CommentVO;
+import com.choikang.chukahaeyo.board.model.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +15,10 @@ public class BoardCommentService {
     @Autowired
     BoardCommentMapper boardCommentMapper;
 
-    public Map index(CommentVO vo) {
+    public Map index(ReplyVO vo) {
         int totalCount = boardCommentMapper.count(vo); // 총 게시물 수
 
-        List<CommentVO> list = boardCommentMapper.list(vo); // 목록
+        List<ReplyVO> list = boardCommentMapper.list(vo); // 목록
 
         System.out.println(list);
         Map map = new HashMap();
