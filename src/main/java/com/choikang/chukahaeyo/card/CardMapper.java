@@ -11,5 +11,5 @@ public interface CardMapper {
     void insertUrl(CardVO cardVO);
     List<CardVO> getCardList(@Param("memberId") int memberId);
     void deleteCard(@Param("cardId") int cardId);
-    void insertCard(CardVO cardVO);
+    void insertCardInCart(CardVO cardVO);
 }

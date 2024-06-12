@@ -22,4 +22,8 @@ public class CardVO {
     private String cardQR; //qr코드. 단축 URL의 끝에 .qr을 붙이면 그것이 이미지 주소
     private boolean isPayed;
     private int memberId;
+
+    public boolean getCardIsPublic() {
+        return cardIsPublic;
+    }
 }

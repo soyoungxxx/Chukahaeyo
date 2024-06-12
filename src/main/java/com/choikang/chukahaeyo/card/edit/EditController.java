@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -20,8 +22,11 @@ public class EditController {
         int category_id = 3;
         if (category.equals("myCard")) category_id = 1;
         else if (category.equals("myPet")) category_id = 2;
+
         List<TemplateVO> list = service.selectFrames(category_id);
         model.addAttribute("list", list);
+        System.out.println(list);
+        model.addAttribute("categoryId", category_id);
         return "card/edit";
     }
 
@@ -32,8 +37,9 @@ public class EditController {
     }
 
     @PostMapping("/edit/card.do")
-    public String getCardInfo(CardVO cardVO) {
-        service.insertCard(cardVO);
+    public String getCardInfo(CardVO cardVO, HttpServletRequest request, HttpSession session) {
+        cardVO.setMemberId((Integer) session.getAttribute("memberId"));
+        service.insertCardInCart(cardVO);
         return "redirect:/cart";
     }
 }

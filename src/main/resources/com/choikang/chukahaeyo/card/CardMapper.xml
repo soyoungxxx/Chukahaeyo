@@ -6,12 +6,12 @@
         VALUES (#{cardUrl}, #{cardQR})
     </insert>
 
-    <insert id="insertCard" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
+    <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
         INSERT INTO Card
             (cardName, cardIsPublic, isPayed, cardStartDate, cardEndDate,
          cardDesign, templateThumbnail, categoryId, memberId)
         VALUES
-            (#{cardName}, #{cardisPublic}, #{isPayed}, #{cardStartDate}, #{cardEndDate},
+            (#{cardName}, #{cardIsPublic}, false, #{cardStartDate}, #{cardEndDate},
              #{cardDesign}, #{templateThumbnail}, #{categoryId}, #{memberId})
     </insert>
 

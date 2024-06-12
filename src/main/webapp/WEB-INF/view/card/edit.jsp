@@ -101,9 +101,6 @@
                     </span>
                         <div class="edit-place">
                             <input type="button" class="edit-search-addr" value="주소 찾기"/>
-                            <input type="hidden" id="addr1"/>
-                            <input type="hidden" id="x"/>
-                            <input type="hidden" id="y"/>
                             <input type="text" class="edit-text" placeholder="상세 주소 입력"/>
                         </div>
                     </div>
@@ -137,8 +134,11 @@
                         </div>
                     </div>
                     <hr>
+                    <input type="hidden" name="cardName" id="cardName">
                     <input type="hidden" name="cardDesign" id="card-design">
                     <input type="hidden" name="cardIsPublic" value="false" id="public">
+                    <input type="hidden" name="templateThumbnail" id="submit-templateThumbnail">
+                    <input type="hidden" name="categoryId" id="submit-categoryId">
                     <input type="submit" style="display:none" id="cart-submit-button">
                 </div>
             </form>
@@ -170,6 +170,9 @@
 
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
 <script>
+    let categoryId;
+    let templateThumbnail;
+
     // 주소 api 호출
     $('.edit-search-addr').click(function () {
         new daum.Postcode({
@@ -434,6 +437,8 @@
 
     $('.edit-frame').click(function () {
         var template_id = $(this).attr("id");
+        categoryId = ${categoryId};
+        templateThumbnail = $(this).attr("src");
         $.ajax({
             type: "GET",
             url: "/card/edit/template.do",
@@ -452,6 +457,9 @@
         $('#map').removeAttr("style");
         $("#card-design").val($('.edit-preview-div').html());
 
+        $('#cardName').val($('.card-name').text());
+        $('#submit-templateThumbnail').val(templateThumbnail);
+        $('#submit-categoryId').val(categoryId);
         $('#cart-submit-button').click();
     })
 

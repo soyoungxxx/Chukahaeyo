@@ -26,7 +26,8 @@ public class EditService {
         return templateMapper.selectPreviewFrame(templateId);
     }
 
-    public void insertCard(CardVO cardVO) {
-        cardMapper.insertCard(cardVO);
+    public void insertCardInCart(CardVO cardVO) {
+        System.out.println("service 실행중 ~ ~ ~ ~ ");
+        cardMapper.insertCardInCart(cardVO);
     }
 }
