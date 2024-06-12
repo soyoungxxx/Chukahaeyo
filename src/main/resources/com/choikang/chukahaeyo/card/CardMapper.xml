@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choikang.chukahaeyo.card.CardMapper">
+    <insert id="insertUrl" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
+        INSERT INTO short_urls(cardUrl, cardQR) VALUES (#{cardUrl}, #{cardQR})
+    </insert>
+
+    <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
+        INSERT INTO Card
+            (cardName, cardIsPublic, isPayed, cardStartDate, cardEndDate,
+            cardDesign, templateThumbnail, categoryId, memberId)
+        VALUES
+            (#{cardName}, #{cardIsPublic}, false, #{cardStartDate}, #{cardEndDate},
+            #{cardDesign}, #{templateThumbnail}, #{categoryId}, #{memberId})
+    </insert>
+
+    <select id="getPersonalCardList" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT * FROM Card WHERE memberId = #{memberId}
+    </select>
+
+    <select id="getPublicCardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT * FROM Card WHERE cardIsPublic = TRUE
+    </select>
+
+    <delete id="deleteCard" parameterType="int">
+        DELETE FROM Card WHERE cardId = #{cardId}
+    </delete>
+
+</mapper>

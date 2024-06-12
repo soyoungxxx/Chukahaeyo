@@ -6,3 +6,5 @@ db.properties
 target/
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+apikey.js

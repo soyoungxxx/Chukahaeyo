@@ -4,19 +4,46 @@
     <select id="login" parameterType="com.choikang.chukahaeyo.member.model.MemberVO"
             resultType="com.choikang.chukahaeyo.member.model.MemberVO">
         SELECT *
-        FROM user
-        WHERE email = #{userEmail}
-          AND pwd = #{userPwd}
+        FROM Members
+        WHERE memberEmail = #{memberEmail}
+          AND memberPwd = MD5(#{memberPwd})
     </select>
 
     <insert id="register" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
-        INSERT INTO user{
-            email, pwd, name, auth
-            }
-        VALUES {
-            #{userEmail}, #{userPwd}, #{userName}, true
-            }
+        INSERT INTO Members(
+            memberEmail, memberPwd, memberName, memberRegisterDate , memberAuth
+            )
+        VALUES (
+            #{memberEmail}, MD5(#{memberPwd}), #{memberName}, NOW(), false
+            )
     </insert>
 
+    <select id="checkEmailDuplicate" parameterType="String" resultType="int">
+        SELECT count(*) FROM Members WHERE memberEmail = #{memberEmail}
+    </select>
+
+    <select id="getUserInfoByEmail" parameterType="String" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
+        SELECT * FROM Members WHERE memberEmail = #{memberEmail}
+    </select>
+
+    <select id="getUserInfoById" parameterType="int" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
+        SELECT * FROM Members WHERE memberId = #{memberId}
+    </select>
+
+    <update id="memberVerify" parameterType="int">
+        UPDATE Members SET memberAuth=true WHERE memberId = #{memberId}
+    </update>
+
+    <delete id="unsign" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
+        DELETE from Members where memberId = #{memberId} AND memberPwd = MD5(#{memberPwd})
+    </delete>
+
+    <select id="validatePwd" parameterType="com.choikang.chukahaeyo.member.model.MemberVO" resultType="java.lang.Integer">
+        SELECT memberId from Members where (memberId = #{memberId} AND memberPwd = MD5(#{memberPwd}))
+    </select>
+
+    <update id="changeMemberInfo" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
+        UPDATE Members SET memberName = #{memberName}, memberPwd = MD5(#{memberPwd}) WHERE memberId = #{memberId}
+    </update>
 
 </mapper>

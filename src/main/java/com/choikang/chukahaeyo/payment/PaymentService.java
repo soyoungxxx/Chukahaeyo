@@ -1,10 +1,12 @@
 package com.choikang.chukahaeyo.payment;
 
 
+import com.choikang.chukahaeyo.exception.ErrorCode;
+import com.choikang.chukahaeyo.exception.model.CustomException;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 
 @Service
@@ -14,19 +16,16 @@ public class PaymentService {
 
     //@Transactional
     public void processPayment(PaymentDTO paymentDTO) {
-        System.out.println("서비스dto"+paymentDTO);
-        try{
-            System.out.println("서비스1");
+        try {
             PaymentVO paymentVO = PaymentDTO.of(paymentDTO);
-            System.out.println("서비스2");
             paymentMapper.insertPayment(paymentVO);
-            System.out.println("서비스3");
             System.out.println("[service] DTO를 VO로 변환 완료");
-        }catch(Exception e){
-            System.out.println("서비스4");
-            System.out.println("[service] DTO를 VO로 변환 실패");
-            System.out.println("서비스5");
-            throw e;
+        } catch (Exception e) {
+            throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "PaymentDTO를 PaymentVO로 변환 실패");
         }
     }
+
+//    public void cancelPayment(){
+//
+//    }
 }
