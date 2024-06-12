@@ -14,6 +14,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
 import java.util.Properties;
@@ -52,12 +53,6 @@ public class MvcConfig implements WebMvcConfigurer {
         reg.addViewController("/card/edit");
         reg.addViewController("/admin/adminPage");
         reg.addViewController("/mypage/myHistory");
-
-        reg.addViewController("/url/origin");
-        reg.addViewController("/url/short");
-
-        reg.addViewController("/errorPage/404");
-        reg.addViewController("/errorPage/500");
 
     }
 
@@ -109,5 +104,11 @@ public class MvcConfig implements WebMvcConfigurer {
         return mailSender;
     }
 
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(10485760); // 10MB
+        return multipartResolver;
+    }
 
 }
