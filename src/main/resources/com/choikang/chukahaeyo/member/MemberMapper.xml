@@ -27,23 +27,23 @@
     </select>
 
     <select id="getUserInfoById" parameterType="int" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
-        SELECT * FROM Members WHERE memberId = #{memberId}
+        SELECT * FROM Members WHERE memberID = #{memberID}
     </select>
 
     <update id="memberVerify" parameterType="int">
-        UPDATE Members SET memberAuth=true WHERE memberId = #{memberId}
+        UPDATE Members SET memberAuth=true WHERE memberID = #{memberID}
     </update>
 
     <delete id="unsign" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
-        DELETE from Members where memberId = #{memberId} AND memberPwd = MD5(#{memberPwd})
+        DELETE from Members where memberID = #{memberID} AND memberPwd = MD5(#{memberPwd})
     </delete>
 
     <select id="validatePwd" parameterType="com.choikang.chukahaeyo.member.model.MemberVO" resultType="java.lang.Integer">
-        SELECT memberId from Members where (memberId = #{memberId} AND memberPwd = MD5(#{memberPwd}))
+        SELECT memberID from Members where (memberID = #{memberID} AND memberPwd = MD5(#{memberPwd}))
     </select>
 
     <update id="changeMemberInfo" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
-        UPDATE Members SET memberName = #{memberName}, memberPwd = MD5(#{memberPwd}) WHERE memberId = #{memberId}
+        UPDATE Members SET memberName = #{memberName}, memberPwd = MD5(#{memberPwd}) WHERE memberID = #{memberID}
     </update>
 
 </mapper>

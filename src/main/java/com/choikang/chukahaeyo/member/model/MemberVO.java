@@ -6,7 +6,7 @@ import java.sql.Date;
 
 @Data
 public class MemberVO {
-    private int memberId;
+    private int memberID;
     private String memberEmail;
     private String memberPwd;
     private String memberName;
