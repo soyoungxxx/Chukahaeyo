@@ -4,11 +4,11 @@
     <select id="selectFrames" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.TemplateVO">
         SELECT templateID, templateThumbnail
         FROM Template
-        WHERE categoryID = #{categoryId}
+        WHERE categoryID = #{categoryID}
     </select>
     <select id="selectPreviewFrame" parameterType="int" resultType="String">
         SELECT CONVERT(templateDesign USING utf8mb4)
         FROM Template
-        WHERE templateID = #{templateId}
+        WHERE templateID = #{templateID}
     </select>
 </mapper>

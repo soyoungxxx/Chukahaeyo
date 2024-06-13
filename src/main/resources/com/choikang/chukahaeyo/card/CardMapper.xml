@@ -19,7 +19,19 @@
     </select>
 
     <select id="getPublicCardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
-        SELECT * FROM Card WHERE cardIsPublic = TRUE
+        SELECT * FROM Card WHERE (cardIsPublic = TRUE) AND (cardIsPayed = TRUE)
+    </select>
+
+    <select id="getTop3CardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT *
+        FROM (
+                 SELECT *,
+                        ROW_NUMBER() OVER (PARTITION BY categoryId ORDER BY cardLikeCnt DESC, ABS(DATEDIFF(cardStartDate, NOW())) ASC) as rn
+                 FROM Card
+                 WHERE cardIsPublic = TRUE
+             ) ranked
+        WHERE rn = 1;
+--         SELECT * FROM Card WHERE cardIsPublic = TRUE ORDER BY cardLikeCnt DESC LIMIT 3
     </select>
 
     <delete id="deleteCard" parameterType="int">

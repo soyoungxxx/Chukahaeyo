@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<%@ page import="com.choikang.chukahaeyo.card.gallery.CardTest" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -55,29 +52,16 @@
                 <a href="gallery"><input type="button" class="move-gallery" value="명예의 전당 이동"/></a>
             </div>
             <div class="card-gallery">
-                <%
-                    // 예시 데이터
-                    List<CardTest> cards = new ArrayList<>();
-                    cards.add(new CardTest("홍길동<br>생일카드", "2023-06-01", 1, "", "templateGreen"));
-                    cards.add(new CardTest("초코<br>생일카드", "2023-05-15", 20, "", "templateNavy"));
-                    cards.add(new CardTest("야구장<br>초대카드", "2023-04-30", 5, "", "templateRainbow"));
-                    if (cards != null) {
-                        for (CardTest card : cards) {
-                %>
-                <div class="card" data-template="<%= card.getTemplate() %>" data-likes="<%= card.getLikes() %>"
-                     data-date="<%= card.getDate() %>">
-                    <div class="card-image">
-                        <img src="/resources/img/thumbnail/<%=card.getTemplate()%>.png" alt="Card Image">
-                        <div class="overlay">
-                            <div class="text"><%= card.getName() %>
+                <c:forEach var="card" items="${top3Cards}">
+                    <div class="card" data-template="${card.templateThumbnail}" data-likes="${card.cardLikeCnt}" data-date="${card.cardStartDate}">
+                        <div class="card-image">
+                            <img src="${card.templateThumbnail}" alt="Card Image">
+                            <div class="overlay">
+                                <div class="text">${card.cardName}</div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <%
-                        }
-                    }
-                %>
+                </c:forEach>
             </div>
         </div>
     </div>

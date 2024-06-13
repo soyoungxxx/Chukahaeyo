@@ -26,4 +26,9 @@ public class CardServiceImpl implements CardService {
     public List<CardVO> getPublicCardList() {
         return cardMapper.getPublicCardList();
     }
+
+    @Override
+    public List<CardVO> getTop3CardList() {
+        return cardMapper.getTop3CardList();
+    }
 }
