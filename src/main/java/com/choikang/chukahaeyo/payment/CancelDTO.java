@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class CancelDTO {
+    private String payNo; //취소할 거래의 거래고유번호
     private String cancleStatus; //결제 취소 내역 상태(FAILED, REQUESTED, SUCCEEDED)
     private String cancleId; //취소 내역 id
     private int cancelTotalAmount; //취소 총 금액
