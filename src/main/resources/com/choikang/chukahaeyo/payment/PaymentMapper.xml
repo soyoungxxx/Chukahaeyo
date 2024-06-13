@@ -4,16 +4,14 @@
     <!-- 결제 정보 삽입 -->
     <insert id="insertPayment" parameterType="com.choikang.chukahaeyo.payment.model.PaymentVO">
         INSERT INTO Payment (
-            payID,
             payDate,
             payNo,
             payAmount,
             memberID,
             receiptURL,
-            merchantUid,
+            merchantUid
             )
         VALUES (
-                   #{payID},
                    #{payDate},
                    #{payNo},
                    #{payAmount},

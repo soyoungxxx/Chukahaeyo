@@ -44,6 +44,7 @@ public class EditController {
     public String getCardInfo(CardVO cardVO, HttpSession session, @RequestParam(value="imageFile") MultipartFile file) {
         cardVO.setMemberID((Integer) session.getAttribute("memberId"));
         cardVO.setCardImage(imageService.saveFile(file));
+
         service.insertCardInCart(cardVO);
         return "redirect:/cart";
     }

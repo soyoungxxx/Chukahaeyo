@@ -1,12 +1,15 @@
 package com.choikang.chukahaeyo.payment;
 
 
+import com.choikang.chukahaeyo.card.edit.EditService;
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.SuccessCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -15,10 +18,14 @@ public class PaymentController {
     @Autowired
     private PaymentService paymentService;
 
+    @Autowired
+    private EditService editService;
+
     @PostMapping("/process")
-    public ResponseEntity<String> processPayment(@RequestBody PaymentDTO paymentDTO) {
+    public ResponseEntity<String> processPayment(@RequestBody PaymentDTO paymentDTO, HttpSession session) {
         System.out.println(paymentDTO);
         try {
+            paymentDTO.setMemberID((Integer)session.getAttribute("memberId"));
             paymentService.processPayment(paymentDTO);
             return new ResponseEntity<>(SuccessCode.PAYMENT_SUCCESS.getMessage(), SuccessCode.PAYMENT_SUCCESS.getHttpStatus());
         } catch (Exception e) {
@@ -29,6 +36,7 @@ public class PaymentController {
 
     @GetMapping("/success")
     public String showSuccess() {
+        // dbㅇㅔ 카드 정보 추가
         return "/card/successPay";
     }
 
