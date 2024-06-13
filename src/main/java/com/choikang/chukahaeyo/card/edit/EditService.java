@@ -27,7 +27,10 @@ public class EditService {
     }
 
     public void insertCardInCart(CardVO cardVO) {
-        System.out.println("service 실행중 ~ ~ ~ ~ ");
         cardMapper.insertCardInCart(cardVO);
+    }
+
+    public String getCardDesign(int cardID) {
+        return cardMapper.getCardDesign(cardID);
     }
 }
