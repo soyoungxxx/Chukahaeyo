@@ -36,15 +36,40 @@
     <insert id="insertCommunity" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
         INSERT INTO Community (memberID, commTitle, commContents, commPostDate)
         VALUES (#{memberID} , #{commTitle}, #{commContents}, NOW())
-        <selectKey keyProperty="commId" order="AFTER" resultType="string">
+        <selectKey keyProperty="commID" order="AFTER" resultType="string">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
 
     <select id="getCommunityDetail" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="com.choikang.chukahaeyo.board.model.CommunityVO">
         SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
-               (SELECT COUNT(*) FROM BoardLike WHERE commID = c.commID) AS boardLike
+               (SELECT COUNT(*) FROM BoardLike WHERE commID = c.commID) AS boardLike ,
+               (SELECT COUNT(*) FROM Reply WHERE commID = c.commID) AS replyCount,
+               (select count(*) from BoardLike where commID = c.commID AND memberID = #{memberID} ) AS isRed
         FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
         where commID = #{commID}
     </select>
+
+    <delete id="deleteHeart" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
+
+        delete from BoardLike
+        where commID = #{commID} and memberID = #{memberID}
+
+    </delete>
+    <select id="getRedCount" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="int">
+        select count(*) as isRed from BoardLike where commID = #{commID} AND memberID = #{memberID}
+    </select>
+
+
+
+    <select id="getLikeCount" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="int">
+        SELECT COUNT(*) FROM BoardLike WHERE commID = #{commID}
+    </select>
+
+
+    <insert id="insertHeart" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        INSERT INTO BoardLike (memberID , commID)
+        VALUES (#{memberID} , #{commID})
+    </insert>
+
 </mapper>
