@@ -26,7 +26,7 @@
     <div style="width: 100%; height: 100%;">
         <h2>< 카드 종류 > 가 만들어지는 중</h2>
         <div class="edit-main-div">
-            <form class="edit-submit-form" action="/card/edit/card.do" method="post" onsubmit="return checkRequires();">
+            <form class="edit-submit-form" action="/card/edit/card.do" method="post" onsubmit="return checkRequires();" enctype="multipart/form-data">
                 <div class="edit-div" style="overflow: scroll;">
                     <div class="edit-div-components">
                         <span class="head-text">이름</span>
@@ -40,7 +40,7 @@
                         <input type="radio" checked id="edit-dayRadio" name="day">하루 선택 <br>
                         <input type="radio" id="edit-daysRadio" name="day"/>여러날 선택
                         <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택" name="cardStartDate"/>
-                        <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택" name="cardEndDate"/>
+                        <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택"/>
                     </div>
                     <hr>
                     <div class="edit-div-components">
@@ -48,7 +48,7 @@
                         <span class="edit-warn-text">필수 항목입니다.</span> <br>
                         <%-- 사진 첨부하는 버튼 --%>
                         <input class="edit-inputFile" id="edit-file" type="file" value="첨부하기"
-                               onchange="loadFile(this)" accept="image/*"/>
+                               onchange="loadFile(this)" accept="image/*" name="imageFile"/>
                         <label class="edit-file-label" for="edit-file">첨부하기</label>
                     </div>
                     <hr>
@@ -134,6 +134,7 @@
                         </div>
                     </div>
                     <hr>
+                    <input type="hidden"  name="cardEndDate" id="cardEndDate">
                     <input type="hidden" name="cardName" id="cardName">
                     <input type="hidden" name="cardDesign" id="card-design">
                     <input type="hidden" name="cardIsPublic" value="false" id="public">
@@ -171,7 +172,7 @@
 <script src="https://cdn.jsdelivr.net/npm/js-confetti@0.9.0/dist/js-confetti.browser.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/resources/js/card/card.js"></script>
+<script src="/resources/js/card/card.js?ver=1"></script>
 
 <script>
     let categoryId;
@@ -298,6 +299,8 @@
             var selectDates = picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD');
             $(this).val(selectDates);
             $('.card-date').text(selectDates)
+            $('#cardStartDate').val(picker.startDate.format('YYYY/MM/DD'));
+            $('#cardEndDate').val(picker.endDate.format('YYYY/MM/DD'));
         });
 
         $('#edit-days').on('cancel.daterangepicker', function (ev, picker) {

@@ -7,10 +7,10 @@
 
     <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
         INSERT INTO Card
-            (cardName, cardIsPublic, cardIsPayed, cardStartDate, cardEndDate,
+            (cardName, cardIsPublic, cardIsPayed, cardStartDate, cardEndDate, cardImage,
             cardDesign, templateThumbnail, categoryID, memberID)
         VALUES
-            (#{cardName}, #{cardIsPublic}, false, #{cardStartDate}, #{cardEndDate},
+            (#{cardName}, #{cardIsPublic}, false, #{cardStartDate}, #{cardEndDate}, #{cardImage},
             #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID})
     </insert>
 
@@ -35,7 +35,13 @@
     </select>
 
     <delete id="deleteCard" parameterType="int">
-        DELETE FROM Card WHERE cardID = #{cardId}
+        DELETE FROM Card WHERE cardID = #{cardID}
     </delete>
+
+    <select id="getCardDesign" parameterType="int" resultType="String">
+        SELECT cardDesign
+        FROM Card
+        WHERE cardID = #{cardID}
+    </select>
 
 </mapper>
