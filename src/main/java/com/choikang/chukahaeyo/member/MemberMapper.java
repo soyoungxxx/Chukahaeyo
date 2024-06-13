@@ -41,4 +41,7 @@ public interface MemberMapper {
 
     // 결제 내역 가져오기
     List<PaymentVO> getPaymentList(int memberId);
+
+    // 결제 취소
+    void cancelPayment(String payNo);
 }

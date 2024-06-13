@@ -14,11 +14,11 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <script>
-        function cancelPayment(payID) {
+        function cancelPayment(payNo) {
             $.ajax({
                 url: '/cancelPayment', // 이부분 추후 작성
                 data: {
-                    payID :payID
+                    payNo :payNo
                 },
                 type: 'POST',
                 async: false,
@@ -65,7 +65,7 @@
                                 <p>주문일자: <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.payDate}"/></p>
                                 <p>금액: <fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.payAmount}"/>원</p>
                                 <c:if test="${payment.isWithinTwoDays == '1'}">
-                                    <a href="javascript:cancelPayment(${payment.payID});">취소</a>
+                                    <a href="javascript:cancelPayment(${payment.payNo});">취소</a>
                                 </c:if>
                             </div>
                         </div>

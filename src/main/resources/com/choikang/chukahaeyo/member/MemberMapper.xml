@@ -47,11 +47,15 @@
     </update>
     
     <select id="getCardList"  parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
-        select * from Card where memberId = #{memberId};
+        SELECT * from Card where memberID = #{memberID};
     </select>
 
     <select id="getPaymentList"  parameterType="int" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
-        select * from Payment where memberId = #{memberId};
+        SELECT * from Payment where memberID = #{memberID};
     </select>
+
+    <update id="cancelPaymemt" parameterType="int">
+         UPDATE Payment SET pay
+    </update>
 
 </mapper>

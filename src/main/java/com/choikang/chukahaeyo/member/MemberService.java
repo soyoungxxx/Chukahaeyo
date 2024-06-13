@@ -2,6 +2,8 @@ package com.choikang.chukahaeyo.member;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
+import com.choikang.chukahaeyo.payment.CancelDTO;
+import com.choikang.chukahaeyo.payment.PaymentDTO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -116,5 +118,8 @@ public class MemberService {
     public List<PaymentVO> getPaymentList(int memberId){
         return memberMapper.getPaymentList(memberId);
     }
+
+    // 결제 취소 - 결제 테이블 정보 변경
+    public void cancelPayment(String payNo) {memberMapper.cancelPayment(payNo);}
 
 }

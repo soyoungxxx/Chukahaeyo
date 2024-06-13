@@ -2,6 +2,8 @@ package com.choikang.chukahaeyo.member;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
+import com.choikang.chukahaeyo.payment.CancelDTO;
+import com.choikang.chukahaeyo.payment.PaymentDTO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -165,28 +167,27 @@ public class MemberController {
         return "/mypage/myHistory";
     }
 
-    // 결제내역 : 결제 취소
-//    @PostMapping("/cancelPayment")
-//    public String cancelPayment(Model model, int payID){
-//
-//        PaymentVO paymentVO = service.searchPayInfo(payID);
-//
-//        // 결제 취소 API 실행
-//        boolean success = true;
-//
-//        // 결과에 따라 alert띄워 주기
-//        if(success){
-//            service.cancelPayment();
-//            model.addAttribute("msg", "결제를 성공적으로 취소하였습니다");
-//            model.addAttribute("url", "/mypage/myHistory");
-//            return "include/alert";
-//        }
-//        else {
-//            model.addAttribute("msg", "결제 취소 중 오류가 발생했습니다. 다시 시도 후 같은 문제 발생 시 문의 바랍니다.");
-//            model.addAttribute("url", "/mypage/myHistory");
-//            return "include/alert";
-//        }
-//    }
+    //  결제내역 : 결제 취소
+    @PostMapping("/cancelPayment")
+    public String cancelPayment(Model model, String payNo){
+        System.out.println(payNo);
+
+        // 결제 취소 API 실행 결과 저장
+        String success = "SUCCEEDED";
+
+        // 결과에 따라 alert띄워 주기
+        if(success.equals("SUCCEEDED")){
+            service.cancelPayment(payNo);
+            model.addAttribute("msg", "결제를 성공적으로 취소하였습니다");
+            model.addAttribute("url", "/mypage/myHistory");
+            return "include/alert";
+        }
+        else {
+            model.addAttribute("msg", "결제 취소 중 오류가 발생했습니다. 다시 시도 후 같은 문제 발생 시 문의 바랍니다.");
+            model.addAttribute("url", "/mypage/myHistory");
+            return "include/alert";
+        }
+    }
 
 
     // 로그아웃
