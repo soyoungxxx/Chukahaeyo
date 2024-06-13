@@ -43,7 +43,7 @@
 
     <select id="getCommunityDetail" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="com.choikang.chukahaeyo.board.model.CommunityVO">
         SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
-               (SELECT COUNT(*) FROM BoardLike WHERE boardID = c.commID) AS boardLike
+               (SELECT COUNT(*) FROM BoardLike WHERE commID = c.commID) AS boardLike
         FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
         where commID = #{commID}
     </select>
