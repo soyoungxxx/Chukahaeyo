@@ -12,4 +12,12 @@ public interface BoardCommentMapper {
     int count(ReplyVO vo);
 
     List<ReplyVO> list(ReplyVO vo);
+
+    int mainInsert(ReplyVO vo);
+
+    int maxGno(ReplyVO vo);
+
+    int updateOno(ReplyVO vo);
+
+    int subInsert(ReplyVO vo);
 }

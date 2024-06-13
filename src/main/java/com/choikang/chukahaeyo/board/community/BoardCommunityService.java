@@ -48,4 +48,21 @@ public class BoardCommunityService {
     public CommunityVO getCommunityDetail(CommunityVO vo) {
         return boardCommunityMapper.getCommunityDetail(vo);
     }
+
+    public int deleteHeart(CommunityVO vo) {
+        boardCommunityMapper.deleteHeart(vo);
+
+        return boardCommunityMapper.getRedCount(vo);
+
+    }
+
+    public int getLikeCount(CommunityVO vo) {
+        return boardCommunityMapper.getLikeCount(vo);
+    }
+
+    public Object insertHeart(CommunityVO vo) {
+        boardCommunityMapper.insertHeart(vo);
+
+        return boardCommunityMapper.getRedCount(vo);
+    }
 }

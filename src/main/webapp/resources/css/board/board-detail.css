@@ -231,6 +231,7 @@ body .container{
     background-color: #949FFF;
     border: none;
     border-radius: 10px;
+    cursor:pointer;
 
 }
 .main-data-comment-replyshow{
@@ -254,8 +255,8 @@ body .container{
 
 
 .sub-data-comment-img{
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 15px;
+    margin-right: 15px;
     
     width: 30px;
     height: 30px;
@@ -272,6 +273,38 @@ body .container{
     color: #C6CED1;
     margin-top: 5px;
 }
+
+
+.sub-data-comment-replytext{
+    margin-top : 10px;
+    width: 400px;
+    height: 24px;
+    border-radius: 10px;
+    border : 1px solid #777777;
+}
+
+.sub-data-comment-replybutton{
+    margin-top : 10px;
+    height: 30px;
+    color: white;
+    background-color: #949FFF;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+.sub-data-comment-replyshow{
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
 
 
 
