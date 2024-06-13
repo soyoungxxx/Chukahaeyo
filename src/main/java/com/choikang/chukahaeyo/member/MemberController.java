@@ -1,7 +1,10 @@
 package com.choikang.chukahaeyo.member;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
+import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
+import com.choikang.chukahaeyo.payment.CancelDTO;
+import com.choikang.chukahaeyo.payment.PaymentDTO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -33,6 +36,29 @@ public class MemberController {
     // 회원가입: 페이지 접근
     @GetMapping("/member/register")
     public void register() {
+    }
+
+    // 관리자 로그인
+    @PostMapping("/adminLogin")
+    public String adminLogin(Model model, AdminVO adminVO, HttpSession session){
+        AdminVO login = service.adminLogin(adminVO);
+        if (login == null) {
+            model.addAttribute("msg", "아이디 혹은 비밀번호를 다시 확인하세요.");
+            model.addAttribute("url", "/admin/adminLogin");
+            return "include/alert";
+        } else {
+            session.setAttribute("login", login); // login 객체 또는 true 설정
+            session.setAttribute("adminID", login.getAdminID());
+
+            // 리다이렉트할 URI 확인
+            String redirectURI = (String) session.getAttribute("redirectURI");
+            if (redirectURI != null) {
+                session.removeAttribute("redirectURI");
+                return "redirect:" + redirectURI;
+            } else {
+                return "redirect:/admin/adminPage";
+            }
+        }
     }
 
     // 로그인
@@ -143,7 +169,7 @@ public class MemberController {
         }
     }
 
-    // 결제 내역: 회원의 결제 내역 가져오기
+    // 결제내역: 회원의 결제 내역 가져오기
     @GetMapping("/mypage/myHistory")
     public String getPayHistoryCard(HttpSession session, Model model) {
         int memberId = (int) session.getAttribute("memberId");
@@ -163,6 +189,28 @@ public class MemberController {
         model.addAttribute("cardList", cardList);
         model.addAttribute("paymentList", paymentList);
         return "/mypage/myHistory";
+    }
+
+    //  결제내역 : 결제 취소
+    @PostMapping("/cancelPayment")
+    public String cancelPayment(Model model, String payNo){
+        System.out.println(payNo);
+
+        // 결제 취소 API 실행 결과 저장
+        String success = "SUCCEEDED";
+
+        // 결과에 따라 alert띄워 주기
+        if(success.equals("SUCCEEDED")){
+            service.cancelPayment(payNo);
+            model.addAttribute("msg", "결제를 성공적으로 취소하였습니다");
+            model.addAttribute("url", "/mypage/myHistory");
+            return "include/alert";
+        }
+        else {
+            model.addAttribute("msg", "결제 취소 중 오류가 발생했습니다. 다시 시도 후 같은 문제 발생 시 문의 바랍니다.");
+            model.addAttribute("url", "/mypage/myHistory");
+            return "include/alert";
+        }
     }
 
 

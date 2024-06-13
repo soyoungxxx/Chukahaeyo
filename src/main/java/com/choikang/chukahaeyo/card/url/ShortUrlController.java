@@ -3,7 +3,6 @@ package com.choikang.chukahaeyo.card.url;
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.model.CustomException;
 import lombok.RequiredArgsConstructor;
-import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +29,7 @@ public class ShortUrlController {
             String shortUrl = shortUrlService.shortUrl(originUrl);
             model.addAttribute("shortUrl", shortUrl);
             return "successPay";
-        } catch (ParseException e) {
+        } catch (Exception e) {
             throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "short URL 응답 생성 실패");
         }
     }
