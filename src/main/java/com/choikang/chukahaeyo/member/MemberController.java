@@ -1,6 +1,7 @@
 package com.choikang.chukahaeyo.member;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
+import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
 import com.choikang.chukahaeyo.payment.CancelDTO;
 import com.choikang.chukahaeyo.payment.PaymentDTO;
@@ -35,6 +36,29 @@ public class MemberController {
     // 회원가입: 페이지 접근
     @GetMapping("/member/register")
     public void register() {
+    }
+
+    // 관리자 로그인
+    @PostMapping("/adminLogin")
+    public String adminLogin(Model model, AdminVO adminVO, HttpSession session){
+        AdminVO login = service.adminLogin(adminVO);
+        if (login == null) {
+            model.addAttribute("msg", "아이디 혹은 비밀번호를 다시 확인하세요.");
+            model.addAttribute("url", "/admin/adminLogin");
+            return "include/alert";
+        } else {
+            session.setAttribute("login", login); // login 객체 또는 true 설정
+            session.setAttribute("adminID", login.getAdminID());
+
+            // 리다이렉트할 URI 확인
+            String redirectURI = (String) session.getAttribute("redirectURI");
+            if (redirectURI != null) {
+                session.removeAttribute("redirectURI");
+                return "redirect:" + redirectURI;
+            } else {
+                return "redirect:/admin/adminPage";
+            }
+        }
     }
 
     // 로그인

@@ -1,6 +1,7 @@
 package com.choikang.chukahaeyo.member;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
+import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
 import com.choikang.chukahaeyo.payment.CancelDTO;
 import com.choikang.chukahaeyo.payment.PaymentDTO;
@@ -122,4 +123,5 @@ public class MemberService {
     // 결제 취소 - 결제 테이블 정보 변경
     public void cancelPayment(String payNo) {memberMapper.cancelPayment(payNo);}
 
+    public AdminVO adminLogin(AdminVO adminVO){return memberMapper.adminLogin(adminVO);}
 }

@@ -48,7 +48,7 @@
     </script>
 
     <script>
-        window.onload = function() {
+        window.onload = function () {
             const msg = '<c:out value="${sessionScope.msg}"/>';
             if (msg) {
                 alert(msg);
@@ -79,9 +79,7 @@
                                     <input type="password" id="memberPwd" name="memberPwd" placeholder="비밀번호">
                                 </li>
                             </ul>
-                            <div class="btn">
-                                <input type="submit" value="로그인" class="login_btn"/>
-                            </div>
+                            <input type="submit" value="로그인" class="login_btn"/>
                         </div>
 
                         <div class="login_register">

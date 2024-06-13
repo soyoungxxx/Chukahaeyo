@@ -1,6 +1,7 @@
 package com.choikang.chukahaeyo.member;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
+import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -44,4 +45,7 @@ public interface MemberMapper {
 
     // 결제 취소
     void cancelPayment(String payNo);
+
+    // 관리자 로그인
+    AdminVO adminLogin(AdminVO adminVO);
 }
