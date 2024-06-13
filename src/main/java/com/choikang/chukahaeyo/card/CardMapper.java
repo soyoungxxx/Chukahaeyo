@@ -13,4 +13,5 @@ public interface CardMapper {
     void deleteCard(@Param("cardId") int cardId);
     void insertCardInCart(CardVO cardVO);
     List<CardVO> getPublicCardList();
+    List<CardVO> getTop3CardList();
 }

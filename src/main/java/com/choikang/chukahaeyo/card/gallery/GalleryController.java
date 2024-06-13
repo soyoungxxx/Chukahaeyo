@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,5 +20,14 @@ public class GalleryController {
         List<CardVO> cards = cardService.getPublicCardList();
         model.addAttribute("cards", cards);
         return "card/gallery";
+    }
+
+    @GetMapping("/")
+    public String index(Model model) {
+        List<CardVO> top3Cards = cardService.getTop3CardList();
+        model.addAttribute("top3Cards", top3Cards);
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println("Top 3 Cards: " + top3Cards);
+        return "index";
     }
 }
