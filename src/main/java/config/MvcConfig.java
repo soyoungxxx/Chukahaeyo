@@ -50,6 +50,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry reg) {
+        //reg.addViewController("/").setViewName("index");
         reg.addViewController("/mypage/myPage");
         reg.addViewController("/mypage/myCard");
         reg.addViewController("/card/edit");

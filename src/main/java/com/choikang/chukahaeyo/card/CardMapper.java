@@ -14,4 +14,5 @@ public interface CardMapper {
     void insertCardInCart(CardVO cardVO);
     List<CardVO> getPublicCardList();
     String getCardDesign(int cardID);
+    List<CardVO> getTop3CardList();
 }
