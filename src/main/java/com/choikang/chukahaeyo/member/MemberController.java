@@ -143,7 +143,7 @@ public class MemberController {
         }
     }
 
-    // 결제 내역: 회원의 결제 내역 가져오기
+    // 결제내역: 회원의 결제 내역 가져오기
     @GetMapping("/mypage/myHistory")
     public String getPayHistoryCard(HttpSession session, Model model) {
         int memberId = (int) session.getAttribute("memberId");
@@ -164,6 +164,29 @@ public class MemberController {
         model.addAttribute("paymentList", paymentList);
         return "/mypage/myHistory";
     }
+
+    // 결제내역 : 결제 취소
+//    @PostMapping("/cancelPayment")
+//    public String cancelPayment(Model model, int payID){
+//
+//        PaymentVO paymentVO = service.searchPayInfo(payID);
+//
+//        // 결제 취소 API 실행
+//        boolean success = true;
+//
+//        // 결과에 따라 alert띄워 주기
+//        if(success){
+//            service.cancelPayment();
+//            model.addAttribute("msg", "결제를 성공적으로 취소하였습니다");
+//            model.addAttribute("url", "/mypage/myHistory");
+//            return "include/alert";
+//        }
+//        else {
+//            model.addAttribute("msg", "결제 취소 중 오류가 발생했습니다. 다시 시도 후 같은 문제 발생 시 문의 바랍니다.");
+//            model.addAttribute("url", "/mypage/myHistory");
+//            return "include/alert";
+//        }
+//    }
 
 
     // 로그아웃
