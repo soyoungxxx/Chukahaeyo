@@ -24,7 +24,7 @@
 <main class="main" style="height: 50%;">
     <div class="sticker1" style="margin-right: 50px"></div>
     <div style="width: 100%; height: 100%;">
-        <h2>< 카드 종류 > 가 만들어지는 중</h2>
+        <h2>${categoryName}가 만들어지는 중</h2>
         <div class="edit-main-div">
             <form class="edit-submit-form" action="/card/edit/card.do" method="post" onsubmit="return checkRequires();" enctype="multipart/form-data">
                 <div class="edit-div" style="overflow: scroll;">
