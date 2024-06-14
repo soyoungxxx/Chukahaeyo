@@ -2,7 +2,7 @@ package com.choikang.chukahaeyo.payment.model;
 
 import lombok.Data;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Data
 public class PaymentVO {
@@ -23,8 +23,7 @@ public class PaymentVO {
     private String status; // 결제 여부
     private int isWithinTwoDays; // 결제일이 오늘로부터 이틀 이내인지 저장
 
-    private String cancleStatus; //결제 취소 내역 상태(FAILED, REQUESTED, SUCCEEDED)
-    private String cancleId; //취소 내역 id
-    private int cancelTotalAmount; //취소 총 금액
-    private String cancelReason; //취소 사유
+    private long canceledAt;
+    private String failReason;
+    private String receiptUrl;
 }
