@@ -72,7 +72,6 @@ public class EditController {
         String cardDesign = service.getCardDesign(cardID);
         model.addAttribute("cardID", cardID);
         model.addAttribute("cardDesign", cardDesign);
-        System.out.println("cardDesign!!! : " + cardDesign);
         return "card/completedCard";
     }
 }

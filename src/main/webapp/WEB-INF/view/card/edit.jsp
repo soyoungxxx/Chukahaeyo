@@ -31,7 +31,7 @@
                     <div class="edit-div-components">
                         <span class="head-text">이름</span>
                         <span class="edit-warn-text">필수 항목입니다.</span>
-                        <input type="text" class="edit-text" id="edit-name"/>
+                        <input type="text" class="edit-text" id="edit-name" maxlength="20"/>
                     </div>
                     <hr>
                     <div class="edit-div-components">
@@ -39,8 +39,8 @@
                         <span class="edit-warn-text">필수 항목입니다.</span> <br>
                         <input type="radio" checked id="edit-dayRadio" name="day">하루 선택 <br>
                         <input type="radio" id="edit-daysRadio" name="day"/>여러날 선택
-                        <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택" name="cardStartDate"/>
-                        <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택"/>
+                        <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택" name="cardStartDate" readonly/>
+                        <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택" readonly/>
                     </div>
                     <hr>
                     <div class="edit-div-components">
@@ -61,10 +61,10 @@
                     <div class="edit-div-components">
                         <span class="head-text">이모티콘</span>
                         <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                        <input class="edit-emoji" type="text" id="emoji1"/>
-                        <input class="edit-emoji" type="text" id="emoji2"/>
-                        <input class="edit-emoji" type="text" id="emoji3"/>
-                        <input class="edit-emoji" type="text" id="emoji4"/>
+                        <input class="edit-emoji" type="text" id="emoji1" maxlength="1"/>
+                        <input class="edit-emoji" type="text" id="emoji2" maxlength="1"/>
+                        <input class="edit-emoji" type="text" id="emoji3" maxlength="1"/>
+                        <input class="edit-emoji" type="text" id="emoji4" maxlength="1"/>
                         <p style="font-size:14px; color:#686868; width:90%;">
                             원하는 이모티콘을 <b>한 칸당 하나씩</b>
                             작성해주세요! <br>
@@ -81,12 +81,13 @@
                         <label class="edit-btn-label" for="edit-time-select">
                             <span class="edit-onf_btn"></span>
                         </label>
+                        <!-- -->
                     </span>
                         <div class="edit-showTime">
                             <input type="radio" checked id="edit-timeRadio" name="edit-time">시각 선택 <br>
                             <input type="radio" id="edit-timesRadio" name="edit-time"/>범위 시간 선택<br>
-                            <input type="time" id="edit-time" placeholder="시간 선택"/>
-                            <input type="time" id="edit-times" placeholder="시간 선택"/>
+                            <input type="time" id="edit-time" placeholder="시간 선택" readonly/>
+                            <input type="time" id="edit-times" placeholder="시간 선택" readonly/>
                         </div>
                     </div>
                     <hr>
@@ -98,6 +99,7 @@
                         <label class="edit-btn-label" for="edit-place-select">
                             <span class="edit-onf_btn"></span>
                         </label>
+                        <!-- -->
                     </span>
                         <div class="edit-place">
                             <input type="button" class="edit-search-addr" value="주소 찾기"/>
@@ -113,6 +115,7 @@
                         <label class="edit-btn-label" for="edit-prepare-select">
                             <span class="edit-onf_btn"></span>
                         </label>
+                        <!-- -->
                     </span>
                         <textarea class="edit-prepare" maxlength="255" placeholder="준비물을 입력하세요"></textarea>
                     </div>
@@ -128,9 +131,9 @@
                     </span>
                         <div class="edit-account">
                             <p style="margin-bottom:0;">은행</p>
-                            <input type="text" id="edit-bank" class="edit-text"/>
+                            <input type="text" id="edit-bank" class="edit-text" maxlength="10/">
                             <p style="margin-bottom:0;">계좌 번호</p>
-                            <input type="text" id="edit-account-number" class="edit-text"/>
+                            <input type="text" id="edit-account-number" class="edit-text" maxlength="20" />
                         </div>
                     </div>
                     <hr>
