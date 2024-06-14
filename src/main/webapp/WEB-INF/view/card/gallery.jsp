@@ -78,6 +78,7 @@
         <div class="card-gallery">
             <c:forEach var="card" items="${cards}">
                 <div class="card" data-category="${card.categoryID}" data-likes="${card.cardLikeCnt}" data-date="${card.cardDate}">
+                    <a href="card/completedCard/${card.cardID}">
                     <div class="card-image">
                         <img src="${card.templateThumbnail}" alt="Card Image">
                         <div class="card-overlay">
@@ -99,6 +100,7 @@
                         </p>
                         <p>👍 Like ${card.cardLikeCnt}</p>
                     </div>
+                    </a>
                 </div>
             </c:forEach>
         </div>
