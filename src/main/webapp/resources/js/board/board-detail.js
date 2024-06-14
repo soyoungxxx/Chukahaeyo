@@ -1,5 +1,5 @@
 window.onload = function () {
-    function commentAjax() {
+    function commentAjax(replyID) {
         $.ajax({
             type: "get",
             url: '/board/comment/list',
@@ -10,6 +10,21 @@ window.onload = function () {
             },
             success: function (result) {
                 $(".comment-container").empty();
+                $(".comment-container").append(
+                    `
+                    <div class="main-comment-write">
+                        <div>
+                            <div class="main-comment-write-nickname">${$(".my-member-name").val()}</div>
+                        </div>
+                        <div class="main-comment-write-inner">
+                            <input class="main-comment-write-text" type="text" placeholder="댓글을 남겨보세요"> <input class="main-comment-write-button" type="button" value="등록">
+                        </div>
+                    </div>
+                    `
+                );
+
+
+
                 if (result.totalCount == 0) {
                     $(".comment-container").append(
                         `<div class="no-comment">댓글이 없습니다.</div>`
@@ -18,6 +33,7 @@ window.onload = function () {
                     $(".comment-display-data").text(result.totalCount);
                 }
 
+
                 for (let comment of result.list) {
                     let date = new Date(comment.replyPostDate);
                     if (comment.replyNested > 0) {
@@ -25,16 +41,24 @@ window.onload = function () {
                         $(".comment-container").append(
                             `
                             <div class="sub-data-comment">
-                                <div style="width: ${(comment.replyNested -1)*30}px; height: 30px;"></div>
+                                <div style="width: ${(comment.replyNested - 1) * 30}px; height: 30px;"></div>
                                 <img class="sub-data-comment-img" src="/resources/img/board/re-comment.png" >
                                 <div class="sub-data-comment-inner">
+                                    <input type="hidden" class="reply-id" name="replyID" value="${comment.replyID}"/>
                                     <input type="hidden" class="reply-gno" name="replyGno" value="${comment.replyGno}"/>
                                     <input type="hidden" class="reply-ono" name="replyOno" value="${comment.replyOno}"/>
                                     <input type="hidden" class="reply-nested" name="replyNested" value="${comment.replyNested}"/>
                                     <div class="sub-data-comment-inner-writer">${comment.memberName}</div>
                                     <div class="sub-data-comment-inner-content">${comment.replyContent}</div>
                                     <div class="sub-data-comment-inner-date">${moment(date).format('YY/MM/DD hh:mm')} <a class="sub-data-comment-replyshow">대댓글 달기</a></div>
-                                    <input type="text" class="sub-data-comment-replytext" > <input value="등록" type="button" class="sub-data-comment-replybutton" >
+                                    <div class="sub-data-comment-write">
+                                        <div>
+                                            <div class="sub-data-comment-write-nickname">${$(".my-member-name").val()}</div>
+                                        </div>
+                                        <div class="sub-data-comment-write-inner">
+                                            <input class="sub-data-comment-replytext" type="text" placeholder="댓글을 남겨보세요"> <input class="sub-data-comment-write-cancel-button" type="button" value="취소"><input class="sub-data-comment-replybutton" type="button" value="등록">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             `
@@ -43,15 +67,23 @@ window.onload = function () {
                     } else {
                         $(".comment-container").append(
                             `
-                            <div class="main-data-comment">
-                                <input type="hidden" class="reply-gno" name="replyGno" value="${comment.replyGno}"/>
-                                <input type="hidden" class="reply-ono" name="replyOno" value="${comment.replyOno}"/>
-                                <input type="hidden" class="reply-nested" name="replyNested" value="${comment.replyNested}"/>
-                                <div class="main-data-comment-writer">${comment.memberName}</div>
-                                <div class="main-data-comment-content">${comment.replyContent}</div>
-                                <div class="main-data-comment-date">${moment(date).format('YY/MM/DD hh:mm')} <a class="main-data-comment-replyshow">대댓글 달기</a></div>
-                                <input type="text" class="main-data-comment-replytext" > <input value="등록" type="button" class="main-data-comment-replybutton"  >
-                            </div>
+                                <div class="main-data-comment">
+                                    <input type="hidden" class="reply-id" name="replyID" value="${comment.replyID}"/>
+                                    <input type="hidden" class="reply-gno" name="replyGno" value="${comment.replyGno}"/>
+                                    <input type="hidden" class="reply-ono" name="replyOno" value="${comment.replyOno}"/>
+                                    <input type="hidden" class="reply-nested" name="replyNested" value="${comment.replyNested}"/>
+                                    <div class="main-data-comment-writer">${comment.memberName}</div>
+                                    <div class="main-data-comment-content">${comment.replyContent}</div>
+                                    <div class="main-data-comment-date">${moment(date).format('YY/MM/DD hh:mm')} <a class="main-data-comment-replyshow">대댓글 달기</a></div>
+                                    <div class="main-data-comment-write">
+                                        <div>
+                                            <div class="main-data-comment-write-nickname">${$(".my-member-name").val()}</div>
+                                        </div>
+                                        <div class="main-data-comment-write-inner">
+                                            <input class="main-data-comment-replytext" type="text" placeholder="댓글을 남겨보세요"> <input class="main-data-comment-write-cancel-button" type="button" value="취소"><input class="main-data-comment-replybutton" type="button" value="등록">
+                                        </div>
+                                    </div>
+                                </div>
                             `
                         );
                     }
@@ -59,43 +91,58 @@ window.onload = function () {
 
                 }
 
-                $(".comment-container").append(
-                    `
-                    <div class="main-comment-write">
-                        <input class="main-comment-write-text" type="text" > <input class="main-comment-write-button" type="button" value="등록">
-                    </div>
-                    `
-                );
+
+                /*focus 주기*/
+                $(".sub-data-comment , .main-data-comment").each(function(index , item){
+                    if($(item).find(".reply-id").val() == replyID){
+                        var offset = $(item).find(".reply-id").closest(".main-data-comment , .sub-data-comment").offset();
+                        $("html, body").animate({scrollTop: offset.top},0);
+                        return false;
+                    }
+                    return true;
+
+                });
+                /*focus 주기*/
+
+
+
+
                 console.log(result);
 
 
-
-
                 /*event 넣기*/
-                if( $(".my-member-id").val() == 0 ) {
+                if ($(".my-member-id").val() == 0) {
                     $(".main-data-comment-replyshow").hide();
                     $(".sub-data-comment-replyshow").hide();
                     $(".main-comment-write").hide();
-                }else {
+                } else {
 
                 }
 
 
-                $(".main-data-comment-replyshow").closest("div").next().hide(); $(".main-data-comment-replyshow").closest("div").next().next().hide();
-                $(".sub-data-comment-replyshow").closest("div").next().hide(); $(".sub-data-comment-replyshow").closest("div").next().next().hide();
-                $(".main-data-comment-replyshow").click(function(e){ $(e.target).closest("div").next().toggle(); $(e.target).closest("div").next().next().toggle();});
-                $(".sub-data-comment-replyshow").click(function(e){$(e.target).closest("div").next().toggle(); $(e.target).closest("div").next().next().toggle();});
-                $(".main-comment-write-button").click(function(e) {
+                $(".main-data-comment-replyshow").closest("div").next().hide();
 
-                    $(e.target).css("pointer-events" , "none");
-                    if($(".main-comment-write-text").val().trim() == ""){
+                $(".sub-data-comment-replyshow").closest("div").next().hide();
+
+                $(".main-data-comment-replyshow").click(function (e) {
+                    $(e.target).closest("div").next().toggle();
+
+                });
+                $(".sub-data-comment-replyshow").click(function (e) {
+                    $(e.target).closest("div").next().toggle();
+
+                });
+                $(".main-comment-write-button").click(function (e) {
+
+                    $(e.target).css("pointer-events", "none");
+                    if ($(".main-comment-write-text").val().trim() == "") {
                         alert("댓글을 입력해 주세요.");
-                        $(e.target).css("pointer-events" , "auto");
+                        $(e.target).css("pointer-events", "auto");
                         return;
                     }
-                    if($(".main-comment-write-text").val().length > 80){
+                    if ($(".main-comment-write-text").val().length > 80) {
                         alert("댓글은 80자를 넘을수 없습니다.");
-                        $(e.target).css("pointer-events" , "auto");
+                        $(e.target).css("pointer-events", "auto");
                         return;
                     }
 
@@ -109,7 +156,7 @@ window.onload = function () {
                             "replyContent": $(".main-comment-write-text").val()
                         },
                         success: function (result) {
-                            commentAjax();
+                            commentAjax(result);
                         },
                         error: function () {
                         }
@@ -119,16 +166,16 @@ window.onload = function () {
 
                 });
 
-                $(".sub-data-comment-replybutton").click(function(e){
-                    $(e.target).css("pointer-events" , "none");
-                    if($(e.target).closest(".sub-data-comment").find(".sub-data-comment-replytext").val().trim() == ""){
+                $(".sub-data-comment-replybutton").click(function (e) {
+                    $(e.target).css("pointer-events", "none");
+                    if ($(e.target).closest(".sub-data-comment").find(".sub-data-comment-replytext").val().trim() == "") {
                         alert("댓글을 입력해 주세요.");
-                        $(e.target).css("pointer-events" , "auto");
+                        $(e.target).css("pointer-events", "auto");
                         return;
                     }
-                    if($(e.target).closest(".sub-data-comment").find(".sub-data-comment-replytext").val().length > 80){
+                    if ($(e.target).closest(".sub-data-comment").find(".sub-data-comment-replytext").val().length > 80) {
                         alert("댓글은 80자를 넘을수 없습니다.");
-                        $(e.target).css("pointer-events" , "auto");
+                        $(e.target).css("pointer-events", "auto");
                         return;
                     }
                     $.ajax({
@@ -139,12 +186,12 @@ window.onload = function () {
                         data: {
                             "commID": $(".board-id").val(),
                             "replyContent": $(e.target).closest(".sub-data-comment").find(".sub-data-comment-replytext").val(),
-                            "replyOno" : $(e.target).closest(".sub-data-comment").find(".reply-ono").val() ,
-                            "replyGno" : $(e.target).closest(".sub-data-comment").find(".reply-gno").val() ,
-                            "replyNested" : $(e.target).closest(".sub-data-comment").find(".reply-nested").val()
+                            "replyOno": $(e.target).closest(".sub-data-comment").find(".reply-ono").val(),
+                            "replyGno": $(e.target).closest(".sub-data-comment").find(".reply-gno").val(),
+                            "replyNested": $(e.target).closest(".sub-data-comment").find(".reply-nested").val()
                         },
                         success: function (result) {
-                            commentAjax();
+                            commentAjax(result);
                         },
                         error: function () {
                         }
@@ -153,25 +200,24 @@ window.onload = function () {
 
                 });
 
-                $(".main-data-comment-replybutton").click(function(e){
+                $(".main-data-comment-replybutton").click(function (e) {
 
                     // console.log("보드아이디 : "+$(".board-id").val());
                     // console.log("content : "+$(e.target).closest(".main-data-comment").find(".main-data-comment-replytext").val());
                     // console.log("ono : "+$(e.target).closest(".main-data-comment").find(".reply-ono").val());
                     // console.log("gno : "+$(e.target).closest(".main-data-comment").find(".reply-gno").val());
                     // console.log("nested : " + $(e.target).closest(".main-data-comment").find(".reply-nested").val());
-                    $(e.target).css("pointer-events" , "none");
-                    if($(e.target).closest(".main-data-comment").find(".main-data-comment-replytext").val().trim() == ""){
+                    $(e.target).css("pointer-events", "none");
+                    if ($(e.target).closest(".main-data-comment").find(".main-data-comment-replytext").val().trim() == "") {
                         alert("댓글을 입력해 주세요.");
-                        $(e.target).css("pointer-events" , "auto");
+                        $(e.target).css("pointer-events", "auto");
                         return;
                     }
-                    if($(e.target).closest(".main-data-comment").find(".main-data-comment-replytext").val().length > 80){
+                    if ($(e.target).closest(".main-data-comment").find(".main-data-comment-replytext").val().length > 80) {
                         alert("댓글은 80자를 넘을수 없습니다.");
-                        $(e.target).css("pointer-events" , "auto");
+                        $(e.target).css("pointer-events", "auto");
                         return;
                     }
-
 
 
                     $.ajax({
@@ -182,18 +228,26 @@ window.onload = function () {
                         data: {
                             "commID": $(".board-id").val(),
                             "replyContent": $(e.target).closest(".main-data-comment").find(".main-data-comment-replytext").val(),
-                            "replyOno" : $(e.target).closest(".main-data-comment").find(".reply-ono").val() ,
-                            "replyGno" : $(e.target).closest(".main-data-comment").find(".reply-gno").val() ,
-                            "replyNested" : $(e.target).closest(".main-data-comment").find(".reply-nested").val()
+                            "replyOno": $(e.target).closest(".main-data-comment").find(".reply-ono").val(),
+                            "replyGno": $(e.target).closest(".main-data-comment").find(".reply-gno").val(),
+                            "replyNested": $(e.target).closest(".main-data-comment").find(".reply-nested").val()
                         },
                         success: function (result) {
-                            commentAjax();
+                            commentAjax(result);
                         },
                         error: function () {
                         }
 
                     });
 
+                });
+
+                $(".main-data-comment-write-cancel-button").click(function(e){
+                    $(e.target).closest(".main-data-comment").find(".main-data-comment-write").hide();
+                });
+
+                $(".sub-data-comment-write-cancel-button").click(function(e){
+                    $(e.target).closest(".sub-data-comment").find(".sub-data-comment-write").hide();
                 });
 
 
@@ -211,8 +265,8 @@ window.onload = function () {
 
     commentAjax();
 
-    $(".heartred").click(function(e){
-        $(e.target).css("pointer-events" , "none");
+    $(".heartred").click(function (e) {
+        $(e.target).css("pointer-events", "none");
         $.ajax({
             type: "get",
             url: '/board/community/heartred',
@@ -224,14 +278,14 @@ window.onload = function () {
             },
             success: function (result) {
                 $(".like-display-data").text(result.boardLike);
-                if(result.isRed == 1){
+                if (result.isRed == 1) {
                     $(".heartred").show();
                     $(".heartblack").hide();
                 } else {
                     $(".heartred").hide();
                     $(".heartblack").show();
                 }
-                $(e.target).css("pointer-events" , "auto");
+                $(e.target).css("pointer-events", "auto");
             },
             error: function () {
             }
@@ -240,8 +294,8 @@ window.onload = function () {
     });
 
 
-    $(".heartblack").click(function(e){
-        $(e.target).css("pointer-events" , "none");
+    $(".heartblack").click(function (e) {
+        $(e.target).css("pointer-events", "none");
         $.ajax({
             type: "get",
             url: '/board/community/heartblack',
@@ -253,14 +307,14 @@ window.onload = function () {
             },
             success: function (result) {
                 $(".like-display-data").text(result.boardLike);
-                if(result.isRed == 1){
+                if (result.isRed == 1) {
                     $(".heartred").show();
                     $(".heartblack").hide();
                 } else {
                     $(".heartred").hide();
                     $(".heartblack").show();
                 }
-                $(e.target).css("pointer-events" , "auto");
+                $(e.target).css("pointer-events", "auto");
             },
             error: function () {
             }
@@ -269,15 +323,12 @@ window.onload = function () {
     });
 
 
+    $(".list").click(function (e) {
 
-    $(".list").click(function(e){
-
-        location.href = '/board/community/list?query='+$(".query").val()+'&querytype='+$(".querytype").val()+'&page='+$(".page").val();
-
+        location.href = '/board/community/list?query=' + $(".query").val() + '&querytype=' + $(".querytype").val() + '&page=' + $(".page").val();
 
 
     });
-
 
 
 };

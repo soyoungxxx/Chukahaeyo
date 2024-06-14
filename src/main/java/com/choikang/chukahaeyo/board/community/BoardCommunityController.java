@@ -48,6 +48,13 @@ public class BoardCommunityController {
         }else {
             vo.setMemberID(String.valueOf(session.getAttribute("memberId")));
         }
+        if( session.getAttribute("memberName") == null){
+            vo.setMemberName("");
+        }else {
+            vo.setMemberName(String.valueOf(session.getAttribute("memberName")));
+        }
+
+
         req.setAttribute("object" , boardCommunityService.getCommunityDetail(vo));
 
 

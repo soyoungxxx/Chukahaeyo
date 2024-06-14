@@ -33,9 +33,9 @@ public class BoardCommentService {
 
     public int mainInsert(ReplyVO vo) {
         vo.setReplyGno(boardCommentMapper.maxGno(vo));
+        boardCommentMapper.mainInsert(vo);
 
-
-        return boardCommentMapper.mainInsert(vo);
+        return Integer.parseInt(vo.getReplyID());
 
 
 
@@ -43,11 +43,20 @@ public class BoardCommentService {
     }
 
     public int subInsert(ReplyVO vo) {
-        int updateOno = boardCommentMapper.updateOno(vo);
-        int subInsert = boardCommentMapper.subInsert(vo);
+
+        ReplyVO correctLine = boardCommentMapper.getCorrectLine(vo);
+        if(correctLine == null) {
+            int correctOno = boardCommentMapper.getCorrectOno(vo);
+            vo.setReplyOno(correctOno);
+        }else {
+            vo.setReplyOno(correctLine.getReplyOno());
+        }
+        boardCommentMapper.updateOno(vo);
+
+        boardCommentMapper.subInsert(vo);
 
 
 
-        return 0;
+        return Integer.parseInt(vo.getReplyID());
     }
 }

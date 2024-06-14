@@ -20,4 +20,8 @@ public interface BoardCommentMapper {
     int updateOno(ReplyVO vo);
 
     int subInsert(ReplyVO vo);
+
+    ReplyVO getCorrectLine(ReplyVO vo);
+
+    int getCorrectOno(ReplyVO vo);
 }
