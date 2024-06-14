@@ -20,6 +20,17 @@
 <%--            <div style="width: 100%; height: 100%;">--%>
                 <!-- 이미지 슬라이드 영역 -->
                 <div class="slideshow-container">
+
+                    <c:forEach var="card" items="${latest3Cards}">
+                        <div class="card" data-template="${card.templateThumbnail}" data-likes="${card.cardLikeCnt}" data-date="${card.cardStartDate}">
+                            <div class="card-image">
+                                <img src="resources/img/main/mainad0${card.categoryID}.png" alt="Card Image">
+                                <div class="overlay">
+                                    <div class="">${card.cardDate}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
                     <div class="slides fade">
                         <img src="resources/img/main/mainad01.png" alt="" style="width:100%">
                     </div>
@@ -37,6 +48,7 @@
             <div class="navigator">
                 <!-- 내생일, 반려동물 생일, 단체 행사 링크 -->
                 <a href="EditPage/내생일템플릿">
+                    <a href="card/edit/"
                     <img src="resources/img/main/mainbear1.png" alt="" class="mainBear">
                 </a>
                 <a href="EditPage/반려동물생일템플릿">

@@ -13,13 +13,13 @@ public class CardServiceImpl implements CardService {
     private CardMapper cardMapper;
 
     @Override
-    public List<CardVO> getPersonalCardList(int memberId) {
-        return cardMapper.getPersonalCardList(memberId);
+    public void deleteCard(int cardId) {
+        cardMapper.deleteCard(cardId);
     }
 
     @Override
-    public void deleteCard(int cardId) {
-        cardMapper.deleteCard(cardId);
+    public List<CardVO> getPersonalCardList(int memberId) {
+        return cardMapper.getPersonalCardList(memberId);
     }
 
     @Override
@@ -30,5 +30,10 @@ public class CardServiceImpl implements CardService {
     @Override
     public List<CardVO> getTop3CardList() {
         return cardMapper.getTop3CardList();
+    }
+
+    @Override
+    public List<CardVO> getLatest3CardList() {
+        return cardMapper.getLatest3CardList();
     }
 }

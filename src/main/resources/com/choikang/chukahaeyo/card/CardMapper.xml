@@ -22,6 +22,17 @@
         SELECT * FROM Card WHERE (cardIsPublic = TRUE) AND (cardIsPayed = TRUE)
     </select>
 
+    <select id="getLatest3CardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT *
+        FROM (
+                 SELECT *,
+                        ROW_NUMBER() OVER (PARTITION BY categoryId ORDER BY cardDate DESC) as rn
+                 FROM Card
+                 WHERE cardIsPublic = TRUE AND cardIsPayed = TRUE
+             ) ranked
+        WHERE rn = 1;
+    </select>
+
     <select id="getTop3CardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
         FROM (
@@ -31,7 +42,6 @@
                  WHERE cardIsPublic = TRUE
              ) ranked
         WHERE rn = 1;
---         SELECT * FROM Card WHERE cardIsPublic = TRUE ORDER BY cardLikeCnt DESC LIMIT 3
     </select>
 
     <delete id="deleteCard" parameterType="int">
