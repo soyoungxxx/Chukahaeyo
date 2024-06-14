@@ -115,7 +115,7 @@ public class MemberService {
         return memberMapper.getCardList(memberId);
     }
 
-    // 카드 내역 가져오기
+    // 결제 내역 가져오기
     public List<PaymentVO> getPaymentList(int memberId){
         return memberMapper.getPaymentList(memberId);
     }
@@ -125,4 +125,5 @@ public class MemberService {
 
     // 관리자 로그인
     public AdminVO adminLogin(AdminVO adminVO){return memberMapper.adminLogin(adminVO);}
+
 }
