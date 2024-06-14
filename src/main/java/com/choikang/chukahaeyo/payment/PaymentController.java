@@ -8,6 +8,8 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping(value = "/payments", produces = "application/text; charset=utf8")
@@ -16,9 +18,10 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/process")
-    public ResponseEntity<String> processPayment(@RequestBody PaymentDTO paymentDTO) {
+    public ResponseEntity<String> processPayment(@RequestBody PaymentDTO paymentDTO, HttpSession session) {
         System.out.println(paymentDTO);
         try {
+            paymentDTO.setMemberID((Integer) session.getAttribute("memberId"));
             paymentService.processPayment(paymentDTO);
             return new ResponseEntity<>(SuccessCode.PAYMENT_SUCCESS.getMessage(), SuccessCode.PAYMENT_SUCCESS.getHttpStatus());
         } catch (Exception e) {
