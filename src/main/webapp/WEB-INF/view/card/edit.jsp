@@ -440,6 +440,7 @@
                         if (response.indexOf("결제") > -1) {
                             saveHiddenDate();
                             $('#cardIsPayed').val('true');
+                            $(window).off('beforeunload');
                             $('#cart-submit-button').click();
                             // location.href = "/payments/success";
                             // console.log("결제 후 DB 저장 성공", response);
@@ -525,6 +526,7 @@
     $('#edit-cart-button').click(function () {
         saveHiddenDate();
         $('#cardIsPayed').val('false');
+        $(window).off('beforeunload');
         $('#cart-submit-button').click();
     })
 
