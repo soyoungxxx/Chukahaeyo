@@ -199,7 +199,63 @@ body .container{
     margin-bottom: 40px;
 }
 
-/*main data comment*/
+
+
+
+
+
+/*main-data-comment*/
+.main-data-comment-write-inner{
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+.main-data-comment-write-nickname{
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+
+
+.main-data-comment-replytext{
+    width: 400px;
+    height: 50px;
+    border: none;
+    outline: none;
+    margin-left: 15px;
+
+}
+
+.main-data-comment-replybutton{
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
+    border : none;
+    cursor: pointer;
+    height: auto;
+    margin-right: 10px;
+}
+
+.main-data-comment-write-cancel-button{
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
+    border : none;
+    cursor: pointer;
+    height: auto;
+}
+
+
+.main-data-comment-write{
+    width: 450px;
+    height: auto;
+    border: 1px solid #b3b3b3;
+    margin: 15px;
+}
+
 .main-data-comment {
 
     padding-top: 20px;
@@ -216,27 +272,16 @@ body .container{
     margin-top: 5px;
 }
 
-.main-data-comment-replytext{
-    margin-top : 10px;
-    width: 400px;
-    height: 24px;
-    border-radius: 10px;
-    border : 1px solid #777777;
-}
-
-.main-data-comment-replybutton{
-    margin-top : 10px;
-    height: 30px;
-    color: white;
-    background-color: #949FFF;
-    border: none;
-    border-radius: 10px;
-    cursor:pointer;
-
-}
 .main-data-comment-replyshow{
     cursor: pointer;
 }
+
+
+
+
+
+
+
 
 
 
@@ -257,7 +302,7 @@ body .container{
 .sub-data-comment-img{
     margin-left: 15px;
     margin-right: 15px;
-    
+
     width: 30px;
     height: 30px;
 
@@ -276,21 +321,21 @@ body .container{
 
 
 .sub-data-comment-replytext{
-    margin-top : 10px;
     width: 400px;
-    height: 24px;
-    border-radius: 10px;
-    border : 1px solid #777777;
+    height: 50px;
+    border: none;
+    outline: none;
+    margin-left: 15px;
 }
 
 .sub-data-comment-replybutton{
-    margin-top : 10px;
-    height: 30px;
-    color: white;
-    background-color: #949FFF;
-    border: none;
-    border-radius: 10px;
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
+    border : none;
     cursor: pointer;
+    height: auto;
+    margin-right: 10px;
 
 }
 .sub-data-comment-replyshow{
@@ -299,6 +344,37 @@ body .container{
 
 
 
+.sub-data-comment-write-inner{
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+.sub-data-comment-write-nickname{
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+
+.sub-data-comment-write{
+    width: 450px;
+    height: auto;
+    border: 1px solid #b3b3b3;
+    margin: 15px;
+}
+
+
+.sub-data-comment-write-cancel-button{
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
+    border : none;
+    cursor: pointer;
+    height: auto;
+
+}
 
 
 
@@ -312,28 +388,55 @@ body .container{
 
 
 /*main-comment-write*/
-.main-comment-write{
+.main-comment-write-inner{
     display: flex;
     flex-direction: row;
 
 }
 
+
+.main-comment-write-nickname{
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+
+
 .main-comment-write-text{
-    width: 400px;
-    height: 30px;
-    margin-top: 30px;
+    width: 750px;
+    height: 50px;
+    border: none;
+    outline: none;
+    margin-left: 15px;
+
 }
 
 .main-comment-write-button{
-    width: 80px;
-    background-color: #949FFF;
-    color: white;
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
     border : none;
     cursor: pointer;
-    height: 40px;
-    margin-top: 28px;
-    margin-left: 5px;
-    border-radius: 10px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.main-comment-write-cancel-button{
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
+    border : none;
+    cursor: pointer;
+    height: auto;
+}
+
+
+.main-comment-write{
+    width: 800px;
+    height: auto;
+    border: 1px solid #b3b3b3;
+    margin: 15px;
 }
 
 
