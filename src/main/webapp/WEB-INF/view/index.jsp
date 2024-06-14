@@ -17,32 +17,37 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="container">
-<%--            <div style="width: 100%; height: 100%;">--%>
                 <!-- 이미지 슬라이드 영역 -->
                 <div class="slideshow-container">
-                    <div class="slides fade">
-                        <img src="resources/img/main/mainad01.png" alt="" style="width:100%">
-                    </div>
-                    <div class="slides fade">
-                        <img src="resources/img/main/mainad01ex.png" alt="" style="width:100%">
-                    </div>
-                    <div class="slides fade">
-                        <img src="resources/img/main/mainad01.png" alt="" style="width:100%">
-                    </div>
+                    <c:forEach var="card" items="${top3Cards}">
+                        <div class="slides fade">
+                            <div class="card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}">
+                                <div class="card-image">
+    <%--                                <img src="resources/img/main/mainad0${card.categoryID}.png" alt="Card Image">                                --%>
+    <%--                                <img src="resources/img/main/mainad01.png" alt="Card Image">>--%>
+                                    <a href="card/completedCard/${card.cardID}">
+                                        <img src="resources/img/main/mainad01.png" alt="" style="width:100%">
+                                        <div class="overlay">
+                                            <div class="">수정 예정${card.categoryID}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
                     <a class="prev-slide" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next-slide" onclick="plusSlides(1)">&#10095;</a>
                 </div>
-<%--            </div>--%>
 
+            <!-- 내생일, 반려동물 생일, 단체 행사 링크 -->
             <div class="navigator">
-                <!-- 내생일, 반려동물 생일, 단체 행사 링크 -->
-                <a href="EditPage/내생일템플릿">
+                <a href="card/edit/myCard">
                     <img src="resources/img/main/mainbear1.png" alt="" class="mainBear">
                 </a>
-                <a href="EditPage/반려동물생일템플릿">
+                <a href="card/edit/myPet">
                     <img src="resources/img/main/mainbear2.png" alt="" class="mainBear">
                 </a>
-                <a href="EditPage/단체행사템플릿">
+                <a href="card/edit/invitation">
                     <img src="resources/img/main/mainbear3.png" alt="" class="mainBear">
                 </a>
             </div>
@@ -52,14 +57,16 @@
                 <a href="gallery"><input type="button" class="move-gallery" value="명예의 전당 이동"/></a>
             </div>
             <div class="card-gallery">
-                <c:forEach var="card" items="${top3Cards}">
-                    <div class="card" data-template="${card.templateThumbnail}" data-likes="${card.cardLikeCnt}" data-date="${card.cardStartDate}">
+                <c:forEach var="card" items="${latest3Cards}">
+                    <div class="card">
+                        <a href="card/completedCard/${card.cardID}">
                         <div class="card-image">
                             <img src="${card.templateThumbnail}" alt="Card Image">
                             <div class="overlay">
                                 <div class="text">${card.cardName}</div>
                             </div>
                         </div>
+                        </a>
                     </div>
                 </c:forEach>
             </div>

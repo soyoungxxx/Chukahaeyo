@@ -9,10 +9,11 @@ import java.util.List;
 @Mapper
 public interface CardMapper {
     void insertUrl(CardVO cardVO);
-    List<CardVO> getPersonalCardList(@Param("memberId") int memberId);
-    void deleteCard(@Param("cardId") int cardId);
+    void deleteCard(int cardId);
     void insertCardInCart(CardVO cardVO);
-    List<CardVO> getPublicCardList();
     String getCardDesign(int cardID);
+    List<CardVO> getPersonalCardList(int memberId);
+    List<CardVO> getPublicCardList();
     List<CardVO> getTop3CardList();
+    List<CardVO> getLatest3CardList();
 }
