@@ -26,120 +26,124 @@
     <div style="width: 100%; height: 100%;">
         <h2>${categoryName}가 만들어지는 중</h2>
         <div class="edit-main-div">
-            <form class="edit-submit-form" action="/card/edit/card.do" method="post" onsubmit="return checkRequires();" enctype="multipart/form-data">
+            <form class="edit-submit-form" action="/card/edit/card.do" method="post" onsubmit="return checkRequires();"
+                  enctype="multipart/form-data">
                 <div class="edit-div" style="overflow: scroll;">
-                    <div class="edit-div-components">
-                        <span class="head-text">이름</span>
-                        <span class="edit-warn-text">필수 항목입니다.</span>
-                        <input type="text" class="edit-text" id="edit-name" maxlength="20"/>
-                    </div>
-                    <hr>
-                    <div class="edit-div-components">
-                        <span class="head-text">날짜</span>
-                        <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                        <input type="radio" checked id="edit-dayRadio" name="day">하루 선택 <br>
-                        <input type="radio" id="edit-daysRadio" name="day"/>여러날 선택
-                        <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택" name="cardStartDate" readonly/>
-                        <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택" readonly/>
-                    </div>
-                    <hr>
-                    <div class="edit-div-components">
-                        <span class="head-text">사진</span>
-                        <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                        <%-- 사진 첨부하는 버튼 --%>
-                        <input class="edit-inputFile" id="edit-file" type="file" value="첨부하기"
-                               onchange="loadFile(this)" accept="image/*" name="imageFile"/>
-                        <label class="edit-file-label" for="edit-file">첨부하기</label>
-                    </div>
-                    <hr>
-                    <div class="edit-div-components">
-                        <span class="head-text">문구</span>
-                        <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                        <textarea id="edit-text" maxlength="255" placeholder="문구를 입력하세요"></textarea>
-                    </div>
-                    <hr>
-                    <div class="edit-div-components">
-                        <span class="head-text">이모티콘</span>
-                        <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                        <input class="edit-emoji" type="text" id="emoji1" maxlength="1"/>
-                        <input class="edit-emoji" type="text" id="emoji2" maxlength="1"/>
-                        <input class="edit-emoji" type="text" id="emoji3" maxlength="1"/>
-                        <input class="edit-emoji" type="text" id="emoji4" maxlength="1"/>
-                        <p style="font-size:14px; color:#686868; width:90%;">
-                            원하는 이모티콘을 <b>한 칸당 하나씩</b>
-                            작성해주세요! <br>
-                            양식을 지키지 않으면 이모티콘이 제대로 나오지 않을 수 있어요 😥 <br>
-                            ‘윈도우 키 + .’을 이용하면 이모티콘을 입력할 수 있어요!
-                        </p>
-                    </div>
-                    <hr>
-                    <div class="edit-div-components">
-                        <span class="head-text">시간</span>
-                        <!-- 온오프 버튼 -->
-                        <span class="edit-select-button">
+                    <div class="edit-div-hidden">
+                        <div class="edit-upper-div"></div>
+                        <div class="edit-div-components">
+                            <span class="head-text">이름</span>
+                            <span class="edit-warn-text">필수 항목입니다.</span>
+                            <input type="text" class="edit-text" id="edit-name" maxlength="18"/>
+                        </div>
+                        <hr>
+                        <div class="edit-div-components">
+                            <span class="head-text">날짜</span>
+                            <span class="edit-warn-text">필수 항목입니다.</span> <br>
+                            <input type="radio" checked id="edit-dayRadio" name="day">하루 선택 <br>
+                            <input type="radio" id="edit-daysRadio" name="day"/>여러날 선택
+                            <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택" name="cardStartDate"
+                                   readonly/>
+                            <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택" readonly/>
+                        </div>
+                        <hr>
+                        <div class="edit-div-components">
+                            <span class="head-text">사진</span>
+                            <span class="edit-warn-text">필수 항목입니다.</span> <br>
+                            <%-- 사진 첨부하는 버튼 --%>
+                            <input class="edit-inputFile" id="edit-file" type="file" value="첨부하기"
+                                   onchange="loadFile(this)" accept="image/*" name="imageFile"/>
+                            <label class="edit-file-label" for="edit-file">첨부하기</label>
+                        </div>
+                        <hr>
+                        <div class="edit-div-components">
+                            <span class="head-text">문구</span>
+                            <span class="edit-warn-text">필수 항목입니다.</span> <br>
+                            <textarea id="edit-text" maxlength="255" placeholder="문구를 입력하세요"></textarea>
+                        </div>
+                        <hr>
+                        <div class="edit-div-components">
+                            <span class="head-text">이모티콘</span>
+                            <span class="edit-warn-text">필수 항목입니다.</span> <br>
+                            <input class="edit-emoji" type="text" id="emoji1" maxlength="1"/>
+                            <input class="edit-emoji" type="text" id="emoji2" maxlength="1"/>
+                            <input class="edit-emoji" type="text" id="emoji3" maxlength="1"/>
+                            <input class="edit-emoji" type="text" id="emoji4" maxlength="1"/>
+                            <p style="font-size:14px; color:#686868; width:90%;">
+                                원하는 이모티콘을 <b>한 칸당 하나씩</b>
+                                작성해주세요! <br>
+                                양식을 지키지 않으면 이모티콘이 제대로 나오지 않을 수 있어요 😥 <br>
+                                ‘윈도우 키 + .’을 이용하면 이모티콘을 입력할 수 있어요!
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="edit-div-components">
+                            <span class="head-text">시간</span>
+                            <!-- 온오프 버튼 -->
+                            <span class="edit-select-button">
                         <input type="checkbox" id="edit-time-select" class="edit-check"/>
                         <label class="edit-btn-label" for="edit-time-select">
                             <span class="edit-onf_btn"></span>
                         </label>
-                        <!-- -->
+                                <!-- -->
                     </span>
-                        <div class="edit-showTime">
-                            <input type="radio" checked id="edit-timeRadio" name="edit-time">시각 선택 <br>
-                            <input type="radio" id="edit-timesRadio" name="edit-time"/>범위 시간 선택<br>
-                            <input type="time" id="edit-time" placeholder="시간 선택" readonly/>
-                            <input type="time" id="edit-times" placeholder="시간 선택" readonly/>
+                            <div class="edit-showTime">
+                                <input type="radio" checked id="edit-timeRadio" name="edit-time">시각 선택 <br>
+                                <input type="radio" id="edit-timesRadio" name="edit-time"/>범위 시간 선택<br>
+                                <input type="time" id="edit-time" placeholder="시간 선택"/>
+                                <input type="time" id="edit-times" placeholder="시간 선택"/>
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="edit-div-components">
-                        <span class="head-text">장소</span>
-                        <!-- 온오프 버튼 -->
-                        <span class="edit-select-button">
+                        <hr>
+                        <div class="edit-div-components">
+                            <span class="head-text">장소</span>
+                            <!-- 온오프 버튼 -->
+                            <span class="edit-select-button">
                         <input type="checkbox" id="edit-place-select" class="edit-check"/>
                         <label class="edit-btn-label" for="edit-place-select">
                             <span class="edit-onf_btn"></span>
                         </label>
-                        <!-- -->
+                                <!-- -->
                     </span>
-                        <div class="edit-place">
-                            <input type="button" class="edit-search-addr" value="주소 찾기"/>
-                            <input type="text" class="edit-text" placeholder="상세 주소 입력"/>
+                            <div class="edit-place">
+                                <input type="button" class="edit-search-addr" value="주소 찾기"/>
+                                <input type="text" class="edit-text" placeholder="상세 주소 입력"/>
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="edit-div-components">
-                        <span class="head-text">준비물</span>
-                        <!-- 온오프 버튼 -->
-                        <span class="edit-select-button">
+                        <hr>
+                        <div class="edit-div-components">
+                            <span class="head-text">준비물</span>
+                            <!-- 온오프 버튼 -->
+                            <span class="edit-select-button">
                         <input type="checkbox" id="edit-prepare-select" class="edit-check"/>
                         <label class="edit-btn-label" for="edit-prepare-select">
                             <span class="edit-onf_btn"></span>
                         </label>
-                        <!-- -->
+                                <!-- -->
                     </span>
-                        <textarea class="edit-prepare" maxlength="255" placeholder="준비물을 입력하세요"></textarea>
-                    </div>
-                    <hr>
-                    <div class="edit-div-components">
-                        <span class="head-text">계좌 번호</span>
-                        <!-- 온오프 버튼 -->
-                        <span class="edit-select-button">
+                            <textarea class="edit-prepare" maxlength="255" placeholder="준비물을 입력하세요"></textarea>
+                        </div>
+                        <hr>
+                        <div class="edit-div-components">
+                            <span class="head-text">계좌 번호</span>
+                            <!-- 온오프 버튼 -->
+                            <span class="edit-select-button">
                         <input type="checkbox" id="edit-account-select" class="edit-check"/>
                         <label class="edit-btn-label" for="edit-account-select">
                             <span class="edit-onf_btn"></span>
                         </label>
                     </span>
-                        <div class="edit-account">
-                            <p style="margin-bottom:0;">은행</p>
-                            <input type="text" id="edit-bank" class="edit-text" maxlength="10/">
-                            <p style="margin-bottom:0;">계좌 번호</p>
-                            <input type="text" id="edit-account-number" class="edit-text" maxlength="20" />
+                            <div class="edit-account">
+                                <p style="margin-bottom:0;">은행</p>
+                                <input type="text" id="edit-bank" class="edit-text" maxlength="10/">
+                                <p style="margin-bottom:0;">계좌 번호</p>
+                                <input type="text" id="edit-account-number" class="edit-text" maxlength="20"/>
+                            </div>
                         </div>
+                        <hr>
                     </div>
-                    <hr>
-
-                    <input type="hidden"  name="cardIsPayed" id="cardIsPayed">
-                    <input type="hidden"  name="cardEndDate" id="cardEndDate">
+                    <input type="hidden" name="cardIsPayed" id="cardIsPayed">
+                    <input type="hidden" name="cardEndDate" id="cardEndDate">
                     <input type="hidden" name="cardName" id="cardName">
                     <input type="hidden" name="cardDesign" id="card-design">
                     <input type="hidden" name="cardIsPublic" value="false" id="public">
@@ -182,6 +186,11 @@
 <script>
     let categoryId;
     let templateThumbnail;
+
+    $(window).on('beforeunload', function() {
+        return "goodbye!";
+
+    })
 
     // 주소 api 호출
     $('.edit-search-addr').click(function () {
@@ -231,7 +240,9 @@
             return false;
         }
     }
+
     var file;
+
     // 이미지 업로드 기능
     function loadFile(input) {
         file = input.files[0];
@@ -334,7 +345,6 @@
         $('.edit-prepare').hide();
         $('.edit-account').hide();
 
-
         // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
         $('#edit-dayRadio').click(function () {
             $('#edit-days').hide();
@@ -372,7 +382,6 @@
             $('.extra-account').toggle();
         })
     });
-
 
     // 결제
     var IMP = window.IMP;
@@ -451,20 +460,49 @@
         var template_id = $(this).attr("id");
         categoryId = ${categoryId};
         templateThumbnail = $(this).attr("src");
+
+        removeInfo();
+        $('.edit-upper-div').unwrap();
+        $('.edit-upper-div').remove();
+
+        if ($('#edit-time-select').is(':checked')) $('#edit-time-select').click();
+        if ($('#edit-place-select').is(':checked')) $('#edit-place-select').click();
+        if ($('#edit-prepare-select').is(':checked')) $('#edit-prepare-select').click();
+        if ($('#edit-account-select').is(':checked')) $('#edit-account-select').click();
+
+
         $.ajax({
             type: "GET",
             url: "/card/edit/template.do",
             data: {id: template_id},
             contentType: "text/html; charset:UTF-8",
             success: function (data) {
+
                 $('.edit-preview-div').html(data);
                 originText = $('.card-name').text();
                 $('.date').text($('#edit-day').val()); // 템플릿 선택 시 날짜 초기값 세팅
                 // 템플릿 선택시.. css 선택
-                $('#cardCss').prop("href","/resources/css/template/"+template_id+".css?after");
+                $('#cardCss').prop("href", "/resources/css/template/" + template_id + ".css?after");
             }
         })
+
     })
+
+    function removeInfo() {
+        $("input[type='text']").val("");
+        $("textarea").val("");
+        $(".edit-file-label").val("");
+        $("input[type='time']").val("");
+    }
+
+    function setReadOnly() {
+        $("input[type='text']").readOnly(false);
+        $("textarea").readOnly(false);
+        ;
+        $(".edit-file-label").readOnly(false);
+        $("input[type='time']").readOnly(false);
+        // $("input[type='date']").
+    }
 
     function saveHiddenDate() {
         $('#map').text("");
