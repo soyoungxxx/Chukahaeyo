@@ -10,7 +10,7 @@
             (cardName, cardIsPublic, cardIsPayed, cardStartDate, cardEndDate, cardImage,
             cardDesign, templateThumbnail, categoryID, memberID)
         VALUES
-            (#{cardName}, #{cardIsPublic}, false, #{cardStartDate}, #{cardEndDate}, #{cardImage},
+            (#{cardName}, #{cardIsPublic}, #{cardIsPayed}, #{cardStartDate}, #{cardEndDate}, #{cardImage},
             #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID})
     </insert>
 

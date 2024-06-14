@@ -1,12 +1,17 @@
 package com.choikang.chukahaeyo.member;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
+import com.choikang.chukahaeyo.exception.ErrorCode;
+import com.choikang.chukahaeyo.exception.SuccessCode;
 import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
 import com.choikang.chukahaeyo.payment.CancelDTO;
 import com.choikang.chukahaeyo.payment.PaymentDTO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -40,7 +45,7 @@ public class MemberController {
 
     // 관리자 로그인
     @PostMapping("/adminLogin")
-    public String adminLogin(Model model, AdminVO adminVO, HttpSession session){
+    public String adminLogin(Model model, AdminVO adminVO, HttpSession session) {
         AdminVO login = service.adminLogin(adminVO);
         if (login == null) {
             model.addAttribute("msg", "아이디 혹은 비밀번호를 다시 확인하세요.");
@@ -77,6 +82,8 @@ public class MemberController {
         } else {
             session.setAttribute("login", login); // login 객체 또는 true 설정
             session.setAttribute("memberId", login.getMemberID());
+            session.setAttribute("memberEmail", login.getMemberEmail());
+            session.setAttribute("memberName", login.getMemberName());
 
             // System.out.println으로 로그 출력
             System.out.println("Logged-in user ID: " + login.getMemberID());
@@ -177,12 +184,11 @@ public class MemberController {
         List<PaymentVO> paymentList = service.getPaymentList(memberId);
 
         Date twoDaysAgo = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
-        for(int i = 0; i < paymentList.size(); i++) {
+        for (int i = 0; i < paymentList.size(); i++) {
             Date tempDate = (paymentList.get(i)).getPayDate();
-            if(twoDaysAgo.before(tempDate)){
+            if (twoDaysAgo.before(tempDate)) {
                 paymentList.get(i).setIsWithinTwoDays(1);
-            }
-            else {
+            } else {
                 paymentList.get(i).setIsWithinTwoDays(0);
             }
         }
@@ -193,23 +199,16 @@ public class MemberController {
 
     //  결제내역 : 결제 취소
     @PostMapping("/cancelPayment")
-    public String cancelPayment(Model model, String payNo){
+    public ResponseEntity<String> cancelPayment(String payNo) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json;charset=UTF-8");
         System.out.println(payNo);
-
         // 결제 취소 API 실행 결과 저장
-        String success = "SUCCEEDED";
-
-        // 결과에 따라 alert띄워 주기
-        if(success.equals("SUCCEEDED")){
+        try {
             service.cancelPayment(payNo);
-            model.addAttribute("msg", "결제를 성공적으로 취소하였습니다");
-            model.addAttribute("url", "/mypage/myHistory");
-            return "include/alert";
-        }
-        else {
-            model.addAttribute("msg", "결제 취소 중 오류가 발생했습니다. 다시 시도 후 같은 문제 발생 시 문의 바랍니다.");
-            model.addAttribute("url", "/mypage/myHistory");
-            return "include/alert";
+            return new ResponseEntity<>(SuccessCode.CANCEL_SUCCESS.getMessage(), headers, SuccessCode.CANCEL_SUCCESS.getHttpStatus());
+        } catch (Exception e) {
+            return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), headers, ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
         }
     }
 
