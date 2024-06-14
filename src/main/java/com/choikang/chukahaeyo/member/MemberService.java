@@ -123,5 +123,6 @@ public class MemberService {
     // 결제 취소 - 결제 테이블 정보 변경
     public void cancelPayment(String payNo) {memberMapper.cancelPayment(payNo);}
 
+    // 관리자 로그인
     public AdminVO adminLogin(AdminVO adminVO){return memberMapper.adminLogin(adminVO);}
 }

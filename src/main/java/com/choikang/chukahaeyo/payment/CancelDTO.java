@@ -5,18 +5,15 @@ import lombok.Data;
 
 @Data
 public class CancelDTO {
-    private String payNo; //취소할 거래의 거래고유번호
-    private String cancleStatus; //결제 취소 내역 상태(FAILED, REQUESTED, SUCCEEDED)
-    private String cancleId; //취소 내역 id
-    private int cancelTotalAmount; //취소 총 금액
-    private String cancelReason; //취소 사유
+    private long canceledAt;
+    private String failReason;
+    private String receiptUrl;
 
     public static PaymentVO of(CancelDTO cancelDTO) {
         PaymentVO paymentVO = new PaymentVO();
-        paymentVO.setCancleStatus(cancelDTO.getCancleStatus());
-        paymentVO.setCancleId(cancelDTO.getCancleId());
-        paymentVO.setCancelTotalAmount(cancelDTO.getCancelTotalAmount());
-        paymentVO.setCancelReason(cancelDTO.getCancelReason());
+        paymentVO.setCanceledAt(cancelDTO.getCanceledAt());
+        paymentVO.setFailReason(cancelDTO.getFailReason());
+        paymentVO.setReceiptURL(cancelDTO.getReceiptUrl());
 
         return paymentVO;
     }

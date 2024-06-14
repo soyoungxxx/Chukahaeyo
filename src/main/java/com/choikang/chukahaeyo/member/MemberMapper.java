@@ -43,7 +43,7 @@ public interface MemberMapper {
     // 결제 내역 가져오기
     List<PaymentVO> getPaymentList(int memberId);
 
-    // 결제 취소
+    // 결제 취소 : 결제 정보 변경
     void cancelPayment(String payNo);
 
     // 관리자 로그인
