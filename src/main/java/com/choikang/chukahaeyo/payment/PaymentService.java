@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -95,7 +94,7 @@ public class PaymentService {
 
             Map<String, String> keyMap = new HashMap<>();
             keyMap.put("imp_uid", payNo);
-            keyMap.put("reason","단순 고객 변심");
+            keyMap.put("reason", "단순 고객 변심");
             ObjectMapper objectMapper = new ObjectMapper();
             String keyJson = objectMapper.writeValueAsString(keyMap);
             System.out.println("keyJson : " + keyJson);
@@ -103,11 +102,29 @@ public class PaymentService {
             HttpEntity<String> requestEntity = new HttpEntity<>(keyJson, headers);
             ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntity, String.class);
 
-            if(responseEntity.getStatusCode() == HttpStatus.OK){
+            if (responseEntity.getStatusCode() == HttpStatus.OK) {
                 System.out.println("결제 취소 성공");
                 System.out.println("responseEntity : " + responseEntity);
                 System.out.println("응답 코드 : " + responseEntity.getStatusCode());
-            }else{
+                String responseBody = responseEntity.getBody();
+                JSONParser jsonParser = new JSONParser();
+                JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
+                JSONObject resultObject = (JSONObject) jsonObject.get("response"); //response값만 추출
+
+                System.out.println("resultObject : " + resultObject);
+
+                long canceledAt = (Long) resultObject.get("cancelled_at"); //취소 시각. 결제 취소가 아니면 0
+                String failReason = (String) resultObject.get("fail_reason"); //결제 실패 사유. 결제 성공 시 null값.
+                String receiptUrl = (String) resultObject.get("receipt_url"); //결제건의 매출전표
+
+                CancelDTO cancelDTO = new CancelDTO();
+                cancelDTO.setCanceledAt(canceledAt);
+                cancelDTO.setFailReason(failReason);
+                cancelDTO.setReceiptUrl(receiptUrl);
+
+
+                System.out.println("DB 저장 성공");
+            } else {
                 throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "결제 취소에 실패하였습니다.");
             }
         } catch (Exception e) {
