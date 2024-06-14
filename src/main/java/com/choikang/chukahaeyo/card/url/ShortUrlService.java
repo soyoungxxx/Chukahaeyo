@@ -27,7 +27,7 @@ public class ShortUrlService {
     private final RestTemplate restTemplate;
     private final CardMapper cardMapper;
 
-    public String shortUrl(String originUrl) throws ParseException { // originUrl을 네이버 API로 보내는 메소드
+    public String shortUrl(String originUrl) { // originUrl을 네이버 API로 보내는 메소드
         try {
             // API로 보낼 URL 설정
             String apiUrl = "https://openapi.naver.com/v1/util/shorturl?url=" + originUrl;
