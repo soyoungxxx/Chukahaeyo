@@ -125,6 +125,7 @@ public class PaymentService {
                 PaymentVO paymentVO = cancelDTO.of(cancelDTO);
 
                 //이 위치에 mapper에 paymentVO를 insert하는 부분 추가
+                paymentMapper.insertPayment(paymentVO);
 
                 System.out.println("DB 저장 성공");
             } else {

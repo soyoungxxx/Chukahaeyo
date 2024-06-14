@@ -27,7 +27,7 @@ function getHeight() {
 // like 버튼 클릭 시 숫자 올라가고, 이모티콘 컨페티 터지는 효과
 var emoji = ["🎉", "🎊", "✨", "🎈"];
 $(document).on('click', '#like', function() {
-    const likeNumber = Number($(".like-number").text() + 1);
+    let likeNumber = Number($(".like-number").text()) + 1;
     if (window.location.pathname.includes('/card/edit/')) {
         $(".like-number").text(likeNumber);
     } else { // db 업데이트
