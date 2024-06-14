@@ -52,6 +52,7 @@
 
             <input type="hidden" class="board-id" value="${object.commID}"/>
             <input type="hidden" class="my-member-id" value="${communityVO.memberID}"/>
+            <input type="hidden" class="my-member-name" value="${communityVO.memberName}"/>
             <div class="writer-container">
                 <div class="writer-text">${object.memberName}</div>
                 <div class="writer-date"><fmt:formatDate value="${object.commPostDate }"
