@@ -107,7 +107,7 @@
                     </span>
                             <div class="edit-place">
                                 <input type="button" class="edit-search-addr" value="주소 찾기"/>
-                                <input type="text" class="edit-text" placeholder="상세 주소 입력"/>
+                                <input type="text" class="edit-text" id="addr2" placeholder="상세 주소 입력"/>
                             </div>
                         </div>
                         <hr>
@@ -186,10 +186,10 @@
 <script>
     let categoryId;
     let templateThumbnail;
+    let address = " ";
 
     $(window).on('beforeunload', function() {
         return "수정사항이 취소됩니다. 계속하시겠어요?";
-
     })
 
     // 주소 api 호출
@@ -217,9 +217,9 @@
                 }
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                $("#addr1").val(roadAddr);
-                $("#addr2").val(extraRoadAddr);
-                $(".extra-address").text(roadAddr + " " + extraRoadAddr);
+                address = roadAddr + " " + extraRoadAddr;
+
+                $(".extra-address").html(address+ "<br>" + $('#addr2').val());
 
                 getMap(roadAddr);
             }
@@ -287,6 +287,11 @@
         $('#emoji4').change(function () {
             emoji[3] = $("#emoji4").val();
         });
+
+        // 장소
+        $('#addr2').on('input', function () {
+            $(".extra-address").html(address + "<br>" + $(this).val());
+        })
 
         // 준비물
         $('.edit-prepare').on('input', function () {
