@@ -188,7 +188,7 @@
     let templateThumbnail;
 
     $(window).on('beforeunload', function() {
-        return "goodbye!";
+        return "수정사항이 취소됩니다. 계속하시겠어요?";
 
     })
 
@@ -239,6 +239,7 @@
             alert("이모티콘을 4개 적어주세요!");
             return false;
         }
+        return true;
     }
 
     var file;
@@ -451,7 +452,9 @@
     }
 
     document.getElementById('edit-pay-button').addEventListener('click', function () {
-        requestPay();
+        if (checkRequires()) {
+            requestPay();
+        }
     });
 
     var originText;
