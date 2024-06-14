@@ -15,20 +15,23 @@
 
     <script>
         function cancelPayment(payNo) {
+            console.log("결제 번호 " + payNo + "가 취소되었습니다.");
             $.ajax({
-                url: '/cancelPayment', // 이부분 추후 작성
+                url: '/cancelPayment',
                 data: {
                     payNo :payNo
                 },
                 type: 'POST',
                 async: false,
-                dataType: 'json',
+                dataType: 'text',
                 success: function (res) {
                     console.log(res);
-                    // 성공 실패 여부에 따른 alert 보내주기
+                    alert(res);
+                    document.location.reload();
                 },
                 error: function (res, status, error) {
-                    console.error("AJAX: ", status, error);
+                    // console.error("AJAX: ", status, error);
+                    alert("결제 취소 중 오류가 발생하였습니다. \n오류가 계속될 시 문의바랍니다.")
                 }
             })
         }
@@ -63,9 +66,9 @@
 
                             <div class="payment-info">
                                 <p>주문일자: <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.payDate}"/></p>
-                                <p>금액: <fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.payAmount}"/>원</p>
+                                <p>금액: <fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.payAmount}"/>원</p><br>
                                 <c:if test="${payment.isWithinTwoDays == '1'}">
-                                    <a href="javascript:cancelPayment(${payment.payNo});">취소</a>
+                                    <a href="#" onclick="cancelPayment('${payment.payNo}');">취소</a>
                                 </c:if>
                             </div>
                         </div>
