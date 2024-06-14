@@ -134,6 +134,8 @@
                         </div>
                     </div>
                     <hr>
+
+                    <input type="hidden"  name="cardIsPayed" id="cardIsPayed">
                     <input type="hidden"  name="cardEndDate" id="cardEndDate">
                     <input type="hidden" name="cardName" id="cardName">
                     <input type="hidden" name="cardDesign" id="card-design">
@@ -418,8 +420,11 @@
                     success: function (response) {
                         console.log("response" + response)
                         if (response.indexOf("결제") > -1) {
-                            location.href = "/payments/success";
-                            console.log("결제 후 DB 저장 성공", response);
+                            saveHiddenDate();
+                            $('#cardIsPayed').val('true');
+                            $('#cart-submit-button').click();
+                            // location.href = "/payments/success";
+                            // console.log("결제 후 DB 저장 성공", response);
                         }
                     },
                     error: function (xhr, status, error) {
@@ -458,7 +463,7 @@
         })
     })
 
-    $('#edit-cart-button').click(function () {
+    function saveHiddenDate() {
         $('#map').text("");
         $('#map').removeAttr("style");
         $("#card-design").val($('.edit-preview-div').html());
@@ -466,6 +471,11 @@
         $('#cardName').val($('.card-name').text());
         $('#submit-templateThumbnail').val(templateThumbnail);
         $('#submit-categoryId').val(categoryId);
+    }
+
+    $('#edit-cart-button').click(function () {
+        saveHiddenDate();
+        $('#cardIsPayed').val('false');
         $('#cart-submit-button').click();
     })
 

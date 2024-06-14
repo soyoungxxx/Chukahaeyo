@@ -42,11 +42,16 @@ public class EditController {
 
     @PostMapping("/edit/card.do")
     public String getCardInfo(CardVO cardVO, HttpSession session, @RequestParam(value="imageFile") MultipartFile file) {
+        String redirectURL;
         cardVO.setMemberID((Integer) session.getAttribute("memberId"));
         cardVO.setCardImage(imageService.saveFile(file));
-
+        if (cardVO.getCardIsPayed()) {
+            redirectURL = "/payments/success";
+        } else {
+            redirectURL = "/cart";
+        }
         service.insertCardInCart(cardVO);
-        return "redirect:/cart";
+        return "redirect:" + redirectURL;
     }
 
     @GetMapping("/completedCard/{cardID}")
