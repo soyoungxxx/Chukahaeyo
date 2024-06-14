@@ -35,7 +35,7 @@
     <!--summernote-->
 </head>
 
-<body class="body">
+<body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 
 
