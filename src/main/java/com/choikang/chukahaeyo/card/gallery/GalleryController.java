@@ -26,8 +26,12 @@ public class GalleryController {
     public String index(Model model) {
         List<CardVO> top3Cards = cardService.getTop3CardList();
         model.addAttribute("top3Cards", top3Cards);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println("Top 3 Cards: " + top3Cards);
+
+        List<CardVO> latest3Cards = cardService.getLatest3CardList();
+        model.addAttribute("latest3Cards", latest3Cards);
+        System.out.println("Latest 3 Cards: " + latest3Cards);
+
         return "index";
     }
 }
