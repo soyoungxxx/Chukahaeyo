@@ -64,6 +64,7 @@ public class EditController {
         } else {
             redirectURL = "/cart";
         }
+        // XSS filter 적용해서 html 문법 필터링하기
         XssFilter filter = XssFilter.getInstance("lucy-xss-superset-sax.xml", true);
         cardVO.setCardDesign(filter.doFilter(cardVO.getCardDesign()));
         service.insertCardInCart(cardVO);
