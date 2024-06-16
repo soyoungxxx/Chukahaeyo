@@ -48,8 +48,8 @@
         DELETE FROM Card WHERE cardID = #{cardID}
     </delete>
 
-    <select id="getCardDesign" parameterType="int" resultType="String">
-        SELECT cardDesign
+    <select id="getCompletedCardPage" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT cardDesign, templateThumbnail
         FROM Card
         WHERE cardID = #{cardID}
     </select>

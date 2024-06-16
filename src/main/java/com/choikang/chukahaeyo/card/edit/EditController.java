@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -69,9 +68,12 @@ public class EditController {
 
     @GetMapping("/completedCard/{cardID}")
     public String getCompletedCardPage(@PathVariable int cardID, Model model) {
-        String cardDesign = service.getCardDesign(cardID);
+        CardVO cardVO = service.getCompletedCardPage(cardID);
         model.addAttribute("cardID", cardID);
-        model.addAttribute("cardDesign", cardDesign);
+        model.addAttribute("cardDesign", cardVO.getCardDesign());
+
+        String css = cardVO.getTemplateThumbnail().substring(25, cardVO.getTemplateThumbnail().length() - 4);
+        model.addAttribute("css", css);
         return "card/completedCard";
     }
 }

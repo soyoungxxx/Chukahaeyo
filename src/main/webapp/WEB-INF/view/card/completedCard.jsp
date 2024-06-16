@@ -3,7 +3,7 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="/resources/css/template/cardCommon.css"/>
-    <link rel="stylesheet" href="/resources/css/template/${cardID}.css"/>
+    <link rel="stylesheet" href="/resources/css/template/${css}.css"/>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/js-confetti@0.9.0/dist/js-confetti.browser.js"></script>
