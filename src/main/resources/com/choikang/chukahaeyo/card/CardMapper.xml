@@ -49,9 +49,14 @@
     </delete>
 
     <select id="getCompletedCardPage" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
-        SELECT cardDesign, templateThumbnail
+        SELECT *
         FROM Card
         WHERE cardID = #{cardID}
     </select>
 
+    <update id="updateCardLike" parameterType="int">
+        UPDATE Card
+        SET cardLikeCnt = Card.cardLikeCnt + 1
+        WHERE cardID = #{cardID}
+    </update>
 </mapper>

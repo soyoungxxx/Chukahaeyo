@@ -16,4 +16,6 @@ public interface CardMapper {
     List<CardVO> getPublicCardList();
     List<CardVO> getTop3CardList();
     List<CardVO> getLatest3CardList();
+    void updateCardLike(int cardID);
+
 }

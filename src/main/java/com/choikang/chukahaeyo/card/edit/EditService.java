@@ -32,4 +32,8 @@ public class EditService {
     public CardVO getCompletedCardPage(int cardID) {
         return cardMapper.getCompletedCardPage(cardID);
     }
+
+    public void updateCardLike(int cardID) {
+        cardMapper.updateCardLike(cardID);
+    }
 }

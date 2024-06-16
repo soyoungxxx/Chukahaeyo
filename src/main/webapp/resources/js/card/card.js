@@ -34,9 +34,13 @@ $(document).on('click', '#like', function() {
         $.ajax({
             url: '/card/like.do',
             type: 'POST',
-            data: likeNumber,
-            success: function () {
+            data: {cardID:cardID},
+            async: false,
+            success: function(result) {
                 $(".like-number").text(likeNumber);
+            },
+            error: function() {
+                console.log("like db 업데이트에 실패했습니다.");
             }
         });
     }
