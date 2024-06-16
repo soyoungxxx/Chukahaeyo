@@ -14,6 +14,7 @@
     $(function() {
         $("#scr").before('${cardVO.cardDesign}');
         $(".like-number").text(${cardVO.cardLikeCnt});
+        $(".uploadedImage").attr("src", "${cardVO.cardImage}");
     })
     const cardID = ${cardVO.cardID};
 </script>
