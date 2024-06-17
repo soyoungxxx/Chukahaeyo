@@ -7,13 +7,13 @@ import lombok.Data;
 public class CancelDTO {
     private long canceledAt;
     private String failReason;
-    private String receiptUrl;
+    private String cancelReceiptURL;
 
     public static PaymentVO of(CancelDTO cancelDTO) {
         PaymentVO paymentVO = new PaymentVO();
         paymentVO.setCanceledAt(cancelDTO.getCanceledAt());
         paymentVO.setFailReason(cancelDTO.getFailReason());
-        paymentVO.setReceiptURL(cancelDTO.getReceiptUrl());
+        paymentVO.setCancelReceiptURL(cancelDTO.getCancelReceiptURL());
 
         return paymentVO;
     }

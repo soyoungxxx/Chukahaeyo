@@ -115,17 +115,18 @@ public class PaymentService {
 
                 long canceledAt = (Long) resultObject.get("cancelled_at"); //취소 시각. 결제 취소가 아니면 0
                 String failReason = (String) resultObject.get("fail_reason"); //결제 실패 사유. 결제 성공 시 null값.
-                String receiptUrl = (String) resultObject.get("receipt_url"); //결제건의 매출전표
+                String cancelReceiptUrl = (String) resultObject.get("receipt_url"); //결제건의 매출전표
 
                 CancelDTO cancelDTO = new CancelDTO();
                 cancelDTO.setCanceledAt(canceledAt);
                 cancelDTO.setFailReason(failReason);
-                cancelDTO.setReceiptUrl(receiptUrl);
+                cancelDTO.setCancelReceiptURL(cancelReceiptUrl);
 
                 PaymentVO paymentVO = cancelDTO.of(cancelDTO);
+                paymentVO.setPayNo(payNo);
 
                 //이 위치에 mapper에 paymentVO를 insert하는 부분 추가
-                paymentMapper.insertPayment(paymentVO);
+                paymentMapper.cancelPayment(paymentVO);
 
                 System.out.println("DB 저장 성공");
             } else {
