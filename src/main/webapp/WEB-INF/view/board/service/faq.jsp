@@ -34,28 +34,6 @@
                 </div>
                 <div class="v-line"></div>
                 <div class="mypage-content">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <div class="container">
                         <div class="faq-title">자주 묻는 질문</div>
                         <div class="faq-container">
@@ -75,27 +53,11 @@
                                 earum, animi labore laudantium consequuntur nam porro incidunt at alias facere
                                 adipisci nobis qui deserunt. Voluptate exercitationem commodi quaerat.
                             </div>
-                            <hr>
 
-                            <div class="faq-inner-container">
-                                    <span>
-                                        <span class="no">1.</span>
-                                        <span class="title">페이지를 얼마나 유지할수 있나요?</span>
-                                    </span>
-                                <span class="arrow">></span>
-                            </div>
-                            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-                                voluptatibus odio quas saepe quis, doloribus culpa quia veniam architecto! Totam
-                                consectetur, atque nulla dolorem officia quis reiciendis aspernatur error
-                                doloremque?
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur debitis odio
-                                earum, animi labore laudantium consequuntur nam porro incidunt at alias facere
-                                adipisci nobis qui deserunt. Voluptate exercitationem commodi quaerat.
-                            </div>
                             <hr>
                             <div class="faq-inner-container">
                                     <span>
-                                        <span class="no">1.</span>
+                                        <span class="no">2.</span>
                                         <span class="title">페이지를 얼마나 유지할수 있나요?</span>
                                     </span>
                                 <span class="arrow">></span>
@@ -112,7 +74,7 @@
 
                             <div class="faq-inner-container">
                                     <span>
-                                        <span class="no">1.</span>
+                                        <span class="no">3.</span>
                                         <span class="title">페이지를 얼마나 유지할수 있나요?</span>
                                     </span>
                                 <span class="arrow">></span>
@@ -129,58 +91,7 @@
 
                             <div class="faq-inner-container">
                                     <span>
-                                        <span class="no">1.</span>
-                                        <span class="title">페이지를 얼마나 유지할수 있나요?</span>
-                                    </span>
-                                <span class="arrow">></span>
-                            </div>
-                            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-                                voluptatibus odio quas saepe quis, doloribus culpa quia veniam architecto! Totam
-                                consectetur, atque nulla dolorem officia quis reiciendis aspernatur error
-                                doloremque?
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur debitis odio
-                                earum, animi labore laudantium consequuntur nam porro incidunt at alias facere
-                                adipisci nobis qui deserunt. Voluptate exercitationem commodi quaerat.
-                            </div>
-                            <hr>
-
-                            <div class="faq-inner-container">
-                                    <span>
-                                        <span class="no">1.</span>
-                                        <span class="title">페이지를 얼마나 유지할수 있나요?</span>
-                                    </span>
-                                <span class="arrow">></span>
-                            </div>
-                            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-                                voluptatibus odio quas saepe quis, doloribus culpa quia veniam architecto! Totam
-                                consectetur, atque nulla dolorem officia quis reiciendis aspernatur error
-                                doloremque?
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur debitis odio
-                                earum, animi labore laudantium consequuntur nam porro incidunt at alias facere
-                                adipisci nobis qui deserunt. Voluptate exercitationem commodi quaerat.
-                            </div>
-                            <hr>
-
-                            <div class="faq-inner-container">
-                                    <span>
-                                        <span class="no">1.</span>
-                                        <span class="title">페이지를 얼마나 유지할수 있나요?</span>
-                                    </span>
-                                <span class="arrow">></span>
-                            </div>
-                            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-                                voluptatibus odio quas saepe quis, doloribus culpa quia veniam architecto! Totam
-                                consectetur, atque nulla dolorem officia quis reiciendis aspernatur error
-                                doloremque?
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aspernatur debitis odio
-                                earum, animi labore laudantium consequuntur nam porro incidunt at alias facere
-                                adipisci nobis qui deserunt. Voluptate exercitationem commodi quaerat.
-                            </div>
-                            <hr>
-
-                            <div class="faq-inner-container">
-                                    <span>
-                                        <span class="no">1.</span>
+                                        <span class="no">4.</span>
                                         <span class="title">페이지를 얼마나 유지할수 있나요?</span>
                                     </span>
                                 <span class="arrow">></span>
@@ -195,43 +106,7 @@
                             </div>
                             <hr>
                         </div>
-
-
-
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>

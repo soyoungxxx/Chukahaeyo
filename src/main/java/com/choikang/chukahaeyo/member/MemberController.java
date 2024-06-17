@@ -194,7 +194,6 @@ public class MemberController {
         }
         model.addAttribute("cardList", cardList);
         model.addAttribute("paymentList", paymentList);
-        System.out.println(paymentList.get(paymentList.size()-1));
         return "/mypage/myHistory";
     }
     

@@ -51,7 +51,11 @@
             <div class="mypage-wrap">
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <div class="mypage-content">
-                    <% Date twoDaysAgo = new Date(new Date().getTime() - 3600*1000*2*24);%>
+                    <c:if test="${paymentList}==null">
+                        <div class="payment-null">
+                            <p>결제 내역이 존재하지 않습니다.</p>
+                        </div>
+                    </c:if>
                     <c:forEach var="payment" items="${paymentList}">
                         <div class="payment-list">
                             <div class="payment-items">
