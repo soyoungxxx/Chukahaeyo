@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -23,10 +24,9 @@ public class ShortUrlController {
 
     @GetMapping("/short")
     @ResponseBody
-    public String shortUrl(Model model) {
-        String originUrl = url(); // origin에서 받아온 URL
+    public String shortUrl(Model model, @RequestParam int cardID) {
         try {
-            String shortUrl = shortUrlService.shortUrl(originUrl);
+            String shortUrl = shortUrlService.shortUrl(cardID);
             model.addAttribute("shortUrl", shortUrl);
             return "successPay";
         } catch (Exception e) {

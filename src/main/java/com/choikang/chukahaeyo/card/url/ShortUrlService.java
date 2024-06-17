@@ -27,10 +27,11 @@ public class ShortUrlService {
     private final RestTemplate restTemplate;
     private final CardMapper cardMapper;
 
-    public String shortUrl(String originUrl) { // originUrl을 네이버 API로 보내는 메소드
+    public String shortUrl(int cardID) { // originUrl을 네이버 API로 보내는 메소드
         try {
-            // API로 보낼 URL 설정
-            String apiUrl = "https://openapi.naver.com/v1/util/shorturl?url=" + originUrl;
+            String url = "http://localhost.com:9090/card/completedCard/" + cardID; //카드 url
+
+            String apiUrl = "https://openapi.naver.com/v1/util/shorturl?url=" + url; // API url
 
             // 헤더 설정
             HttpHeaders headers = new HttpHeaders();
