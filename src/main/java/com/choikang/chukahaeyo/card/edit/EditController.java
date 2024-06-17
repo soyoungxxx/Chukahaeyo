@@ -56,7 +56,7 @@ public class EditController {
     @PostMapping("/edit/card.do")
     public String getCardInfo(CardVO cardVO, HttpSession session, @RequestParam(value="imageFile") MultipartFile file) {
         String redirectURL;
-        cardVO.setMemberID((Integer) session.getAttribute("memberId"));
+        cardVO.setMemberID((Integer) session.getAttribute("memberID"));
         cardVO.setCardImage(imageService.saveFile(file));
         if (cardVO.getCardIsPayed()) {
             redirectURL = "/payments/success";

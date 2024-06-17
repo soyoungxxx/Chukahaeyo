@@ -2,50 +2,53 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.choikang.chukahaeyo.card.CardMapper">
     <insert id="insertUrl" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
-        INSERT INTO short_urls(cardUrl, cardQR) VALUES (#{cardUrl}, #{cardQR})
+        INSERT INTO short_urls(cardURL, cardQR)
+        VALUES (#{cardURL}, #{cardQR})
     </insert>
 
     <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
         INSERT INTO Card
-            (cardName, cardIsPublic, cardIsPayed, cardStartDate, cardEndDate, cardImage,
-            cardDesign, templateThumbnail, categoryID, memberID)
-        VALUES
-            (#{cardName}, #{cardIsPublic}, #{cardIsPayed}, #{cardStartDate}, #{cardEndDate}, #{cardImage},
-            #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID})
+        (cardName, cardIsPublic, cardIsPaid, cardStartDate, cardEndDate, cardImage,
+         cardDesign, templateThumbnail, categoryID, memberID)
+        VALUES (#{cardName}, #{cardIsPublic}, #{cardIsPaid}, #{cardStartDate}, #{cardEndDate}, #{cardImage},
+                #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID})
     </insert>
 
-    <select id="getPersonalCardList" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
-        SELECT * FROM Card WHERE memberID = #{memberId}
+    <select id="getPersonalCart" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT *
+        FROM Card
+        WHERE (memberID = #{memberID}) AND (cardIsPaid = FALSE)
     </select>
 
     <select id="getPublicCardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
-        SELECT * FROM Card WHERE (cardIsPublic = TRUE) AND (cardIsPayed = TRUE)
+        SELECT *
+        FROM Card
+        WHERE (cardIsPublic = TRUE) AND (cardIsPaid = TRUE)
     </select>
 
     <select id="getLatest3CardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
-        FROM (
-                 SELECT *,
-                        ROW_NUMBER() OVER (PARTITION BY categoryId ORDER BY cardDate DESC) as rn
-                 FROM Card
-                 WHERE cardIsPublic = TRUE AND cardIsPayed = TRUE
-             ) ranked
+        FROM (SELECT *,
+                     ROW_NUMBER() OVER (PARTITION BY categoryId ORDER BY cardDate DESC) as rn
+              FROM Card
+              WHERE (cardIsPublic = TRUE) AND (cardIsPaid = TRUE)
+              ) ranked
         WHERE rn = 1;
     </select>
 
     <select id="getTop3CardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
-        FROM (
-                 SELECT *,
-                        ROW_NUMBER() OVER (PARTITION BY categoryId ORDER BY cardLikeCnt DESC, ABS(DATEDIFF(cardStartDate, NOW())) ASC) as rn
-                 FROM Card
-                 WHERE cardIsPublic = TRUE
-             ) ranked
+        FROM (SELECT *,
+                     ROW_NUMBER() OVER (PARTITION BY categoryId ORDER BY cardLikeCnt DESC, ABS(DATEDIFF(cardStartDate, NOW())) ASC) as rn
+              FROM Card
+              WHERE cardIsPublic = TRUE) ranked
         WHERE rn = 1;
     </select>
 
     <delete id="deleteCard" parameterType="int">
-        DELETE FROM Card WHERE cardID = #{cardID}
+        DELETE
+        FROM Card
+        WHERE cardID = #{cardID}
     </delete>
 
     <select id="getCardDesign" parameterType="int" resultType="String">
@@ -53,5 +56,11 @@
         FROM Card
         WHERE cardID = #{cardID}
     </select>
+
+    <update id="updateCardPaymentStatus" parameterType="int">
+        UPDATE Card
+        SET cardIsPaid = TRUE, payId = #{payID}
+        WHERE cardID = #{cardID}
+    </update>
 
 </mapper>

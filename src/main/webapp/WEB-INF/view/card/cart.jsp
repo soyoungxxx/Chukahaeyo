@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/cart.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
     <script>
         function updateTotal() {
             let total = 0;
@@ -29,12 +30,12 @@
             });
         }
 
-        function deleteCard(cardId, event) {
+        function deleteCard(cardID, event) {
             if (confirm("정말로 삭제하겠습니까?")) {
                 $.ajax({
                     url: '/deleteCard',
                     type: 'POST',
-                    data: {cardId: cardId},
+                    data: {cardID: cardID},
                     success: function (response) {
                         if (response.status === 'success') {
                             alert("카드가 삭제되었습니다.");
@@ -62,17 +63,104 @@
             document.querySelectorAll('.card-checkbox:checked').forEach(function (checkbox) {
                 let card = checkbox.closest('.card');
                 let cardInfo = {
-                    cardId: card.querySelector('.close-button').getAttribute('onclick').match(/\d+/)[0],
-                    cardName: card.querySelector('.card-text').textContent,
-                    cardPrice: card.querySelector('.card-checkbox').value
+                    cardID: card.dataset.id,  // 각 카드 div에 data-id 속성이 있는지 확인
+                    cardPrice: checkbox.value
                 };
+                // let cardInfo = {
+                //     cardId: card.querySelector('.close-button').getAttribute('onclick').match(/\d+/)[0],
+                //     cardName: card.querySelector('.card-text').textContent,
+                //     cardPrice: card.querySelector('.card-checkbox').value
+                // };
                 selectedCards.push(cardInfo);
             });
 
             console.log("Selected Cards:", selectedCards);
             if (confirm("결제하시겠습니까?")) {
-                // 여기에 결제 로직 추가
-                alert("결제가 완료되었습니다.");
+
+                var today = new Date();
+                var hours = today.getHours(); // 시
+                var minutes = today.getMinutes();  // 분
+                var seconds = today.getSeconds();  // 초
+                var milliseconds = today.getMilliseconds();
+                var makeMerchantUid = 'merchant_' + new Date().getTime();
+
+                let totalAmount = selectedCards.reduce((sum, card) => sum + parseFloat(card.cardPrice), 0);
+
+                // 아임포트 초기화
+                var IMP = window.IMP;
+                IMP.init("imp72336673");
+
+                IMP.request_pay({
+                    pg: 'uplus',
+                    pay_method: 'card',
+                    merchant_uid: "IMP" + makeMerchantUid,
+                    name: '축하해요 카드 결제',
+                    amount: totalAmount,
+                    buyer_email: 'Iamport@chai.finance',
+                    buyer_name: '아임포트',
+                    buyer_tel: '010-1234-5678',
+                    buyer_addr: '서울특별시 강남구 삼성동',
+                    buyer_postcode: '123-456',
+                    display: {
+                        card_quota: [3]  // 할부개월 3개월까지 활성화
+                    }
+                }, function (rsp) {
+                    if (rsp.success) {
+                        console.log("결제 성공", rsp);
+                        console.log("응답 객체 구조:", JSON.stringify(rsp, null, 2));
+                        $.ajax({
+                            url: '/payments/process',
+                            type: 'POST',
+                            contentType: 'application/json; charset=UTF-8',
+                            data: JSON.stringify({
+                                applyNum: rsp.apply_num,
+                                buyer_email: rsp.buyer_email,
+                                payNo: rsp.imp_uid,
+                                merchantUid: rsp.merchant_uid,
+                                payAmount: rsp.paid_amount,
+                                paidAt: rsp.paid_at,
+                                status: rsp.status,
+                                receiptURL: rsp.receipt_url,
+                                cardIds: selectedCards.map(card => card.cardId) // 카드 ID 목록 추가
+
+                            }),
+                            success: function (response) {
+                                console.log("response" + response)
+                                if (response.indexOf("결제") > -1) {
+                                    $('#cardIsPaid').val('true');
+                                    // 각 카드의 결제 상태 업데이트
+                                    selectedCards.forEach(card => {
+                                        $.ajax({
+                                            url: '/updateCardPaymentStatus',
+                                            type: 'POST',
+                                            data: {cardID: card.cardID},
+                                            async: false,
+                                            success: function (response) {
+                                                if (response.status === 'success') {
+                                                    console.log("카드 결제 상태 업데이트 성공:", response.message);
+                                                } else {
+                                                    console.log("카드 결제 상태 업데이트 실패:", response.message);
+                                                }
+                                            },
+                                            error: function (xhr, status, error) {
+                                                console.log("카드 결제 상태 업데이트 중 오류 발생:", error);
+                                            }
+                                        });
+                                    });
+                                    alert('결제가 성공적으로 완료되었습니다.');
+                                    window.location.href = "/mypage/myHistory";
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                alert('결제 후 DB 수정 실패: ' + rsp.error_msg);
+                                console.log("결제 후 DB 수정 실패", error);
+                            }
+                        });
+                    } else {
+                        console.log("결제 실패", rsp);
+                        alert('결제 실패: ' + rsp.error_msg);
+                    }
+                });
             }
         }
     </script>
@@ -87,7 +175,7 @@
         <div class="container">
             <div class="cart-grid">
                 <c:forEach var="card" items="${cardList}">
-                    <div class="card">
+                    <div class="card" data-id="${card.cardID}">
                         <img src="${card.templateThumbnail}" alt="템플릿">
                         <div class="card-overlay">
                             <p>${card.cardName}</p>

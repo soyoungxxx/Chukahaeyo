@@ -1,6 +1,5 @@
 package com.choikang.chukahaeyo.payment;
 
-
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.SuccessCode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-
 
 @Controller
 @RequestMapping(value = "/payments", produces = "application/text; charset=utf8")
@@ -21,8 +19,9 @@ public class PaymentController {
     public ResponseEntity<String> processPayment(@RequestBody PaymentDTO paymentDTO, HttpSession session) {
         System.out.println(paymentDTO);
         try {
-            paymentDTO.setMemberID((Integer) session.getAttribute("memberId"));
+            paymentDTO.setMemberID((Integer) session.getAttribute("memberID"));
             paymentService.processPayment(paymentDTO);
+
             return new ResponseEntity<>(SuccessCode.PAYMENT_SUCCESS.getMessage(), SuccessCode.PAYMENT_SUCCESS.getHttpStatus());
         } catch (Exception e) {
             e.printStackTrace();
