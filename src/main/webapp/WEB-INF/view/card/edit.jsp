@@ -29,7 +29,7 @@
             <form class="edit-submit-form" action="/card/edit/card.do" method="post" onsubmit="return checkRequires();"
                   enctype="multipart/form-data">
                 <div class="edit-div" style="overflow: scroll;">
-                    <div class="edit-div-hidden">"
+                    <div class="edit-div-hidden">
                         <div class="edit-upper-div"></div>
                         <div class="edit-div-components">
                             <span class="head-text">이름</span>

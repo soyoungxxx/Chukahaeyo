@@ -22,4 +22,5 @@ public interface CardMapper {
     CardVO getCompletedCardPage(int cardID);
     void updateCardLike(int cardID);
     void insertCardGuestBook(GuestBookVO guestBookVO);
+    List<GuestBookVO> selectGuestBooks(int cardID);
 }

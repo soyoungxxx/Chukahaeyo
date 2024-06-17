@@ -15,8 +15,10 @@
         $("#scr").before('${cardVO.cardDesign}');
         $(".like-number").text(${cardVO.cardLikeCnt});
         $(".uploadedImage").attr("src", "${cardVO.cardImage}");
-        console.log('${cardVO.cardEmojis}')
         emoji = '${cardVO.cardEmojis}'.split(",");
+        $.each(${guestBooks}, function(index, item) {
+            console.log(item);
+        });
     })
     const cardID = ${cardVO.cardID};
 </script>

@@ -75,4 +75,10 @@
         VALUES (#{guestName}, #{guestBookText}, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR), #{cardID})
     </insert>
 
+    <select id="selectGuestBooks" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.GuestBookVO">
+        SELECT *
+        FROM GuestBook
+        WHERE cardID = #{cardID}
+    </select>
+
 </mapper>
