@@ -1,26 +1,16 @@
 /*font*/
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
 
-body {
-    font-family: "Jua", sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    font-style: normal;
-  }  
 
-.container{
-    font-family: "Jua", sans-serif;
+.container {
+    font-family: "Noto Sans KR", sans-serif;
     font-weight: 400;
     font-size: 20px;
     font-style: normal;
 }
-/*font*/
 
-
-
-
-
-.mypage {
+/* 고객센터 css */
+.service {
     width: 90%;
     min-width: 1100px;
     display: flex;
@@ -30,136 +20,143 @@ body {
     justify-content: center;
 }
 
-.mypage-header {
+.service-header {
     width: 90%;
     margin: auto;
 }
 
-.mypage-header > .service-logo {
-    font-family: "Jua", sans-serif;
-    font-weight: 400;
-    font-size: 40px;
-    font-style: normal;
-    width: 160px;
+
+/* 헤더 */
+.service-header > .service-logo {
+    height: 58px;
     margin: 35px 10px 15px 140px;
 }
 
-.mypage-header > hr {
+.service-header > hr {
     margin: 0 auto;
     width: 90%;
     border: #B5B5B5 solid 1px;
 }
 
-.mypage-wrap {
+.service-wrap {
     display: flex;
-    width: 85%;
+    width: 90%;
     margin: 0 auto;
     justify-content: flex-start;
 }
 
-.mypage-content {
+.service-content {
     width: 80%;
 }
 
+/* 고객센터 메뉴 */
 .menu {
     width: 20%;
+    display: block;
 }
 
-.mypage-menu {
+.service-menu {
     width: 100%;
 }
 
-
-.mypage-menu a {
+.service-menu a {
     color: black; /* a 태그 글씨 색 검은색으로 설정 */
     text-decoration: none; /* 링크 밑줄 제거 */
+    white-space: nowrap; /* 줄 넘김 방지 */
+    letter-spacing: -1px; /* 자간 좁히기 */
 }
 
-.mypage-menu a:hover {
+.service-menu a:hover {
     color: black; /* a 태그 호버 시에도 글씨 색 검은색 유지 */
 }
 
-.mypage-menu > ul{
+.service-menu > ul {
     margin: 0;
 }
 
-.mypage-menu > ul > li {
+.service-menu > ul > li {
     display: block;
     text-align: left;
     list-style-type: none;
     font-family: "Noto Sans KR", sans-serif;
     font-size: 20px;
     height: 30px;
-    margin: 40px 20px 40px 50px;
+    margin: 40px 20px 40px 30px !important;
     line-height: 30px;
     cursor: pointer;
 }
 
 .v-line {
-    border-left : 1px solid #B5B5B5;
-    height : 650px;
+    border-left: 1px solid #B5B5B5;
+    height: 650px;
 }
 
-#myCard {
-    font-weight: 800;
-    color: #4B5CFF;
+.selectedMenu {
+    font-weight: 800 !important;
+    color: #4B5CFF !important;
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.container{
+/*실제 FAQ들어가는 부분 */
+.container {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
 
-.container .faq-title{
+.faq-title {
     margin-top: 40px;
     margin-left: 40px;
     margin-bottom: 30px;
     align-self: flex-start;
-
+    font-size: 24px;
+    font-weight: 500;
 }
 
-.container .faq-container {
+
+.faq-container {
     width: 700px;
     align-items: center;
 }
 
-.container .faq-container span{
+
+.faq-container span {
     display: inline-block;
     margin: 10px;
 }
 
-.container .faq-container .faq-inner-container{
+.faq-inner-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-.container .faq-container .faq-inner-container .arrow{
-    transform: rotate(90deg);
-    margin-right: 30px;
-    cursor:pointer;
+    font-weight: 500;
+    font-size: 18px;
 }
 
-.container .faq-container .content{
-    padding-left: 40px;
+.faq-inner-container .arrow {
+    margin: 0;
+    width: 10px;
+    height: 10px;
+    transform: rotate(90deg);
+    cursor: pointer;
 }
+
+.content {
+    padding-left: 40px;
+    font-size: 16px;
+    margin: 0 10px 25px 10px;
+    display: none;
+}
+
+
+.faq-inner-container.active > span {
+    color: #4B5CFF;
+}
+
+.faq-inner-container.active .arrow {
+    transform: rotate(270deg);
+    color: #4B5CFF;
+}
+
