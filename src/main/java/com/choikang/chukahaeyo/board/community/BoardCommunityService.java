@@ -5,10 +5,16 @@ import com.choikang.chukahaeyo.board.model.CommunityVO;
 import com.choikang.chukahaeyo.board.model.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.WebApplicationContext;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class BoardCommunityService {
@@ -18,6 +24,10 @@ public class BoardCommunityService {
 
     @Autowired
     BoardCommentMapper boardCommentMapper;
+
+    @Autowired
+    WebApplicationContext context;
+
 
     public Map<String, Object> getCommunityList(CommunityVO vo) {
         int count = boardCommunityMapper.count(vo); // 총개수
@@ -77,6 +87,26 @@ public class BoardCommunityService {
     }
 
     public void deleteCommunity(CommunityVO vo) {
+        CommunityVO contentVO = boardCommunityMapper.getCommunityDetail(vo);
+        String html = contentVO.getCommContents();
+
+        String regex = "<img\\s+src=\"([^\"]+)\"";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(html);
+        while(matcher.find()){
+            String srcValue = matcher.group(1);
+
+            String[] srcValues = srcValue.split("/");
+            String fileName = srcValues[srcValues.length-1];
+            String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/images/upload");
+            Path path = Paths.get(uploadDirectory , fileName);
+            try{
+                Files.delete(path);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
 
         ReplyVO replyVO = new ReplyVO();
         replyVO.setCommID(vo.getCommID());
