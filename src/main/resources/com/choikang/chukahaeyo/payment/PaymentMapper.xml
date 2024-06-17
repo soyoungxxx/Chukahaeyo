@@ -3,22 +3,19 @@
 <mapper namespace="com.choikang.chukahaeyo.payment.PaymentMapper">
     <!-- 결제 정보 삽입 -->
     <insert id="insertPayment" parameterType="com.choikang.chukahaeyo.payment.model.PaymentVO">
-        INSERT INTO Payment (
-            payDate,
-            payNo,
-            payAmount,
-            memberID,
-            receiptURL,
-            merchantUid
-            )
-        VALUES (
-                   #{payDate},
-                   #{payNo},
-                   #{payAmount},
-                   #{memberID},
-                   #{receiptURL},
-                   #{merchantUid}
-               )
+        INSERT INTO Payment (payDate,
+                             payNo,
+                             payAmount,
+                             memberID,
+                             receiptURL,
+                             merchantUid, canceledAt, failReason, cancelReceiptURL)
+        VALUES (#{payDate},
+                #{payNo},
+                #{payAmount},
+                #{memberID},
+                #{receiptURL},
+                #{merchantUid},
+                #{canceledAt}, #{failReason}, #{cancelReceiptURL})
     </insert>
 
 

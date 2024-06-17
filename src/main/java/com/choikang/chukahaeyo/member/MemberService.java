@@ -115,14 +115,12 @@ public class MemberService {
         return memberMapper.getCardList(memberId);
     }
 
-    // 카드 내역 가져오기
+    // 결제 내역 가져오기
     public List<PaymentVO> getPaymentList(int memberId){
         return memberMapper.getPaymentList(memberId);
     }
 
-    // 결제 취소 - 결제 테이블 정보 변경
-    public void cancelPayment(String payNo) {memberMapper.cancelPayment(payNo);}
-
     // 관리자 로그인
     public AdminVO adminLogin(AdminVO adminVO){return memberMapper.adminLogin(adminVO);}
+
 }

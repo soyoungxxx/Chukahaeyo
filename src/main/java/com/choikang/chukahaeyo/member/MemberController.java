@@ -196,22 +196,7 @@ public class MemberController {
         model.addAttribute("paymentList", paymentList);
         return "/mypage/myHistory";
     }
-
-    //  결제내역 : 결제 취소
-    @PostMapping("/cancelPayment")
-    public ResponseEntity<String> cancelPayment(String payNo) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json;charset=UTF-8");
-        System.out.println(payNo);
-        // 결제 취소 API 실행 결과 저장
-        try {
-            service.cancelPayment(payNo);
-            return new ResponseEntity<>(SuccessCode.CANCEL_SUCCESS.getMessage(), headers, SuccessCode.CANCEL_SUCCESS.getHttpStatus());
-        } catch (Exception e) {
-            return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), headers, ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
-        }
-    }
-
+    
 
     // 로그아웃
     @GetMapping("/logout")

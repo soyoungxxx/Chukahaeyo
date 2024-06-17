@@ -17,7 +17,7 @@
         function cancelPayment(payNo) {
             console.log("결제 번호 " + payNo + "가 취소되었습니다.");
             $.ajax({
-                url: '/cancelPayment',
+                url: '/payments/cancel',
                 data: {
                     payNo :payNo
                 },
@@ -27,7 +27,7 @@
                 success: function (res) {
                     console.log(res);
                     alert(res);
-                    document.location.reload();
+                    // document.location.reload();
                 },
                 error: function (res, status, error) {
                     // console.error("AJAX: ", status, error);
@@ -67,8 +67,11 @@
                             <div class="payment-info">
                                 <p>주문일자: <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.payDate}"/></p>
                                 <p>금액: <fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.payAmount}"/>원</p><br>
-                                <c:if test="${payment.isWithinTwoDays == '1'}">
+                                <c:if test="${payment.isWithinTwoDays == '1' || payment.canceledAt == null}">
                                     <a href="#" onclick="cancelPayment('${payment.payNo}');">취소</a>
+                                </c:if>
+                                <c:if test="${payment.canceledAt != null}">
+                                    <p>취소된 상품입니다.</p>
                                 </c:if>
                             </div>
                         </div>
