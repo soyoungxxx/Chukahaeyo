@@ -1,6 +1,7 @@
 package com.choikang.chukahaeyo.payment;
 
 
+import com.choikang.chukahaeyo.common.Decode;
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.model.CustomException;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
@@ -119,13 +120,12 @@ public class PaymentService {
 
                 CancelDTO cancelDTO = new CancelDTO();
                 cancelDTO.setCanceledAt(canceledAt);
-                cancelDTO.setFailReason(failReason);
+                cancelDTO.setFailReason(Decode.unicodeDecode(failReason));
                 cancelDTO.setCancelReceiptURL(cancelReceiptUrl);
 
                 PaymentVO paymentVO = cancelDTO.of(cancelDTO);
                 paymentVO.setPayNo(payNo);
 
-                //이 위치에 mapper에 paymentVO를 insert하는 부분 추가
                 paymentMapper.cancelPayment(paymentVO);
 
                 System.out.println("DB 저장 성공");
