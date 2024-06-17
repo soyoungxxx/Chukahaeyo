@@ -72,4 +72,28 @@
         VALUES (#{memberID} , #{commID})
     </insert>
 
+
+
+    <update id="updateCommunity" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        <![CDATA[
+        UPDATE Community SET commTitle = #{commTitle} , commContents = #{commContents} , commEditedDate = now() WHERE commID = #{commID}
+        ]]>
+    </update>
+
+    <delete id="deleteCommunity" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        delete from Community where commID = #{commID}
+    </delete>
+
+
+    <delete id="deleteLike" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        delete from BoardLike where commID = #{commID}
+    </delete>
+
+
+    <update id="updateCommunityViewCount" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        <![CDATA[
+        UPDATE Community SET commViewCount = commViewCount + 1 WHERE commID = #{commID}
+        ]]>
+    </update>
+
 </mapper>
