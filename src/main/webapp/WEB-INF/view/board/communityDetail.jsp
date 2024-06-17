@@ -87,7 +87,7 @@
                 <input type="hidden" class="page" value="${communityVO.page}"/>
                 <div class="list">목록</div>
                 <c:if test="${object.memberID == memberId}">
-                    <div class="edit">수정</div>
+                    <div class="edit"><a href="/board/community/update?commID=${object.commID}">수정</a></div>
                     <div class="delete">삭제</div>
                 </c:if>
 

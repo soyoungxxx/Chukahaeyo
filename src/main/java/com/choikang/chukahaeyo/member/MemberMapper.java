@@ -17,7 +17,7 @@ public interface MemberMapper {
     MemberVO getUserInfoByEmail(String memberEmail);
 
     // 아이디를 통해서 회원 정보 조회
-    MemberVO getUserInfoById(int memberId);
+    MemberVO getUserInfoById(int memberID);
 
     // 회원 가입
     void register(MemberVO memberVO);
@@ -26,7 +26,7 @@ public interface MemberMapper {
     int checkEmailDuplicate(String memberEmail);
 
     // 가입 인증
-    void memberVerify(int memberId);
+    void memberVerify(int memberID);
 
     // 회원 탈퇴
     int unsign(MemberVO memberVO);
@@ -38,13 +38,10 @@ public interface MemberMapper {
     int changeMemberInfo(MemberVO memberVO);
 
     // 카드 목록 가져오기
-    List<CardVO> getCardList(int memberId);
+    List<CardVO> getCardList(int memberID);
 
     // 결제 내역 가져오기
-    List<PaymentVO> getPaymentList(int memberId);
-
-    // 결제 취소 : 결제 정보 변경
-    void cancelPayment(String payNo);
+    List<PaymentVO> getPaymentList(int memberID);
 
     // 관리자 로그인
     AdminVO adminLogin(AdminVO adminVO);
