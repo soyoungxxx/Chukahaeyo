@@ -3,6 +3,7 @@ package com.choikang.chukahaeyo.card.edit;
 import com.choikang.chukahaeyo.card.CardMapper;
 import com.choikang.chukahaeyo.card.TemplateMapper;
 import com.choikang.chukahaeyo.card.model.CardVO;
+import com.choikang.chukahaeyo.card.model.GuestBookVO;
 import com.choikang.chukahaeyo.card.model.TemplateVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,9 @@ public class EditService {
 
     public void updateCardLike(int cardID) {
         cardMapper.updateCardLike(cardID);
+    }
+
+    public void insertCardGuestBook(GuestBookVO guestBookVO) {
+        cardMapper.insertCardGuestBook(guestBookVO);
     }
 }

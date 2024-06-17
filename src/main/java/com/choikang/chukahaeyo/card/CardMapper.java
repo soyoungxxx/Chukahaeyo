@@ -1,6 +1,7 @@
 package com.choikang.chukahaeyo.card;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
+import com.choikang.chukahaeyo.card.model.GuestBookVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,4 +21,5 @@ public interface CardMapper {
     void updateCardPaymentStatus(int cardID);
     CardVO getCompletedCardPage(int cardID);
     void updateCardLike(int cardID);
+    void insertCardGuestBook(GuestBookVO guestBookVO);
 }

@@ -1,6 +1,7 @@
 package com.choikang.chukahaeyo.card.edit;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
+import com.choikang.chukahaeyo.card.model.GuestBookVO;
 import com.choikang.chukahaeyo.card.model.TemplateVO;
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.SuccessCode;
@@ -84,12 +85,22 @@ public class EditController {
         return "card/completedCard";
     }
 
-//    @ResponseBody
     @PostMapping("/like.do")
     public ResponseEntity<String> updateCardLike(int cardID) {
         try {
             service.updateCardLike(cardID);
             return new ResponseEntity<>(SuccessCode.LIKE_UPDATE_SUCCESS.getMessage(), SuccessCode.LIKE_UPDATE_SUCCESS.getHttpStatus());
+        } catch(Exception e) {
+            return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
+        }
+    }
+
+    @PostMapping("/guestBook.do")
+    public ResponseEntity<String> insertCardGuestBook(@RequestBody GuestBookVO guestBookVO) {
+        System.out.println(guestBookVO);
+        try {
+            service.insertCardGuestBook(guestBookVO);
+            return new ResponseEntity<>(SuccessCode.GUESTBOOK_CREATE_SUCCESS.getMessage(), SuccessCode.GUESTBOOK_CREATE_SUCCESS.getHttpStatus());
         } catch(Exception e) {
             return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
         }

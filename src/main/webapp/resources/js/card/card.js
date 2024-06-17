@@ -40,7 +40,7 @@ $(document).on('click', '#like', function() {
                 $(".like-number").text(likeNumber);
             },
             error: function() {
-                console.log("like db 업데이트에 실패했습니다.");
+                alert("like db 업데이트에 실패했습니다.");
             }
         });
     }
@@ -58,6 +58,25 @@ $(document).on('click', '.guestbook-submit-button', function() {
     $(".guest-nickname").val("");
     $(".guest-message").val("");
 
+    // ajax
+    $.ajax({
+        url: '/card/guestBook.do',
+        type: 'POST',
+        contentType: 'application/json; charset=UTF-8',
+        data: JSON.stringify({
+            guestName: name,
+            guestBookText: message,
+            cardID: cardID
+        }),
+        success: function(response) {
+            console.log("방명록을 등록하였습니다.");
+        },
+        error : function(response) {
+            console.log("방명록 업데이트에 실패하였습니다.");
+        }
+    });
+
+    // 화면 표시
     var img, imgName;
     var className;
     var attrClass = $(".message-block:last-child").attr("class");
