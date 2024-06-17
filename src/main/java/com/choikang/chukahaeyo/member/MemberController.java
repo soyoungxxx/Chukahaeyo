@@ -81,7 +81,7 @@ public class MemberController {
             return "include/alert";
         } else {
             session.setAttribute("login", login); // login 객체 또는 true 설정
-            session.setAttribute("memberId", login.getMemberID());
+            session.setAttribute("memberID", login.getMemberID());
             session.setAttribute("memberEmail", login.getMemberEmail());
             session.setAttribute("memberName", login.getMemberName());
 
@@ -124,8 +124,8 @@ public class MemberController {
 
     // 회원가입: 멤버 인증, 이메일을 통해 링크 인증 완료 시 DB상의 isAuth 상태 변경
     @GetMapping("/member/verify")
-    public String verify(Model model, @RequestParam("memberId") int memberId) {
-        service.memberVerify(memberId);
+    public String verify(Model model, @RequestParam("memberID") int memberID) {
+        service.memberVerify(memberID);
         model.addAttribute("msg", "인증이 완료되었습니다.");
         model.addAttribute("url", "/member/login");
         return "include/alert";
@@ -135,7 +135,7 @@ public class MemberController {
     // 회원 정보 수정: 페이지 접근 전 이메일 조회
     @GetMapping("/mypage/changeInfo")
     public String changeInfo(HttpSession session, Model model) {
-        int id = (int) session.getAttribute("memberId");
+        int id = (int) session.getAttribute("memberID");
         String memberEmail = (service.getUserInfoById(id)).getMemberEmail();
         model.addAttribute("memberEmail", memberEmail);
         return "/mypage/changeInfo";
@@ -146,7 +146,7 @@ public class MemberController {
     @ResponseBody
     public int validatePwd(HttpSession session, String memberCheckPwd) {
         // 세션에 있는 id값 가져옴
-        int id = (int) session.getAttribute("memberId");
+        int id = (int) session.getAttribute("memberID");
         MemberVO memberVO = new MemberVO();
         memberVO.setMemberID(id);
         memberVO.setMemberPwd(memberCheckPwd);
@@ -161,7 +161,7 @@ public class MemberController {
     // 회원 정보 수정: 회원 정보 수정
     @PostMapping("/mypage/changeInfo")
     public String changeMemberInfo(HttpSession session, Model model, MemberVO memberVO) {
-        int id = (int) session.getAttribute("memberId");
+        int id = (int) session.getAttribute("memberID");
         memberVO.setMemberID(id);
         System.out.println(memberVO);
 
@@ -179,9 +179,9 @@ public class MemberController {
     // 결제내역: 회원의 결제 내역 가져오기
     @GetMapping("/mypage/myHistory")
     public String getPayHistoryCard(HttpSession session, Model model) {
-        int memberId = (int) session.getAttribute("memberId");
-        List<CardVO> cardList = service.getCardList(memberId);
-        List<PaymentVO> paymentList = service.getPaymentList(memberId);
+        int memberID = (int) session.getAttribute("memberID");
+        List<CardVO> cardList = service.getCardList(memberID);
+        List<PaymentVO> paymentList = service.getPaymentList(memberID);
 
         Date twoDaysAgo = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
         for (int i = 0; i < paymentList.size(); i++) {
@@ -212,7 +212,7 @@ public class MemberController {
     // 회원탈퇴: 로그인한 유저 email 조회
     @GetMapping("/mypage/unregister")
     public String getLoginMemberEmail(HttpSession session, Model model) {
-        int id = (int) session.getAttribute("memberId");
+        int id = (int) session.getAttribute("memberID");
         String memberEmail = (service.getUserInfoById(id)).getMemberEmail();
         model.addAttribute("memberEmail", memberEmail);
         return "/mypage/unregister";
@@ -221,7 +221,7 @@ public class MemberController {
     // 회원탈퇴 : 비밀번호 확인 일치하는 경우 탈퇴
     @PostMapping("/mypage/unregister")
     public String unregister(HttpSession session, Model model, String memberPwd, RedirectAttributes redirectAttributes) {
-        int id = (int) session.getAttribute("memberId");
+        int id = (int) session.getAttribute("memberID");
         MemberVO memberVO = new MemberVO();
         memberVO.setMemberID(id);
         memberVO.setMemberPwd(memberPwd);

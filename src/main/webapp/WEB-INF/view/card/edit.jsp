@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/edit.css?after">
     <link rel="stylesheet" href="/resources/css/template/cardCommon.css?after">
-    <link rel="stylesheet" href="/resources/css/template/1.css?after" id="cardCss">
+    <link rel="stylesheet" href="/resources/css/template/templateGreen.css?after" id="cardCss">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -29,7 +29,7 @@
             <form class="edit-submit-form" action="/card/edit/card.do" method="post" onsubmit="return checkRequires();"
                   enctype="multipart/form-data">
                 <div class="edit-div" style="overflow: scroll;">
-                    <div class="edit-div-hidden">
+                    <div class="edit-div-hidden">"
                         <div class="edit-upper-div"></div>
                         <div class="edit-div-components">
                             <span class="head-text">이름</span>
@@ -65,10 +65,10 @@
                         <div class="edit-div-components">
                             <span class="head-text">이모티콘</span>
                             <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                            <input class="edit-emoji" type="text" id="emoji1" maxlength="1"/>
-                            <input class="edit-emoji" type="text" id="emoji2" maxlength="1"/>
-                            <input class="edit-emoji" type="text" id="emoji3" maxlength="1"/>
-                            <input class="edit-emoji" type="text" id="emoji4" maxlength="1"/>
+                            <input class="edit-emoji" type="text" id="emoji1" maxlength="2"/>
+                            <input class="edit-emoji" type="text" id="emoji2" maxlength="2"/>
+                            <input class="edit-emoji" type="text" id="emoji3" maxlength="2"/>
+                            <input class="edit-emoji" type="text" id="emoji4" maxlength="2"/>
                             <p style="font-size:14px; color:#686868; width:90%;">
                                 원하는 이모티콘을 <b>한 칸당 하나씩</b>
                                 작성해주세요! <br>
@@ -142,7 +142,9 @@
                         </div>
                         <hr>
                     </div>
-                    <input type="hidden" name="cardIsPayed" id="cardIsPayed">
+
+                    <input type="hidden" name="cardEmojis" id="cardEmojis">
+                    <input type="hidden" name="cardIsPaid" id="cardIsPaid">
                     <input type="hidden" name="cardEndDate" id="cardEndDate">
                     <input type="hidden" name="cardName" id="cardName">
                     <input type="hidden" name="cardDesign" id="card-design">
@@ -438,8 +440,8 @@
                     success: function (response) {
                         console.log("response" + response)
                         if (response.indexOf("결제") > -1) {
-                            saveHiddenDate();
-                            $('#cardIsPayed').val('true');
+                            saveHiddenData();
+                            $('#cardIsPaid').val('true');
                             $(window).off('beforeunload');
                             $('#cart-submit-button').click();
                             // location.href = "/payments/success";
@@ -486,12 +488,17 @@
             data: {id: template_id},
             contentType: "text/html; charset:UTF-8",
             success: function (data) {
-
                 $('.edit-preview-div').html(data);
                 originText = $('.card-name').text();
                 $('.date').text($('#edit-day').val()); // 템플릿 선택 시 날짜 초기값 세팅
+
                 // 템플릿 선택시.. css 선택
-                $('#cardCss').prop("href", "/resources/css/template/" + template_id + ".css?after");
+                let templateCss = templateThumbnail.substring(25);
+                console.log(templateCss);
+                templateCss = templateCss.substring(0, templateCss.length - 4);
+                console.log(templateCss);
+
+                $('#cardCss').prop("href", "/resources/css/template/" + templateCss + ".css");
             }
         })
 
@@ -513,7 +520,7 @@
         // $("input[type='date']").
     }
 
-    function saveHiddenDate() {
+    function saveHiddenData() {
         $('#map').text("");
         $('#map').removeAttr("style");
         $("#card-design").val($('.edit-preview-div').html());
@@ -521,11 +528,12 @@
         $('#cardName').val($('.card-name').text());
         $('#submit-templateThumbnail').val(templateThumbnail);
         $('#submit-categoryId').val(categoryId);
+        $("#cardEmojis").val($("#emoji1").text() + ',' + $("#emoji2").text() + ',' + $("#emoji3").text() + ',' + $("#emoji4").text());
     }
 
     $('#edit-cart-button').click(function () {
-        saveHiddenDate();
-        $('#cardIsPayed').val('false');
+        saveHiddenData();
+        $('#cardIsPaid').val('false');
         $(window).off('beforeunload');
         $('#cart-submit-button').click();
     })

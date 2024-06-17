@@ -23,8 +23,6 @@
                         <div class="slides fade">
                             <div class="card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}">
                                 <div class="card-image">
-    <%--                                <img src="resources/img/main/mainad0${card.categoryID}.png" alt="Card Image">                                --%>
-    <%--                                <img src="resources/img/main/mainad01.png" alt="Card Image">>--%>
                                     <a href="card/completedCard/${card.cardID}">
                                         <img src="resources/img/main/mainad01.png" alt="" style="width:100%">
                                         <div class="overlay">

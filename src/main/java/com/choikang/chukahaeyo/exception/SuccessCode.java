@@ -27,7 +27,8 @@ public enum SuccessCode {
     SIGNOUT_SUCCESS(HttpStatus.CREATED, "로그아웃이 완료됐습니다."),
     GUESTBOOK_CREATE_SUCCESS(HttpStatus.CREATED, "방명록을 성공적으로 등록하였습니다."),
     PAYMENT_SUCCESS(HttpStatus.OK, "결제를 성공했습니다."),
-    CANCEL_SUCCESS(HttpStatus.OK, "취소를 성공했습니다.");
+    CANCEL_SUCCESS(HttpStatus.OK, "취소를 성공했습니다."),
+    LIKE_UPDATE_SUCCESS(HttpStatus.OK, "좋아요 업데이트를 성공했습니다.");
 
 
     private final HttpStatus httpStatus;

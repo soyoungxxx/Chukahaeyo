@@ -2,14 +2,17 @@ package com.choikang.chukahaeyo.card.edit;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.card.model.TemplateVO;
+import com.choikang.chukahaeyo.exception.ErrorCode;
+import com.choikang.chukahaeyo.exception.SuccessCode;
 import com.choikang.chukahaeyo.s3.S3Service;
+import com.nhncorp.lucy.security.xss.XssFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -56,22 +59,39 @@ public class EditController {
     @PostMapping("/edit/card.do")
     public String getCardInfo(CardVO cardVO, HttpSession session, @RequestParam(value="imageFile") MultipartFile file) {
         String redirectURL;
-        cardVO.setMemberID((Integer) session.getAttribute("memberId"));
+        cardVO.setMemberID((Integer) session.getAttribute("memberID"));
         cardVO.setCardImage(imageService.saveFile(file));
-        if (cardVO.getCardIsPayed()) {
+        if (cardVO.getCardIsPaid()) {
             redirectURL = "/payments/success";
         } else {
             redirectURL = "/cart";
         }
+        // XSS filter 적용해서 html 문법 필터링하기
+        XssFilter filter = XssFilter.getInstance("lucy-xss-superset-sax.xml", true);
+        cardVO.setCardDesign(filter.doFilter(cardVO.getCardDesign()));
         service.insertCardInCart(cardVO);
         return "redirect:" + redirectURL;
     }
 
     @GetMapping("/completedCard/{cardID}")
     public String getCompletedCardPage(@PathVariable int cardID, Model model) {
-        String cardDesign = service.getCardDesign(cardID);
-        model.addAttribute("cardID", cardID);
-        model.addAttribute("cardDesign", cardDesign);
+        CardVO cardVO = service.getCompletedCardPage(cardID);
+
+        model.addAttribute("cardVO", cardVO);
+
+        String css = cardVO.getTemplateThumbnail().substring(25, cardVO.getTemplateThumbnail().length() - 4);
+        model.addAttribute("css", css);
         return "card/completedCard";
+    }
+
+//    @ResponseBody
+    @PostMapping("/like.do")
+    public ResponseEntity<String> updateCardLike(int cardID) {
+        try {
+            service.updateCardLike(cardID);
+            return new ResponseEntity<>(SuccessCode.LIKE_UPDATE_SUCCESS.getMessage(), SuccessCode.LIKE_UPDATE_SUCCESS.getHttpStatus());
+        } catch(Exception e) {
+            return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
+        }
     }
 }
