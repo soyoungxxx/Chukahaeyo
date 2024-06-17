@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -10,6 +12,21 @@
     <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css" />
     <link rel="stylesheet" href="/resources/css/board/inquiryDetail.css" />
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script>
+        window.onload = function(){
+            $(".inquiry-list-button").click(function (e) {
+
+                location.href = '/board/inquiry/list?query=${inquiryVO.query}&querytype=${inquiryVO.querytype}&page=${inquiryVO.page}';
+
+
+            });
+
+
+
+        };
+
+    </script>
 </head>
 
 <body>
@@ -48,367 +65,26 @@
 
 
                     <div class="container">
-
+                        <input type="hidden" class="inquiry-id" value="${object.inquiryID}"/>
                         <div class="inquiry-logo">문의내역</div>
 
                         <div class="inquiry-info">
-                            <div class="inquiry-info-title">석사학위 취득시 대학원에 제출한 테크니컬페이퍼 등록 문의</div>
-                            <div class="inquiry-info-sub">작성자 : 김성호 | 작성일 : 2024-05-26 </div>
+                            <div class="inquiry-info-title">${object.inquiryQuestionTitle}</div>
+                            <div class="inquiry-info-sub">작성자 : ${object.memberName} | 작성일 : <fmt:formatDate value="${object.inquiryPostDate }" pattern="yy/MM/dd hh:mm"/> </div>
                         </div>
                         <div class="inquiry-content">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui dolores odit magni
-                            excepturi doloremque ut dolor veniam! Facilis libero, accusamus aperiam modi dolores
-                            reiciendis eaque hic soluta mollitia rerum cumque?
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores sed facilis, beatae quo
-                            ipsam, incidunt nam quidem ratione alias amet ullam nisi dignissimos aliquam esse
-                            explicabo fugit sint? Quas, veniam?
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, modi dolores
-                            laboriosam nemo culpa veritatis? Esse illo minima consectetur corporis, cum repudiandae
-                            autem. Nisi voluptatem officiis dicta, vel at harum.
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam consequatur deserunt
-                            facere ea molestias eos facilis maiores esse qui, ab architecto aliquam itaque cum
-                            similique saepe natus nulla pariatur voluptatem!
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quas neque itaque
-                            doloremque dolore, voluptatibus libero vel rerum dicta fugiat laboriosam. Nostrum,
-                            beatae! Nam in quis dolorum, dicta dolorem deserunt!
+                            ${object.inquiryQuestion}
 
                         </div>
-                        <div class="inquiry-answer">
-                            <div class="inquiry-answer-content">
-                                안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.안녕하십니까.
+                        <c:if test="${object.adminID != 0}">
+                            <div class="inquiry-answer">
+                                <div class="inquiry-answer-content">
+                                    ${object.inquiryAnswer}
+                                </div>
+                                <div class="inquiry-answer-info">답변자 : 관리자</div>
                             </div>
-                            <div class="inquiry-answer-info">답변자 : 관리자 | 답변일 : 2024-05-26 11:05:21</div>
-                        </div>
+                        </c:if>
+
 
                         <div class="inquiry-list">
                             <div class="inquiry-list-button">목록</div>

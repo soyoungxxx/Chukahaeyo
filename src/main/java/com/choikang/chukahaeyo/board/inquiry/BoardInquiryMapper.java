@@ -11,4 +11,8 @@ public interface BoardInquiryMapper {
     List<InquiryVO> getInquiryList(InquiryVO inquiryVO);
 
     int count(InquiryVO inquiryVO);
+
+    int insertInquiry(InquiryVO vo);
+
+    InquiryVO getInquiryDetail(InquiryVO vo);
 }

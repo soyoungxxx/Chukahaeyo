@@ -79,7 +79,7 @@
                 </table>
 
             </div>
-            <c:if test="${not empty memberId}">
+            <c:if test="${not empty memberID}">
                 <div class="write-button">
                     <a href="write">글쓰기</a>
                 </div>
