@@ -16,7 +16,7 @@
         $(".like-number").text(${cardVO.cardLikeCnt});
         $(".uploadedImage").attr("src", "${cardVO.cardImage}");
         emoji = '${cardVO.cardEmojis}'.split(",");
-        $.each(${guestBooks}, function(index, item) {
+        $.each(JSON.parse('${guestBooks}'), function(index, item) {
             console.log(item);
         });
     })
