@@ -18,19 +18,49 @@
     </sql>
 
     <select id="getCommunityList" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="com.choikang.chukahaeyo.board.model.CommunityVO">
-        SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
-               (SELECT count(*) FROM BoardLike WHERE commID = c.commID) AS BoardLike
-        FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
+        (SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
+                (SELECT count(*) FROM BoardLike WHERE commID = c.commID) AS BoardLike ,
+                "true" isTop
+         FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
+         ORDER BY BoardLike DESC
+             LIMIT 0, 5)
+        UNION
+        (select * from
+        (SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
+                (SELECT count(*) FROM BoardLike WHERE commID = c.commID) AS BoardLike,
+                "false" isTop
+         FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
         <include refid="searchSql"/>
-        ORDER BY commPostDate ASC
+         ORDER BY commPostDate DESC) zz
+        order by commPOstDate DESC )
         LIMIT #{startIdx}, 10
     </select>
 
     <select id="count" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="int">
-        SELECT COUNT(*)
-        FROM Community c
-            LEFT JOIN Members m ON m.memberID = c.memberID
-        <include refid="searchSql"/>
+        select count(*) from
+            (
+                (SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
+                        (SELECT count(*) FROM BoardLike WHERE commID = c.commID) AS BoardLike ,
+                        "true" isTop
+                 FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
+                 ORDER BY BoardLike DESC
+                     LIMIT 0, 5)
+                UNION
+                (SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
+                        (SELECT count(*) FROM BoardLike WHERE commID = c.commID) AS BoardLike,
+                        "false" isTop
+                 FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
+                <include refid="searchSql"/>
+                 ORDER BY commPostDate DESC)
+            ) zz;
+
+
+
+
+
+
+
+
     </select>
 
     <insert id="insertCommunity" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">

@@ -59,7 +59,7 @@
                     </thead>
                     <tbody>
                     <c:forEach var="vo" items="${map.list}">
-                        <tr class="list-data">
+                        <tr class="list-data <c:if test="${vo.isTop == 'true'}">is-top</c:if>">
                             <th class="no">${vo.commID}</th>
                             <th class="title"><a href="detail?commID=${vo.commID}&query=${communityVO.query}&querytype=${communityVO.querytype}&page=${communityVO.page}">${vo.commTitle}</a></th>
                             <th class="writer">${vo.memberName}</th>

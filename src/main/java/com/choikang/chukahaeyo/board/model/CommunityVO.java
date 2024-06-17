@@ -15,6 +15,8 @@ public class CommunityVO {
     private Date commEditedDate;
     private String commViewCount;
 
+    private String isTop;
+
     public CommunityVO() {
         this.query = "";
         this.querytype = "all";

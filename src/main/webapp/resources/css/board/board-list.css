@@ -137,6 +137,10 @@ body .container{
     border-bottom: 1px solid #B9B5B5;
 
 }
+.list .list-board .is-top {
+    background-color: #DBDDFAFF;
+
+}
 
 .list .list-board .list-data .no {
     width: 80px;
