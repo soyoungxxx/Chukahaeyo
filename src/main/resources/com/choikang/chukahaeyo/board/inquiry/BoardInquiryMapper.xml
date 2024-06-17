@@ -29,7 +29,7 @@
         SELECT inquiryID , inquiryQuestion , inquiryQuestionTitle , inquiryAnswer , inquiryPostDate , i.memberID , adminID , memberEmail , memberName
         FROM Inquiry i LEFT JOIN Members m ON m.memberID = i.memberID
         <include refid="searchSql"/>
-        ORDER BY inquiryPostDate ASC
+        ORDER BY inquiryPostDate DESC
         LIMIT #{startIdx}, 10
     </select>
 
