@@ -7,7 +7,7 @@
             <li><a href="/mypage/changeInfo" id="changeInfo">내 정보 수정</a></li>
             <li><a href="/cart" id="cart">카드 꾸러미</a></li>
             <li><a href="/mypage/myHistory" id="myHistory">결제 내역</a></li>
-            <li><a href="#" id="inquiry">1:1 문의</a></li>
+            <li><a href="/board/inquiry/list?page=1&query=${memberName}&querytype=writer" id="inquiry">1:1 문의</a></li>
             <li><a href="/mypage/unregister" id="unregister">회원 탈퇴</a></li>
         </ul>
     </div>
