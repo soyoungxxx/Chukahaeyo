@@ -528,7 +528,8 @@
         $('#cardName').val($('.card-name').text());
         $('#submit-templateThumbnail').val(templateThumbnail);
         $('#submit-categoryId').val(categoryId);
-        $("#cardEmojis").val($("#emoji1").text() + ',' + $("#emoji2").text() + ',' + $("#emoji3").text() + ',' + $("#emoji4").text());
+        $("#cardEmojis").val(emoji);
+        console.log($("#cardEmojis"));
     }
 
     $('#edit-cart-button').click(function () {

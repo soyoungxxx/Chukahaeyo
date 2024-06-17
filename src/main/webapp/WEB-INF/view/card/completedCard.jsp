@@ -15,11 +15,10 @@
         $("#scr").before('${cardVO.cardDesign}');
         $(".like-number").text(${cardVO.cardLikeCnt});
         $(".uploadedImage").attr("src", "${cardVO.cardImage}");
+        console.log('${cardVO.cardEmojis}')
+        emoji = '${cardVO.cardEmojis}'.split(",");
     })
     const cardID = ${cardVO.cardID};
 </script>
 <script id="scr" src="/resources/js/card/card.js"></script>
-<script>
-    <%--emoji = '${cardVO.cardEmojis}'.split(",");--%>
-</script>
 </html>
