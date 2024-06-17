@@ -15,6 +15,7 @@ public class CardVO {
     private String cardStartDate;
     private String cardEndDate;
     private String cardImage;
+    private String cardEmojis;
     private String cardDesign;
     private String templateThumbnail;
     private int categoryID;
