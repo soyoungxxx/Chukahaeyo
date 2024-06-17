@@ -1,13 +1,35 @@
 $(document).ready(function() {
 	//여기 아래 부분
 	$('#summernote').summernote({
+
+		// 에디터 크기 설정
 		width: 800,
-		height: 300,                 // 에디터 높이
+		height: 300,
 		minHeight: null,             // 최소 높이
-		maxHeight: null,             // 최대 높이
-		focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-		lang: "ko-KR",					// 한글 설정
-		placeholder: ''	//placeholder 설정
+		maxHeight: null,
+		// 에디터 한글 설정
+		lang: 'ko-KR',
+
+		// focus는 작성 페이지 접속시 에디터에 커서를 위치하도록 하려면 설정해주세요.
+		focus : true,
+		// callbacks은 이미지 업로드 처리입니다.
+		callbacks : {
+			onImageUpload : function(files, editor, welEditable) {
+				// 다중 이미지 처리를 위해 for문을 사용했습니다.
+				for (var i = 0; i < files.length; i++) {
+					imageUploader(files[i], this);
+				}
+			},
+
+			onMediaDelete: function($target,editor,$editable){
+
+				let deletedImageUrl = $target.attr('src').split('/').pop();
+
+				deleteSummernoteImageFile(deletedImageUrl);
+
+			}
+
+		}
 
 	});
 
