@@ -38,4 +38,12 @@ public class BoardInquiryService {
         map.put("isNext", isNext);
         return map;
     }
+
+    public int insertInquiry(InquiryVO vo) {
+        return boardInquiryMapper.insertInquiry(vo);
+    }
+
+    public InquiryVO getInquiryDetail(InquiryVO vo) {
+        return boardInquiryMapper.getInquiryDetail(vo);
+    }
 }

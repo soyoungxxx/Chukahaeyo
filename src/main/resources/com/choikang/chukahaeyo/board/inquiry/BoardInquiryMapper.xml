@@ -34,4 +34,20 @@
     </select>
 
 
+    <insert id="insertInquiry" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO">
+        insert into Inquiry (
+        inquiryQuestion , inquiryQuestionTitle , inquiryPostDate , memberID
+        ) values(
+        #{inquiryQuestion} , #{inquiryQuestionTitle} , now() , #{memberID}
+        )
+        <selectKey keyProperty="inquiryID" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="getInquiryDetail" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO" resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
+        SELECT inquiryID , inquiryQuestion , inquiryQuestionTitle , inquiryAnswer , inquiryPostDate , i.memberID , adminID , memberEmail , memberName
+        FROM Inquiry i LEFT JOIN Members m ON m.memberID = i.memberID
+        WHERE inquiryID = #{inquiryID};
+    </select>
 </mapper>

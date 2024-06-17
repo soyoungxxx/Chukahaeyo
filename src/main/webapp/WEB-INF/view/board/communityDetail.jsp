@@ -62,7 +62,7 @@
 
             <div class="title-container">
                 <div class="title">${object.commTitle}</div>
-                <c:if test="${not empty memberId}">
+                <c:if test="${not empty memberID}">
                     <c:if test="${object.isRed == 1}">
                         <div class="like heartred"></div>
                         <div class="like heartblack" style="display: none;" ></div>
@@ -86,7 +86,7 @@
                 <input type="hidden" class="querytype" value="${communityVO.querytype}"/>
                 <input type="hidden" class="page" value="${communityVO.page}"/>
                 <div class="list">목록</div>
-                <c:if test="${object.memberID == memberId}">
+                <c:if test="${object.memberID == memberID}">
                     <div class="edit"><a href="/board/community/update?commID=${object.commID}">수정</a></div>
                     <div class="delete">삭제</div>
                 </c:if>
