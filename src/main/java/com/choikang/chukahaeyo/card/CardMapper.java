@@ -20,4 +20,5 @@ public interface CardMapper {
     CardVO getCompletedCardPage(int cardID);
     void updateCardLike(int cardID);
     void updateCardPaymentStatus(int cardID);
+
 }

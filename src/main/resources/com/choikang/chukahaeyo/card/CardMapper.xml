@@ -57,10 +57,9 @@
         WHERE cardID = #{cardID}
     </select>
 
-
-    <update id="updateCardPaymentStatus" parameterType="map">
+    <update id="updateCardPaymentStatus" parameterType="int">
         UPDATE Card
-        SET cardIsPaid = TRUE, payID = #{payID}
+        SET cardIsPaid = TRUE, payID = (SELECT MAX(payID) FROM Payment)
         WHERE cardID = #{cardID}
     </update>
 

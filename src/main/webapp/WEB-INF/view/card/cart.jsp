@@ -116,19 +116,20 @@
                                 paidAt: rsp.paid_at,
                                 status: rsp.status,
                                 receiptURL: rsp.receipt_url,
-                                cardIds: selectedCards.map(card => card.cardId) // 카드 ID 목록 추가
+                                cardIds: selectedCards.map(card => card.cardID) // 카드 ID 목록 추가
 
                             }),
                             success: function (response) {
                                 console.log("response" + response)
                                 if (response.indexOf("결제") > -1) {
                                     $('#cardIsPaid').val('true');
+                                    // let payNo = rsp.imp_uid; // 서버에서 payNo 받아옴
                                     // 각 카드의 결제 상태 업데이트
                                     selectedCards.forEach(card => {
                                         $.ajax({
                                             url: '/updateCardPaymentStatus',
                                             type: 'POST',
-                                            data: {cardID: card.cardID},
+                                            data: {cardID: card.cardID}, // payID 추가
                                             async: false,
                                             success: function (response) {
                                                 if (response.status === 'success') {
