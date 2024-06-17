@@ -8,10 +8,10 @@
 
     <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
         INSERT INTO Card
-        (cardName, cardIsPublic, cardIsPaid, cardStartDate, cardEndDate, cardImage,
+        (cardName, cardIsPublic, cardIsPaid, cardStartDate, cardEndDate, cardImage, cardEmojis,
          cardDesign, templateThumbnail, categoryID, memberID)
         VALUES (#{cardName}, #{cardIsPublic}, #{cardIsPaid}, #{cardStartDate}, #{cardEndDate}, #{cardImage},
-                #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID})
+                #{cardEmojis}, #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID})
     </insert>
 
     <select id="getPersonalCart" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
@@ -60,7 +60,7 @@
 
     <update id="updateCardPaymentStatus" parameterType="int">
         UPDATE Card
-        SET cardIsPaid = TRUE, payId = #{payID}
+        SET cardIsPaid = TRUE
         WHERE cardID = #{cardID}
     </update>
 
