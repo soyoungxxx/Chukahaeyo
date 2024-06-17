@@ -11,6 +11,7 @@ public interface CardMapper {
     void insertUrl(CardVO cardVO);
     void deleteCard(int cardID);
     void insertCardInCart(CardVO cardVO);
+  
     String getCardDesign(int cardID);
     List<CardVO> getPersonalCart(int memberID);
     List<CardVO> getPublicCardList();

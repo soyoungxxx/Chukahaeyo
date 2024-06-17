@@ -51,15 +51,22 @@
         WHERE cardID = #{cardID}
     </delete>
 
-    <select id="getCardDesign" parameterType="int" resultType="String">
-        SELECT cardDesign
+    <select id="getCompletedCardPage" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT *
         FROM Card
         WHERE cardID = #{cardID}
     </select>
 
+
     <update id="updateCardPaymentStatus" parameterType="int">
         UPDATE Card
         SET cardIsPaid = TRUE, payId = #{payID}
+        WHERE cardID = #{cardID}
+    </update>
+
+    <update id="updateCardLike" parameterType="int">
+        UPDATE Card
+        SET cardLikeCnt = Card.cardLikeCnt + 1
         WHERE cardID = #{cardID}
     </update>
 

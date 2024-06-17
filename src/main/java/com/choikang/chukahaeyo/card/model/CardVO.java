@@ -27,5 +27,6 @@ public class CardVO {
     public boolean getCardIsPublic() {
         return cardIsPublic;
     }
-    public boolean getCardIsPayed() {return cardIsPaid;}
+
+    public boolean getCardIsPaid() {return cardIsPaid;}
 }

@@ -70,5 +70,7 @@
         ]]>
     </select>
 
-
+    <delete id="deleteComment" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO">
+        delete from Reply where commID = #{commID}
+    </delete>
 </mapper>

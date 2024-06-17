@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/edit.css?after">
     <link rel="stylesheet" href="/resources/css/template/cardCommon.css?after">
-    <link rel="stylesheet" href="/resources/css/template/1.css?after" id="cardCss">
+    <link rel="stylesheet" href="/resources/css/template/templateGreen.css?after" id="cardCss">
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -65,10 +65,10 @@
                         <div class="edit-div-components">
                             <span class="head-text">이모티콘</span>
                             <span class="edit-warn-text">필수 항목입니다.</span> <br>
-                            <input class="edit-emoji" type="text" id="emoji1" maxlength="1"/>
-                            <input class="edit-emoji" type="text" id="emoji2" maxlength="1"/>
-                            <input class="edit-emoji" type="text" id="emoji3" maxlength="1"/>
-                            <input class="edit-emoji" type="text" id="emoji4" maxlength="1"/>
+                            <input class="edit-emoji" type="text" id="emoji1" maxlength="2"/>
+                            <input class="edit-emoji" type="text" id="emoji2" maxlength="2"/>
+                            <input class="edit-emoji" type="text" id="emoji3" maxlength="2"/>
+                            <input class="edit-emoji" type="text" id="emoji4" maxlength="2"/>
                             <p style="font-size:14px; color:#686868; width:90%;">
                                 원하는 이모티콘을 <b>한 칸당 하나씩</b>
                                 작성해주세요! <br>
@@ -486,12 +486,17 @@
             data: {id: template_id},
             contentType: "text/html; charset:UTF-8",
             success: function (data) {
-
                 $('.edit-preview-div').html(data);
                 originText = $('.card-name').text();
                 $('.date').text($('#edit-day').val()); // 템플릿 선택 시 날짜 초기값 세팅
+
                 // 템플릿 선택시.. css 선택
-                $('#cardCss').prop("href", "/resources/css/template/" + template_id + ".css?after");
+                let templateCss = templateThumbnail.substring(25);
+                console.log(templateCss);
+                templateCss = templateCss.substring(0, templateCss.length - 4);
+                console.log(templateCss);
+
+                $('#cardCss').prop("href", "/resources/css/template/" + templateCss + ".css");
             }
         })
 
