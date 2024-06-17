@@ -20,10 +20,10 @@
     <update id="cancelPayment" parameterType="com.choikang.chukahaeyo.payment.model.PaymentVO">
         UPDATE Payment
         SET
-                canceledAt = #{canceledAt},
-                failReason = #{failReason},
-                cancelReceiptURL = #{cancelReceiptURL}
-             WHERE payNo = #{payNo}
+            canceledAt = #{canceledAt},
+            failReason = #{failReason},
+            cancelReceiptURL = #{cancelReceiptURL}
+        WHERE payNo = #{payNo}
     </update>
 
 
