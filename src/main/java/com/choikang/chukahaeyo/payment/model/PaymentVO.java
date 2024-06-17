@@ -23,7 +23,8 @@ public class PaymentVO {
     private String status; // 결제 여부
     private int isWithinTwoDays; // 결제일이 오늘로부터 이틀 이내인지 저장
 
-    private long canceledAt;
-    private String failReason;
-    private String receiptUrl;
+    private long canceledAt; // 결제 취소 일시
+    private String failReason; // 결제 취소 실패 이유
+    private String cancelReceiptURL; // 취소 영수증 url
+
 }

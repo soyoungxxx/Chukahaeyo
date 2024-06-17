@@ -54,9 +54,6 @@
         SELECT * from Payment where memberID = #{memberID}
     </select>
 
-    <update id="cancelPayment" parameterType="int">
---          UPDATE Payment SET pay
-    </update>
 
     <select id="adminLogin" parameterType="com.choikang.chukahaeyo.member.model.AdminVO" resultType="com.choikang.chukahaeyo.member.model.AdminVO">
         SELECT * FROM Admins WHERE adminEmail = #{adminEmail} AND adminPwd = MD5(#{adminPwd})
