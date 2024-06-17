@@ -19,4 +19,7 @@
     const cardID = ${cardVO.cardID};
 </script>
 <script id="scr" src="/resources/js/card/card.js"></script>
+<script>
+    <%--emoji = '${cardVO.cardEmojis}'.split(",");--%>
+</script>
 </html>

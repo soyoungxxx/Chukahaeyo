@@ -29,7 +29,7 @@
             <form class="edit-submit-form" action="/card/edit/card.do" method="post" onsubmit="return checkRequires();"
                   enctype="multipart/form-data">
                 <div class="edit-div" style="overflow: scroll;">
-                    <div class="edit-div-hidden">
+                    <div class="edit-div-hidden">"
                         <div class="edit-upper-div"></div>
                         <div class="edit-div-components">
                             <span class="head-text">이름</span>
@@ -142,6 +142,8 @@
                         </div>
                         <hr>
                     </div>
+
+                    <input type="hidden" name="cardEmojis" id="cardEmojis">
                     <input type="hidden" name="cardIsPaid" id="cardIsPaid">
                     <input type="hidden" name="cardEndDate" id="cardEndDate">
                     <input type="hidden" name="cardName" id="cardName">
@@ -438,7 +440,7 @@
                     success: function (response) {
                         console.log("response" + response)
                         if (response.indexOf("결제") > -1) {
-                            saveHiddenDate();
+                            saveHiddenData();
                             $('#cardIsPaid').val('true');
                             $(window).off('beforeunload');
                             $('#cart-submit-button').click();
@@ -518,7 +520,7 @@
         // $("input[type='date']").
     }
 
-    function saveHiddenDate() {
+    function saveHiddenData() {
         $('#map').text("");
         $('#map').removeAttr("style");
         $("#card-design").val($('.edit-preview-div').html());
@@ -526,10 +528,11 @@
         $('#cardName').val($('.card-name').text());
         $('#submit-templateThumbnail').val(templateThumbnail);
         $('#submit-categoryId').val(categoryId);
+        $("#cardEmojis").val($("#emoji1").text() + ',' + $("#emoji2").text() + ',' + $("#emoji3").text() + ',' + $("#emoji4").text());
     }
 
     $('#edit-cart-button').click(function () {
-        saveHiddenDate();
+        saveHiddenData();
         $('#cardIsPaid').val('false');
         $(window).off('beforeunload');
         $('#cart-submit-button').click();
