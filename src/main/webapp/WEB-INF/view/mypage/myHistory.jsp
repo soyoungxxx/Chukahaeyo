@@ -27,7 +27,7 @@
                 success: function (res) {
                     console.log(res);
                     alert(res);
-                    // document.location.reload();
+                    document.location.reload();
                 },
                 error: function (res, status, error) {
                     // console.error("AJAX: ", status, error);
@@ -70,7 +70,7 @@
                                 <c:if test="${payment.isWithinTwoDays == '1' || payment.canceledAt == null}">
                                     <a href="#" onclick="cancelPayment('${payment.payNo}');">취소</a>
                                 </c:if>
-                                <c:if test="${payment.canceledAt != null}">
+                                <c:if test="${payment.canceledAt != 0 && payment.canceledAt != null}">
                                     <p>취소된 상품입니다.</p>
                                 </c:if>
                             </div>

@@ -8,15 +8,23 @@
                              payAmount,
                              memberID,
                              receiptURL,
-                             merchantUid, canceledAt, failReason, cancelReceiptURL)
+                             merchantUid)
         VALUES (#{payDate},
                 #{payNo},
                 #{payAmount},
                 #{memberID},
                 #{receiptURL},
-                #{merchantUid},
-                #{canceledAt}, #{failReason}, #{cancelReceiptURL})
+                #{merchantUid})
     </insert>
+
+    <update id="cancelPayment" parameterType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        UPDATE Payment
+        SET
+                canceledAt = #{canceledAt},
+                failReason = #{failReason},
+                cancelReceiptURL = #{cancelReceiptURL}
+             WHERE payNo = #{payNo}
+    </update>
 
 
 </mapper>

@@ -123,9 +123,10 @@ public class PaymentService {
                 cancelDTO.setCancelReceiptURL(cancelReceiptUrl);
 
                 PaymentVO paymentVO = cancelDTO.of(cancelDTO);
+                paymentVO.setPayNo(payNo);
 
                 //이 위치에 mapper에 paymentVO를 insert하는 부분 추가
-                paymentMapper.insertPayment(paymentVO);
+                paymentMapper.cancelPayment(paymentVO);
 
                 System.out.println("DB 저장 성공");
             } else {

@@ -19,7 +19,7 @@ public class CancelTest {
 
     @Test
     public void cancelTest() {
-        service.cancelPayment("imp_960088015254");
+        service.cancelPayment("imp_933567985768");
     }
 
     @Test
