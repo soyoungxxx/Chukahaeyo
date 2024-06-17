@@ -1,7 +1,8 @@
-package com.choikang.chukahaeyo.payment;
+package com.choikang.chukahaeyo.payment
 
-
+import com.choikang.chukahaeyo.card.CardMapper;
 import com.choikang.chukahaeyo.common.Decode;
+
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.model.CustomException;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
@@ -23,6 +24,8 @@ import java.util.Map;
 public class PaymentService {
     @Autowired
     private PaymentMapper paymentMapper;
+    @Autowired
+    private CardMapper cardMapper;
 
     @Value("${imp.key}")
     private String key;
@@ -34,6 +37,7 @@ public class PaymentService {
     public void processPayment(PaymentDTO paymentDTO) {
         try {
             PaymentVO paymentVO = PaymentDTO.of(paymentDTO);
+            System.out.println("[DEBUG] PaymentVO: " + paymentVO);
             paymentMapper.insertPayment(paymentVO);
             System.out.println("[service] DTO를 VO로 변환 완료");
         } catch (Exception e) {
@@ -116,10 +120,11 @@ public class PaymentService {
 
                 long canceledAt = (Long) resultObject.get("cancelled_at"); //취소 시각. 결제 취소가 아니면 0
                 String failReason = (String) resultObject.get("fail_reason"); //결제 실패 사유. 결제 성공 시 null값.
-                String cancelReceiptUrl = (String) resultObject.get("receipt_url"); //결제건의 매출전표
+                String cancelReceiptURL = (String) resultObject.get("receipt_url"); //결제건의 매출전표
 
                 CancelDTO cancelDTO = new CancelDTO();
                 cancelDTO.setCanceledAt(canceledAt);
+
                 cancelDTO.setFailReason(Decode.unicodeDecode(failReason));
                 cancelDTO.setCancelReceiptURL(cancelReceiptUrl);
 

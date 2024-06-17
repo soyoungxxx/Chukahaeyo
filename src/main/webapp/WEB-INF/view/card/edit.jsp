@@ -142,7 +142,7 @@
                         </div>
                         <hr>
                     </div>
-                    <input type="hidden" name="cardIsPayed" id="cardIsPayed">
+                    <input type="hidden" name="cardIsPaid" id="cardIsPaid">
                     <input type="hidden" name="cardEndDate" id="cardEndDate">
                     <input type="hidden" name="cardName" id="cardName">
                     <input type="hidden" name="cardDesign" id="card-design">
@@ -439,7 +439,7 @@
                         console.log("response" + response)
                         if (response.indexOf("결제") > -1) {
                             saveHiddenDate();
-                            $('#cardIsPayed').val('true');
+                            $('#cardIsPaid').val('true');
                             $(window).off('beforeunload');
                             $('#cart-submit-button').click();
                             // location.href = "/payments/success";
@@ -530,7 +530,7 @@
 
     $('#edit-cart-button').click(function () {
         saveHiddenDate();
-        $('#cardIsPayed').val('false');
+        $('#cardIsPaid').val('false');
         $(window).off('beforeunload');
         $('#cart-submit-button').click();
     })

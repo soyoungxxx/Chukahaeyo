@@ -4,6 +4,7 @@ import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import lombok.Data;
 
 import java.sql.Date;
+
 @Data
 public class PaymentDTO {
     private int payID; //결제 건 아이디
