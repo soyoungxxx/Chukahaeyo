@@ -68,6 +68,57 @@ public class BoardCommunityController {
 
         return "board/communityPost";
     }
+
+    @GetMapping("/community/update")
+    public String communityUpdateView(CommunityVO vo , HttpServletRequest req , HttpSession session) throws UnsupportedEncodingException {
+        if( session.getAttribute("memberId") == null){
+            vo.setMemberID("0");
+        }else {
+            vo.setMemberID(String.valueOf(session.getAttribute("memberId")));
+        }
+        if( session.getAttribute("memberName") == null){
+            vo.setMemberName("");
+        }else {
+            vo.setMemberName(String.valueOf(session.getAttribute("memberName")));
+        }
+
+
+
+
+        req.setAttribute("object" ,boardCommunityService.getCommunityDetail(vo));
+
+
+
+        return "board/communityUpdate";
+    }
+
+    @PostMapping("/community/update")
+    public String communityUpdateAction(CommunityVO vo) throws UnsupportedEncodingException {
+
+
+        boardCommunityService.updateCommunity(vo);
+
+
+
+        return "redirect:detail?commID="+vo.getCommID();
+    }
+
+
+    @PostMapping("/community/delete")
+    public String communityDeleteAction(CommunityVO vo) throws UnsupportedEncodingException {
+
+        boardCommunityService.deleteCommunity(vo);
+
+
+
+        return "redirect:list";
+    }
+
+
+
+
+
+
     @PostMapping("/community/write")
     public String communityWriteInsert(@ModelAttribute CommunityVO vo , HttpSession session) throws UnsupportedEncodingException {
 

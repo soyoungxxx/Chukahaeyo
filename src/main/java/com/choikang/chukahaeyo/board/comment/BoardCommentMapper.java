@@ -24,4 +24,6 @@ public interface BoardCommentMapper {
     ReplyVO getCorrectLine(ReplyVO vo);
 
     int getCorrectOno(ReplyVO vo);
+
+    int deleteComment(ReplyVO replyVO);
 }

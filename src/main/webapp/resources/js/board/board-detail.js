@@ -1,4 +1,38 @@
 window.onload = function () {
+    $(".delete").click(function(e){
+        if( confirm("정말로 지우시겠습니까?") ) {
+            let commID =  $(".board-id").val();
+
+            const form = document.createElement('form'); // form 태그 생성
+            form.setAttribute('method', 'post'); // 전송 방식 결정 (get or post)
+            form.setAttribute('action', "/board/community/delete"); // 전송할 url 지정
+
+
+            const data_3 = document.createElement('input');
+            data_3.setAttribute('type', 'hidden');
+            data_3.setAttribute('name', 'commID');
+            data_3.setAttribute('value', commID);
+            // form 태그에 input 태그 넣고 summit 가능하게 처리
+            form.appendChild(data_3);
+
+            document.body.appendChild(form);
+
+            form.submit();
+
+
+
+        }
+
+
+    });
+
+
+
+
+
+
+
+
     function commentAjax(replyID) {
         $.ajax({
             type: "get",

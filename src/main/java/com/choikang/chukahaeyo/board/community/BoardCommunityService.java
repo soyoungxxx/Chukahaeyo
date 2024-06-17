@@ -1,6 +1,8 @@
 package com.choikang.chukahaeyo.board.community;
 
+import com.choikang.chukahaeyo.board.comment.BoardCommentMapper;
 import com.choikang.chukahaeyo.board.model.CommunityVO;
+import com.choikang.chukahaeyo.board.model.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class BoardCommunityService {
 
     @Autowired
     BoardCommunityMapper boardCommunityMapper;
+
+    @Autowired
+    BoardCommentMapper boardCommentMapper;
 
     public Map<String, Object> getCommunityList(CommunityVO vo) {
         int count = boardCommunityMapper.count(vo); // 총개수
@@ -46,6 +51,7 @@ public class BoardCommunityService {
     }
 
     public CommunityVO getCommunityDetail(CommunityVO vo) {
+        boardCommunityMapper.updateCommunityViewCount(vo);
         return boardCommunityMapper.getCommunityDetail(vo);
     }
 
@@ -64,5 +70,18 @@ public class BoardCommunityService {
         boardCommunityMapper.insertHeart(vo);
 
         return boardCommunityMapper.getRedCount(vo);
+    }
+
+    public int updateCommunity(CommunityVO vo) {
+        return boardCommunityMapper.updateCommunity(vo);
+    }
+
+    public void deleteCommunity(CommunityVO vo) {
+
+        ReplyVO replyVO = new ReplyVO();
+        replyVO.setCommID(vo.getCommID());
+        boardCommentMapper.deleteComment(replyVO);
+        boardCommunityMapper.deleteLike(vo);
+        boardCommunityMapper.deleteCommunity(vo);
     }
 }
