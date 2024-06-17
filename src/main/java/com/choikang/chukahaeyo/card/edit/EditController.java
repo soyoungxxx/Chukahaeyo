@@ -3,6 +3,7 @@ package com.choikang.chukahaeyo.card.edit;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.card.model.TemplateVO;
 import com.choikang.chukahaeyo.s3.S3Service;
+import com.nhncorp.lucy.security.xss.XssFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,6 +64,9 @@ public class EditController {
         } else {
             redirectURL = "/cart";
         }
+        // XSS filter 적용해서 html 문법 필터링하기
+        XssFilter filter = XssFilter.getInstance("lucy-xss-superset-sax.xml", true);
+        cardVO.setCardDesign(filter.doFilter(cardVO.getCardDesign()));
         service.insertCardInCart(cardVO);
         return "redirect:" + redirectURL;
     }
