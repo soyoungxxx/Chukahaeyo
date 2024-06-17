@@ -21,10 +21,4 @@
     const cardID = ${cardVO.cardID};
 </script>
 <script id="scr" src="/resources/js/card/card.js"></script>
-<script>
-    $(function() {
-        console.log(${cardVO.cardEmojis})
-        <%--emoji = ${cardVO.cardEmojis}.split(",");--%>
-    })
-</script>
 </html>
