@@ -1,6 +1,5 @@
 package com.choikang.chukahaeyo.payment;
 
-import com.choikang.chukahaeyo.card.CardMapper;
 import com.choikang.chukahaeyo.common.Decode;
 
 import com.choikang.chukahaeyo.exception.ErrorCode;
@@ -24,8 +23,6 @@ import java.util.Map;
 public class PaymentService {
     @Autowired
     private PaymentMapper paymentMapper;
-    @Autowired
-    private CardMapper cardMapper;
 
     @Value("${imp.key}")
     private String key;

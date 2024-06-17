@@ -77,11 +77,6 @@
             console.log("Selected Cards:", selectedCards);
             if (confirm("결제하시겠습니까?")) {
 
-                var today = new Date();
-                var hours = today.getHours(); // 시
-                var minutes = today.getMinutes();  // 분
-                var seconds = today.getSeconds();  // 초
-                var milliseconds = today.getMilliseconds();
                 var makeMerchantUid = 'merchant_' + new Date().getTime();
 
                 let totalAmount = selectedCards.reduce((sum, card) => sum + parseFloat(card.cardPrice), 0);

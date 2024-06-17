@@ -58,9 +58,9 @@
     </select>
 
 
-    <update id="updateCardPaymentStatus" parameterType="int">
+    <update id="updateCardPaymentStatus" parameterType="map">
         UPDATE Card
-        SET cardIsPaid = TRUE
+        SET cardIsPaid = TRUE, payID = #{payID}
         WHERE cardID = #{cardID}
     </update>
 
