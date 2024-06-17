@@ -61,7 +61,7 @@ public class EditController {
         String redirectURL;
         cardVO.setMemberID((Integer) session.getAttribute("memberID"));
         cardVO.setCardImage(imageService.saveFile(file));
-        if (cardVO.getCardIsPayed()) {
+        if (cardVO.getCardIsPaid()) {
             redirectURL = "/payments/success";
         } else {
             redirectURL = "/cart";

@@ -1,4 +1,4 @@
-package com.choikang.chukahaeyo.payment
+package com.choikang.chukahaeyo.payment;
 
 import com.choikang.chukahaeyo.card.CardMapper;
 import com.choikang.chukahaeyo.common.Decode;
@@ -126,7 +126,7 @@ public class PaymentService {
                 cancelDTO.setCanceledAt(canceledAt);
 
                 cancelDTO.setFailReason(Decode.unicodeDecode(failReason));
-                cancelDTO.setCancelReceiptURL(cancelReceiptUrl);
+                cancelDTO.setCancelReceiptURL(cancelReceiptURL);
 
                 PaymentVO paymentVO = cancelDTO.of(cancelDTO);
                 paymentVO.setPayNo(payNo);
