@@ -22,7 +22,6 @@ public class EditService {
     }
 
     public String selectPreviewFrame(int templateId) {
-        System.out.println(templateMapper.selectPreviewFrame(templateId));
         return templateMapper.selectPreviewFrame(templateId);
     }
 
@@ -30,7 +29,11 @@ public class EditService {
         cardMapper.insertCardInCart(cardVO);
     }
 
-    public String getCardDesign(int cardID) {
-        return cardMapper.getCardDesign(cardID);
+    public CardVO getCompletedCardPage(int cardID) {
+        return cardMapper.getCompletedCardPage(cardID);
+    }
+
+    public void updateCardLike(int cardID) {
+        cardMapper.updateCardLike(cardID);
     }
 }
