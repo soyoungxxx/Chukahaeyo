@@ -143,6 +143,7 @@
                         <hr>
                     </div>
 
+                    <input type="hidden" name="payID" id="payID">
                     <input type="hidden" name="cardEmojis" id="cardEmojis">
                     <input type="hidden" name="cardIsPaid" id="cardIsPaid">
                     <input type="hidden" name="cardEndDate" id="cardEndDate">
@@ -409,8 +410,8 @@
             pg: 'uplus', // 토스페이
             pay_method: 'card',
             merchant_uid: "IMP" + makeMerchantUid,
-            name: '당근 10kg',
-            amount: 510000,
+            name: '축하해요 카드 결제',
+            amount: 1000,
             buyer_email: 'Iamport@chai.finance',
             buyer_name: '아임포트',
             buyer_tel: '010-1234-5678',
@@ -439,13 +440,12 @@
                     }),
                     success: function (response) {
                         console.log("response" + response)
-                        if (response.indexOf("결제") > -1) {
+                        if (response > 0) {
                             saveHiddenData();
                             $('#cardIsPaid').val('true');
                             $(window).off('beforeunload');
+                            $('#payID').val(response);
                             $('#cart-submit-button').click();
-                            // location.href = "/payments/success";
-                            // console.log("결제 후 DB 저장 성공", response);
                         }
                     },
                     error: function (xhr, status, error) {
