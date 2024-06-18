@@ -25,6 +25,7 @@ public class ShortUrlService {
     private String clientSecret;
 
     private final RestTemplate restTemplate;
+
     private final CardMapper cardMapper;
     public String shortUrl(int cardID) { // originUrl을 네이버 API로 보내는 메소드
         try {
