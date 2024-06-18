@@ -16,11 +16,13 @@ public class CommunityVO {
     private String commViewCount;
 
     private String isTop;
+    private String sort;
 
     public CommunityVO() {
         this.query = "";
         this.querytype = "all";
         this.page = "1";
+        this.sort = "date";
     }
 
     private String isRed;

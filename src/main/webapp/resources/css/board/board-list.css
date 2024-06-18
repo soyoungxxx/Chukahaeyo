@@ -39,14 +39,28 @@ body .container{
     margin-bottom: 80px;
 }
 
+
+
 /*search*/
 .search {
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: space-between;
 
     margin-bottom: 25px;
 }
+
+
+
+
+.sort-box{
+    margin-left: 20px;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 10px;
+}
+
 
 .search .selectbox {
     width: 120px;
@@ -130,6 +144,11 @@ body .container{
     width: 80px;
     text-align: center;
 }
+.list .list-board .list-title .reply-count {
+    width: 80px;
+    text-align: center;
+}
+
 
 /*list-data*/
 
@@ -175,6 +194,10 @@ body .container{
 
 
 .list .list-board .list-data .like {
+    width: 80px;
+    text-align: center;
+}
+.list .list-board .list-data .reply-count {
     width: 80px;
     text-align: center;
 }
