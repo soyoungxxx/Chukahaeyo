@@ -6,6 +6,7 @@ import com.choikang.chukahaeyo.member.model.MemberVO;
 import com.choikang.chukahaeyo.payment.CancelDTO;
 import com.choikang.chukahaeyo.payment.PaymentDTO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
+import com.siot.IamportRestClient.response.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -118,6 +119,10 @@ public class MemberService {
     // 결제 내역 가져오기
     public List<PaymentVO> getPaymentList(int memberID){
         return memberMapper.getPaymentList(memberID);
+    }
+
+    public List<PaymentVO> getPaymentAllList(){
+        return memberMapper.getPaymentAllList();
     }
 
     // 관리자 로그인

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -125,11 +126,10 @@ public class MemberController {
     // 회원가입: 멤버 인증, 이메일을 통해 링크 인증 완료 시 DB상의 isAuth 상태 변경
     @GetMapping("/member/verify")
     public String verify(Model model, @RequestParam("memberID") int memberID) {
-        if(service.getUserInfoById(memberID).isMemberAuth()) {
+        if (service.getUserInfoById(memberID).isMemberAuth()) {
             model.addAttribute("msg", "이미 인증된 회원입니다.");
             model.addAttribute("closeWindow", true);
-        }
-        else{
+        } else {
             service.memberVerify(memberID);
             model.addAttribute("msg", "인증이 완료되었습니다.");
             model.addAttribute("url", "/member/login");
@@ -202,17 +202,30 @@ public class MemberController {
         model.addAttribute("paymentList", paymentList);
         return "/mypage/myHistory";
     }
-    
 
-    // 로그아웃
-    @GetMapping("/logout")
-    public String logout(HttpSession session, Model model) {
-        session.invalidate();
-        model.addAttribute("msg", "로그아웃 되었습니다.");
-        model.addAttribute("url", "/");
-        return "include/alert";
+    // 관리자: 결제 내역 가져오기
+    @GetMapping("/admin/adminPage")
+    public String getAllPaymentList(Model model) {
+        List<PaymentVO> paymentList = service.getPaymentAllList();
+        model.addAttribute("paymentList", paymentList);
+        return "/admin/adminPage";
     }
 
+
+    // 로그아웃(일반 회원, 관리자)
+    @GetMapping("/logout")
+    public String logout(HttpSession session, HttpServletRequest request, Model model) {
+        session.invalidate();
+        String beforePage = request.getHeader("Referer");
+        model.addAttribute("msg", "로그아웃 되었습니다.");
+        if (beforePage.contains("admin")) {
+            model.addAttribute("url", "/admin/adminLogin");
+        } else {
+            model.addAttribute("url", "/");
+        }
+
+        return "include/alert";
+    }
 
     // 회원탈퇴
     // 회원탈퇴: 로그인한 유저 email 조회

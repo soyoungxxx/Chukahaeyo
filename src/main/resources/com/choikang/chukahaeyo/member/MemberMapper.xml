@@ -54,9 +54,12 @@
         SELECT * from Payment where memberID = #{memberID}
     </select>
 
-
     <select id="adminLogin" parameterType="com.choikang.chukahaeyo.member.model.AdminVO" resultType="com.choikang.chukahaeyo.member.model.AdminVO">
         SELECT * FROM Admins WHERE adminEmail = #{adminEmail} AND adminPwd = MD5(#{adminPwd})
+    </select>
+
+    <select id="getPaymentAllList"  resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        SELECT * from Payment
     </select>
 
 </mapper>

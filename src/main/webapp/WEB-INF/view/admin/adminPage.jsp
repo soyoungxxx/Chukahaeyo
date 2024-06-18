@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,8 +15,8 @@
 <main class="main">
     <div style="width: 100%;">
         <div class="admin-header">
-            <a href="admin/adminPage" class="logo">관리자페이지</a>
-            <a href="#" class="logout">로그아웃</a>
+            <a href="/admin/adminPage" class="logo">관리자페이지</a>
+            <a href="/logout" class="logout">로그아웃</a>
         </div>
         <hr>
         <div class="admin">
@@ -24,13 +27,32 @@
                             <li id="orderList">주문 목록</li>
                             <li id="inquiryList">1:1 문의 관리</li>
                         </ul>
-
                     </div>
                 </div>
                 <div class="v-line"></div>
+
                 <div class="admin-content">
-                    본문 들어갈 자리
-                    여기에 내용 작성하면 됨
+                    <div>전체 달성 금액: </div>
+                    <c:forEach var="payment" items="${paymentList}">
+                        <div class="payment-list">
+                            <div class="payment-item">
+                                <a href="#">
+                                    <img src="" class="payment-item-img">
+                                </a>
+                            </div>
+
+                            <div class="payment-info">
+                                <p>결제 번호: ${payment.merchantUid}</p>
+                                    <%--                           ㄴ 가맹점 번호--%>
+                                <p>주문자 이메일: ${payment.memberID}</p>
+                                <p>주문일자: <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.payDate}"/></p>
+                                <p>금액: <fmt:formatNumber type="number" maxFractionDigits="3"
+                                                         value="${payment.payAmount}"/>원</p><br>
+                                <a href="#">상세 보기</a>
+                            </div>
+                        </div>
+                    </c:forEach>
+
                 </div>
             </div>
         </div>
