@@ -79,6 +79,7 @@
         SELECT *
         FROM GuestBook
         WHERE cardID = #{cardID}
+        ORDER BY guestBookPostDate
     </select>
 
 </mapper>

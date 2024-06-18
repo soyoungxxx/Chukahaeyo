@@ -101,7 +101,7 @@ function showGuestBook(name, message) {
     var temp;
     temp = `<div class="${className}">
                 <img src=${img} class="guest-profile" name="${imgName}"/>
-                <div class="message-text">${name}<br />${message}</div>
+                <div class="message-text"><b>${name}</b> <br/>${message}</div>
             </div>`;
     $(".guest-messages").append(temp);
 }

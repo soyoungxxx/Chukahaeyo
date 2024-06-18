@@ -86,8 +86,6 @@ public class EditController {
 
         // 방명록 정보
         List<GuestBookVO> guestBooks = service.selectGuestBooks(cardVO.getCardID());
-        Gson gson = new Gson();
-        gson.toJson(guestBooks);
         model.addAttribute("guestBooks", guestBooks);
         return "card/completedCard";
     }
