@@ -20,7 +20,8 @@
     <select id="getCommunityList" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="com.choikang.chukahaeyo.board.model.CommunityVO">
         (SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
                 (SELECT count(*) FROM BoardLike WHERE commID = c.commID) AS BoardLike ,
-                "true" isTop
+                "true" isTop ,
+                (SELECT COUNT(*) FROM Reply WHERE commID = c.commID) AS replyCount
          FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
          ORDER BY BoardLike DESC
              LIMIT 0, 5)
@@ -28,11 +29,37 @@
         (select * from
         (SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
                 (SELECT count(*) FROM BoardLike WHERE commID = c.commID) AS BoardLike,
-                "false" isTop
+                "false" isTop ,
+                (SELECT COUNT(*) FROM Reply WHERE commID = c.commID) AS replyCount
          FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
         <include refid="searchSql"/>
-         ORDER BY commPostDate DESC) zz
-        order by commPOstDate DESC )
+
+        <if test="sort == 'date'">
+            ORDER BY commPostDate DESC
+        </if>
+        <if test="sort == 'view'">
+            ORDER BY commViewCount DESC
+        </if>
+        <if test="sort == 'reply'">
+            ORDER BY replyCount DESC
+        </if>
+        <if test="sort == 'like'">
+            ORDER BY BoardLike DESC
+        </if>
+         ) zz
+        <if test="sort == 'date'">
+            ORDER BY commPostDate DESC
+        </if>
+        <if test="sort == 'view'">
+            ORDER BY commViewCount DESC
+        </if>
+        <if test="sort == 'reply'">
+            ORDER BY replyCount DESC
+        </if>
+        <if test="sort == 'like'">
+            ORDER BY BoardLike DESC
+        </if>
+        )
         LIMIT #{startIdx}, 10
     </select>
 
