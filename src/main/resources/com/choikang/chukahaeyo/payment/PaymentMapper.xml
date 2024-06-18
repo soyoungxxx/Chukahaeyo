@@ -15,6 +15,9 @@
                 #{memberID},
                 #{receiptURL},
                 #{merchantUid})
+        <selectKey order="AFTER" keyProperty="payID" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <update id="cancelPayment" parameterType="com.choikang.chukahaeyo.payment.model.PaymentVO">

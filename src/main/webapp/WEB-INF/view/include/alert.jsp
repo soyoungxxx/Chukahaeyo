@@ -3,6 +3,9 @@
 
 <script>
     alert('${msg}');
+    <c:if test="${closeWindow == true}">
+    window.close();
+    </c:if>
     <c:if test="${cmd == 'back'}">
     history.back();
     </c:if>
