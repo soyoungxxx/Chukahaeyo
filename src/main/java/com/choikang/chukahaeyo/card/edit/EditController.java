@@ -69,6 +69,10 @@ public class EditController {
         } else {
             redirectURL = "/cart";
         }
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        if (cardVO.getPayID() == 0) {
+            cardVO.setPayID(null);
+        }
         // image s3 위치 가져와서 저장
         cardVO.setCardImage(imageService.saveFile(file));
         service.insertCardInCart(cardVO, session);
