@@ -132,7 +132,7 @@
     margin: 20px auto;
 }
 
-.changeInfo > ul > li > #userEmail{
+.changeInfo > ul > li > #userEmail {
     background-color: #FAFAFA;
 }
 
@@ -457,4 +457,23 @@
 
     margin: 0 5px 0 0;
     padding: 3px 10px;
+}
+
+.payment-null {
+    border: 2px #bbbbbb solid;
+    width: 95%;
+    height: 500px;
+    margin: 35px auto;
+    align-items: center;
+    text-align: center;
+}
+
+.payment-null > p {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #4B5CFF;
+
+    align-items: center;
+    line-height: 430px;
 }
