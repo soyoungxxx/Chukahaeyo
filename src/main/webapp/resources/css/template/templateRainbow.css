@@ -9,6 +9,7 @@ body, .edit-preview-div {
     #BD00FF 85.68%);
     background-attachment: fixed;
 }
+
 #card-bg {
     width: 153%;
     position:absolute;
@@ -16,6 +17,16 @@ body, .edit-preview-div {
     object-position: top;
 
     content:url("/resources/img/card/invitation/rainbow/background.png");
+}
+
+.card-name {
+    color: #000000;
+    font-size: 64px;
+    font-weight: 700;
+    font-family: "Noto Sans KR", sans-serif;
+}
+.card-top-img {
+    transform: rotate(0);
 }
 
 .card-top-img {
@@ -34,6 +45,13 @@ body, .edit-preview-div {
 /* 이미지와 텍스트 */
 .card-content {
     background: #FFFFEE;
+}
+
+.more-card {
+    font-size: 15px;
+    margin-left: 350px;
+    background-color:#f3f3d9;
+    padding: 7px;
 }
 
 .message-block.odd {
