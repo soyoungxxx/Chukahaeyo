@@ -32,6 +32,9 @@
                     if (res > 0) {
                         var popup = document.getElementById("checkPwdAuthPopup");
                         popup.style.display = "none";
+
+                        $("#changeInfoContent").display("flex")
+
                     } else {
                         alert('비밀번호가 일치하지 않습니다.');
                     }
@@ -109,10 +112,10 @@
         </div>
 
         <div class="mypage">
-            <div class="mypage-wrap">
+            <div class="mypage-wrap" >
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <%@ include file="/WEB-INF/view/mypage/include/checkPwdAuth.jsp" %>
-                <div class="mypage-content">
+                <div class="mypage-content" id="changeInfoContent">
                     <form action="/mypage/changeInfo" method="post" onsubmit="return checkInput();">
                         <div class="changeInfo">
                             <h3>회원정보 수정</h3>
@@ -149,8 +152,10 @@
                 </div>
             </div>
         </div>
-        <div class="sticker2"></div>
+    </div>
+    <div class="sticker2"></div>
 </main>
+
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 </body>
 </html>

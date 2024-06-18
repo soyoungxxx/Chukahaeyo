@@ -12,9 +12,9 @@
     <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
         INSERT INTO Card
         (cardName, cardIsPublic, cardIsPaid, cardStartDate, cardEndDate, cardImage, cardEmojis,
-        cardDesign, templateThumbnail, categoryID, memberID)
+        cardDesign, templateThumbnail, categoryID, memberID, payID)
         VALUES (#{cardName}, #{cardIsPublic}, #{cardIsPaid}, #{cardStartDate}, #{cardEndDate}, #{cardImage},
-        #{cardEmojis}, #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID})
+        #{cardEmojis}, #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID}, #{payID})
 
         <selectKey order="AFTER" keyProperty="cardID" resultType="int">
             SELECT LAST_INSERT_ID()
