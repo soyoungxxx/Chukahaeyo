@@ -19,7 +19,7 @@ public class CardVO {
     private String cardDesign;
     private String templateThumbnail;
     private int categoryID;
-    private int payID;
+    private Integer payID;
     private String cardURL; //단축 url
     private String cardQR; //qr코드. 단축 URL의 끝에 .qr을 붙이면 그것이 이미지 주소
     private boolean cardIsPaid;
