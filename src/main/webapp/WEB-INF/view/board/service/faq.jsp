@@ -28,7 +28,7 @@
                     <div class="service-menu">
                         <ul>
                             <li><a href="/board/service" id="service">자주 묻는 질문</a></li>
-                            <li><a href="/board/inquiry" id="inquiry">1:1 문의하기</a></li>
+                            <li><a href="/board//inquiry/list" id="inquiry">1:1 문의하기</a></li>
                         </ul>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                             <div class="content">
                                 상단 메뉴바(네비게이터)를 통해 각 분류에 맞는 축하카드를 생성할 수 있습니다.<br>
                                 카드 생성은 다음과 같은 프로세스로 진행 및 생성할 수 있습니다<br><br>
-                               <b>&lt;필수 항목&gt;</b> <br>
+                                <b>&lt;필수 항목&gt;</b> <br>
                                 (1) 우측 카드 템플릿 선택(선택 이전에 내용 입력 불가), 작성 중간에 템플릿을 변경할 시 기존 작성 내용이 초기화 됩니다.<br>
                                 (2) 축하/초대 카드 이름 입력<br>
                                 (3) 날짜 선택<br>
@@ -62,11 +62,11 @@
                             <hr>
 
                             <div class="faq-inner-container">
-                                    <span>
-                                        <span class="no">2.</span>
-                                        <span class="title">주문한 카드를 수정하거나 취소할 수 있나요?</span>
-                                    </span>
-                                <span class="arrow">></span>
+                                <span>
+                                    <span class="no">2.</span>
+                                    <span class="title">주문한 카드를 수정하거나 취소할 수 있나요?</span>
+                                </span>
+                                <img class="arrow" src="/resources/img/board/toggle.png">
                             </div>
                             <div class="content">
                                 장바구니에 담기거나 이미 결제가 된 카드는 수정이 불가능합니다. 만일 수정이 필요할 시 삭제 후 재생성을 진행해주셔야 합니다. 더불어 결제된 카드를 취소할 시
@@ -75,11 +75,11 @@
                             <hr>
 
                             <div class="faq-inner-container">
-                                    <span>
-                                        <span class="no">3.</span>
-                                        <span class="title">생성한 페이지를 얼마나 유지할 수 있나요?</span>
-                                    </span>
-                                <span class="arrow">></span>
+                                <span>
+                                    <span class="no">3.</span>
+                                    <span class="title">생성한 페이지를 얼마나 유지할 수 있나요?</span>
+                                </span>
+                                <img class="arrow" src="/resources/img/board/toggle.png">
                             </div>
                             <div class="content">
                                 생성된 페이지 링크의 제한 기간은 없으나, 축하 기간이 길어지거나 페이지를 유지해야하는 기간이 길어질 시 가격 측정 내규에 따라 추가요금을 요청할 수
@@ -88,11 +88,11 @@
                             <hr>
 
                             <div class="faq-inner-container">
-                                    <span>
-                                        <span class="no">4.</span>
-                                        <span class="title">같은 이메일로 가입이 가능한가요?</span>
-                                    </span>
-                                <span class="arrow">></span>
+                                <span>
+                                    <span class="no">4.</span>
+                                    <span class="title">같은 이메일로 가입이 가능한가요?</span>
+                                </span>
+                                <img class="arrow" src="/resources/img/board/toggle.png">
                             </div>
                             <div class="content">
                                 동일한 이메일로 중복 가입은 불가능합니다. 이는 회원탈퇴를 한 계정도 동일하게 적용되며, 만일 동일 아이디로 재가입이 필요할 시 고객센터로 문의바랍니다.

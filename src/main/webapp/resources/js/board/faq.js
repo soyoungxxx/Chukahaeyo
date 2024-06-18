@@ -10,12 +10,14 @@ document.addEventListener("DOMContentLoaded", function() {
             const content = container.nextElementSibling;
             if (isActive) {
                 content.style.display = "block";
+
             } else {
                 content.style.display = "none";
             }
         });
     });
 });
+
 
 
 $(document).ready(function() {

@@ -112,7 +112,7 @@
     margin-bottom: 30px;
     align-self: flex-start;
     font-size: 24px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 
@@ -131,16 +131,19 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px;
 }
 
+.faq-inner-container > span {
+    transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
+}
 .faq-inner-container .arrow {
-    margin: 0;
-    width: 10px;
-    height: 10px;
-    transform: rotate(90deg);
+    width: 25px;
+    height: 25px;
+    margin: auto 10px;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
 }
 
 .content {
@@ -148,15 +151,19 @@
     font-size: 16px;
     margin: 0 10px 25px 10px;
     display: none;
+    transition: transform 0.2s ease-in-out;
 }
 
 
 .faq-inner-container.active > span {
+    font-weight: 800;
     color: #4B5CFF;
 }
 
 .faq-inner-container.active .arrow {
-    transform: rotate(270deg);
+    transform: rotate(180deg);
     color: #4B5CFF;
 }
+
+
 
