@@ -143,7 +143,7 @@
                         <hr>
                     </div>
 
-                    <input type="hidden" name="payID" id="payID">
+                    <input type="hidden" name="payID" id="payID" value="0">
                     <input type="hidden" name="cardEmojis" id="cardEmojis">
                     <input type="hidden" name="cardIsPaid" id="cardIsPaid">
                     <input type="hidden" name="cardEndDate" id="cardEndDate">
@@ -440,7 +440,7 @@
                     }),
                     success: function (response) {
                         console.log("response" + response)
-                        if (response > 0) {
+                        if (response > -1) {
                             saveHiddenData();
                             $('#cardIsPaid').val('true');
                             $(window).off('beforeunload');
