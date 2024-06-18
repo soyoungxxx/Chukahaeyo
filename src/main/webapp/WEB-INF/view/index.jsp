@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<%@ page import="com.choikang.chukahaeyo.card.gallery.CardTest" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -20,32 +17,35 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="container">
-<%--            <div style="width: 100%; height: 100%;">--%>
                 <!-- 이미지 슬라이드 영역 -->
                 <div class="slideshow-container">
-                    <div class="slides fade">
-                        <img src="resources/img/main/mainad01.png" alt="" style="width:100%">
-                    </div>
-                    <div class="slides fade">
-                        <img src="resources/img/main/mainad01ex.png" alt="" style="width:100%">
-                    </div>
-                    <div class="slides fade">
-                        <img src="resources/img/main/mainad01.png" alt="" style="width:100%">
-                    </div>
+                    <c:forEach var="card" items="${top3Cards}">
+                        <div class="slides fade">
+                            <div class="card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}">
+                                <div class="card-image">
+                                    <a href="card/completedCard/${card.cardID}">
+                                        <img src="resources/img/main/mainad01.png" alt="" style="width:100%">
+                                        <div class="overlay">
+                                            <div class="">수정 예정${card.categoryID}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
                     <a class="prev-slide" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next-slide" onclick="plusSlides(1)">&#10095;</a>
                 </div>
-<%--            </div>--%>
 
+            <!-- 내생일, 반려동물 생일, 단체 행사 링크 -->
             <div class="navigator">
-                <!-- 내생일, 반려동물 생일, 단체 행사 링크 -->
-                <a href="EditPage/내생일템플릿">
+                <a href="card/edit/myCard">
                     <img src="resources/img/main/mainbear1.png" alt="" class="mainBear">
                 </a>
-                <a href="EditPage/반려동물생일템플릿">
+                <a href="card/edit/myPet">
                     <img src="resources/img/main/mainbear2.png" alt="" class="mainBear">
                 </a>
-                <a href="EditPage/단체행사템플릿">
+                <a href="card/edit/invitation">
                     <img src="resources/img/main/mainbear3.png" alt="" class="mainBear">
                 </a>
             </div>
@@ -55,29 +55,18 @@
                 <a href="gallery"><input type="button" class="move-gallery" value="명예의 전당 이동"/></a>
             </div>
             <div class="card-gallery">
-                <%
-                    // 예시 데이터
-                    List<CardTest> cards = new ArrayList<>();
-                    cards.add(new CardTest("홍길동<br>생일카드", "2023-06-01", 1, "", "template01"));
-                    cards.add(new CardTest("초코<br>생일카드", "2023-05-15", 20, "", "template02"));
-                    cards.add(new CardTest("야구장<br>초대카드", "2023-04-30", 5, "", "template03"));
-                    if (cards != null) {
-                        for (CardTest card : cards) {
-                %>
-                <div class="card" data-template="<%= card.getTemplate() %>" data-likes="<%= card.getLikes() %>"
-                     data-date="<%= card.getDate() %>">
-                    <div class="card-image">
-                        <img src="/resources/img/template/<%=card.getTemplate()%>.png" alt="Card Image">
-                        <div class="overlay">
-                            <div class="text"><%= card.getName() %>
+                <c:forEach var="card" items="${latest3Cards}">
+                    <div class="card">
+                        <a href="card/completedCard/${card.cardID}">
+                        <div class="card-image">
+                            <img src="${card.templateThumbnail}" alt="Card Image">
+                            <div class="overlay">
+                                <div class="text">${card.cardName}</div>
                             </div>
                         </div>
+                        </a>
                     </div>
-                </div>
-                <%
-                        }
-                    }
-                %>
+                </c:forEach>
             </div>
         </div>
     </div>

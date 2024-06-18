@@ -15,12 +15,15 @@ public class CommunityVO {
     private Date commEditedDate;
     private String commViewCount;
 
+    private String isTop;
+
     public CommunityVO() {
         this.query = "";
         this.querytype = "all";
         this.page = "1";
     }
 
+    private String isRed;
     private String boardLike;
 
     private String memberEmail;
@@ -36,4 +39,7 @@ public class CommunityVO {
     public int getStartIdx() {
         return (Integer.parseInt(page)-1) * 10;
     }
+
+    private String replyCount;
+
 }

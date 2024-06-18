@@ -31,6 +31,17 @@ h2 {
     text-align: center;
 }
 
+.edit-upper-div {
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    z-index: 1000;
+}
+
+.edit-div-hidden {
+    filter: blur(5px);
+}
+
 .edit-middle-div {
     width: 60%;
     height: 100%;

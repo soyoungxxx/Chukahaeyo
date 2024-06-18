@@ -119,16 +119,18 @@ select:focus {
     object-fit: cover;
 }
 
-.overlay {
+.card-overlay {
     font-family: "Jua", sans-serif;
-    font-size: 18px;
+    font-size: 23px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color: white;
     text-align: center;
+    letter-spacing: 3px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
-
 .card-info {
     padding: 15px;
 }

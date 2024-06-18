@@ -3,7 +3,8 @@ package com.choikang.chukahaeyo.payment;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Date;
+
 @Data
 public class PaymentDTO {
     private int payID; //결제 건 아이디
@@ -15,6 +16,7 @@ public class PaymentDTO {
     private Date paidAt; // 결제 완료 시간
     private String status; // 결제 여부
     private String receiptURL; //영수증 url
+    private int memberID;
 
     public static PaymentVO of(PaymentDTO paymentDTO){
         PaymentVO paymentVO = new PaymentVO();
@@ -23,9 +25,10 @@ public class PaymentDTO {
         paymentVO.setPayNo(paymentDTO.getPayNo());
         paymentVO.setMerchantUid(paymentDTO.getMerchantUid());
         paymentVO.setPayAmount(paymentDTO.getPayAmount());
-        paymentVO.setPaidAt(paymentDTO.getPaidAt());
+        paymentVO.setPayDate(paymentDTO.getPaidAt());
         paymentVO.setStatus(paymentDTO.getStatus());
         paymentVO.setReceiptURL(paymentDTO.getReceiptURL());
+        paymentVO.setMemberID(paymentDTO.getMemberID());
         return paymentVO;
     }
 }

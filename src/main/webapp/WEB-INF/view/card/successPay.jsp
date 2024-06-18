@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,6 +7,8 @@
     <title>test</title>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <style>
         .sticker3 {
             display: block;
@@ -83,9 +86,9 @@
             <img src="/resources/img/payment/paySuccessCheck.png" alt="결제 성공 체크 이미지" style="width: 10%;"><br><br>
             <img src="/resources/img/payment/successPayText.png" alt="결제 성공 텍스트 이미지" style="width: 20%;"><br><br><br>
             <div class="url-container">
-                카드 URL | <span class="url" id="shortUrl">${shortUrl}</span>
-                <span class="url">shortUrl 복사 test</span>
+                카드 URL | <span class="url" id="shortUrl">${param.shortUrl}</span>
             </div>
+
             <br><br>
             <div class="buttons">
                 <div class="button-copy">

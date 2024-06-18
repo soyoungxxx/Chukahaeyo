@@ -16,4 +16,21 @@ public interface BoardCommunityMapper {
     int insertCommunity(CommunityVO vo);
 
     CommunityVO getCommunityDetail(CommunityVO vo);
+
+    int deleteHeart(CommunityVO vo);
+
+    int getRedCount(CommunityVO vo);
+
+    int getLikeCount(CommunityVO vo);
+
+    int insertHeart(CommunityVO vo);
+
+    int updateCommunity(CommunityVO vo);
+
+    int deleteCommunity(CommunityVO vo);
+
+    int deleteLike(CommunityVO vo);
+
+    int updateCommunityViewCount(CommunityVO vo);
+    // xml 작성
 }

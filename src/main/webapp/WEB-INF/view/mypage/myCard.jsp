@@ -42,39 +42,39 @@
 
                         <%--                예시 카드 --%>
                         <div class="card">
-                            <img src="/resources/img/template/templateGreen.png" alt="템플릿1">
+                            <img src="/resources/img/thumbnail/templateGreen.png" alt="템플릿1">
                             <div class="card-overlay">
                                 <p>카드 이름</p>
                                 <p>2024.06.13</p>
                             </div>
                         </div>
                         <div class="card">
-                            <img src="/resources/img/template/templateNavy.png" alt="템플릿2">
+                            <img src="/resources/img/thumbnail/templateNavy.png" alt="템플릿2">
                             <div class="card-overlay">
                                 <p>카드 이름2</p>
                                 <p>2024.06.03</p>
                             </div>
                         </div>
                         <div class="card">
-                            <img src="/resources/img/template/templateBaseBall.png" alt="템플릿3">
+                            <img src="/resources/img/thumbnail/templateBaseBall.png" alt="템플릿3">
                         </div>
 
                         <div class="card">
-                            <img src="/resources/img/template/templateGreen.png" alt="템플릿1">
+                            <img src="/resources/img/thumbnail/templateGreen.png" alt="템플릿1">
                             <div class="card-overlay">
                                 <p>카드 이름</p>
                                 <p>2024.06.13</p>
                             </div>
                         </div>
                         <div class="card">
-                            <img src="/resources/img/template/templateNavy.png" alt="템플릿2">
+                            <img src="/resources/img/thumbnail/templateNavy.png" alt="템플릿2">
                             <div class="card-overlay">
                                 <p>카드 이름2</p>
                                 <p>2024.06.03</p>
                             </div>
                         </div>
                         <div class="card">
-                            <img src="/resources/img/template/templateBaseBall.png" alt="템플릿3">
+                            <img src="/resources/img/thumbnail/templateBaseBall.png" alt="템플릿3">
                         </div>
                     </div>
                 </div>

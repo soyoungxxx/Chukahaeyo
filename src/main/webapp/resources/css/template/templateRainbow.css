@@ -36,16 +36,13 @@ body, .edit-preview-div {
     background: #FFFFEE;
 }
 
-.uploadedImage {
-    content: url("/resources/img/card/invitation/rainbow/chicken_icon.png");
-}
-
 .message-block.odd {
     background-color: #f3f3d9;
 }
 
 #like {
     background: url('/resources/img/card/invitation/rainbow/pig-button.png') no-repeat center center;
+    background-size: contain;
 }
 
 #like:active {

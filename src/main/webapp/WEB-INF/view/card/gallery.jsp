@@ -1,8 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%@ page import="java.util.List" %>
-<%@ page import="com.choikang.chukahaeyo.card.model.CardVO" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -79,9 +77,14 @@
 
         <div class="card-gallery">
             <c:forEach var="card" items="${cards}">
-                <div class="card" data-category="${card.categoryId}" data-likes="${card.cardLikeCnt}" data-date="${card.cardDate}">
+                <div class="card" data-category="${card.categoryID}" data-likes="${card.cardLikeCnt}" data-date="${card.cardDate}">
+                    <a href="card/completedCard/${card.cardID}">
                     <div class="card-image">
                         <img src="${card.templateThumbnail}" alt="Card Image">
+                        <div class="card-overlay">
+                            <p>${card.cardName}</p>
+                            <p>${card.cardStartDate}</p>
+                        </div>
                     </div>
                     <div class="card-info">
                         <h3>${card.cardName}</h3>
@@ -97,6 +100,7 @@
                         </p>
                         <p>👍 Like ${card.cardLikeCnt}</p>
                     </div>
+                    </a>
                 </div>
             </c:forEach>
         </div>

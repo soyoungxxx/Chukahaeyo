@@ -1,7 +1,17 @@
 package com.choikang.chukahaeyo.member;
 
+import com.choikang.chukahaeyo.card.model.CardVO;
+import com.choikang.chukahaeyo.exception.ErrorCode;
+import com.choikang.chukahaeyo.exception.SuccessCode;
+import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
+import com.choikang.chukahaeyo.payment.CancelDTO;
+import com.choikang.chukahaeyo.payment.PaymentDTO;
+import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -12,6 +22,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @Controller
@@ -30,6 +43,29 @@ public class MemberController {
     public void register() {
     }
 
+    // 관리자 로그인
+    @PostMapping("/adminLogin")
+    public String adminLogin(Model model, AdminVO adminVO, HttpSession session) {
+        AdminVO login = service.adminLogin(adminVO);
+        if (login == null) {
+            model.addAttribute("msg", "아이디 혹은 비밀번호를 다시 확인하세요.");
+            model.addAttribute("url", "/admin/adminLogin");
+            return "include/alert";
+        } else {
+            session.setAttribute("login", login); // login 객체 또는 true 설정
+            session.setAttribute("adminID", login.getAdminID());
+
+            // 리다이렉트할 URI 확인
+            String redirectURI = (String) session.getAttribute("redirectURI");
+            if (redirectURI != null) {
+                session.removeAttribute("redirectURI");
+                return "redirect:" + redirectURI;
+            } else {
+                return "redirect:/admin/adminPage";
+            }
+        }
+    }
+
     // 로그인
     // 로그인: 회원인 유저 로그인
     @PostMapping("/member/login")
@@ -45,10 +81,12 @@ public class MemberController {
             return "include/alert";
         } else {
             session.setAttribute("login", login); // login 객체 또는 true 설정
-            session.setAttribute("memberId", login.getMemberId());
+            session.setAttribute("memberID", login.getMemberID());
+            session.setAttribute("memberEmail", login.getMemberEmail());
+            session.setAttribute("memberName", login.getMemberName());
 
             // System.out.println으로 로그 출력
-            System.out.println("Logged-in user ID: " + login.getMemberId());
+            System.out.println("Logged-in user ID: " + login.getMemberID());
             System.out.println("Logged-in user details: " + login);
 
             // 리다이렉트할 URI 확인
@@ -86,8 +124,8 @@ public class MemberController {
 
     // 회원가입: 멤버 인증, 이메일을 통해 링크 인증 완료 시 DB상의 isAuth 상태 변경
     @GetMapping("/member/verify")
-    public String verify(Model model, @RequestParam("memberId") int memberId) {
-        service.memberVerify(memberId);
+    public String verify(Model model, @RequestParam("memberID") int memberID) {
+        service.memberVerify(memberID);
         model.addAttribute("msg", "인증이 완료되었습니다.");
         model.addAttribute("url", "/member/login");
         return "include/alert";
@@ -97,7 +135,7 @@ public class MemberController {
     // 회원 정보 수정: 페이지 접근 전 이메일 조회
     @GetMapping("/mypage/changeInfo")
     public String changeInfo(HttpSession session, Model model) {
-        int id = (int) session.getAttribute("memberId");
+        int id = (int) session.getAttribute("memberID");
         String memberEmail = (service.getUserInfoById(id)).getMemberEmail();
         model.addAttribute("memberEmail", memberEmail);
         return "/mypage/changeInfo";
@@ -108,9 +146,9 @@ public class MemberController {
     @ResponseBody
     public int validatePwd(HttpSession session, String memberCheckPwd) {
         // 세션에 있는 id값 가져옴
-        int id = (int) session.getAttribute("memberId");
+        int id = (int) session.getAttribute("memberID");
         MemberVO memberVO = new MemberVO();
-        memberVO.setMemberId(id);
+        memberVO.setMemberID(id);
         memberVO.setMemberPwd(memberCheckPwd);
 
         Integer result = service.validatePwd(memberVO);
@@ -123,8 +161,8 @@ public class MemberController {
     // 회원 정보 수정: 회원 정보 수정
     @PostMapping("/mypage/changeInfo")
     public String changeMemberInfo(HttpSession session, Model model, MemberVO memberVO) {
-        int id = (int) session.getAttribute("memberId");
-        memberVO.setMemberId(id);
+        int id = (int) session.getAttribute("memberID");
+        memberVO.setMemberID(id);
         System.out.println(memberVO);
 
         if (service.changeMemberInfo(memberVO) != 0) {
@@ -138,7 +176,27 @@ public class MemberController {
         }
     }
 
-    // 결제 내역
+    // 결제내역: 회원의 결제 내역 가져오기
+    @GetMapping("/mypage/myHistory")
+    public String getPayHistoryCard(HttpSession session, Model model) {
+        int memberID = (int) session.getAttribute("memberID");
+        List<CardVO> cardList = service.getCardList(memberID);
+        List<PaymentVO> paymentList = service.getPaymentList(memberID);
+
+        Date twoDaysAgo = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
+        for (int i = 0; i < paymentList.size(); i++) {
+            Date tempDate = (paymentList.get(i)).getPayDate();
+            if (twoDaysAgo.before(tempDate)) {
+                paymentList.get(i).setIsWithinTwoDays(1);
+            } else {
+                paymentList.get(i).setIsWithinTwoDays(0);
+            }
+        }
+        model.addAttribute("cardList", cardList);
+        model.addAttribute("paymentList", paymentList);
+        System.out.println(paymentList.get(paymentList.size()-1));
+        return "/mypage/myHistory";
+    }
     
 
     // 로그아웃
@@ -155,7 +213,7 @@ public class MemberController {
     // 회원탈퇴: 로그인한 유저 email 조회
     @GetMapping("/mypage/unregister")
     public String getLoginMemberEmail(HttpSession session, Model model) {
-        int id = (int) session.getAttribute("memberId");
+        int id = (int) session.getAttribute("memberID");
         String memberEmail = (service.getUserInfoById(id)).getMemberEmail();
         model.addAttribute("memberEmail", memberEmail);
         return "/mypage/unregister";
@@ -164,9 +222,9 @@ public class MemberController {
     // 회원탈퇴 : 비밀번호 확인 일치하는 경우 탈퇴
     @PostMapping("/mypage/unregister")
     public String unregister(HttpSession session, Model model, String memberPwd, RedirectAttributes redirectAttributes) {
-        int id = (int) session.getAttribute("memberId");
+        int id = (int) session.getAttribute("memberID");
         MemberVO memberVO = new MemberVO();
-        memberVO.setMemberId(id);
+        memberVO.setMemberID(id);
         memberVO.setMemberPwd(memberPwd);
         // 패스워드 확인
         if (service.unsign(memberVO) == 1) {

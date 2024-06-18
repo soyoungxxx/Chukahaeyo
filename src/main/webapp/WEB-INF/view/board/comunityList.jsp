@@ -21,7 +21,7 @@
     <!--font-->
 </head>
 
-<body class="body">
+<body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 
 
@@ -59,9 +59,9 @@
                     </thead>
                     <tbody>
                     <c:forEach var="vo" items="${map.list}">
-                        <tr class="list-data">
-                            <th class="no">${vo.commId}</th>
-                            <th class="title"><a href="detail?commId=${vo.commId}">${vo.commTitle}</a></th>
+                        <tr class="list-data <c:if test="${vo.isTop == 'true'}">is-top</c:if>">
+                            <th class="no">${vo.commID}</th>
+                            <th class="title"><a href="detail?commID=${vo.commID}&query=${communityVO.query}&querytype=${communityVO.querytype}&page=${communityVO.page}">${vo.commTitle}</a></th>
                             <th class="writer">${vo.memberName}</th>
                             <th class="regdate"><fmt:formatDate value="${vo.commPostDate }" pattern="YYYY.MM.dd"/></th>
                             <th class="read-cnt">${vo.commViewCount}</th>
@@ -79,9 +79,12 @@
                 </table>
 
             </div>
-            <div class="write-button">
-                <a href="write">글쓰기</a>
-            </div>
+            <c:if test="${not empty memberID}">
+                <div class="write-button">
+                    <a href="write">글쓰기</a>
+                </div>
+            </c:if>
+
 
 
 

@@ -17,7 +17,7 @@ public class BoardCommentService {
 
     public Map index(ReplyVO vo) {
         int totalCount = boardCommentMapper.count(vo); // 총 게시물 수
-
+        System.out.println(totalCount);
         List<ReplyVO> list = boardCommentMapper.list(vo); // 목록
 
         System.out.println(list);
@@ -29,5 +29,34 @@ public class BoardCommentService {
         return map;
 
 
+    }
+
+    public int mainInsert(ReplyVO vo) {
+        vo.setReplyGno(boardCommentMapper.maxGno(vo));
+        boardCommentMapper.mainInsert(vo);
+
+        return Integer.parseInt(vo.getReplyID());
+
+
+
+
+    }
+
+    public int subInsert(ReplyVO vo) {
+
+        ReplyVO correctLine = boardCommentMapper.getCorrectLine(vo);
+        if(correctLine == null) {
+            int correctOno = boardCommentMapper.getCorrectOno(vo);
+            vo.setReplyOno(correctOno);
+        }else {
+            vo.setReplyOno(correctLine.getReplyOno());
+        }
+        boardCommentMapper.updateOno(vo);
+
+        boardCommentMapper.subInsert(vo);
+
+
+
+        return Integer.parseInt(vo.getReplyID());
     }
 }

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -11,9 +11,10 @@
     <title>Document</title>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="/resources/js/board/board-detail.js"></script>
-    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
-    <link rel="stylesheet" href="/resources/css/pageFrame/common.css" />
-    <link rel="stylesheet" href="/resources/css/board/board-detail.css" />
+    <script src="/resources/js/common/momment.js"></script>
+    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/board/board-detail.css"/>
 
     <!--font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +28,6 @@
     <!--jQuery-->
 
 
-
     <!--summernote-->
     <link href="/resources/summernote/summernote-lite.css" rel="stylesheet">
     <script src="/resources/summernote/summernote-ko-KR.js"></script>
@@ -35,7 +35,7 @@
     <!--summernote-->
 </head>
 
-<body class="body">
+<body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 
 
@@ -50,17 +50,29 @@
 
             <div class="community-logo"></div>
 
-            <input type="hidden" class="board-id" value="${object.commId}"/>
+            <input type="hidden" class="board-id" value="${object.commID}"/>
+            <input type="hidden" class="my-member-id" value="${communityVO.memberID}"/>
+            <input type="hidden" class="my-member-name" value="${communityVO.memberName}"/>
             <div class="writer-container">
                 <div class="writer-text">${object.memberName}</div>
-                <div class="writer-date"><fmt:formatDate value="${object.commPostDate }" pattern="yy/MM/dd hh:mm"/></div>
+                <div class="writer-date"><fmt:formatDate value="${object.commPostDate }"
+                                                         pattern="yy/MM/dd hh:mm"/></div>
             </div>
 
 
             <div class="title-container">
                 <div class="title">${object.commTitle}</div>
-                <div class="like heartblack"></div>
-                <!--<div class="like heartbred"></div>-->
+                <c:if test="${not empty memberID}">
+                    <c:if test="${object.isRed == 1}">
+                        <div class="like heartred"></div>
+                        <div class="like heartblack" style="display: none;" ></div>
+                    </c:if>
+                    <c:if test="${object.isRed != 1}">
+                        <div class="like heartblack"></div>
+                        <div class="like heartred" style="display: none;"></div>
+                    </c:if>
+                </c:if>
+
             </div>
 
             <div class="content">
@@ -70,62 +82,31 @@
             </div>
 
             <div class="button-container">
+                <input type="hidden" class="query" value="${communityVO.query}"/>
+                <input type="hidden" class="querytype" value="${communityVO.querytype}"/>
+                <input type="hidden" class="page" value="${communityVO.page}"/>
                 <div class="list">목록</div>
-                <div class="edit">수정</div>
-                <div class="delete">삭제</div>
+                <c:if test="${object.memberID == memberID}">
+                    <div class="edit"><a href="/board/community/update?commID=${object.commID}">수정</a></div>
+                    <div class="delete">삭제</div>
+                </c:if>
+
+
             </div>
 
             <div class="likecommentdisply-container">
-                <div class="like-display">좋아요 : </div>
-                <div class="like-display-data">3</div>
-                <div class="comment-display">댓글 : </div>
-                <div class="comment-display-data">21</div>
+                <div class="like-display">좋아요 :</div>
+                <div class="like-display-data">${object.boardLike}</div>
+                <div class="comment-display">댓글 :</div>
+                <div class="comment-display-data">${object.replyCount}</div>
             </div>
 
             <div class="comment-container">
-                <div class="no-comment">댓글이 없습니다.</div>
-
-                <div class="main-data-comment">
-                    <div class="main-data-comment-writer">박대기</div>
-                    <div class="main-data-comment-content">댓글 입니다 !!~~~~~</div>
-                    <div class="main-data-comment-date">08/21 19:00 <a class="main-data-comment-replyshow">대댓글 달기</a></div>
-                    <input type="text" class="main-data-comment-replytext" > <input value="등록" type="button" class="main-data-comment-replybutton" >
-                </div>
-
-
-
-                <div class="sub-data-comment">
-                    <img class="sub-data-comment-img" src="/resources/img/board/re-comment.png" >
-                    <div class="sub-data-comment-inner">
-                        <div class="sub-data-comment-inner-writer">김정화</div>
-                        <div class="sub-data-comment-inner-content">대댓글 입니다~~~~</div>
-                        <div class="sub-data-comment-inner-date">09/22 19:01</div>
-                    </div>
-
-                </div>
-
-
-
-
-
-
-
-
-                <div class="main-comment-write">
-                    <input class="main-comment-write-text" type="text" > <input class="main-comment-write-button" type="button" value="등록">
-
-                </div>
-
-
-
 
 
             </div>
 
         </div>
-
-
-
 
 
     </div>
@@ -137,8 +118,6 @@
 </main>
 
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
-
-
 
 
 </body>

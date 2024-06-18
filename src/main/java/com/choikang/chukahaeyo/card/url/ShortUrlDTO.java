@@ -12,7 +12,7 @@ public class ShortUrlDTO {
 
     public static CardVO of(ShortUrlDTO shortUrlDTO){
         CardVO cardVO = new CardVO();
-        cardVO.setCardUrl(shortUrlDTO.getCardUrl());
+        cardVO.setCardURL(shortUrlDTO.getCardUrl());
         cardVO.setCardQR(shortUrlDTO.getCardQR());
         return cardVO;
     }

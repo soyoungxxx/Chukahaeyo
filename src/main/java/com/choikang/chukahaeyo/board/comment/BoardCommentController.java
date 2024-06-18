@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 
@@ -25,12 +27,32 @@ public class BoardCommentController {
     @ResponseBody
     @GetMapping("/comment/list")
     public Map commentList(ReplyVO vo , Model model) {
-        
-        //vo 안에 boardId 있어야 함
-        vo.setCommID("2");
+
         
         
 
         return boardCommentService.index(vo);
     }
+
+
+    @ResponseBody
+    @PostMapping("/comment/mainwrite")
+    public int commentMainWrite(ReplyVO vo , HttpSession session) {
+
+
+        vo.setMemberID(String.valueOf((int)session.getAttribute("memberID")));
+        return boardCommentService.mainInsert(vo);
+    }
+
+    @ResponseBody
+    @PostMapping("/comment/subwrite")
+    public int commentSubWrite(ReplyVO vo , HttpSession session) {
+
+
+        vo.setMemberID(String.valueOf((int)session.getAttribute("memberID")));
+        return boardCommentService.subInsert(vo);
+    }
+
+
+
 }

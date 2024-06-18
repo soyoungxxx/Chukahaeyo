@@ -7,8 +7,12 @@ const imageBasicHeight = image.height();
 image.height(0);
 
 window.addEventListener('load', getHeight)
-window.addEventListener('load', getMap($(".extra-address").text()))
 window.addEventListener('resize', getHeight);
+window.addEventListener('load', function() {
+    if (window.location.pathname.includes('/completedCard') && $('.extra-address').val() != null) {
+        getMap($('.extra-address').text())
+    }
+})
 
 function getHeight() {
     var docHeight = $(".card-roof-img").height() + $('.card-content').height() + 100;
@@ -22,25 +26,32 @@ function getHeight() {
 
 // like 버튼 클릭 시 숫자 올라가고, 이모티콘 컨페티 터지는 효과
 var emoji = ["🎉", "🎊", "✨", "🎈"];
-$("#like").click(function () {
-    const likeNumber = Number($(".like-number").text() + 1);
-    $.ajax({
-        url: '/card/like.do',
-        type: 'POST',
-        data: likeNumber,
-        success: function () {
-            $(".like-number").text(likeNumber);
-        }
-    })
+$(document).on('click', '#like', function() {
+    let likeNumber = Number($(".like-number").text()) + 1;
+    if (window.location.pathname.includes('/card/edit/')) {
+        $(".like-number").text(likeNumber);
+    } else { // db 업데이트
+        $.ajax({
+            url: '/card/like.do',
+            type: 'POST',
+            data: {cardID:cardID},
+            async: false,
+            success: function(result) {
+                $(".like-number").text(likeNumber);
+            },
+            error: function() {
+                console.log("like db 업데이트에 실패했습니다.");
+            }
+        });
+    }
     jsConfetti.addConfetti({
         emojis: emoji,
         emojiSize: 200,
         confettiNumber: 30,
-    })
-});
+    });
+})
 
-// 방명록 등록
-$(".guestbook-submit-button").click(function () {
+$(document).on('click', '.guestbook-submit-button', function() {
     var name = $(".guest-nickname").val();
     var message = $(".guest-message").val();
 

@@ -22,9 +22,9 @@ import org.springframework.web.servlet.config.annotation.*;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = { "com.choikang.chukahaeyo" })
+@ComponentScan(basePackages = {"com.choikang.chukahaeyo"})
 @EnableWebMvc
-@MapperScan(basePackages = { "com.choikang.chukahaeyo" }, annotationClass = Mapper.class) // 인터페이스 스캔
+@MapperScan(basePackages = {"com.choikang.chukahaeyo"}, annotationClass = Mapper.class) // 인터페이스 스캔
 //@EnableTransactionManagement
 //@PropertySource("classpath:db.properties")
 public class MvcConfig implements WebMvcConfigurer {
@@ -50,10 +50,12 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry reg) {
+        //reg.addViewController("/").setViewName("index");
         reg.addViewController("/mypage/myPage");
         reg.addViewController("/mypage/myCard");
         reg.addViewController("/card/edit");
         reg.addViewController("/admin/adminPage");
+        reg.addViewController("/admin/adminLogin");
         reg.addViewController("/mypage/myHistory");
 
     }
@@ -65,7 +67,7 @@ public class MvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 // "/card/edit/**"
-                .addPathPatterns("/mypage/**", "/cart/**")
+                .addPathPatterns("/mypage/**", "/cart/**", "/card/edit/**")
                 .excludePathPatterns("/member/login", "/member/register", "/member/emailAuth", "/member/verify");
     }
 
@@ -92,11 +94,11 @@ public class MvcConfig implements WebMvcConfigurer {
         config.setLocations(new ClassPathResource("db.properties"));
         return config;
     }
+
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
-
 
     @Bean
     public JavaMailSender getJavaMailSender() {
@@ -123,5 +125,4 @@ public class MvcConfig implements WebMvcConfigurer {
         multipartResolver.setMaxUploadSize(10485760); // 10MB
         return multipartResolver;
     }
-
 }

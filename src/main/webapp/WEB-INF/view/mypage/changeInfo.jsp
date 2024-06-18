@@ -6,8 +6,8 @@
     <title>회원정보 수정</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
 
-    <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/mypage.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>

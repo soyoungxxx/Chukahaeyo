@@ -22,12 +22,18 @@ public class EditService {
     }
 
     public String selectPreviewFrame(int templateId) {
-        System.out.println(templateMapper.selectPreviewFrame(templateId));
         return templateMapper.selectPreviewFrame(templateId);
     }
 
     public void insertCardInCart(CardVO cardVO) {
-        System.out.println("service 실행중 ~ ~ ~ ~ ");
         cardMapper.insertCardInCart(cardVO);
+    }
+
+    public CardVO getCompletedCardPage(int cardID) {
+        return cardMapper.getCompletedCardPage(cardID);
+    }
+
+    public void updateCardLike(int cardID) {
+        cardMapper.updateCardLike(cardID);
     }
 }

@@ -16,10 +16,61 @@
                replyPostDate,
                memberID,
                commID,
-               (SELECT memberName FROM Members WHERE memberID = memberID) AS memberName
-        FROM Reply
-        WHERE commID = #{COMMID}
+               (SELECT memberName FROM Members WHERE memberID = r.memberID) AS memberName
+        FROM Reply r
+        WHERE commID = #{commID}
         ORDER BY replyGno ASC, replyOno ASC
     </select>
+    <insert id="mainInsert" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO">
+        INSERT INTO Reply (replyContent , replyGno , replyOno , replyNested ,replyPostDate , memberID , commID)
+        VALUES (#{replyContent} , #{replyGno} , 0 , 0 , now() , #{memberID} , #{commID})
+        <selectKey keyProperty="replyID" order="AFTER" resultType="string">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
 
+
+
+
+    <select id="maxGno" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO" resultType="int">
+        select ifnull(max(replyGno)+1, 0) from Reply where commID = #{commID}
+    </select>
+
+
+
+
+
+
+    <update id="updateOno" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO">
+        <![CDATA[
+            UPDATE Reply SET replyOno=replyOno+1 WHERE replyGno = #{replyGno} AND replyOno >= #{replyOno} AND commID = #{commID}
+        ]]>
+    </update>
+
+    <insert id="subInsert" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO">
+        INSERT INTO Reply (replyContent , replyGno , replyOno , replyNested ,replyPostDate , memberID , commID)
+        VALUES (#{replyContent} , #{replyGno} , #{replyOno} , #{replyNested}+1 , now() , #{memberID} , #{commID})
+        <selectKey keyProperty="replyID" order="AFTER" resultType="string">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="getCorrectLine" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO" resultType="com.choikang.chukahaeyo.board.model.ReplyVO">
+        <![CDATA[
+            select replyID , replyContent , replyGno , replyOno , replyNested , replyPostDate , memberID , commID
+            from Reply where commID = #{commID} AND replyGno = #{replyGno} AND replyOno > #{replyOno} AND replyNested <= #{replyNested} order by replyOno  limit 0 , 1
+        ]]>
+    </select>
+
+
+
+    <select id="getCorrectOno" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO" resultType="int">
+        <![CDATA[
+        select max(ifnull(replyOno , 0))+1 as correctOno from Reply where commID = #{commID} AND replyGno = #{replyGno}
+        ]]>
+    </select>
+
+    <delete id="deleteComment" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO">
+        delete from Reply where commID = #{commID}
+    </delete>
 </mapper>
