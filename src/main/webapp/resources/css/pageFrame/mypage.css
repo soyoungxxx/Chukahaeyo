@@ -35,6 +35,7 @@
     width: 80%;
 }
 
+
 .menu {
     width: 20%;
 }
@@ -167,6 +168,10 @@
 
 .changeInfo-btn > .change_btn:hover {
     background-color: black;
+}
+
+#changeInfoContent {
+    display: none;
 }
 
 
