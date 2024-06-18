@@ -53,6 +53,7 @@ public class ShortUrlService {
 
                 //DB 저장
                 ShortUrlDTO shortUrlDTO = new ShortUrlDTO();
+
                 shortUrlDTO.setCardUrl(shortUrl);
                 shortUrlDTO.setCardQR(shortUrl + ".qr");
 
