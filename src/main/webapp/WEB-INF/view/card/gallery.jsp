@@ -9,7 +9,6 @@
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/gallery.css"/>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -47,6 +46,7 @@
                 gallery.innerHTML = "";
                 sortedCards.forEach(card => gallery.appendChild(card));
             }
+
             filterAndSortCards();
         });
     </script>
@@ -77,29 +77,27 @@
 
         <div class="card-gallery">
             <c:forEach var="card" items="${cards}">
-                <div class="card" data-category="${card.categoryID}" data-likes="${card.cardLikeCnt}" data-date="${card.cardDate}">
+                <div class="card">
                     <a href="card/completedCard/${card.cardID}">
-                    <div class="card-image">
-                        <img src="${card.templateThumbnail}" alt="Card Image">
-                        <div class="card-overlay">
-                            <p>${card.cardName}</p>
-                            <p>${card.cardStartDate}</p>
+                        <div class="card-image">
+                            <img src="${card.templateThumbnail}" alt="Card${card.cardID} Thumbnail">
+                            <div class="card-overlay">
+                                <p>${card.cardName}</p>
+                                <p>${card.cardStartDate}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-info">
-                        <h3>${card.cardName}</h3>
-                        <p>
-                            <c:choose>
+                        <div class="card-info">
+                            <h3>${card.cardName}</h3>
+                            <p><c:choose>
                                 <c:when test="${not empty card.cardEndDate}">
                                     ${card.cardStartDate} - ${card.cardEndDate}
                                 </c:when>
                                 <c:otherwise>
                                     ${card.cardStartDate}
                                 </c:otherwise>
-                            </c:choose>
-                        </p>
-                        <p>👍 Like ${card.cardLikeCnt}</p>
-                    </div>
+                            </c:choose></p>
+                            <p>👍 Like ${card.cardLikeCnt}</p>
+                        </div>
                     </a>
                 </div>
             </c:forEach>

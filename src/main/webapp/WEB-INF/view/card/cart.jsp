@@ -171,7 +171,7 @@
         <div class="container">
             <div class="cart-grid">
                 <c:forEach var="card" items="${cardList}">
-                    <div class="card" data-id="${card.cardID}">
+                    <div class="card">
                         <img src="${card.templateThumbnail}" alt="템플릿">
                         <div class="card-overlay">
                             <p>${card.cardName}</p>

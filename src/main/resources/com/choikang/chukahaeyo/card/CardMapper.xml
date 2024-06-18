@@ -28,6 +28,13 @@
           AND (cardIsPaid = FALSE)
     </select>
 
+    <select id="getPersonalCard" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT *
+        FROM Card
+        WHERE (memberID = #{memberID})
+          AND (cardIsPaid = TRUE)
+    </select>
+
     <select id="getPublicCardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
         FROM Card

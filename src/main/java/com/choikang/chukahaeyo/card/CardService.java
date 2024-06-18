@@ -18,6 +18,9 @@ public class CardService {
     public List<CardVO> getPersonalCart(int memberID) {
         return cardMapper.getPersonalCart(memberID);
     }
+    public List<CardVO> getPersonalCard(int memberID) {
+        return cardMapper.getPersonalCard(memberID);
+    }
 
     public List<CardVO> getPublicCardList() {
         return cardMapper.getPublicCardList();
@@ -31,9 +34,6 @@ public class CardService {
         return cardMapper.getLatest3CardList();
     }
 
-//    public void updateCardPaymentStatus(int cardID) {
-//        cardMapper.updateCardPaymentStatus(cardID);
-//    }
     public void updateCardPaymentStatus(int cardID) {
         cardMapper.updateCardPaymentStatus(cardID);
     }
