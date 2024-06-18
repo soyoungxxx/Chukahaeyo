@@ -77,11 +77,6 @@
             console.log("Selected Cards:", selectedCards);
             if (confirm("결제하시겠습니까?")) {
 
-                var today = new Date();
-                var hours = today.getHours(); // 시
-                var minutes = today.getMinutes();  // 분
-                var seconds = today.getSeconds();  // 초
-                var milliseconds = today.getMilliseconds();
                 var makeMerchantUid = 'merchant_' + new Date().getTime();
 
                 let totalAmount = selectedCards.reduce((sum, card) => sum + parseFloat(card.cardPrice), 0);
@@ -121,19 +116,20 @@
                                 paidAt: rsp.paid_at,
                                 status: rsp.status,
                                 receiptURL: rsp.receipt_url,
-                                cardIds: selectedCards.map(card => card.cardId) // 카드 ID 목록 추가
+                                cardIds: selectedCards.map(card => card.cardID) // 카드 ID 목록 추가
 
                             }),
                             success: function (response) {
                                 console.log("response" + response)
                                 if (response.indexOf("결제") > -1) {
                                     $('#cardIsPaid').val('true');
+                                    // let payNo = rsp.imp_uid; // 서버에서 payNo 받아옴
                                     // 각 카드의 결제 상태 업데이트
                                     selectedCards.forEach(card => {
                                         $.ajax({
                                             url: '/updateCardPaymentStatus',
                                             type: 'POST',
-                                            data: {cardID: card.cardID},
+                                            data: {cardID: card.cardID}, // payID 추가
                                             async: false,
                                             success: function (response) {
                                                 if (response.status === 'success') {
@@ -205,5 +201,21 @@
     <div class="sticker2"></div>
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
+<script>
+    function copyUrl() {
+        const urlElement = document.getElementById('shortUrl');
+        const url = urlElement.textContent;
+        navigator.clipboard.writeText(url).then(function() {
+            console.log(url);
+            alert('URL이 복사되었습니다.');
+        }, function(err) {
+            console.error('URL 복사 실패: ', err);
+        });
+    }
+
+    function goToMain() {
+        window.location.href = '/';
+    }
+</script>
 </body>
 </html>

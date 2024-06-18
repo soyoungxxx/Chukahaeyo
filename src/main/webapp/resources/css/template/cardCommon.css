@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 html {
     width: 100%;
@@ -15,6 +17,7 @@ html {
 
 .all-content {
     font-family: "Noto Sans KR", sans-serif;
+
     display: flex;
     position: relative;
     flex-direction: column;
@@ -27,12 +30,12 @@ html {
 }
 
 .card-inner-container {
-    width: 640px;
-    height: 100%;
-    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 640px;
+    height: 100%;
+    position: relative;
 }
 
 /* 상단 이미지 */
@@ -42,7 +45,6 @@ html {
     z-index: 3;
     position: absolute;
     top: 160px;
-    transform: rotate(-5.69deg);
 }
 
 /* 카드 맨 윗부분 */
@@ -66,9 +68,6 @@ html {
     width: 469px;
     height: 34px;
     text-align: center;
-    color: #373B3C;
-    font-size: 46px;
-    font-family: Jua;
 }
 
 .card-date {
@@ -232,58 +231,54 @@ html {
 }
 
 .guestbook-divider {
-    border: 1.5px #373B3C solid;
+    border: 1.5px solid;
     width: 95%;
     margin: 10px auto 0 auto;
 }
 
 .guest-nickname,
 .guest-message {
-    color: #373B3C;
     font-size: 18px;
     word-wrap: break-word;
 }
 
 .guest-nickname {
-    border: 2px #373B3C solid;
+    border: 2px solid;
     border-radius: 7px;
     width: 90%;
     height: 50px;
     margin: 10px auto 0 auto;
     text-align: left;
-    background-color: #E0DFCC;
     text-indent: 3%;
 }
 
 .guest-nickname::placeholder,
 .guest-message::placeholder {
-    color: #373B3C;
+    font-family: "Noto Sans KR", sans-serif;
     font-weight: 550;
-    opacity: 1;
+    opacity: 0.8;
 }
 
 .guest-message {
-    border: 2px #373B3C solid;
+    border: 2px solid;
     border-radius: 7px;
     width: 90%;
     height: 120px;
     margin: 10px auto 0 auto;
     text-align: left;
-    background-color: #E0DFCC;
     text-indent: 3%;
 }
 
 .guestbook-submit-button {
     width: 81.36px;
     height: 35px;
-    background: #373B3C;
     border-radius: 5px;
-    color: white;
     font-size: 18px;
     text-align: center;
     line-height: 30px;
     margin: 10px 35px 0 auto;
-    font-family: "IBM Plex Sans KR", sans-serif;
+
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 /* 방명록 메시지 */
@@ -332,7 +327,6 @@ canvas {
     width: 90%;
     text-align: left;
     height: auto;
-    color: black;
     font-size: 16px;
 }
 
@@ -340,5 +334,5 @@ canvas {
 .extra-place,
 .extra-preparation,
 .extra-account {
-    display: none;
+     display: none;
 }

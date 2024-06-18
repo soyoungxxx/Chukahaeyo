@@ -125,9 +125,15 @@ public class MemberController {
     // 회원가입: 멤버 인증, 이메일을 통해 링크 인증 완료 시 DB상의 isAuth 상태 변경
     @GetMapping("/member/verify")
     public String verify(Model model, @RequestParam("memberID") int memberID) {
-        service.memberVerify(memberID);
-        model.addAttribute("msg", "인증이 완료되었습니다.");
-        model.addAttribute("url", "/member/login");
+        if(service.getUserInfoById(memberID).isMemberAuth()) {
+            model.addAttribute("msg", "이미 인증된 회원입니다.");
+            model.addAttribute("closeWindow", true);
+        }
+        else{
+            service.memberVerify(memberID);
+            model.addAttribute("msg", "인증이 완료되었습니다.");
+            model.addAttribute("url", "/member/login");
+        }
         return "include/alert";
     }
 
@@ -194,7 +200,6 @@ public class MemberController {
         }
         model.addAttribute("cardList", cardList);
         model.addAttribute("paymentList", paymentList);
-        System.out.println(paymentList.get(paymentList.size()-1));
         return "/mypage/myHistory";
     }
     

@@ -12,9 +12,9 @@
     <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
         INSERT INTO Card
         (cardName, cardIsPublic, cardIsPaid, cardStartDate, cardEndDate, cardImage, cardEmojis,
-        cardDesign, templateThumbnail, categoryID, memberID)
+        cardDesign, templateThumbnail, categoryID, memberID, payID)
         VALUES (#{cardName}, #{cardIsPublic}, #{cardIsPaid}, #{cardStartDate}, #{cardEndDate}, #{cardImage},
-        #{cardEmojis}, #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID})
+        #{cardEmojis}, #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID}, #{payID})
 
         <selectKey order="AFTER" keyProperty="cardID" resultType="int">
             SELECT LAST_INSERT_ID()
@@ -26,6 +26,13 @@
         FROM Card
         WHERE (memberID = #{memberID})
           AND (cardIsPaid = FALSE)
+    </select>
+
+    <select id="getPersonalCard" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT *
+        FROM Card
+        WHERE (memberID = #{memberID})
+          AND (cardIsPaid = TRUE)
     </select>
 
     <select id="getPublicCardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
@@ -66,10 +73,9 @@
         WHERE cardID = #{cardID}
     </select>
 
-
     <update id="updateCardPaymentStatus" parameterType="int">
         UPDATE Card
-        SET cardIsPaid = TRUE
+        SET cardIsPaid = TRUE, payID = (SELECT MAX(payID) FROM Payment)
         WHERE cardID = #{cardID}
     </update>
 
@@ -78,5 +84,17 @@
         SET cardLikeCnt = Card.cardLikeCnt + 1
         WHERE cardID = #{cardID}
     </update>
+
+    <insert id="insertCardGuestBook" parameterType="com.choikang.chukahaeyo.card.model.GuestBookVO">
+        INSERT INTO GuestBook (guestName, guestBookText, guestBookPostDate, cardID)
+        VALUES (#{guestName}, #{guestBookText}, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR), #{cardID})
+    </insert>
+
+    <select id="selectGuestBooks" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.GuestBookVO">
+        SELECT *
+        FROM GuestBook
+        WHERE cardID = #{cardID}
+        ORDER BY guestBookPostDate
+    </select>
 
 </mapper>

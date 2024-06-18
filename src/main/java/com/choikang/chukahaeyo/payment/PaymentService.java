@@ -1,6 +1,5 @@
 package com.choikang.chukahaeyo.payment;
 
-import com.choikang.chukahaeyo.card.CardMapper;
 import com.choikang.chukahaeyo.common.Decode;
 
 import com.choikang.chukahaeyo.exception.ErrorCode;
@@ -24,8 +23,6 @@ import java.util.Map;
 public class PaymentService {
     @Autowired
     private PaymentMapper paymentMapper;
-    @Autowired
-    private CardMapper cardMapper;
 
     @Value("${imp.key}")
     private String key;
@@ -34,12 +31,13 @@ public class PaymentService {
     private String secretKey;
 
     //@Transactional
-    public void processPayment(PaymentDTO paymentDTO) {
+    public int processPayment(PaymentDTO paymentDTO) {
         try {
             PaymentVO paymentVO = PaymentDTO.of(paymentDTO);
             System.out.println("[DEBUG] PaymentVO: " + paymentVO);
             paymentMapper.insertPayment(paymentVO);
             System.out.println("[service] DTO를 VO로 변환 완료");
+            return paymentVO.getPayID();
         } catch (Exception e) {
             throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "PaymentDTO를 PaymentVO로 변환 실패");
         }

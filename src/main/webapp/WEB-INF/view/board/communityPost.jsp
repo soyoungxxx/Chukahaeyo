@@ -8,6 +8,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        function imageUploader(file, el) {
+            var formData = new FormData();
+            formData.append('file', file);
+
+            $.ajax({
+                data : formData,
+                type : "POST",
+                // url은 자신의 이미지 업로드 처리 컨트롤러 경로로 설정해주세요.
+                url : 'image-upload',
+                contentType : false,
+                processData : false,
+                enctype : 'multipart/form-data',
+                success : function(data) {
+                    $(el).summernote('insertImage', "${pageContext.request.contextPath}/resources/assets/images/upload/"+data, function($image) {
+                        $image.css('width', "100%");
+                    });
+                    // 값이 잘 넘어오는지 콘솔 확인 해보셔도됩니다.
+                    console.log(data);
+                }
+            });
+        }
+
+        function deleteSummernoteImageFile(imageName){
+            data = new FormData()
+            data.append('file' , imageName);
+            $.ajax({
+                data:data,
+                type:'POST',
+                url: 'image-delete',
+                contentType:false,
+                enctype:'multipart/form-data',
+                processData:false
+            })
+        }
+    </script>
+
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="/resources/js/board/board-write.js"></script>
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
@@ -32,6 +69,9 @@
     <script src="/resources/summernote/summernote-ko-KR.js"></script>
     <script src="/resources/summernote/summernote-lite.js"></script>
     <!--summernote-->
+
+
+
 </head>
 
 <body>

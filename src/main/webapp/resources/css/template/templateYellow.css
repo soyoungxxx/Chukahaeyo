@@ -1,0 +1,215 @@
+.card-main-content {
+    background: #FFFDD6;
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.2));
+}
+
+.card-content {
+    background: #FFFDD6;
+}
+
+.card-top-img {
+    content: url("/resources/img/card/animalBirthday/yellow/crown.png");
+    height: 55px;
+    filter: drop-shadow(0px 4px 4px #C0B281);
+}
+
+.card-roof-img {
+    content: url("/resources/img/card/animalBirthday/yellow/card-top.png");
+}
+
+.card-name {
+    color: #373B3C;
+    font-size: 47px;
+    font-weight: 700;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.more-card {
+    font-size: 15px;
+    margin-left: 350px;
+    background-color:#F5E7B6;
+    padding: 7px;
+}
+
+.frame-deco1 {
+    content:url("/resources/img/card/animalBirthday/yellow/balloon.png");
+    width: 163px !important;
+    height: 145px !important;
+    position: absolute;
+    z-index: 2000;
+    margin-left: -580px;
+    margin-top: -80px;
+    transform: rotate(10deg);
+}
+
+.frame-deco2 {
+    content: url("/resources/img/card/animalBirthday/yellow/garland1.png");
+    width: 252px !important;
+    height: 142px !important;
+    position: absolute;
+    z-index: 2000;
+    margin-left: -150px;
+    margin-top: 70px;
+    transform: rotate(10deg);
+}
+
+.frame-deco3 {
+    content: url("/resources/img/card/animalBirthday/yellow/garland2.png");
+    width: 243px !important;
+    height: 116px !important;
+    position: absolute;
+    z-index: 2000;
+    margin-left: -640px;
+    margin-top: 350px;
+    transform: rotate(30deg);
+}
+
+.frame-deco4 {
+    content: url("/resources/img/card/animalBirthday/yellow/champagne.png");
+    width: 160px !important;
+    height: 160px !important;
+    position: absolute;
+    z-index: 2000;
+    margin-left: -120px;
+    margin-top: 450px;
+}
+
+.crown-img{
+    content: url("/resources/img/card/animalBirthday/yellow/crown.png");
+    width: 70px !important;
+    height: 55px !important;
+    filter: drop-shadow(0px 4px 4px #C0B281);
+    margin-top: 150px;
+}
+
+.uploadedImage-wrap{
+    width: 540px;
+    height: 540px;
+    position: relative;
+}
+
+#like{
+    width: 68px;
+    height: 75px;
+    background: url("/resources/img/card/animalBirthday/yellow/giftbox.png") no-repeat center center;
+    background-size: cover;
+}
+
+#like:active {
+    filter: drop-shadow(1px 1px 20px #ffd365);
+}
+
+.background-deco1 {
+    content:url("/resources/img/card/animalBirthday/yellow/firecracker.png");
+    width: 145px !important;
+    height: 145px !important;
+    position: absolute;
+    z-index: -1;
+    margin-left: -460px;
+    margin-top: -230px;
+    transform: rotate(30deg);
+}
+
+.background-deco2 {
+    content:url("/resources/img/card/animalBirthday/yellow/firecracker.png");
+    width: 145px !important;
+    height: 145px !important;
+    position: absolute;
+    z-index: -1;
+    margin-left: 310px;
+    margin-top: 700px;
+    transform: rotate(10deg);
+}
+
+.background-deco3 {
+    content:url("/resources/img/card/animalBirthday/yellow/letter.png");
+    width: 145px !important;
+    height: 145px !important;
+    position: absolute;
+    z-index: -1;
+    margin-left: -460px;
+    margin-top: 1100px;
+    transform: rotate(-20deg);
+}
+
+.background-deco4 {
+    content:url("/resources/img/card/animalBirthday/yellow/balloon.png");
+    width: 163px !important;
+    height: 145px !important;
+    position: absolute;
+    z-index: -1;
+    margin-left: 300px;
+    margin-top: 1400px;
+    transform: rotate(20deg);
+}
+
+/* 컬러 바꾸기 */
+.card-name{
+    color: #61281B;
+}
+
+.card-date{
+    color: #61281B;
+}
+
+.extra-time{
+    color: #61281B;
+}
+
+.extra-preparation{
+    color: #61281B;
+}
+
+.card-like-text{
+    color: #61281B;
+}
+
+.like-number{
+    color: #61281B;
+}
+
+.guestbook-title{
+    color: #61281B;
+}
+
+.guestbook-divider{
+    border: 1.5px #61281B solid;
+    color: #61281B;
+}
+
+.guest-message{
+    border: 2px #61281B solid;
+    color: #61281B;
+    background-color: #FFFDD6;
+}
+
+.guest-nickname{
+    border: 2px #61281B solid;
+    color: #61281B;
+    background-color: #FFFDD6;
+}
+
+.guest-nickname::placeholder{
+    color: #61281B;
+}
+
+.guest-message::placeholder{
+    color: #61281B;
+}
+
+.guest-message{
+    color: #61281B;
+}
+
+.geustbook-submit-button{
+    color: #61281B;
+}
+
+.message-block.odd {
+    background-color: #F5E7B6;
+}
+
+.guestbook-submit-button {
+    background: #61281B;
+    color: white;
+}

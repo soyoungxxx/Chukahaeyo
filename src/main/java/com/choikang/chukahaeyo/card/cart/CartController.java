@@ -30,6 +30,17 @@ public class CartController {
         return "card/cart";
     }
 
+    @GetMapping("/mypage/myCard")
+    public String myCard(HttpSession session, Model model) {
+        Integer memberID = (Integer) session.getAttribute("memberID");
+        if (memberID != null) {
+            List<CardVO> cardList = cardService.getPersonalCard(memberID);
+            model.addAttribute("cardList", cardList);
+        }
+        return "mypage/myCard";
+    }
+
+
     // 카드 삭제 로직
     @PostMapping("/deleteCard")
     @ResponseBody
