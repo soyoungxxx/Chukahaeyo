@@ -9,10 +9,24 @@
 /* 하트 */
 .card-top-img {
     content: url("/resources/img/card/invitation/green/heart.png");
+    transform: rotate(-5.69deg);
 }
 
 .card-roof-img {
     content: url("/resources/img/card/invitation/green/roof.png");
+}
+
+.card-name {
+    font-family: Jua;
+    color: #373B3C;
+    font-size: 46px;
+}
+
+.more-card {
+    font-size: 15px;
+    margin-left: 350px;
+    background-color:#CACCB0;
+    padding: 7px;
 }
 
 /* roof 아래쪽, 모든 콘텐츠가 들어가는 곳 */
@@ -28,9 +42,50 @@
 /* 좋아요이미지 */
 #like {
     background: url('/resources/img/card/common/likeHeart.png') no-repeat center center;
-    background-size: contain;
+    background-size: cover;
 }
 
 .message-block.odd {
     background-color: #CACCB0;
+}
+
+.guestbook-divider {
+    border-color: #373B3C
+}
+
+.guest-nickname,
+.guest-message {
+    color: #373B3C;
+}
+
+.guest-nickname {
+    border-color:#373B3C;
+    background-color: #E0DFCC;
+}
+
+.guest-nickname::placeholder,
+.guest-message::placeholder {
+    color: #373B3C;
+}
+
+.guest-message {
+    border-color: #373B3C;
+    background-color: #E0DFCC;
+}
+
+.guestbook-submit-button {
+    background: #373B3C;
+    color: white;
+}
+
+.message-block img {
+    float: left;
+    margin-right: 30px;
+    margin-left: 30px;
+    width: 65px;
+    height: 65px;
+}
+
+.message-text {
+    color: black;
 }
