@@ -70,6 +70,8 @@
     transform: translate(-50%, -50%);
     color: white;
     text-align: center;
+    letter-spacing: 3px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
 
 .card-text {
@@ -89,7 +91,7 @@
 
 .close-button {
     position: absolute;
-    top: 10px;
+    top: 13px;
     right: 10px;
     background: none;
     border: none;
