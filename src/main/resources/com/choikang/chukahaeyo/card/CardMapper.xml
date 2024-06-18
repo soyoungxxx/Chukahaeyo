@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.choikang.chukahaeyo.card.CardMapper">
-    <insert id="insertUrl" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
-        INSERT INTO short_urls(cardURL, cardQR)
-        VALUES (#{cardURL}, #{cardQR})
-    </insert>
+
+    <update id="insertUrl" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
+        UPDATE Card
+        SET cardURL = #{cardURL},
+            cardQR  = #{cardQR}
+        WHERE cardID = #{cardID}
+    </update>
 
     <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
         INSERT INTO Card
         (cardName, cardIsPublic, cardIsPaid, cardStartDate, cardEndDate, cardImage, cardEmojis,
-         cardDesign, templateThumbnail, categoryID, memberID)
+        cardDesign, templateThumbnail, categoryID, memberID)
         VALUES (#{cardName}, #{cardIsPublic}, #{cardIsPaid}, #{cardStartDate}, #{cardEndDate}, #{cardImage},
-                #{cardEmojis}, #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID})
+        #{cardEmojis}, #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID})
+
+        <selectKey order="AFTER" keyProperty="cardID" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <select id="getPersonalCart" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
         FROM Card
-        WHERE (memberID = #{memberID}) AND (cardIsPaid = FALSE)
+        WHERE (memberID = #{memberID})
+          AND (cardIsPaid = FALSE)
     </select>
 
     <select id="getPublicCardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
         FROM Card
-        WHERE (cardIsPublic = TRUE) AND (cardIsPaid = TRUE)
+        WHERE (cardIsPublic = TRUE)
+          AND (cardIsPaid = TRUE)
     </select>
 
     <select id="getLatest3CardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
@@ -31,8 +40,8 @@
         FROM (SELECT *,
                      ROW_NUMBER() OVER (PARTITION BY categoryId ORDER BY cardDate DESC) as rn
               FROM Card
-              WHERE (cardIsPublic = TRUE) AND (cardIsPaid = TRUE)
-              ) ranked
+              WHERE (cardIsPublic = TRUE)
+                AND (cardIsPaid = TRUE)) ranked
         WHERE rn = 1;
     </select>
 
@@ -57,10 +66,9 @@
         WHERE cardID = #{cardID}
     </select>
 
-
     <update id="updateCardPaymentStatus" parameterType="int">
         UPDATE Card
-        SET cardIsPaid = TRUE
+        SET cardIsPaid = TRUE, payID = (SELECT MAX(payID) FROM Payment)
         WHERE cardID = #{cardID}
     </update>
 

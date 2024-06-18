@@ -31,6 +31,9 @@ public class CardService {
         return cardMapper.getLatest3CardList();
     }
 
+//    public void updateCardPaymentStatus(int cardID) {
+//        cardMapper.updateCardPaymentStatus(cardID);
+//    }
     public void updateCardPaymentStatus(int cardID) {
         cardMapper.updateCardPaymentStatus(cardID);
     }

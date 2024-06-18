@@ -3,8 +3,10 @@ package com.choikang.chukahaeyo.card.edit;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.card.model.GuestBookVO;
 import com.choikang.chukahaeyo.card.model.TemplateVO;
+import com.choikang.chukahaeyo.card.url.ShortUrlService;
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.SuccessCode;
+import com.choikang.chukahaeyo.payment.PaymentService;
 import com.choikang.chukahaeyo.s3.S3Service;
 import com.google.gson.Gson;
 import com.nhncorp.lucy.security.xss.XssFilter;
@@ -19,13 +21,16 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping( "/card")
+@RequestMapping("/card")
 public class EditController {
     @Autowired
     private EditService service;
 
     @Autowired
     private S3Service imageService;
+
+    @Autowired
+    private ShortUrlService shortUrlService;
 
     @GetMapping("/edit/{category}")
     public String showEditPage(@PathVariable String category, Model model) {
@@ -35,12 +40,10 @@ public class EditController {
         if (category.equals("myCard")) {
             category_id = 1;
             categoryName = "생일 카드";
-        }
-        else if (category.equals("myPet")) {
+        } else if (category.equals("myPet")) {
             category_id = 2;
             categoryName = "반려동물 생일 카드";
-        }
-        else if (category.equals("invitation")) {
+        } else if (category.equals("invitation")) {
             category_id = 3;
             categoryName = "파티 초대 카드";
         }
@@ -53,7 +56,7 @@ public class EditController {
     }
 
     @ResponseBody
-    @GetMapping(value="/edit/template.do", produces="text/html; charset=UTF-8")
+    @GetMapping(value = "/edit/template.do", produces = "text/html; charset=UTF-8")
     public String getPreviewTemplate(int id) {
         return service.selectPreviewFrame(id);
     }
@@ -66,11 +69,11 @@ public class EditController {
         } else {
             redirectURL = "/cart";
         }
-
         // image s3 위치 가져와서 저장
         cardVO.setCardImage(imageService.saveFile(file));
-
         service.insertCardInCart(cardVO, session);
+        String shortUrl = shortUrlService.shortUrl(cardVO.getCardID());
+        model.addAttribute("shortUrl", shortUrl);
         return "redirect:" + redirectURL;
     }
 
@@ -95,7 +98,7 @@ public class EditController {
         try {
             service.updateCardLike(cardID);
             return new ResponseEntity<>(SuccessCode.LIKE_UPDATE_SUCCESS.getMessage(), SuccessCode.LIKE_UPDATE_SUCCESS.getHttpStatus());
-        } catch(Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
         }
     }

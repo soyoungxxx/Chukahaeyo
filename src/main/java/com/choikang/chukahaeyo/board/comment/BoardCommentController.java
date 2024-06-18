@@ -49,7 +49,7 @@ public class BoardCommentController {
     public int commentSubWrite(ReplyVO vo , HttpSession session) {
 
 
-        vo.setMemberID(String.valueOf((int)session.getAttribute("memberId")));
+        vo.setMemberID(String.valueOf((int)session.getAttribute("memberID")));
         return boardCommentService.subInsert(vo);
     }
 

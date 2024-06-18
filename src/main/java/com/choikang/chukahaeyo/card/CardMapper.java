@@ -18,9 +18,9 @@ public interface CardMapper {
     List<CardVO> getPublicCardList();
     List<CardVO> getTop3CardList();
     List<CardVO> getLatest3CardList();
-    void updateCardPaymentStatus(int cardID);
     CardVO getCompletedCardPage(int cardID);
     void updateCardLike(int cardID);
     void insertCardGuestBook(GuestBookVO guestBookVO);
     List<GuestBookVO> selectGuestBooks(int cardID);
+    void updateCardPaymentStatus(int cardID);
 }
