@@ -171,7 +171,7 @@
         <div class="container">
             <div class="cart-grid">
                 <c:forEach var="card" items="${cardList}">
-                    <div class="card">
+                    <div class="card" data-id="${card.cardID}">
                         <img src="${card.templateThumbnail}" alt="템플릿">
                         <div class="card-overlay">
                             <p>${card.cardName}</p>
@@ -201,5 +201,21 @@
     <div class="sticker2"></div>
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
+<script>
+    function copyUrl() {
+        const urlElement = document.getElementById('shortUrl');
+        const url = urlElement.textContent;
+        navigator.clipboard.writeText(url).then(function() {
+            console.log(url);
+            alert('URL이 복사되었습니다.');
+        }, function(err) {
+            console.error('URL 복사 실패: ', err);
+        });
+    }
+
+    function goToMain() {
+        window.location.href = '/';
+    }
+</script>
 </body>
 </html>

@@ -148,7 +148,7 @@ a {
 }
 a:hover {
     color: black;
-    text-decoration: underline;
+    text-decoration: none;
 }
 a:visited {
     color: black;

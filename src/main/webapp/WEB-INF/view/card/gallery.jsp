@@ -25,7 +25,6 @@
             function filterAndSortCards() {
                 const sortOrder = document.querySelector('input[name="sortOrder"]:checked').value;
                 const selectedCategory = categorySelect.value;
-
                 let sortedCards = Array.from(cards);
 
                 if (sortOrder === 'latest') {
@@ -46,7 +45,6 @@
                 gallery.innerHTML = "";
                 sortedCards.forEach(card => gallery.appendChild(card));
             }
-
             filterAndSortCards();
         });
     </script>
@@ -77,8 +75,8 @@
 
         <div class="card-gallery">
             <c:forEach var="card" items="${cards}">
-                <div class="card">
-                    <a href="card/completedCard/${card.cardID}">
+                <div class="card" data-category="${card.categoryID}" data-date="${card.cardStartDate}" data-likes="${card.cardLikeCnt}">
+                <a href="card/completedCard/${card.cardID}">
                         <div class="card-image">
                             <img src="${card.templateThumbnail}" alt="Card${card.cardID} Thumbnail">
                             <div class="card-overlay">
