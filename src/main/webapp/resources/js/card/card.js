@@ -32,7 +32,7 @@ $(document).on('click', '#like', function() {
         $(".like-number").text(likeNumber);
     } else { // db 업데이트
         $.ajax({
-            url: '/card/like.do',
+            url: '/card/completedCard/like.do',
             type: 'POST',
             data: {cardID:cardID},
             async: false,
@@ -40,7 +40,7 @@ $(document).on('click', '#like', function() {
                 $(".like-number").text(likeNumber);
             },
             error: function() {
-                console.log("like db 업데이트에 실패했습니다.");
+                alert("like db 업데이트에 실패했습니다.");
             }
         });
     }
@@ -58,6 +58,27 @@ $(document).on('click', '.guestbook-submit-button', function() {
     $(".guest-nickname").val("");
     $(".guest-message").val("");
 
+    // ajax
+    $.ajax({
+        url: '/card/completedCard/guestBook.do',
+        type: 'POST',
+        contentType: 'application/json; charset=UTF-8',
+        data: JSON.stringify({
+            guestName: name,
+            guestBookText: message,
+            cardID: cardID
+        }),
+        success: function(response) {
+            console.log("방명록을 등록하였습니다.");
+        },
+        error : function(response) {
+            console.log("방명록 업데이트에 실패하였습니다.");
+        }
+    });
+    showGuestBook(name, message);
+})
+
+function showGuestBook(name, message) {
     var img, imgName;
     var className;
     var attrClass = $(".message-block:last-child").attr("class");
@@ -79,11 +100,11 @@ $(document).on('click', '.guestbook-submit-button', function() {
     }
     var temp;
     temp = `<div class="${className}">
-                    <img src=${img} class="guest-profile" name="${imgName}"/>
-                    <div class="message-text">${name}<br />${message}</div>
-                </div>`;
+                <img src=${img} class="guest-profile" name="${imgName}"/>
+                <div class="message-text"><b>${name}</b> <br/>${message}</div>
+            </div>`;
     $(".guest-messages").append(temp);
-})
+}
 
 function getMap(roadAddr) {
     var mapContainer = document.getElementById('map'),
