@@ -1,0 +1,141 @@
+.navigator {
+    display: flex; /* Flexbox 컨테이너로 설정 */
+    justify-content: center; /* 자식 요소를 중앙에 정렬 */
+    gap: 50px; /* 자식 요소 사이의 간격 설정 */
+    position: relative;
+    margin-top: -50px;
+}
+
+/* font-family 통합 */
+body, .show-gallery, .overlay, .move-gallery {
+    font-family: "Jua", sans-serif;
+}
+
+.slideshow-container {
+    max-width: 1100px;
+    position: relative;
+    margin: auto;
+    justify-content: center;
+}
+
+.slides {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px; /* 슬라이드 높이를 이미지 높이와 일치시킴 */
+}
+
+.slides img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* 이미지 비율을 유지하며 컨테이너에 맞춤 */
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+    to {
+        opacity: 1
+    }
+}
+
+/* 버튼 디자인 */
+.prev-slide, .next-slide {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.next-slide {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev-slide:hover, .next-slide:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.mainBear {
+    display: block;
+    width: 250px;
+    position: relative;
+    z-index: 10; /* 큰 값을 주어 이미지를 맨 위로 배치 */
+}
+
+.show-gallery {
+    left: 18%;
+    justify-content: center;
+    /*margin: auto;*/
+    margin: 40px 0 0 0;
+    font-size: 23px;
+    position: relative;
+}
+
+.move-gallery {
+    font-size: 23px;
+    background-color: lightgray;
+    border: none;
+    padding: 7px 9px 7px 9px;
+    margin-bottom: 20px;
+}
+
+.card-gallery {
+    position: relative;
+    width: 890px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /*transition: transform 0.2s;*/
+}
+
+/*.card:hover {*/
+/*    transform: scale(1.05);*/
+/*}*/
+
+.card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    font-size: 22px;
+    color: whitesmoke;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}

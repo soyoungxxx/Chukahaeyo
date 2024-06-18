@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choikang.chukahaeyo.board.inquiry.BoardInquiryMapper">
+    <sql id="searchSql">
+        <where>
+            <if test="query != null and query != ''">
+                <if test="querytype == 'all'">
+                    inquiryQuestionTitle LIKE '%${query}%' OR inquiryQuestion LIKE '%${query}%' OR memberName LIKE '%${query}%'
+                </if>
+                <if test="querytype == 'titlecontent'">
+                    inquiryQuestionTitle LIKE '%${query}%' OR inquiryQuestion LIKE '%${query}%'
+                </if>
+                <if test="querytype == 'writer'">
+                    memberName LIKE '${query}'
+                </if>
+            </if>
+        </where>
+    </sql>
+
+    <select id="count" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO" resultType="int">
+        SELECT COUNT(*)
+        FROM Inquiry i LEFT JOIN Members m ON m.memberID = i.memberID
+        <include refid="searchSql"/>
+    </select>
+
+
+
+    <select id="getInquiryList" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO" resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
+        SELECT inquiryID , inquiryQuestion , inquiryQuestionTitle , inquiryAnswer , inquiryPostDate , i.memberID , adminID , memberEmail , memberName
+        FROM Inquiry i LEFT JOIN Members m ON m.memberID = i.memberID
+        <include refid="searchSql"/>
+        ORDER BY inquiryPostDate DESC
+        LIMIT #{startIdx}, 10
+    </select>
+
+
+    <insert id="insertInquiry" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO">
+        insert into Inquiry (
+        inquiryQuestion , inquiryQuestionTitle , inquiryPostDate , memberID
+        ) values(
+        #{inquiryQuestion} , #{inquiryQuestionTitle} , now() , #{memberID}
+        )
+        <selectKey keyProperty="inquiryID" order="AFTER" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="getInquiryDetail" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO" resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
+        SELECT inquiryID , inquiryQuestion , inquiryQuestionTitle , inquiryAnswer , inquiryPostDate , i.memberID , adminID , memberEmail , memberName
+        FROM Inquiry i LEFT JOIN Members m ON m.memberID = i.memberID
+        WHERE inquiryID = #{inquiryID};
+    </select>
+</mapper>

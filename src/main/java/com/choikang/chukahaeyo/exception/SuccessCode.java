@@ -15,6 +15,9 @@ public enum SuccessCode {
     GET_ALL_GUESTBOOK_SUCCESS(HttpStatus.OK, "방명록 조회에 성공했습니다"),
     GET_USER_INFO_SUCCESS(HttpStatus.OK, "사용자 정보 조회에 성공했습니다"),
     UNLINK_SUCCESS(HttpStatus.NO_CONTENT, "사용자 탈퇴에 성공했습니다"),
+    CREATE_SHORT_URL_SUCCESS(HttpStatus.CREATED, "단축 url 생성을 성공했습니다."),
+    GET_ACCESS_TOKEN(HttpStatus.OK, "ACCESS_TOKEN을 성공적으로 가져왔습니다."),
+
 
     /**
      * 201 CREATED
@@ -23,14 +26,11 @@ public enum SuccessCode {
     SIGNUP_SUCCESS(HttpStatus.CREATED, "회원가입이 완료됐습니다."),
     SIGNOUT_SUCCESS(HttpStatus.CREATED, "로그아웃이 완료됐습니다."),
     GUESTBOOK_CREATE_SUCCESS(HttpStatus.CREATED, "방명록을 성공적으로 등록하였습니다."),
-    PAYMENT_SUCCESS(HttpStatus.OK, "결제를 성공했습니다.")
-    ;
+    PAYMENT_SUCCESS(HttpStatus.OK, "결제를 성공했습니다."),
+    CANCEL_SUCCESS(HttpStatus.OK, "취소를 성공했습니다."),
+    LIKE_UPDATE_SUCCESS(HttpStatus.OK, "좋아요 업데이트를 성공했습니다.");
 
 
     private final HttpStatus httpStatus;
     private final String message;
-
-    public int getHttpStatusCode() {
-        return httpStatus.value();
-    }
 }

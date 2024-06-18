@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>Admin 축하해요</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/common.css"/>
-    <link rel="stylesheet" href="/resources/css/admin.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/admin.css"/>
 </head>
 <body>
 <main class="main">

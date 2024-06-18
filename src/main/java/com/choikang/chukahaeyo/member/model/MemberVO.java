@@ -6,10 +6,10 @@ import java.sql.Date;
 
 @Data
 public class MemberVO {
-    private int userId;
-    private String userEmail;
-    private String userPwd;
-    private String userName;
-    private Date registerDate;
-    private boolean auth;
+    private int memberID;
+    private String memberEmail;
+    private String memberPwd;
+    private String memberName;
+    private Date memberRegisterDate;
+    private boolean memberAuth;
 }

@@ -29,7 +29,7 @@ body .container{
 
 /*community-logo*/
 .community-logo {
-    background-image: url("/resources/img/community.png");
+    background-image: url("/resources/img/logo/community.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 100px;
@@ -71,7 +71,7 @@ body .container{
     margin-bottom: 50px;
 }
 .title-container .heartred{
-    background-image: url("/resources/img/heartred.png");
+    background-image: url("/resources/img/board/heartred.png");
     background-size: contain;
     width: 50px;
     height: 50px;
@@ -80,7 +80,7 @@ body .container{
 
 }
 .title-container .heartblack{
-    background-image: url("/resources/img/heartblack.png");
+    background-image: url("/resources/img/board/heartblack.png");
     background-size: contain;
     width: 50px;
     height: 50px;
@@ -139,6 +139,11 @@ body .container{
     margin-left: 30px;
 }
 
+.button-container .edit a{
+    color: white;
+}
+
+
 .button-container .delete{
     width: 80px;
     height: 40px;
@@ -151,7 +156,9 @@ body .container{
     border-radius: 10px;
     margin-left: 30px;
 }
-
+.button-container .delete a{
+    color: white;
+}
 
 
 
@@ -196,9 +203,66 @@ body .container{
     font-size: 20px;
     text-align: center;
     margin-top: 40px;
+    margin-bottom: 40px;
 }
 
-/*main data comment*/
+
+
+
+
+
+/*main-data-comment*/
+.main-data-comment-write-inner{
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+.main-data-comment-write-nickname{
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+
+
+.main-data-comment-replytext{
+    width: 400px;
+    height: 50px;
+    border: none;
+    outline: none;
+    margin-left: 15px;
+
+}
+
+.main-data-comment-replybutton{
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
+    border : none;
+    cursor: pointer;
+    height: auto;
+    margin-right: 10px;
+}
+
+.main-data-comment-write-cancel-button{
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
+    border : none;
+    cursor: pointer;
+    height: auto;
+}
+
+
+.main-data-comment-write{
+    width: 450px;
+    height: auto;
+    border: 1px solid #b3b3b3;
+    margin: 15px;
+}
+
 .main-data-comment {
 
     padding-top: 20px;
@@ -215,6 +279,19 @@ body .container{
     margin-top: 5px;
 }
 
+.main-data-comment-replyshow{
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
 
 /*sub data comment*/
 .sub-data-comment{
@@ -230,9 +307,9 @@ body .container{
 
 
 .sub-data-comment-img{
-    margin-left: 50px;
-    margin-right: 50px;
-    
+    margin-left: 15px;
+    margin-right: 15px;
+
     width: 30px;
     height: 30px;
 
@@ -250,6 +327,61 @@ body .container{
 }
 
 
+.sub-data-comment-replytext{
+    width: 400px;
+    height: 50px;
+    border: none;
+    outline: none;
+    margin-left: 15px;
+}
+
+.sub-data-comment-replybutton{
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
+    border : none;
+    cursor: pointer;
+    height: auto;
+    margin-right: 10px;
+
+}
+.sub-data-comment-replyshow{
+    cursor: pointer;
+}
+
+
+
+.sub-data-comment-write-inner{
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+.sub-data-comment-write-nickname{
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+
+.sub-data-comment-write{
+    width: 450px;
+    height: auto;
+    border: 1px solid #b3b3b3;
+    margin: 15px;
+}
+
+
+.sub-data-comment-write-cancel-button{
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
+    border : none;
+    cursor: pointer;
+    height: auto;
+
+}
 
 
 
@@ -258,6 +390,61 @@ body .container{
 
 
 
+
+
+
+
+/*main-comment-write*/
+.main-comment-write-inner{
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+.main-comment-write-nickname{
+    margin-left: 15px;
+    margin-top: 15px;
+    font-size: 15px;
+}
+
+
+
+.main-comment-write-text{
+    width: 750px;
+    height: 50px;
+    border: none;
+    outline: none;
+    margin-left: 15px;
+
+}
+
+.main-comment-write-button{
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
+    border : none;
+    cursor: pointer;
+    height: auto;
+    margin-right: 10px;
+}
+
+.main-comment-write-cancel-button{
+    width: 50px;
+    background-color: white;
+    color: #b3b3b3;
+    border : none;
+    cursor: pointer;
+    height: auto;
+}
+
+
+.main-comment-write{
+    width: 800px;
+    height: auto;
+    border: 1px solid #b3b3b3;
+    margin: 15px;
+}
 
 
 

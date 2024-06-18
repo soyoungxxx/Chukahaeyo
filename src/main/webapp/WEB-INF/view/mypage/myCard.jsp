@@ -6,7 +6,7 @@
     <title>마이페이지</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/img/common.css"/>
-    <link rel="stylesheet" href="/resources/css/mypage.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css"/>
 <%--    <link rel="stylesheet" href="/resources/css/cart.css"/>--%>
     <link rel="stylesheet" href="/resources/css/mypage/mycard.css"/>
 </head>
@@ -16,7 +16,7 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="mypage-header">
-            <img src="/resources/img/logo_mypage.png">
+            <img src="/resources/img/logo/logo_mypage.png">
             <hr>
         </div>
         <div class="mypage">
@@ -33,7 +33,7 @@
                         <%--                                </div>--%>
                         <%--                                <button class="close-button" onclick="deleteCard(${card.id})">X</button>--%>
                         <%--                                <div class="card-content">--%>
-                        <%--                                    <p class="card-text">${card.receiver}님의 ${card.cardname}</p>--%>
+                        <%--                                    <p class="card-text">${card.cardReceiver}님의 ${card.cardname}</p>--%>
                         <%--                                    <input type="checkbox" class="card-checkbox" value="${card.price}"--%>
                         <%--                                           onclick="updateTotal()">--%>
                         <%--                                </div>--%>
@@ -42,39 +42,39 @@
 
                         <%--                예시 카드 --%>
                         <div class="card">
-                            <img src="/resources/img/template/template01.png" alt="템플릿1">
+                            <img src="/resources/img/thumbnail/templateGreen.png" alt="템플릿1">
                             <div class="card-overlay">
                                 <p>카드 이름</p>
                                 <p>2024.06.13</p>
                             </div>
                         </div>
                         <div class="card">
-                            <img src="/resources/img/template/template02.png" alt="템플릿2">
+                            <img src="/resources/img/thumbnail/templateNavy.png" alt="템플릿2">
                             <div class="card-overlay">
                                 <p>카드 이름2</p>
                                 <p>2024.06.03</p>
                             </div>
                         </div>
                         <div class="card">
-                            <img src="/resources/img/template/template03.png" alt="템플릿3">
+                            <img src="/resources/img/thumbnail/templateBaseBall.png" alt="템플릿3">
                         </div>
 
                         <div class="card">
-                            <img src="/resources/img/template/template01.png" alt="템플릿1">
+                            <img src="/resources/img/thumbnail/templateGreen.png" alt="템플릿1">
                             <div class="card-overlay">
                                 <p>카드 이름</p>
                                 <p>2024.06.13</p>
                             </div>
                         </div>
                         <div class="card">
-                            <img src="/resources/img/template/template02.png" alt="템플릿2">
+                            <img src="/resources/img/thumbnail/templateNavy.png" alt="템플릿2">
                             <div class="card-overlay">
                                 <p>카드 이름2</p>
                                 <p>2024.06.03</p>
                             </div>
                         </div>
                         <div class="card">
-                            <img src="/resources/img/template/template03.png" alt="템플릿3">
+                            <img src="/resources/img/thumbnail/templateBaseBall.png" alt="템플릿3">
                         </div>
                     </div>
                 </div>

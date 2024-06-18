@@ -29,7 +29,7 @@ body .container{
 
 /*community-logo*/
 .community-logo {
-    background-image: url("/resources/img/community.png");
+    background-image: url("/resources/img/logo/community.png");
     background-size: contain;
     background-repeat: no-repeat;
     width: 100px;
@@ -137,6 +137,10 @@ body .container{
     border-bottom: 1px solid #B9B5B5;
 
 }
+.list .list-board .is-top {
+    background-color: #DBDDFAFF;
+
+}
 
 .list .list-board .list-data .no {
     width: 80px;
@@ -147,6 +151,11 @@ body .container{
     width: 500px;
     text-align: start;
     padding-left: 50px;
+}
+.list .list-board .list-data .title a{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
 }
 
 .list .list-board .list-data .writer {
@@ -197,7 +206,10 @@ body .container{
     cursor: pointer;
     border-radius: 10px;
 }
-
+.write-button a{
+    text-decoration: none;
+    color: white;
+}
 
 
 
@@ -232,3 +244,15 @@ body .container{
 
 }
 
+.paging .current{
+    display: inline-block;
+    text-decoration: none;
+    color: #949FFF;
+    border: 1px solid #949FFF;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin: 5px;
+
+}

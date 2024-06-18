@@ -1,0 +1,50 @@
+body, .edit-preview-div {
+    background: linear-gradient(180deg,
+    #FF0000 0%,
+    #FF8A00 14.28%,
+    #FAFF00 28.56%,
+    #14FF00 42.84%,
+    #00A3FF 57.12%,
+    #1400FF 71.4%,
+    #BD00FF 85.68%);
+    background-attachment: fixed;
+}
+#card-bg {
+    width: 153%;
+    position:absolute;
+    object-fit: cover;
+    object-position: top;
+
+    content:url("/resources/img/card/invitation/rainbow/background.png");
+}
+
+.card-top-img {
+    content: url("/resources/img/card/invitation/rainbow/card-top.png");
+}
+
+.card-roof-img {
+    content: url("/resources/img/card/invitation/rainbow/roof.png");
+}
+
+/* roof 아래쪽, 모든 콘텐츠가 들어가는 곳 */
+.card-main-content {
+    background: #FFFFEE;
+}
+
+/* 이미지와 텍스트 */
+.card-content {
+    background: #FFFFEE;
+}
+
+.message-block.odd {
+    background-color: #f3f3d9;
+}
+
+#like {
+    background: url('/resources/img/card/invitation/rainbow/pig-button.png') no-repeat center center;
+    background-size: contain;
+}
+
+#like:active {
+    filter: drop-shadow(1px 1px 20px #FF61A7);
+}
