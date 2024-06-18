@@ -43,6 +43,9 @@ public interface MemberMapper {
     // 결제 내역 가져오기
     List<PaymentVO> getPaymentList(int memberID);
 
+    // 관리자 페이지 결제 내역 가져오기
+    List<PaymentVO> getPaymentAllList();
+
     // 관리자 로그인
     AdminVO adminLogin(AdminVO adminVO);
 }

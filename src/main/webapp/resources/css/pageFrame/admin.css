@@ -14,24 +14,29 @@
     align-items: end;
     justify-content: center;
 }
+
 .admin-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0 20px;
+    margin: 0 0 5px 0;
+
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
 }
 
 .admin-header .logo {
-    font-size: 36px;
+    font-size: 30px;
+    font-weight: 600;
     color: black;
-    margin-left: 200px;
+    margin: 30px 0 5px 200px;
 }
 
 .admin-header .logout {
-    font-size: 24px;
+    font-size: 18px;
     color: black;
-    margin-right: 200px;
+    margin: 30px 200px -10px 0;
 }
 
 
@@ -58,6 +63,7 @@
 
 .admin-menu {
     width: 100%;
+
 }
 
 .admin-menu > ul {
@@ -66,14 +72,18 @@
 }
 
 .admin-menu > ul > li {
-    display: block;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 20px;
+    font-weight: 500;
     text-align: left;
     list-style-type: none;
-    font-size: 26px;
+
+    display: block;
+    cursor: pointer;
+
     height: 30px;
     margin: 40px 20px 40px 50px;
     line-height: 30px;
-    cursor: pointer;
 }
 
 .v-line {
@@ -165,4 +175,70 @@
     color: #ffffff;
     background-color: #535353;
     font-weight: 700;
+}
+
+/* 관리자 페이지 주문목록 */
+.payment-list {
+    display: flex;
+
+    margin: 10px 0 0 20px;
+
+    width: 90%;
+    border: 1px solid #A5A5A5;
+}
+
+.payment-item {
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    display: block;
+    width: 15%;
+
+    /*padding: 10px;*/
+    margin: 5px 0 5px 5px;
+}
+
+.payment-item-img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    margin: 10px 5px 5px 5px;
+
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.payment-info {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+
+    text-align: right;
+    flex-direction: column;
+    display: block;
+    position: relative;
+    margin: 10px 0 0 0;
+
+    width:85%;
+    min-width: 170px;
+}
+
+.payment-info > p {
+    margin: 4px;
+    text-align: left;
+}
+
+.payment-info > a {
+    text-align: right;
+    background-color: black;
+    color: #FFFFFF;
+    border: 0;
+
+    align-self: flex-end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    margin: 0 15px 10px 0;
+    padding: 3px 10px;
 }
