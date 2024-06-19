@@ -66,7 +66,10 @@ $(document).ready(function() {
 			return;
 		}
 
-
+		if(xCheck(contents) || xCheck(title)){
+			alert("욕설이 포함될수 없습니다.");
+			return;
+		}
 
 
 		const form = document.createElement('form'); // form 태그 생성

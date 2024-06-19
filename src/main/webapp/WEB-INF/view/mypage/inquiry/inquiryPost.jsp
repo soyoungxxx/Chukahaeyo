@@ -14,6 +14,7 @@
     <script src="/resources/summernote/summernote-ko-KR.js"></script>
     <script src="/resources/summernote/summernote-lite.js"></script>
     <!--summernote-->
+    <script src="/resources/js/common/xDB.js"></script>
     <script>
         function imageUploader(file, el) {
             var formData = new FormData();
