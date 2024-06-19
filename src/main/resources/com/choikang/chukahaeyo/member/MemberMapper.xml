@@ -11,10 +11,10 @@
 
     <insert id="register" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
         INSERT INTO Members(
-            memberEmail, memberPwd, memberName, memberRegisterDate , memberAuth
+            memberEmail, memberPwd, memberName, memberRegisterDate , memberAuth, memberWithdraw
             )
         VALUES (
-            #{memberEmail}, MD5(#{memberPwd}), #{memberName}, NOW(), false
+            #{memberEmail}, MD5(#{memberPwd}), #{memberName}, NOW(), false, false
             )
     </insert>
 
@@ -35,7 +35,7 @@
     </update>
 
     <delete id="unsign" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
-        DELETE from Members where memberID = #{memberID} AND memberPwd = MD5(#{memberPwd})
+        UPDATE Members SET memberWithdraw=true where memberID = #{memberID} AND memberPwd = MD5(#{memberPwd})
     </delete>
 
     <select id="validatePwd" parameterType="com.choikang.chukahaeyo.member.model.MemberVO" resultType="java.lang.Integer">
@@ -61,5 +61,10 @@
     <select id="getPaymentAllList"  resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
         SELECT * from Payment
     </select>
+
+    <select id="getMemberAllList" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
+        SELECT * from Members
+    </select>
+
 
 </mapper>

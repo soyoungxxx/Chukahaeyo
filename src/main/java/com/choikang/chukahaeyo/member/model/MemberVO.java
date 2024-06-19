@@ -12,4 +12,5 @@ public class MemberVO {
     private String memberName;
     private Date memberRegisterDate;
     private boolean memberAuth;
+    private boolean memberWithdraw;
 }

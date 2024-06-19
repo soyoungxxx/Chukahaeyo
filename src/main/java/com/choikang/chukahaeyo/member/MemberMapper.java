@@ -48,4 +48,8 @@ public interface MemberMapper {
 
     // 관리자 로그인
     AdminVO adminLogin(AdminVO adminVO);
+
+
+    // 관리자 페이지 멤버 목록 가져오기
+    List<MemberVO> getMemberAllList();
 }

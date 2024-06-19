@@ -1,6 +1,7 @@
 package com.choikang.chukahaeyo.card.gallery;
 
 import com.choikang.chukahaeyo.card.CardService;
+import com.choikang.chukahaeyo.visitor.VisitorService;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,9 @@ public class GalleryController {
 
     @Autowired
     private CardService cardService;
+
+    @Autowired
+    private VisitorService cookieService;
 
     @GetMapping("/gallery")
     public String gallery(Model model) {
@@ -31,7 +35,6 @@ public class GalleryController {
         List<CardVO> latest3Cards = cardService.getLatest3CardList();
         model.addAttribute("latest3Cards", latest3Cards);
         System.out.println("Latest 3 Cards: " + latest3Cards);
-
         return "index";
     }
 }

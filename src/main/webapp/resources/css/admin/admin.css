@@ -10983,6 +10983,21 @@ a.text-dark:focus {
     text-align: right;
 }
 
+.member-top {
+    display: flex;
+}
+
+#selected-count {
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 3px 0 0 10px;
+}
+
+#selected-count, .member-btns{
+    flex: auto;
+}
+
 .select-btn {
     margin: 1px 1px 5px 0;
     height: 35px;
