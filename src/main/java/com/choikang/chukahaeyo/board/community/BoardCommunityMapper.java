@@ -32,5 +32,6 @@ public interface BoardCommunityMapper {
     int deleteLike(CommunityVO vo);
 
     int updateCommunityViewCount(CommunityVO vo);
+
     // xml 작성
 }

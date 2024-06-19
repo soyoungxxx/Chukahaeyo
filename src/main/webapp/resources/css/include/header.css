@@ -40,6 +40,7 @@
     color: #949FFF;
 }
 
+/*community-menu bar*/
 .gallery-community-menu{
     display: none;
     border: 1px solid black;
@@ -47,28 +48,26 @@
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
-    position: relative;
+    position: absolute;
     z-index: 100;
     background-color: white;
+    width: 150px;
 }
 .gallery-community-menu hr{
     margin: 0px;
 }
-.gallery-community-menu-one{
+.gallery-community-menu-item{
     cursor: pointer;
-    margin: 10px;
+    padding: 10px;
+    white-space: nowrap;
 }
-.gallery-community-menu-one a{
-    color: black;
-}
-
-.gallery-community-menu-two{
-    cursor: pointer;
-    margin: 10px;
+.gallery-community-menu-item:hover {
+    background-color: #f0f0f0;
 }
 .gallery-community-menu-two a{
     color: black;
 }
+
 /*nav2*/
 .nav2 {
     width: 230px;
