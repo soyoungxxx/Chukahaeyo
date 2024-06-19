@@ -38,9 +38,9 @@
         <div class="community">
             <a class="gallery-community gallery-community-bar" href="/board/community/list">커뮤니티</a>
             <div class="gallery-community-menu">
-                <div class="gallery-community-menu-one">내가 쓴 글</div>
+                <div class="gallery-community-menu-one"><a href="/board/community/list?query=${memberName}&querytype=writer">내가 쓴 글</a></div>
                 <hr>
-                <div class="gallery-community-menu-two">커뮤니티</div>
+                <div class="gallery-community-menu-two"><a href="/board/community/list">커뮤니티</a></div>
             </div>
         </div>
     </nav>

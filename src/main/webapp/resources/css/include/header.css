@@ -58,11 +58,17 @@
     cursor: pointer;
     margin: 10px;
 }
+.gallery-community-menu-one a{
+    color: black;
+}
+
 .gallery-community-menu-two{
     cursor: pointer;
     margin: 10px;
 }
-
+.gallery-community-menu-two a{
+    color: black;
+}
 /*nav2*/
 .nav2 {
     width: 230px;
