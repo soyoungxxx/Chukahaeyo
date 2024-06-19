@@ -2,7 +2,7 @@ package com.choikang.chukahaeyo.board.model;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 
 @Data
@@ -11,8 +11,8 @@ public class CommunityVO {
     private String memberID;
     private String commTitle;
     private String commContents;
-    private Date commPostDate;
-    private Date commEditedDate;
+    private Timestamp commPostDate;
+    private Timestamp commEditedDate;
     private String commViewCount;
 
     private String isTop;

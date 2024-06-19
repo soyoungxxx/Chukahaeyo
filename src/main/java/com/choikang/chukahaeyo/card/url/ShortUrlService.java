@@ -30,7 +30,8 @@ public class ShortUrlService {
     public String shortUrl(int cardID) { // originUrl을 네이버 API로 보내는 메소드
         try {
 
-            String url = "http://3.36.97.132:9090/card/completedCard/" + cardID; //카드 url
+//            String url = "http://3.36.97.132:9090/card/completedCard/" + cardID; //카드 url
+            String url = "http://localhost.com:9090/card/completedCard/" + cardID; //카드 url
 
 
             String apiUrl = "https://openapi.naver.com/v1/util/shorturl?url=" + url; // API url
