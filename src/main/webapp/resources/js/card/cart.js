@@ -76,13 +76,13 @@ function proceedToPayment() {
         IMP.init("imp72336673");
 
         IMP.request_pay({
-            pg: 'kakaopay',
+            pg: 'html5_inicis',
             pay_method: 'card',
             merchant_uid: "IMP" + makeMerchantUid,
             name: '축하해요 카드 결제',
             amount: totalAmount,
-            buyer_email: '${memberEmail}',
-            buyer_name: '${memberName}',
+            buyer_email: memberEmail,
+            buyer_name: memberName,
             display: {
                 card_quota: [3]  // 할부개월 3개월까지 활성화
             }
