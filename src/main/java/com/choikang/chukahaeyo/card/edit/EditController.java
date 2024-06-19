@@ -34,24 +34,9 @@ public class EditController {
 
     @GetMapping("/edit/{category}")
     public String showEditPage(@PathVariable String category, Model model) {
-        String categoryName = null;
-        int category_id = 0;
-
-        if (category.equals("myCard")) {
-            category_id = 1;
-            categoryName = "생일 카드";
-        } else if (category.equals("myPet")) {
-            category_id = 2;
-            categoryName = "반려동물 생일 카드";
-        } else if (category.equals("invitation")) {
-            category_id = 3;
-            categoryName = "파티 초대 카드";
-        }
-
-        List<TemplateVO> list = service.selectFrames(category_id);
+        List<TemplateVO> list = service.selectFrames(category);
         model.addAttribute("list", list);
-        model.addAttribute("categoryId", category_id);
-        model.addAttribute("categoryName", categoryName);
+        model.addAttribute("categoryPath", category);
         return "card/edit";
     }
 

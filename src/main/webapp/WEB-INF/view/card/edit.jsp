@@ -20,6 +20,18 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 </head>
 <body>
+<c:if test="${categoryPath} == myCard">
+    <c:set var="categoryID" value="1"/>
+    <c:set var="categoryName" value="내 생일 카드"/>
+</c:if>
+<c:if test="${categoryPath} == myPet">
+    <c:set var="categoryID" value="2"/>
+    <c:set var="categoryName" value="반려동물 생일 카드"/>
+</c:if>
+<c:if test="${categoryPath} == invitation">
+    <c:set var="categoryID" value="3"/>
+    <c:set var="categoryName" value="초대 카드"/>
+</c:if>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 <main class="main" style="height: 50%;">
     <div class="sticker1" style="margin-right: 50px"></div>
@@ -187,7 +199,7 @@
 <script src="/resources/js/card/card.js?ver=1"></script>
 
 <script>
-    let categoryId;
+    let categoryID;
     let templateThumbnail;
     let address = " ";
 
@@ -466,7 +478,7 @@
 
     $('.edit-frame').click(function () {
         var template_id = $(this).attr("id");
-        categoryId = ${categoryId};
+        categoryID = ${categoryID};
         templateThumbnail = $(this).attr("src");
 
         removeInfo();
@@ -521,7 +533,7 @@
 
         $('#cardName').val($('.card-name').text());
         $('#submit-templateThumbnail').val(templateThumbnail);
-        $('#submit-categoryId').val(categoryId);
+        $('#submit-categoryId').val(categoryID);
         $("#cardEmojis").val(emoji);
         console.log($("#cardEmojis"));
     }

@@ -21,8 +21,18 @@ public class EditService {
     @Autowired
     private TemplateMapper templateMapper;
 
-    public List<TemplateVO> selectFrames(int categoryId) {
-        return templateMapper.selectFrames(categoryId);
+    public List<TemplateVO> selectFrames(String category) {
+        int categoryID = 0;
+
+        if (category.equals("myCard")) {
+            categoryID = 1;
+        } else if (category.equals("myPet")) {
+            categoryID = 2;
+        } else if (category.equals("invitation")) {
+            categoryID = 3;
+        }
+
+        return templateMapper.selectFrames(categoryID);
     }
 
     public String selectPreviewFrame(int templateId) {
