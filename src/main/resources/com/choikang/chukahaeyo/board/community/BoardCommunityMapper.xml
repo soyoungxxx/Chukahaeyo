@@ -63,6 +63,14 @@
         LIMIT #{startIdx}, 10
     </select>
 
+
+    <select id="countByMember" parameterType="int" resultType="int">
+        SELECT COUNT(*)
+        FROM Community
+        WHERE memberID = #{memberID}
+    </select>
+
+
     <select id="count" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="int">
         select count(*) from
             (
@@ -80,14 +88,6 @@
                 <include refid="searchSql"/>
                  ORDER BY commPostDate DESC)
             ) zz;
-
-
-
-
-
-
-
-
     </select>
 
     <insert id="insertCommunity" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
@@ -106,7 +106,6 @@
         FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
         where commID = #{commID}
     </select>
-
     <delete id="deleteHeart" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
 
         delete from BoardLike
@@ -141,11 +140,9 @@
         delete from Community where commID = #{commID}
     </delete>
 
-
     <delete id="deleteLike" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
         delete from BoardLike where commID = #{commID}
     </delete>
-
 
     <update id="updateCommunityViewCount" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
         <![CDATA[
