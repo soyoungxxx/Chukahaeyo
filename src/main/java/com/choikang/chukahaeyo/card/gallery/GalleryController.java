@@ -1,7 +1,7 @@
 package com.choikang.chukahaeyo.card.gallery;
 
 import com.choikang.chukahaeyo.card.CardService;
-import com.choikang.chukahaeyo.visitor.VisitorService;
+//import com.choikang.chukahaeyo.visitor.VisitorService;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +16,8 @@ public class GalleryController {
     @Autowired
     private CardService cardService;
 
-    @Autowired
-    private VisitorService cookieService;
+//    @Autowired
+//    private VisitorService cookieService;
 
     @GetMapping("/gallery")
     public String gallery(Model model) {
