@@ -23,10 +23,14 @@ public class CartController {
     @GetMapping("/cart")
     public String cart(HttpSession session, Model model) {
         Integer memberID = (Integer) session.getAttribute("memberID");
+        String memberEmail = (String) session.getAttribute("memberEmail");
+        String memberName = (String) session.getAttribute("memberName");
         if (memberID != null) {
             List<CardVO> cardList = cardService.getPersonalCart(memberID);
             model.addAttribute("cardList", cardList);
         }
+        model.addAttribute("memberEmail", memberEmail);
+        model.addAttribute("memberName", memberName);
         return "card/cart";
     }
 

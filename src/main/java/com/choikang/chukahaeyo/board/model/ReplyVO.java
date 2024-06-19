@@ -2,7 +2,7 @@ package com.choikang.chukahaeyo.board.model;
 
 import lombok.Data;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 @Data
 public class ReplyVO {
@@ -11,7 +11,7 @@ public class ReplyVO {
     private int replyGno;
     private int replyOno;
     private int replyNested;
-    private Date replyPostDate;
+    private Timestamp replyPostDate;
     private String memberID;
     private String commID;
 
