@@ -2,7 +2,7 @@ package com.choikang.chukahaeyo.card.model;
 
 import lombok.Data;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 public class CardVO {
@@ -11,7 +11,7 @@ public class CardVO {
     private boolean cardIsPublic;
     private int cardLikeCnt;
     private int cardPrice;
-    private Date cardDate;
+    private Timestamp cardDate;
     private String cardStartDate;
     private String cardEndDate;
     private String cardImage;

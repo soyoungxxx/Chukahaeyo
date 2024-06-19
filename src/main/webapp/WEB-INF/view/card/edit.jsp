@@ -42,9 +42,8 @@
                             <span class="edit-warn-text">필수 항목입니다.</span> <br>
                             <input type="radio" checked id="edit-dayRadio" name="day">하루 선택 <br>
                             <input type="radio" id="edit-daysRadio" name="day"/>여러날 선택
-                            <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택" name="cardStartDate"
-                                   readonly/>
-                            <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택" readonly/>
+                            <input type="text" id="edit-day" class="edit-text" placeholder="날짜 선택"/>
+                            <input type="text" id="edit-days" class="edit-text" placeholder="날짜 선택"/>
                         </div>
                         <hr>
                         <div class="edit-div-components">
@@ -143,6 +142,7 @@
                         <hr>
                     </div>
 
+                    <input type="hidden" name="cardStartDate" id="cardStartDate">
                     <input type="hidden" name="payID" id="payID" value="0">
                     <input type="hidden" name="cardEmojis" id="cardEmojis">
                     <input type="hidden" name="cardIsPaid" id="cardIsPaid">
@@ -191,7 +191,7 @@
     let templateThumbnail;
     let address = " ";
 
-    $(window).on('beforeunload', function() {
+    $(window).on('beforeunload', function () {
         return "수정사항이 취소됩니다. 계속하시겠어요?";
     })
 
@@ -222,7 +222,7 @@
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 address = roadAddr + " " + extraRoadAddr;
 
-                $(".extra-address").html(address+ "<br>" + $('#addr2').val());
+                $(".extra-address").html(address + "<br>" + $('#addr2').val());
 
                 getMap(roadAddr);
             }
@@ -313,7 +313,6 @@
     });
 
     $(function () {
-
         $('#edit-days').daterangepicker({
             autoUpdateInput: false,
             locale: {
@@ -321,11 +320,13 @@
             }
         });
         $('#edit-days').on('apply.daterangepicker', function (ev, picker) {
-            var selectDates = picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD');
+            var startDate = picker.startDate.format('YYYY/MM/DD');
+            var endDate = picker.endDate.format('YYYY/MM/DD');
+            var selectDates = startDate+ ' - ' + endDate;
             $(this).val(selectDates);
             $('.card-date').text(selectDates)
-            $('#cardStartDate').val(picker.startDate.format('YYYY/MM/DD'));
-            $('#cardEndDate').val(picker.endDate.format('YYYY/MM/DD'));
+            $('#cardStartDate').val(startDate);
+            $('#cardEndDate').val(endDate);
         });
 
         $('#edit-days').on('cancel.daterangepicker', function (ev, picker) {
@@ -343,6 +344,7 @@
             var selectDate = picker.startDate.format('YYYY/MM/DD');
             $(this).val(selectDate);
             $('.card-date').text(selectDate);
+            $('#cardStartDate').val(selectDate);
         })
         // 각각 library를 이용해 초기값 세팅
 
@@ -397,12 +399,7 @@
     IMP.init("imp72336673");
 
     function requestPay() {
-        var today = new Date();
-        var hours = today.getHours(); // 시
-        var minutes = today.getMinutes();  // 분
-        var seconds = today.getSeconds();  // 초
-        var milliseconds = today.getMilliseconds();
-        var makeMerchantUid = hours + minutes + seconds + milliseconds;
+        var makeMerchantUid = 'merchant_' + new Date().getTime();
 
         console.log("Payment requested");
 
@@ -481,7 +478,6 @@
         if ($('#edit-prepare-select').is(':checked')) $('#edit-prepare-select').click();
         if ($('#edit-account-select').is(':checked')) $('#edit-account-select').click();
 
-
         $.ajax({
             type: "GET",
             url: "/card/edit/template.do",
@@ -501,7 +497,6 @@
                 $('#cardCss').prop("href", "/resources/css/template/" + templateCss + ".css");
             }
         })
-
     })
 
     function removeInfo() {
@@ -514,7 +509,6 @@
     function setReadOnly() {
         $("input[type='text']").readOnly(false);
         $("textarea").readOnly(false);
-        ;
         $(".edit-file-label").readOnly(false);
         $("input[type='time']").readOnly(false);
         // $("input[type='date']").

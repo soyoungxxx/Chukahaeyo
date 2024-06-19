@@ -2,7 +2,7 @@ package com.choikang.chukahaeyo.member.model;
 
 import lombok.Data;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Data
 public class MemberVO {
@@ -10,6 +10,6 @@ public class MemberVO {
     private String memberEmail;
     private String memberPwd;
     private String memberName;
-    private Date memberRegisterDate;
+    private Timestamp memberRegisterDate;
     private boolean memberAuth;
 }

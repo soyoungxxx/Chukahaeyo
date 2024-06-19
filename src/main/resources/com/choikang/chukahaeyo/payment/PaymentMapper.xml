@@ -9,7 +9,7 @@
                              memberID,
                              receiptURL,
                              merchantUid)
-        VALUES (#{payDate},
+        VALUES (DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR),
                 #{payNo},
                 #{payAmount},
                 #{memberID},

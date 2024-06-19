@@ -30,6 +30,7 @@ public class ShortUrlService {
         try {
 
             String url = "http://3.36.97.132:9090/card/completedCard/" + cardID; //카드 url
+            //String url = "http://localhost.com:9090/card/completedCard/" + cardID; //카드 url
 
 
             String apiUrl = "https://openapi.naver.com/v1/util/shorturl?url=" + url; // API url
