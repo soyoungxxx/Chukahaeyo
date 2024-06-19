@@ -209,11 +209,12 @@ public class MemberController {
     }
 
     // 관리자: 결제 내역 가져오기
-    @GetMapping("/admin/adminPage")
+    @GetMapping("/admin/adminOrderList")
     public String getAllPaymentList(Model model) {
         List<PaymentVO> paymentList = service.getPaymentAllList();
         model.addAttribute("paymentList", paymentList);
-        return "/admin/adminPage";
+        return "/admin/adminOrderList";
+
     }
 
     // 관리자: 멤버 모든 목록 가져오기
@@ -223,6 +224,7 @@ public class MemberController {
         model.addAttribute("memberList", memberList);
         return "/admin/adminMemberList";
     }
+
 
     // 회원 탈퇴
     @ResponseBody

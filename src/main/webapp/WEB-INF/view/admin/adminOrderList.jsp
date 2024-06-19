@@ -56,6 +56,21 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="payment" items="${paymentList}">
+                                        <tr>
+                                            <td>${payment.merchantUid}</td>
+                                            <td>${payment.payAmount}</td>
+                                            <td>${payment.memberID}</td>
+                                            <td>${payment.payDate}</td>
+                                            <c:if test="${payment.canceledAt != null}">
+                                                <td>-</td>
+                                            </c:if>
+                                            <c:if test="${payment.canceledAt == null}">
+                                                <td>취소된 결제</td>
+                                            </c:if>
+                                            <td>${payment.receiptURL}</td>
+                                        </tr>
+                                    </c:forEach>
                                     <tr>
                                         <td>112341324132</td>
                                         <td>10,000</td>
@@ -63,15 +78,6 @@
                                         <td>2024/03/15</td>
                                         <td>결제완료</td>
                                         <td>http://pgweb.dacom.net:7085/pg/wmp/etc/jsp/Receipt_Link.jsp?mertid=tlgdacomxpay&tid=tlgda20240617152538TAoV9&authdata=7eccd70750f4955b2772c3e78fb32f26</td>
-                                    </tr>
-                                    <tr>
-                                        <!-- 멤버 이메일, 주문 상태는 payment db에 없음. 컨트롤러에서 처리 -->
-                                        <td>${payment.merchantUid}</td>
-                                        <td>${payment.payAmount}</td>
-                                        <td>${payment.memberID}</td>
-                                        <td>${payment.payDate}</td>
-                                        <td>${payment.payStatus}</td>
-                                        <td>${payment.receiptURL}</td>
                                     </tr>
                                     </tbody>
                                 </table>
