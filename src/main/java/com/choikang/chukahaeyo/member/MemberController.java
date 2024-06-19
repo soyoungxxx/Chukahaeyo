@@ -211,6 +211,14 @@ public class MemberController {
         return "/admin/adminPage";
     }
 
+    // 관리자: 멤버 모든 목록 가져오기
+    @GetMapping("/admin/adminMemberList")
+    public String getAllMemberList(Model model) {
+        List<MemberVO> memberList = service.getMemberAllList();
+        model.addAttribute("memberList", memberList);
+        return "/admin/adminMemberList";
+    }
+
 
     // 로그아웃(일반 회원, 관리자)
     @GetMapping("/logout")

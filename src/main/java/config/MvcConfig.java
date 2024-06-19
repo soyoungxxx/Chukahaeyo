@@ -50,13 +50,11 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry reg) {
-        //reg.addViewController("/").setViewName("index");
         reg.addViewController("/mypage/myPage");
         reg.addViewController("/mypage/myCard");
         reg.addViewController("/card/edit");
         reg.addViewController("/admin/adminPage");
         reg.addViewController("/admin/adminLogin");
-        reg.addViewController("/admin/adminMemberList");
         reg.addViewController("/admin/adminOrderList");
         reg.addViewController("/mypage/myHistory");
 

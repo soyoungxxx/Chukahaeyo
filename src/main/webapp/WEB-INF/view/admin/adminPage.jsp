@@ -13,7 +13,7 @@
     <title>Admin 축하해요</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
 
-    <link href="/resources/css/admin/all.css" rel="stylesheet" type="text/css">
+    <link href="/resources/css/admin/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
     <link href="/resources/css/admin/admin.css" rel="stylesheet">
@@ -22,6 +22,9 @@
 <main class="main">
     <div id="wrapper">
         <%@ include file="/WEB-INF/view/include/adminSidebar.jsp" %>
+        <script>
+            document.getElementById("dashboard").className = 'nav-item active';
+        </script>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -132,20 +135,6 @@
                                 <div
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">방문자수 추이</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                             aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">더 보기</div>
-                                            <a class="dropdown-item" href="#">뭘 적지?</a>
-                                            <a class="dropdown-item" href="#">적을 게 없다.</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">얘는 더더욱</a>
-                                        </div>
-                                    </div>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -193,7 +182,7 @@
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
-                                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                       class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">카테고리별 매출</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
@@ -241,43 +230,20 @@
     </div>
     <!-- End of Content Wrapper -->
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">로그아웃 하시겠습니까?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">현재 세션을 종료하시려면 로그아웃을 선택하세요.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-                    <a class="btn btn-primary" href=/admin/adminLogin>로그아웃</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <%@ include file="/WEB-INF/view/include/adminLogoutModal.jsp" %>
+
 </main>
 
 <!-- Bootstrap core JavaScript-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
 <script src="/resources/js/admin/jquery.js"></script>
 <script src="/resources/js/admin/bootstrap.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="/resources/js/admin/easing.js"></script>
+<%--<script src="/resources/js/admin/easing.js"></script>--%>
 
 <!-- Custom scripts for all pages-->
 <script src="/resources/js/admin/admin.js"></script>
-
-<!-- Page level plugins -->
-<script src="/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/js/demo/chart-area-demo.js"></script>
-<script src="/js/demo/chart-pie-demo.js"></script>
-<script src="/js/demo/chart-bar-demo.js"></script>
+<script src="/resources/js/admin/chart.js"></script>
 </body>
 </html>

@@ -128,4 +128,7 @@ public class MemberService {
     // 관리자 로그인
     public AdminVO adminLogin(AdminVO adminVO){return memberMapper.adminLogin(adminVO);}
 
+    // 관리자: 회원정보 가져오기
+    public List<MemberVO> getMemberAllList(){return memberMapper.getMemberAllList();}
+
 }

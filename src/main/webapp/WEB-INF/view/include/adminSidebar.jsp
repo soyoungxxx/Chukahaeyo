@@ -7,14 +7,14 @@
 
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/adminOrderList.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/adminPage">
         <div class="sidebar-brand-text mx-3">chukahaeyo</div>
     </a>
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item active">
-        <a class="nav-link" href="/admin/adminStatistic">
+    <li class="nav-item" id="dashboard">
+        <a class="nav-link" href="/admin/adminPage">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>대시보드</span></a>
     </li>
@@ -25,7 +25,7 @@
     </div>
 
     <!-- 주문 목록 -->
-    <li class="nav-item">
+    <li class="nav-item" id="orderList">
         <a class="nav-link" href="/admin/adminOrderList">
             <i class="fas fa-fw fa-cog"></i>
             <span>주문목록</span>
@@ -33,7 +33,7 @@
     </li>
 
     <!-- 회원 목록 -->
-    <li class="nav-item">
+    <li class="nav-item" id="memberList">
         <a class="nav-link" href="/admin/adminMemberList">
             <i class="fas fa-fw fa-wrench"></i>
             <span>회원목록</span>
@@ -45,7 +45,7 @@
         service
     </div>
 
-    <li class="nav-item">
+    <li class="nav-item" id="inquiry">
         <a class="nav-link" href="/admin/adminInquiryList">
             <!-- fa-folder: 이미지 class 태그 -->
             <i class="fas fa-fw fa-folder"></i>

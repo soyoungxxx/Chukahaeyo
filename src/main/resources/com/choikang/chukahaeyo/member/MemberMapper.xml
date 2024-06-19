@@ -62,4 +62,9 @@
         SELECT * from Payment
     </select>
 
+    <select id="getMemberAllList"  resultType="com.choikang.chukahaeyo.member.model.MemberVO">
+        SELECT * from Members
+    </select>
+
+
 </mapper>
