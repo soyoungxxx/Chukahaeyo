@@ -26,8 +26,8 @@
                 <div class="mypage-content">
                     <div class="card-grid">
                         <c:forEach var="card" items="${cardList}">
-                            <div class="card">
-                                <a href="/card/completedCard/${card.cardID}">
+                            <div class="card" data-card-id="${card.cardID}">
+                                <a href="#" class="card-link">
                                     <div class="card-image">
                                         <img src="${card.templateThumbnail}" alt="Card Image">
                                         <div class="card-overlay">
@@ -35,7 +35,7 @@
                                             <p>
                                                 <c:choose>
                                                     <c:when test="${not empty card.cardEndDate}">
-                                                        ${card.cardStartDate} - ${card.cardEndDate}
+                                                        ${card.cardStartDate}<br> - ${card.cardEndDate}
                                                     </c:when>
                                                     <c:otherwise>
                                                         ${card.cardStartDate}
@@ -44,17 +44,17 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="card-info">
-                                        <div class="like">
-                                            👍 Like ${card.cardLikeCnt}
-                                        </div>
-                                        <button class="button copy" onclick="copyUrl()">URL 복사</button>
-                                    </div>
                                 </a>
+                                <div class="card-info">
+                                    <div class="like">
+                                        👍 Like ${card.cardLikeCnt}
+                                    </div>
+                                    <button class="button" data-card-id="${card.cardID}" onclick="copyUrl(this)">
+                                        URL 복사
+                                    </button>
+                                </div>
                             </div>
                         </c:forEach>
-
-
                     </div>
                 </div>
             </div>
@@ -63,5 +63,44 @@
     <div class="sticker2"></div>
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
+<script>
+    $(document).ready(function() {
+        $('.card').each(function() {
+            const cardElement = $(this);
+            const cardId = cardElement.data('card-id');
+            getShortUrl(cardId, function(shortUrl) {
+                cardElement.find('.card-link').attr('href', shortUrl);
+            });
+        });
+    });
+
+    function copyUrl(button) {
+        const cardId = button.getAttribute('data-card-id');
+        getShortUrl(cardId, function(shortUrl) {
+            navigator.clipboard.writeText(shortUrl).then(function() {
+                console.log(shortUrl);
+                alert('URL이 복사되었습니다.');
+            }).catch(function(err) {
+                console.error('URL 복사 실패: ', err);
+                alert('URL 복사에 실패했습니다.');
+            });
+        });
+    }
+
+    function getShortUrl(cardId, callback) {
+        $.ajax({
+            url: '/url/shorts',
+            type: 'GET',
+            data: {cardID: cardId},
+            success: function(shortUrl) {
+                callback(shortUrl);
+            },
+            error: function(err) {
+                console.error('짧은 URL 가져오기 실패: ', err);
+                alert('짧은 URL 가져오기에 실패했습니다.');
+            }
+        });
+    }
+</script>
 </body>
 </html>

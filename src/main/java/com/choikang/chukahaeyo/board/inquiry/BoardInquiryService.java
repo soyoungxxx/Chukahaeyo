@@ -46,4 +46,8 @@ public class BoardInquiryService {
     public InquiryVO getInquiryDetail(InquiryVO vo) {
         return boardInquiryMapper.getInquiryDetail(vo);
     }
+
+    public int insertAnswer(InquiryVO vo) {
+        return boardInquiryMapper.insertAnswer(vo);
+    }
 }

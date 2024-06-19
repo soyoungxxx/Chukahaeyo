@@ -15,4 +15,6 @@ public interface BoardInquiryMapper {
     int insertInquiry(InquiryVO vo);
 
     InquiryVO getInquiryDetail(InquiryVO vo);
+
+    int insertAnswer(InquiryVO vo);
 }

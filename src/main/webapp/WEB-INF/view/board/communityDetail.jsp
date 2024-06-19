@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="/resources/js/common/xDB.js"></script>
     <script src="/resources/js/board/board-detail.js"></script>
     <script src="/resources/js/common/momment.js"></script>
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css"/>
@@ -85,6 +86,7 @@
                 <input type="hidden" class="query" value="${communityVO.query}"/>
                 <input type="hidden" class="querytype" value="${communityVO.querytype}"/>
                 <input type="hidden" class="page" value="${communityVO.page}"/>
+                <input type="hidden" class="sort" value="${communityVO.sort}"/>
                 <div class="list">목록</div>
                 <c:if test="${object.memberID == memberID}">
                     <div class="edit"><a href="/board/community/update?commID=${object.commID}">수정</a></div>

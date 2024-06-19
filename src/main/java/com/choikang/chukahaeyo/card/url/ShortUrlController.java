@@ -19,16 +19,14 @@ public class ShortUrlController {
     @GetMapping("/origin") // 카드를 저장한 URL을 반환하는 컨트롤러. 추후 사용자별 다른 URL을 반환하도록 수정
     @ResponseBody
     public String url() {
-        return "http://localhost.com:9090/payments/success"; // test용으로 URL을 미리 넣어둔 것. 추후 사용자별 카드 URL로 변경 예정
+        return "http://3.36.97.132:9090/payments/success"; // test용으로 URL을 미리 넣어둔 것. 추후 사용자별 카드 URL로 변경 예정
     }
 
-    @GetMapping("/short")
+    @GetMapping("/shorts")
     @ResponseBody
-    public String shortUrl(Model model, @RequestParam int cardID) {
+    public String shortUrl(@RequestParam int cardID) {
         try {
-            String shortUrl = shortUrlService.shortUrl(cardID);
-            model.addAttribute("shortUrl", shortUrl);
-            return "successPay";
+            return shortUrlService.shortUrl(cardID);
         } catch (Exception e) {
             throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "short URL 응답 생성 실패");
         }

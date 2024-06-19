@@ -76,7 +76,7 @@
                         <tr class="list-data <c:if test="${vo.isTop == 'true'}">is-top</c:if>">
                             <th class="no">${vo.commID}</th>
                             <th class="title"><a
-                                    href="detail?commID=${vo.commID}&query=${communityVO.query}&querytype=${communityVO.querytype}&page=${communityVO.page}">${vo.commTitle}</a>
+                                    href="detail?commID=${vo.commID}&query=${communityVO.query}&querytype=${communityVO.querytype}&page=${communityVO.page}&sort=${communityVO.sort}">${vo.commTitle}</a>
                             </th>
                             <th class="writer">${vo.memberName}</th>
                             <th class="regdate"><fmt:formatDate value="${vo.commPostDate }" pattern="YYYY.MM.dd"/></th>
@@ -106,7 +106,7 @@
             <ul class='paging'>
                 <c:if test="${map.isPrev }">
                     <li>
-                        <a href="list?page=${map.startPage-1 }&querytype=${communityVO.querytype}&query=${communityVO.query}">
+                        <a href="list?page=${map.startPage-1 }&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}">
                             < </a></li>
                 </c:if>
                 <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
@@ -115,13 +115,13 @@
                     </c:if>
                     <c:if test="${p != communityVO.page}">
                         <li>
-                            <a href='list?page=${p}&querytype=${communityVO.querytype}&query=${communityVO.query}'>${p}</a>
+                            <a href='list?page=${p}&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}'>${p}</a>
                         </li>
                     </c:if>
                 </c:forEach>
                 <c:if test="${map.isNext }">
                     <li>
-                        <a href="list?page=${map.endPage+1 }&querytype=${communityVO.querytype}&query=${communityVO.query}">
+                        <a href="list?page=${map.endPage+1 }&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}">
                             > </a></li>
                 </c:if>
             </ul>
