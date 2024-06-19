@@ -39,6 +39,30 @@
 .nav1 .gallery-community{
     color: #949FFF;
 }
+
+.gallery-community-menu{
+    display: none;
+    border: 1px solid black;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 100;
+    background-color: white;
+}
+.gallery-community-menu hr{
+    margin: 0px;
+}
+.gallery-community-menu-one{
+    cursor: pointer;
+    margin: 10px;
+}
+.gallery-community-menu-two{
+    cursor: pointer;
+    margin: 10px;
+}
+
 /*nav2*/
 .nav2 {
     width: 230px;
