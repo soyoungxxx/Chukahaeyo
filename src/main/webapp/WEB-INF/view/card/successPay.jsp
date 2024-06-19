@@ -42,13 +42,16 @@
 <script>
     function copyUrl() {
         const urlElement = document.getElementById('shortUrl');
-        const url = urlElement.textContent;
-        navigator.clipboard.writeText(url).then(function() {
-            console.log(url);
-            alert('URL이 복사되었습니다.');
-        }, function(err) {
-            console.error('URL 복사 실패: ', err);
-        });
+        urlElement.select();
+        urlElement.setSelectionRange(0, 99999);
+
+        try {
+            const successful = document.execCommand('copy');
+            const msg = successful ? '성공적으로' : '실패';
+            console.log('텍스트 복사 명령이 ' + msg + ' 수행되었습니다.');
+        } catch (err) {
+            console.error('복사에 실패했습니다.', err);
+        }
     }
 
     function goToMain() {
