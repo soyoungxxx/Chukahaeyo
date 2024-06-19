@@ -49,8 +49,8 @@
             console.error('URL 복사 실패: ', e);
             alert('URL 복사에 실패했습니다.');
         });
-    });
-
+    }); 
+  
     function goToMain() {
         window.location.href = '/';
     }
