@@ -46,6 +46,7 @@
     </script>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="/resources/js/common/xDB.js"></script>
     <script src="/resources/js/board/board-write.js"></script>
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css" />

@@ -179,6 +179,14 @@ window.onload = function () {
                         $(e.target).css("pointer-events", "auto");
                         return;
                     }
+                    let content = $(".main-comment-write-text").val();
+                    if(xCheck(content)){
+                        alert("욕설은 포함될수 없습니다.");
+                        $(e.target).css("pointer-events", "auto");
+                        return;
+                    }
+
+
 
                     $.ajax({
                         type: "post",
@@ -212,6 +220,17 @@ window.onload = function () {
                         $(e.target).css("pointer-events", "auto");
                         return;
                     }
+                    let content = $(e.target).closest(".sub-data-comment").find(".sub-data-comment-replytext").val();
+                    if(xCheck(content)){
+                        alert("욕설은 포함될수 없습니다.");
+                        $(e.target).css("pointer-events", "auto");
+                        return;
+                    }
+
+
+
+
+
                     $.ajax({
                         type: "post",
                         url: '/board/comment/subwrite',
@@ -252,7 +271,12 @@ window.onload = function () {
                         $(e.target).css("pointer-events", "auto");
                         return;
                     }
-
+                    let content = $(e.target).closest(".main-data-comment").find(".main-data-comment-replytext").val();
+                    if(xCheck(content)){
+                        alert("욕설은 포함될수 없습니다.");
+                        $(e.target).css("pointer-events", "auto");
+                        return;
+                    }
 
                     $.ajax({
                         type: "post",

@@ -120,7 +120,7 @@ body .container{
 }
 
 .list .list-board .list-title .title {
-    width: 500px;
+    width: 420px;
     text-align: center;
 }
 
@@ -167,7 +167,7 @@ body .container{
 }
 
 .list .list-board .list-data .title {
-    width: 500px;
+    width: 420px;
     text-align: start;
     padding-left: 50px;
 }
