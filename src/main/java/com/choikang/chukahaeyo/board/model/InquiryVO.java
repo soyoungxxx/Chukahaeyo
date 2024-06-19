@@ -10,6 +10,7 @@ public class InquiryVO {
         this.query = "";
         this.querytype = "all";
         this.page = "1";
+        this.sort = "all";
     }
 
     private int inquiryID;
@@ -26,6 +27,8 @@ public class InquiryVO {
     private String query;
     private String page;
     private String querytype;
+
+    private String sort;
 
     private int startIdx;
 

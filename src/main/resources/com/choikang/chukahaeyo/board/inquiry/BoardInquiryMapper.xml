@@ -14,6 +14,18 @@
                     memberName LIKE '${query}'
                 </if>
             </if>
+            <if test="sort != null and sort != ''">
+                <if test="sort == 'all'">
+
+                </if>
+                <if test="sort == 'answered'">
+                    adminID is not null
+                </if>
+                <if test="sort == 'unanswered'">
+                    adminID is null
+                </if>
+            </if>
+
         </where>
     </sql>
 
