@@ -407,7 +407,7 @@
         console.log("Payment requested");
 
         IMP.request_pay({
-            pg: 'uplus', // 토스페이
+            pg: 'html5_inicis', // 토스페이
             pay_method: 'card',
             merchant_uid: "IMP" + makeMerchantUid,
             name: '축하해요 카드 결제',
