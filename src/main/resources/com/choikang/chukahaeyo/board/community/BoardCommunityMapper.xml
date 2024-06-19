@@ -63,14 +63,6 @@
         LIMIT #{startIdx}, 10
     </select>
 
-
-    <select id="countByMember" parameterType="int" resultType="int">
-        SELECT COUNT(*)
-        FROM Community
-        WHERE memberID = #{memberID}
-    </select>
-
-
     <select id="count" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="int">
         select count(*) from
             (

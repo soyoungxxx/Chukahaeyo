@@ -39,10 +39,9 @@
         <div class="community">
             <a class="gallery-community gallery-community-bar" href="/board/community/list">커뮤니티</a>
             <div class="gallery-community-menu">
-                <div class="gallery-community-menu-item" onclick="location.href='/board/community/list/${sessionScope.login.memberID}'">내가 쓴 글</div>
+                <div class="gallery-community-menu-item" onclick="location.href='/board/community/list?query=${memberName}&querytype=writer'">내가 쓴 글</div>
                 <hr>
-                <div class="gallery-community-menu-item" onclick="location.href='/board/community/list'">커뮤니티</div>
-            </div>
+                <div class="gallery-community-menu-item" onclick="location.href='/board/community/list'">전체 글 보기</div>
         </div>
     </nav>
     <nav class="nav2">
