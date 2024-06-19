@@ -23,15 +23,13 @@ public class EditService {
 
     public List<TemplateVO> selectFrames(String category) {
         int categoryID = 0;
-
-        if (category.equals("myCard")) {
+        if (category.equals("myCard")) { // 카테고리 아이디 결정
             categoryID = 1;
         } else if (category.equals("myPet")) {
             categoryID = 2;
         } else if (category.equals("invitation")) {
             categoryID = 3;
         }
-
         return templateMapper.selectFrames(categoryID);
     }
 
@@ -39,14 +37,18 @@ public class EditService {
         return templateMapper.selectPreviewFrame(templateId);
     }
 
-    public void insertCardInCart(CardVO cardVO, HttpSession session) {
+    public void insertCardInDatabase(CardVO cardVO, HttpSession session) {
+        // payID가 0이면 없는 걸로 간주, null 저장
+        if (cardVO.getPayID() == 0) {
+            cardVO.setPayID(null);
+        }
         // memberID 저장
         cardVO.setMemberID((Integer) session.getAttribute("memberID"));
         // XSS filter 적용해서 html 문법 필터링하기
         XssFilter filter = XssFilter.getInstance("lucy-xss-superset-sax.xml", true);
         cardVO.setCardDesign(filter.doFilter(cardVO.getCardDesign()));
 
-        cardMapper.insertCardInCart(cardVO);
+        cardMapper.insertCardInDatabase(cardVO);
     }
 
     public CardVO getCompletedCardPage(int cardID) {

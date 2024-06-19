@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping("/card")
 public class EditController {
     @Autowired
-    private EditService service;
+    private EditService editService;
 
     @Autowired
     private S3Service imageService;
@@ -34,8 +34,8 @@ public class EditController {
 
     @GetMapping("/edit/{category}")
     public String showEditPage(@PathVariable String category, Model model) {
-        List<TemplateVO> list = service.selectFrames(category);
-        model.addAttribute("list", list);
+        List<TemplateVO> list = editService.selectFrames(category); // 서비스 호출
+        model.addAttribute("list", list); // 뷰에 값 전달
         model.addAttribute("categoryPath", category);
         return "card/edit";
     }
@@ -43,41 +43,39 @@ public class EditController {
     @ResponseBody
     @GetMapping(value = "/edit/template.do", produces = "text/html; charset=UTF-8")
     public String getPreviewTemplate(int id) {
-        return service.selectPreviewFrame(id);
+        return editService.selectPreviewFrame(id); // 서비스 호출
     }
 
     @PostMapping("/edit/card.do")
-    public String getCardInfo(CardVO cardVO, HttpSession session, @RequestParam(value="imageFile") MultipartFile file, Model model) {
+    public String insertCardInDatabase(CardVO cardVO, HttpSession session, @RequestParam(value="imageFile") MultipartFile file, Model model) {
         String redirectURL; // URL 결정
         if (cardVO.getCardIsPaid()) {
             redirectURL = "/payments/success";
         } else {
             redirectURL = "/cart";
         }
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        if (cardVO.getPayID() == 0) {
-            cardVO.setPayID(null);
-        }
-        // image s3 위치 가져와서 저장
+        // image s3 위치 가져와서 저장. imageService 호출
         cardVO.setCardImage(imageService.saveFile(file));
-        service.insertCardInCart(cardVO, session);
+        // db에 카드 데이터 저장. editService 호출
+        editService.insertCardInDatabase(cardVO, session);
+        // db에 URL 업데이트. shortURLService 호출
         String shortUrl = shortUrlService.shortUrl(cardVO.getCardID());
-        model.addAttribute("shortUrl", shortUrl);
+        model.addAttribute("shortUrl", shortUrl); // 뷰에 값 전달
         return "redirect:" + redirectURL;
     }
 
     @GetMapping("/completedCard/{cardID}")
     public String getCompletedCardPage(@PathVariable int cardID, Model model) {
-        // 카드 정보
-        CardVO cardVO = service.getCompletedCardPage(cardID);
+        // 카드 정보, editService 호출 후 뷰에 값 전달
+        CardVO cardVO = editService.getCompletedCardPage(cardID);
         model.addAttribute("cardVO", cardVO);
 
         // 카드의 css 정보
         String css = cardVO.getTemplateThumbnail().substring(25, cardVO.getTemplateThumbnail().length() - 4);
         model.addAttribute("css", css);
 
-        // 방명록 정보
-        List<GuestBookVO> guestBooks = service.selectGuestBooks(cardVO.getCardID());
+        // 방명록 정보, editService 호출 후 뷰에 값 전달
+        List<GuestBookVO> guestBooks = editService.selectGuestBooks(cardVO.getCardID());
         model.addAttribute("guestBooks", guestBooks);
         return "card/completedCard";
     }
@@ -85,7 +83,7 @@ public class EditController {
     @PostMapping("/completedCard/like.do")
     public ResponseEntity<String> updateCardLike(int cardID) {
         try {
-            service.updateCardLike(cardID);
+            editService.updateCardLike(cardID);
             return new ResponseEntity<>(SuccessCode.LIKE_UPDATE_SUCCESS.getMessage(), SuccessCode.LIKE_UPDATE_SUCCESS.getHttpStatus());
         } catch (Exception e) {
             return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
@@ -95,7 +93,7 @@ public class EditController {
     @PostMapping("/completedCard/guestBook.do")
     public ResponseEntity<String> insertCardGuestBook(@RequestBody GuestBookVO guestBookVO) {
         try {
-            service.insertCardGuestBook(guestBookVO);
+            editService.insertCardGuestBook(guestBookVO);
             return new ResponseEntity<>(SuccessCode.GUESTBOOK_CREATE_SUCCESS.getMessage(), SuccessCode.GUESTBOOK_CREATE_SUCCESS.getHttpStatus());
         } catch(Exception e) {
             return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
