@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="/resources/css/pageFrame/cart.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <script>
+        var memberEmail = '${memberEmail}';
+        var memberName = '${memberName}';
+    </script>
     <script src="/resources/js/card/cart.js"></script>
 </head>
 
