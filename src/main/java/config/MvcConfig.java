@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.client.RestTemplate;
@@ -91,7 +92,12 @@ public class MvcConfig implements WebMvcConfigurer {
     @Bean
     public static PropertyPlaceholderConfigurer propreties() {
         PropertyPlaceholderConfigurer config = new PropertyPlaceholderConfigurer();
-        config.setLocations(new ClassPathResource("db.properties"));
+        String value = System.getProperty("spring.profiles.active");
+        if ("aws".equals(value)) {
+            config.setLocations(new FileSystemResource("/home/ubuntu/shinhan_team2_chukahaeyo/apache-tomcat-9.0.89/webapps/db.properties"));
+        } else {
+            config.setLocations(new ClassPathResource("db.properties"));
+        }
         return config;
     }
 
