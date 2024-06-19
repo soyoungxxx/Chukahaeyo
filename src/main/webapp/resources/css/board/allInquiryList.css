@@ -57,6 +57,15 @@ body .container{
     border-radius: 10px;
 }
 
+.search .sort-box{
+    width: 90px;
+    height: 30px;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+
+
 .search .textbox {
     width: 90px;
     height: 28px;
