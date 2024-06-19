@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 
 @Controller
@@ -52,10 +54,17 @@ public class BoardInquiryController {
 
 
     @PostMapping("/inquiry/write")
-    public String inquiryWriteInsert(InquiryVO vo , HttpSession session) {
+    public String inquiryWriteInsert(InquiryVO vo , HttpSession session) throws UnsupportedEncodingException {
         vo.setMemberID((int)session.getAttribute("memberID"));
+        vo.setQuery(URLEncoder.encode((String)session.getAttribute("memberName"), "UTF-8"));
+
+
+
         boardInquiryService.insertInquiry(vo);
-        return "redirect:detail?inquiryID="+vo.getInquiryID();
+        return "redirect:detail?inquiryID="+vo.getInquiryID()+"&query="+vo.getQuery()+"&querytype=writer";
+
+
+
     }
 
     @GetMapping("/inquiry/detail")
