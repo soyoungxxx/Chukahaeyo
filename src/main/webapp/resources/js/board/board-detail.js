@@ -359,7 +359,7 @@ window.onload = function () {
 
     $(".list").click(function (e) {
 
-        location.href = '/board/community/list?query=' + $(".query").val() + '&querytype=' + $(".querytype").val() + '&page=' + $(".page").val();
+        location.href = '/board/community/list?query=' + $(".query").val() + '&querytype=' + $(".querytype").val() + '&page=' + $(".page").val()+'&sort='+$(".sort").val();
 
 
     });

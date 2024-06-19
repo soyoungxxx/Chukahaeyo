@@ -85,6 +85,7 @@
                 <input type="hidden" class="query" value="${communityVO.query}"/>
                 <input type="hidden" class="querytype" value="${communityVO.querytype}"/>
                 <input type="hidden" class="page" value="${communityVO.page}"/>
+                <input type="hidden" class="sort" value="${communityVO.sort}"/>
                 <div class="list">목록</div>
                 <c:if test="${object.memberID == memberID}">
                     <div class="edit"><a href="/board/community/update?commID=${object.commID}">수정</a></div>
