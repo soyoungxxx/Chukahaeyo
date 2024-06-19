@@ -19,6 +19,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap"
           rel="stylesheet">
     <!--font-->
+
+
+    <script>
+
+        window.addEventListener('load' , function(e){
+
+            $(".sort-box").change(function(e){
+                let val = $(".sort-box").val();
+                if(val == "date"){
+                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=date';
+                }else if(val == "view"){
+                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=view';
+                }else if(val == "reply"){
+                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=reply';
+                }else if(val =="like"){
+                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=like';
+                }
+            });
+
+
+
+
+        });
+
+
+
+    </script>
+
 </head>
 
 <body>
