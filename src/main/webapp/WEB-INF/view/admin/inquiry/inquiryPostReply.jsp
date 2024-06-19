@@ -19,6 +19,42 @@
     <link rel="stylesheet" href="/resources/css/pageFrame/admin.css" />
     <link rel="stylesheet" href="/resources/css/board/inquiryPostReply.css" />
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
+    <script>
+        function imageUploader(file, el) {
+            var formData = new FormData();
+            formData.append('file', file);
+
+            $.ajax({
+                data : formData,
+                type : "POST",
+                // url은 자신의 이미지 업로드 처리 컨트롤러 경로로 설정해주세요.
+                url : '/board/community/image-upload',
+                contentType : false,
+                processData : false,
+                enctype : 'multipart/form-data',
+                success : function(data) {
+                    $(el).summernote('insertImage', "${pageContext.request.contextPath}/resources/assets/images/upload/"+data, function($image) {
+                        $image.css('width', "100%");
+                    });
+                    // 값이 잘 넘어오는지 콘솔 확인 해보셔도됩니다.
+                    console.log(data);
+                }
+            });
+        }
+
+        function deleteSummernoteImageFile(imageName){
+            data = new FormData()
+            data.append('file' , imageName);
+            $.ajax({
+                data:data,
+                type:'POST',
+                url: '/board/community/image-delete',
+                contentType:false,
+                enctype:'multipart/form-data',
+                processData:false
+            })
+        }
+    </script>
     <!--jQuery-->
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <!--jQuery-->
