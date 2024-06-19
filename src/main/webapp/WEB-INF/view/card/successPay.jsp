@@ -11,6 +11,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
@@ -27,7 +28,7 @@
             <br><br>
             <div class="buttons">
                 <div class="button-copy">
-                    <button class="button copy" onclick="copyUrl()">URL 복사하기</button>
+                    <button class="button copy" data-clipboard-target="#shortUrl">URL 복사하기</button>
                 </div>
                 <div class="button-main">
                     <button class="button main2" onclick="goToMain()">메인으로 이동</button>
@@ -40,19 +41,16 @@
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
 <script>
-    function copyUrl() {
-        const urlElement = document.getElementById('shortUrl');
-        urlElement.select();
-        urlElement.setSelectionRange(0, 99999);
+    $(document).ready(function() {
+        new ClipboardJS('.copy').on('success', function(e) {
+            console.log(e.text);
+            alert('URL이 복사되었습니다.');
+        }).on('error', function(e) {
+            console.error('URL 복사 실패: ', e);
+            alert('URL 복사에 실패했습니다.');
+        });
+    });
 
-        try {
-            const successful = document.execCommand('copy');
-            const msg = successful ? '성공적으로' : '실패';
-            console.log('텍스트 복사 명령이 ' + msg + ' 수행되었습니다.');
-        } catch (err) {
-            console.error('복사에 실패했습니다.', err);
-        }
-    }
 
     function goToMain() {
         window.location.href = '/';
