@@ -224,15 +224,16 @@ public class MemberController {
         return "/admin/adminMemberList";
     }
 
-    @PostMapping("/admin/memberDelete")
     @ResponseBody
-    public ResponseEntity<String>  memberDelete(List<String> memberIds) {
+    @PostMapping("/admin/memberDelete")
+    public ResponseEntity<String>  memberDelete(MemberDeleteDTO memberDeleteDTO) {
+        System.out.println(memberDeleteDTO.getMemberIds());
         try {
             MemberVO memberVO = new MemberVO();
-            for(String memberId : memberIds) {
+            for(String memberId : memberDeleteDTO.getMemberIds()) {
                 memberVO.setMemberID(Integer.parseInt(memberId));
                 service.unsign(memberVO);
-                System.out.println(memberId);
+                System.out.println("아이디디디디디" + memberId);
             }
             return new ResponseEntity<>("회원 삭제가 완료되었습니다.", HttpStatus.OK);
         } catch (Exception e) {

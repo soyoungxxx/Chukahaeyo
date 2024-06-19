@@ -170,9 +170,9 @@
         $.ajax({
             url: '/admin/memberDelete',
             type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({ memberIds: selectedMembers }),
-            success: function(response) {
+            data: JSON.stringify({memberIds: selectedMembers}),
+            contentType: 'application/json; charset=utf-8',
+            success: function() {
                 alert("회원 삭제가 완료되었습니다.");
                 location.reload();
             },
