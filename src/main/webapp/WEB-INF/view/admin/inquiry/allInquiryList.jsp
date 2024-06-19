@@ -55,6 +55,11 @@
                         <div class="inquiry-logo">문의내역</div>
                         <div class="search">
                             <form action="list" >
+                                <select class="sort-box" name="sort">
+                                    <option value="all" <c:if test="${inquiryVO.sort == 'all'}">selected</c:if>>모두</option>
+                                    <option value="unanswered" <c:if test="${inquiryVO.sort == 'unanswered'}">selected</c:if>>답변미완료</option>
+                                    <option value="answered" <c:if test="${inquiryVO.sort == 'answered'}">selected</c:if>>답변완료</option>
+                                </select>
                                 <select class="selectbox" name="querytype">
                                     <option value="all" <c:if test="${inquiryVO.querytype == 'all'}">selected</c:if>>전체</option>
                                     <option value="titlecontent" <c:if test="${inquiryVO.querytype == 'titlecontent'}">selected</c:if>>제목+내용</option>
@@ -106,18 +111,18 @@
 
                         <ul class='paging'>
                             <c:if test="${map.isPrev }">
-                                <li><a href="list?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}"> < </a></li>
+                                <li><a href="list?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}"> < </a></li>
                             </c:if>
                             <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
                                 <c:if test="${p == inquiryVO.page}">
                                     <li><a href='#;' class='current'>${p}</a></li>
                                 </c:if>
                                 <c:if test="${p != inquiryVO.page}">
-                                    <li><a href='list?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}'>${p}</a></li>
+                                    <li><a href='list?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a></li>
                                 </c:if>
                             </c:forEach>
                             <c:if test="${map.isNext }">
-                                <li><a href="list?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}"> > </a></li>
+                                <li><a href="list?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}"> > </a></li>
                             </c:if>
                         </ul>
 
