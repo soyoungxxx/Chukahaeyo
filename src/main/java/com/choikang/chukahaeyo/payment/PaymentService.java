@@ -122,8 +122,11 @@ public class PaymentService {
 
                 CancelDTO cancelDTO = new CancelDTO();
                 cancelDTO.setCanceledAt(canceledAt);
-
-                cancelDTO.setFailReason(Decode.unicodeDecode(failReason));
+                if (failReason == null) {
+                    cancelDTO.setFailReason(failReason);
+                } else {
+                    cancelDTO.setFailReason(Decode.unicodeDecode(failReason));
+                }
                 cancelDTO.setCancelReceiptURL(cancelReceiptURL);
 
                 PaymentVO paymentVO = cancelDTO.of(cancelDTO);
