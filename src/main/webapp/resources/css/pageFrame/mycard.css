@@ -85,7 +85,8 @@
     margin: 0;
     word-wrap: break-word;
 }
-.card-info > .button {
+
+.card-info > .button copy-button {
     font-family: "Noto Sans KR", sans-serif;
     border: none;
     border-radius: 10px;

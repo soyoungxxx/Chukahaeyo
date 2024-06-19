@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>1:1문의 등록</title>
+    <title>축하해요 1:1문의</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <!--jQuery-->
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
