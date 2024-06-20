@@ -13,11 +13,11 @@
     <title>Admin 축하해요</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
 
-    <link rel="stylesheet" href="/resources/css/pageFrame/admin.css" />
-    <link rel="stylesheet" href="/resources/css/board/allInquiryList.css" />
-    <link rel="stylesheet" href="/resources/css/pageFrame/admin.css" />
-    <link rel="stylesheet" href="/resources/css/board/inquiryPostReply.css" />
-    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/admin.css"/>
+    <link rel="stylesheet" href="/resources/css/board/allInquiryList.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/admin.css"/>
+    <link rel="stylesheet" href="/resources/css/board/inquiryPostReply.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css"/>
     <link href="/resources/css/admin/admin.css" rel="stylesheet">
     <script>
         function imageUploader(file, el) {
@@ -25,15 +25,15 @@
             formData.append('file', file);
 
             $.ajax({
-                data : formData,
-                type : "POST",
+                data: formData,
+                type: "POST",
                 // url은 자신의 이미지 업로드 처리 컨트롤러 경로로 설정해주세요.
-                url : '/board/community/image-upload',
-                contentType : false,
-                processData : false,
-                enctype : 'multipart/form-data',
-                success : function(data) {
-                    $(el).summernote('insertImage', "${pageContext.request.contextPath}/resources/assets/images/upload/"+data, function($image) {
+                url: '/board/community/image-upload',
+                contentType: false,
+                processData: false,
+                enctype: 'multipart/form-data',
+                success: function (data) {
+                    $(el).summernote('insertImage', "${pageContext.request.contextPath}/resources/assets/images/upload/" + data, function ($image) {
                         $image.css('width', "100%");
                     });
                     // 값이 잘 넘어오는지 콘솔 확인 해보셔도됩니다.
@@ -42,16 +42,16 @@
             });
         }
 
-        function deleteSummernoteImageFile(imageName){
+        function deleteSummernoteImageFile(imageName) {
             data = new FormData()
-            data.append('file' , imageName);
+            data.append('file', imageName);
             $.ajax({
-                data:data,
-                type:'POST',
+                data: data,
+                type: 'POST',
                 url: '/board/community/image-delete',
-                contentType:false,
-                enctype:'multipart/form-data',
-                processData:false
+                contentType: false,
+                enctype: 'multipart/form-data',
+                processData: false
             })
         }
     </script>
@@ -70,7 +70,7 @@
     <div id="wrapper">
         <%@ include file="/WEB-INF/view/include/adminSidebar.jsp" %>
         <script>
-            document.getElementById("memberList").className = 'nav-item active';
+            document.getElementById("allInquiryList").className = 'nav-item active';
         </script>
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -80,56 +80,64 @@
             <div id="content">
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <div class="admin-content">
-                        <div class="container">
-                            <input type="hidden" class="inquiry-id" value="${object.inquiryID}"/>
-                            <div class="inquiry-logo">1:1 문의관리</div>
+                    <div class="card shadow mb-4">
 
-                            <div class="inquiry-info">
-                                <div class="inquiry-info-title">${object.inquiryQuestionTitle}</div>
-                                <div class="inquiry-info-sub">작성자 : ${object.memberName} | 작성일 : <fmt:formatDate value="${object.inquiryPostDate }" pattern="yy/MM/dd hh:mm"/></div>
-                            </div>
-                            <div class="inquiry-content">
-                                ${object.inquiryQuestion}
-                            </div>
-                            <div class="inquiry-answer">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">문의내역</h6>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="admin-content">
+                                <div class="container">
+                                    <input type="hidden" class="inquiry-id" value="${object.inquiryID}"/>
+
+                                    <div class="inquiry-info">
+                                        <div class="inquiry-info-title">${object.inquiryQuestionTitle}</div>
+                                        <div class="inquiry-info-sub">작성자 : ${object.memberName} | 작성일 : <fmt:formatDate
+                                                value="${object.inquiryPostDate }" pattern="yy/MM/dd hh:mm"/></div>
+                                    </div>
+                                    <div class="inquiry-content">
+                                        ${object.inquiryQuestion}
+                                    </div>
+                                    <div class="inquiry-answer">
+                                        <c:if test="${object.adminID == 0}">
+                                            <textarea class="data-text" id="summernote" name="editordata"></textarea>
+                                        </c:if>
+                                        <div class="inquiry-answer-content">
+                                            ${object.inquiryAnswer}
+                                        </div>
+                                        <div class="inquiry-answer-info">답변자 : 관리자</div>
+                                    </div>
+                                    <c:if test="${object.adminID == 0}">
+                                        <div class="inquiry-list">
+                                            <div class="inquiry-list-button">답변</div>
+                                        </div>
+                                    </c:if>
+                                </div>
+
                                 <c:if test="${object.adminID == 0}">
-                                    <textarea class="data-text" id="summernote" name="editordata"></textarea>
+                                    <div class="inquiry-list">
+                                        <div class="inquiry-list-button">답변</div>
+                                    </div>
                                 </c:if>
-                                <div class="inquiry-answer-content">
-                                    ${object.inquiryAnswer}
+                                <div class="list">
+                                    <div class="inquiry-list-list"><a href="/admin/inquiry/allInquiryList">목록</a></div>
                                 </div>
-                                <div class="inquiry-answer-info">답변자 : 관리자</div>
+
                             </div>
-                            <c:if test="${object.adminID == 0}">
-                                <div class="inquiry-list">
-                                    <div class="inquiry-list-button">답변</div>
-                                </div>
-                            </c:if>
-                        </div>
-<<<<<<< HEAD
-                        <c:if test="${object.adminID == 0}">
-                        <div class="inquiry-list">
-                            <div class="inquiry-list-button">답변</div>
-                        </div>
-                        </c:if>
-                        <div class="list">
-                            <div class="inquiry-list-list"><a href="/admin/board/inquiry/list">목록</a></div>
-                        </div>
 
-=======
->>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
+                        </div>
                     </div>
-
                 </div>
-                <!-- End of Main Content -->
-                <%@ include file="/WEB-INF/view/include/adminFooter.jsp" %>
-
             </div>
-        </div>
-        <!-- End of Content Wrapper -->
+            <!-- End of Main Content -->
+            <%@ include file="/WEB-INF/view/include/adminFooter.jsp" %>
 
-        <%@ include file="/WEB-INF/view/include/adminLogoutModal.jsp" %>
+        </div>
+    </div>
+    <!-- End of Content Wrapper -->
+
+    <%@ include file="/WEB-INF/view/include/adminLogoutModal.jsp" %>
 
 </main>
 
@@ -165,9 +173,9 @@
         updateSelectedCount();
     }
 
-    function deleteMembers(){
+    function deleteMembers() {
         var selectedMembers = [];
-        $('.member-select-btn:checked').each(function() {
+        $('.member-select-btn:checked').each(function () {
             selectedMembers.push($(this).attr('id').replace('checkbox', ''));
         });
 
@@ -183,11 +191,11 @@
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({memberIds: selectedMembers}),
-            success: function() {
+            success: function () {
                 alert("회원 삭제가 완료되었습니다.");
                 location.reload();
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 alert("회원 삭제 중 오류가 발생했습니다.");
                 console.error(error);
             }

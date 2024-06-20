@@ -26,7 +26,7 @@
     <div id="wrapper">
         <%@ include file="/WEB-INF/view/include/adminSidebar.jsp" %>
         <script>
-            document.getElementById("memberList").className = 'nav-item active';
+            document.getElementById("allInquiryList").className = 'nav-item active';
         </script>
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
