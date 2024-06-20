@@ -81,7 +81,7 @@ public class MemberController {
             model.addAttribute("msg", "인증되지 않은 회원입니다. 메일 인증을 완료해주세요.");
             model.addAttribute("url", "/member/login");
             return "include/alert";
-        } else if (!login.isMemberWithdraw()) {
+        } else if (login.isMemberWithdraw()) {
             model.addAttribute("msg", "탈퇴한 회원입니다.");
             model.addAttribute("url", "/member/login");
             return "include/alert";
@@ -209,11 +209,12 @@ public class MemberController {
     }
 
     // 관리자: 결제 내역 가져오기
-    @GetMapping("/admin/adminPage")
+    @GetMapping("/admin/adminOrderList")
     public String getAllPaymentList(Model model) {
         List<PaymentVO> paymentList = service.getPaymentAllList();
         model.addAttribute("paymentList", paymentList);
-        return "/admin/adminPage";
+        return "/admin/adminOrderList";
+
     }
 
     // 관리자: 멤버 모든 목록 가져오기
@@ -224,16 +225,16 @@ public class MemberController {
         return "/admin/adminMemberList";
     }
 
+
+    // 회원 탈퇴
     @ResponseBody
     @PostMapping("/admin/memberDelete")
-    public ResponseEntity<String>  memberDelete(MemberDeleteDTO memberDeleteDTO) {
-        System.out.println(memberDeleteDTO.getMemberIds());
+    public ResponseEntity<String> memberDelete(@RequestBody MemberDeleteDTO selectedMembers) {
         try {
             MemberVO memberVO = new MemberVO();
-            for(String memberId : memberDeleteDTO.getMemberIds()) {
+            for(String memberId : selectedMembers.getMemberIds()) {
                 memberVO.setMemberID(Integer.parseInt(memberId));
-                service.unsign(memberVO);
-                System.out.println("아이디디디디디" + memberId);
+                service.withdrawMember(memberVO);
             }
             return new ResponseEntity<>("회원 삭제가 완료되었습니다.", HttpStatus.OK);
         } catch (Exception e) {

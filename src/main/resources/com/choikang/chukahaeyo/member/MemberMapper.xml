@@ -38,6 +38,8 @@
         UPDATE Members SET memberWithdraw=true where memberID = #{memberID} AND memberPwd = MD5(#{memberPwd})
     </delete>
 
+
+
     <select id="validatePwd" parameterType="com.choikang.chukahaeyo.member.model.MemberVO" resultType="java.lang.Integer">
         SELECT memberID from Members where (memberID = #{memberID} AND memberPwd = MD5(#{memberPwd}))
     </select>
@@ -65,6 +67,10 @@
     <select id="getMemberAllList" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
         SELECT * from Members
     </select>
+
+    <update id="withdrawMember" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
+        UPDATE Members SET memberWithdraw=true where memberID = #{memberID}
+    </update>
 
 
 </mapper>

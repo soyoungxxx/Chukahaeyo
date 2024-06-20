@@ -4,8 +4,15 @@
 <link rel="stylesheet" href="/resources/css/include/header.css"/>
 <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
 
+<<<<<<< HEAD
 <script>
     $(document).ready(function() {  
+=======
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+>>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
         <c:if test="${not empty sessionScope.login}">
         $(".gallery-community-bar").mouseenter(function () {
             $(".gallery-community-menu").stop(true, true).slideDown();
@@ -24,6 +31,10 @@
     });
 </script>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
 <div class="header">
     <a href="/">
         <div class="logo"></div>
@@ -37,16 +48,22 @@
             <a class="gallery-community gallery-community-bar" href="/board/community/list">커뮤니티</a>
             <div class="gallery-community-menu">
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <div class="gallery-community-menu-one">내가 쓴 글</div>
                 <hr>
                 <div class="gallery-community-menu-two">커뮤니티</div>
             </div>
 =======
+=======
+>>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
                 <div class="gallery-community-menu-item" onclick="location.href='/board/community/list?query=${memberName}&querytype=writer'">내가 쓴 글</div>
                 <hr>
                 <div class="gallery-community-menu-item" onclick="location.href='/board/community/list'">전체 글 보기</div>
 
+<<<<<<< HEAD
 >>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
+=======
+>>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
         </div>
     </nav>
     <nav class="nav2">

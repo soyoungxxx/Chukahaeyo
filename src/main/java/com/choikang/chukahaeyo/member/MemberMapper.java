@@ -52,4 +52,6 @@ public interface MemberMapper {
 
     // 관리자 페이지 멤버 목록 가져오기
     List<MemberVO> getMemberAllList();
+
+    int withdrawMember(MemberVO memberVO);
 }

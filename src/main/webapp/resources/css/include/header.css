@@ -41,9 +41,13 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 /*community-menu bar*/
 >>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
+=======
+/*community-menu bar*/
+>>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
 .gallery-community-menu{
     display: none;
     border: 1px solid black;
@@ -52,19 +56,26 @@
     margin-right: 10px;
     margin-bottom: 10px;
 <<<<<<< HEAD
+<<<<<<< HEAD
     position: relative;
     z-index: 100;
     background-color: white;
 =======
+=======
+>>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
     position: absolute;
     z-index: 100;
     background-color: white;
     width: 150px;
+<<<<<<< HEAD
 >>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
+=======
+>>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
 }
 .gallery-community-menu hr{
     margin: 0px;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 .gallery-community-menu-one{
     cursor: pointer;
@@ -74,6 +85,8 @@
     cursor: pointer;
     margin: 10px;
 =======
+=======
+>>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
 .gallery-community-menu-item{
     cursor: pointer;
     padding: 10px;
@@ -84,7 +97,10 @@
 }
 .gallery-community-menu-two a{
     color: black;
+<<<<<<< HEAD
 >>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
+=======
+>>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
 }
 
 /*nav2*/

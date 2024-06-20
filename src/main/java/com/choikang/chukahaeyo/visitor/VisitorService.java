@@ -9,7 +9,8 @@ public class VisitorService {
     @Autowired
     VisitorMapper visitorMapper;
 
-    public void insertCookie(VisitorVO visitorVO) {
+    public void insertCookie(VisitorVO visitorVO, String cookieValue) {
+        visitorVO.setVisitorCookie(cookieValue);
         visitorMapper.insertCookie(visitorVO);
     }
 }
