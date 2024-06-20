@@ -40,6 +40,7 @@
     color: #949FFF;
 }
 
+/*community-menu bar*/
 .gallery-community-menu{
     display: none;
     border: 1px solid black;
@@ -62,6 +63,9 @@
 }
 .gallery-community-menu-item:hover {
     background-color: #f0f0f0;
+}
+.gallery-community-menu-two a{
+    color: black;
 }
 
 /*nav2*/
