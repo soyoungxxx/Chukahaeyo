@@ -15,16 +15,16 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @Slf4j
 public class CancelTest {
     @Autowired
-    PaymentService service;
+    PaymentService paymentService;
 
     @Test
     public void cancelTest() {
-        service.cancelPayment("imp_144715854622");
+        paymentService.cancelPayment("imp_817444192380");
     }
 
     @Test
     public void tokenTest() {
-        String token = service.getToken();
+        String token = paymentService.getToken();
         log.debug(token);
     }
 }
