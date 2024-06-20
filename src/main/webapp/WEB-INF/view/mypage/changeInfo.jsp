@@ -33,7 +33,9 @@
                         var popup = document.getElementById("checkPwdAuthPopup");
                         popup.style.display = "none";
 
-                        $("#changeInfoContent").display("flex")
+                        var content = document.getElementById("changeInfoContent");
+                        content.style.display = "flex";
+                        // $("#changeInfoContent").display("flex");
 
                     } else {
                         alert('비밀번호가 일치하지 않습니다.');
