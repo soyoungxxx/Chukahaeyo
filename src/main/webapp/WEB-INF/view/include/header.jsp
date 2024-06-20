@@ -35,24 +35,11 @@
         <div class="community">
             <a class="gallery-community gallery-community-bar" href="/board/community/list">커뮤니티</a>
             <div class="gallery-community-menu">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <div class="gallery-community-menu-one">내가 쓴 글</div>
-                <hr>
-                <div class="gallery-community-menu-two">커뮤니티</div>
-            </div>
-=======
-=======
->>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
                 <div class="gallery-community-menu-item" onclick="location.href='/board/community/list?query=${memberName}&querytype=writer'">내가 쓴 글</div>
                 <hr>
                 <div class="gallery-community-menu-item" onclick="location.href='/board/community/list'">전체 글 보기</div>
-
-<<<<<<< HEAD
->>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
-=======
->>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
-        </div>
+            </div>
+            </div>
     </nav>
     <nav class="nav2">
         <c:if test="${empty sessionScope.login}">
