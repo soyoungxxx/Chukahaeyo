@@ -20,11 +20,8 @@
           rel="stylesheet">
     <!--font-->
 
-
     <script>
-
         window.addEventListener('load' , function(e){
-
             $(".sort-box").change(function(e){
                 let val = $(".sort-box").val();
                 if(val == "date"){
@@ -37,14 +34,7 @@
                     location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=like';
                 }
             });
-
-
-
-
         });
-
-
-
     </script>
 
 </head>
@@ -52,10 +42,8 @@
 <body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 
-
 <main class="main">
     <div class="sticker1"></div>
-
 
     <div style="width: 100%; display: flex; flex-direction: row; justify-content: center;">
         <!-- //여기에 태그 만들면됨 -->
@@ -122,14 +110,12 @@
 
                     </tbody>
                 </table>
-
             </div>
             <c:if test="${not empty memberID}">
                 <div class="write-button">
                     <a href="write">글쓰기</a>
                 </div>
             </c:if>
-
 
             <ul class='paging'>
                 <c:if test="${map.isPrev }">
@@ -153,20 +139,13 @@
                             > </a></li>
                 </c:if>
             </ul>
-
         </div>
-
-
     </div>
 
-
     <div class="sticker2"></div>
-
-
 </main>
 
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
-
 
 </body>
 

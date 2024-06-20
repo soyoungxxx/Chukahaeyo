@@ -2,6 +2,8 @@ package com.choikang.chukahaeyo.s3;
 
 import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.model.CustomException;
@@ -77,5 +79,10 @@ public class S3Service {
     //파일 이름 중복 방지를 위한 파일명 생성
     private String createFileName(String fileName) {
         return UUID.randomUUID().toString().concat(getFileExtension(fileName));
+    }
+
+    public void deleteFile(String fileName){
+        System.out.println("받아온 삭제할 파일명 : " + fileName);
+        amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
     }
 }

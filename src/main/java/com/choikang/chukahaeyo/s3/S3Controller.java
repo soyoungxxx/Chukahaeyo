@@ -1,6 +1,7 @@
 package com.choikang.chukahaeyo.s3;
 
 import com.choikang.chukahaeyo.exception.ErrorCode;
+import com.choikang.chukahaeyo.exception.SuccessCode;
 import com.choikang.chukahaeyo.exception.model.CustomException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,15 +32,28 @@ public class S3Controller {
 
         try {
             String fileUrl = s3Service.saveFile(file);
-            System.out.println("서비스에서 반환 fileUrl : " + fileUrl);
+            System.out.println("서비스에서 반환한 fileUrl : " + fileUrl);
 
-            if(s3Service == null){
+            if (s3Service == null) {
                 System.out.println("S3에서 받아온 주소 값이 null입니다.");
             }
 
             return ResponseEntity.ok(fileUrl);
-        }catch(CustomException e){
-           throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "S3 bucket에 사진을 저장하는 것을 실패했습니다.");
+        } catch (CustomException e) {
+            throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "S3 bucket에 사진을 저장하는 것을 실패했습니다.");
         }
+    }
+
+    @PostMapping("/delete")
+    public ResponseEntity<String> fileDelete(String fileName) {
+        if (fileName.isEmpty()) {
+            throw new CustomException(ErrorCode.VALIDATION_REQUEST_PARAMETER_MISSING_EXCEPTION, ErrorCode.VALIDATION_REQUEST_PARAMETER_MISSING_EXCEPTION.getMessage());
+        }
+        try {
+            s3Service.deleteFile(fileName);
+        } catch (CustomException e) {
+            throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "S3 bucket에서 사진을 삭제하는 것을 실패했습니다.");
+        }
+        return new ResponseEntity<>(SuccessCode.DELETE_SUCCESS.getMessage(), SuccessCode.DELETE_SUCCESS.getHttpStatus());
     }
 }

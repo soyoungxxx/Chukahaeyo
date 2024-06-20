@@ -23,7 +23,6 @@
         </c:if>
     });
 </script>
-
 <div class="header">
     <a href="/">
         <div class="logo"></div>

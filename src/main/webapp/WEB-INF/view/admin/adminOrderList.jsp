@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -17,6 +18,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
     <link href="/resources/css/admin/admin.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 </head>
 <body id="page-top">
 <main class="main">
@@ -42,51 +46,63 @@
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">주문목록</h6>
                         </div>
+
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable">
                                     <thead>
                                     <tr>
-                                        <th>결제번호</th>
+                                        <th>No.</th>
+                                        <th>결제ID</th>
                                         <th>결제금액(원)</th>
                                         <th>주문자 이메일</th>
                                         <th>주문일자</th>
                                         <th>주문상태</th>
-                                        <th>영수증 URL</th>
+<%--                                        <th>영수증 URL</th>--%>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="payment" items="${paymentList}">
+                                    <c:forEach var="payment" items="${payments}">
                                         <tr>
+                                            <td>${payment.payID}</td>
                                             <td>${payment.merchantUid}</td>
                                             <td>${payment.payAmount}</td>
                                             <td>${payment.memberID}</td>
                                             <td>${payment.payDate}</td>
                                             <c:if test="${payment.canceledAt != null}">
-                                                <td>-</td>
+                                                <td>결제 완료</td>
                                             </c:if>
                                             <c:if test="${payment.canceledAt == null}">
-                                                <td>취소된 결제</td>
+                                                <td>취소 결제</td>
                                             </c:if>
-                                            <td>${payment.receiptURL}</td>
+<%--                                            <td>${payment.receiptURL}</td>--%>
                                         </tr>
                                     </c:forEach>
-                                    <tr>
-                                        <td>112341324132</td>
-                                        <td>10,000</td>
-                                        <td>aa@aaa.com</td>
-                                        <td>2024/03/15</td>
-                                        <td>결제완료</td>
-                                        <td>http://pgweb.dacom.net:7085/pg/wmp/etc/jsp/Receipt_Link.jsp?mertid=tlgdacomxpay&tid=tlgda20240617152538TAoV9&authdata=7eccd70750f4955b2772c3e78fb32f26</td>
-                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        <nav aria-label="page-nav" class="pagination-nav">
+                            <ul class="pagination">
+                                <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                    <a class="page-link" href="?page=${currentPage - 1}&size=${pageSize}" tabindex="-1">Previous</a>
+                                </li>
+                                <c:forEach var="i" begin="1" end="${totalPages}">
+                                    <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                        <a class="page-link" href="?page=${i}&size=${pageSize}">${i}</a>
+                                    </li>
+                                </c:forEach>
+                                <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                                    <a class="page-link" href="?page=${currentPage + 1}&size=${pageSize}">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+
+
                     </div>
 
                 </div>
-                <!-- /.container-fluid -->
+<%--                <!-- /.container-fluid -->--%>
 
             </div>
             <!-- End of Main Content -->
