@@ -16,6 +16,26 @@
             </if>
         </where>
     </sql>
+    <sql id="mySearchSql">
+        WHERE 1=1
+            <if test="query != null and query != ''">
+                <if test="querytype == 'all'">
+                    AND (commTitle LIKE '%${query}%' OR commContents LIKE '%${query}%' OR memberName LIKE '%${query}%')
+                </if>
+                <if test="querytype == 'titlecontent'">
+                    AND (commTitle LIKE '%${query}%' OR commContents LIKE '%${query}%')
+                </if>
+                <if test="querytype == 'writer'">
+                    AND (memberName LIKE '%${query}%')
+                </if>
+            </if>
+            AND c.memberID = #{memberID}
+
+    </sql>
+
+
+
+
 
     <select id="getCommunityList" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="com.choikang.chukahaeyo.board.model.CommunityVO">
         (SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
@@ -141,5 +161,50 @@
         UPDATE Community SET commViewCount = commViewCount + 1 WHERE commID = #{commID}
         ]]>
     </update>
+    <select id="myCount" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="int">
+        SELECT count(*)
+        FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
+        <include refid="mySearchSql"/>
+        ORDER BY commPostDate DESC
+    </select>
 
+
+
+    <select id="getCommunityMyList" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        (select * from
+        (SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
+        (SELECT count(*) FROM BoardLike WHERE commID = c.commID) AS BoardLike,
+        "false" isTop ,
+        (SELECT COUNT(*) FROM Reply WHERE commID = c.commID) AS replyCount
+        FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
+        <include refid="mySearchSql"/>
+
+        <if test="sort == 'date'">
+            ORDER BY commPostDate DESC
+        </if>
+        <if test="sort == 'view'">
+            ORDER BY commViewCount DESC
+        </if>
+        <if test="sort == 'reply'">
+            ORDER BY replyCount DESC
+        </if>
+        <if test="sort == 'like'">
+            ORDER BY BoardLike DESC
+        </if>
+        ) zz
+        <if test="sort == 'date'">
+            ORDER BY commPostDate DESC
+        </if>
+        <if test="sort == 'view'">
+            ORDER BY commViewCount DESC
+        </if>
+        <if test="sort == 'reply'">
+            ORDER BY replyCount DESC
+        </if>
+        <if test="sort == 'like'">
+            ORDER BY BoardLike DESC
+        </if>
+        )
+        LIMIT #{startIdx}, 10
+    </select>
 </mapper>

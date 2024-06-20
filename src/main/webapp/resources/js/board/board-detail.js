@@ -367,8 +367,14 @@ window.addEventListener('load' , function(e){
 
 
     $(".list").click(function (e) {
+        let ismy = $(".ismy").val();
+        if(ismy == 'true'){
+            location.href = '/board/community/mylist?query=' + $(".query").val() + '&querytype=' + $(".querytype").val() + '&page=' + $(".page").val() + '&sort=' + $(".sort").val();
 
-        location.href = '/board/community/list?query=' + $(".query").val() + '&querytype=' + $(".querytype").val() + '&page=' + $(".page").val() + '&sort=' + $(".sort").val();
+        }else {
+            location.href = '/board/community/list?query=' + $(".query").val() + '&querytype=' + $(".querytype").val() + '&page=' + $(".page").val() + '&sort=' + $(".sort").val();
+
+        }
 
 
     });
