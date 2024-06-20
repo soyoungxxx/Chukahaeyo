@@ -235,7 +235,8 @@
 </main>
 
 <!-- Bootstrap core JavaScript-->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.1.6/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css" rel="stylesheet">
 <script src="/resources/js/admin/jquery.js"></script>
 <script src="/resources/js/admin/bootstrap.js"></script>
 

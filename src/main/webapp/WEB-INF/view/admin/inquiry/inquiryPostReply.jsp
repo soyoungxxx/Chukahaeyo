@@ -107,7 +107,7 @@
                                 </div>
                             </c:if>
                         </div>
-<<<<<<< HEAD
+
                         <c:if test="${object.adminID == 0}">
                         <div class="inquiry-list">
                             <div class="inquiry-list-button">답변</div>
@@ -117,8 +117,6 @@
                             <div class="inquiry-list-list"><a href="/admin/board/inquiry/list">목록</a></div>
                         </div>
 
-=======
->>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
                     </div>
 
                 </div>

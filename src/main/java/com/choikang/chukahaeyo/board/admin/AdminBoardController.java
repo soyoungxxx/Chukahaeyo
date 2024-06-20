@@ -15,12 +15,12 @@ import java.io.UnsupportedEncodingException;
 
 
 @Controller
-@RequestMapping("/admin/board")
+@RequestMapping("/admin/inquiry")
 public class AdminBoardController {
     @Autowired
     BoardInquiryService boardInquiryService;
 
-    @GetMapping("/inquiry/list")
+    @GetMapping("/allInquiryList")
     public String inquiryList(Model model , InquiryVO vo) {
         model.addAttribute("map", boardInquiryService.getInquiryList(vo));
         return "admin/inquiry/allInquiryList";
@@ -28,14 +28,14 @@ public class AdminBoardController {
 
 
 
-    @GetMapping("/inquiry/write")
+    @GetMapping("/write")
     public String inquiryWrite(InquiryVO vo , Model model) {
         model.addAttribute("object" , boardInquiryService.getInquiryDetail(vo));
         return "admin/inquiry/inquiryPostReply";
     }
 
 
-    @PostMapping("/inquiry/write")
+    @PostMapping("/write")
     public String inquiryWriteInsert(InquiryVO vo , HttpSession session) throws UnsupportedEncodingException {
         vo.setAdminID((int)session.getAttribute("adminID"));
 

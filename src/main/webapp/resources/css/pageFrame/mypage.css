@@ -447,6 +447,12 @@
     margin: 5px;
 }
 
+.cancel-info{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 .payment-info > a {
     font-weight: 500;
     background-color: #4B5CFF;
