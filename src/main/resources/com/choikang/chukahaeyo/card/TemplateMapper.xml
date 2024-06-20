@@ -6,6 +6,7 @@
         FROM Template
         WHERE categoryID = #{categoryID}
     </select>
+
     <select id="selectPreviewFrame" parameterType="int" resultType="String">
         SELECT CONVERT(templateDesign USING utf8mb4)
         FROM Template
