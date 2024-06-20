@@ -18,11 +18,15 @@ public class CommunityVO {
     private String isTop;
     private String sort;
 
+    private String ismy;
+
+
     public CommunityVO() {
         this.query = "";
         this.querytype = "all";
         this.page = "1";
         this.sort = "date";
+        this.ismy = "";
     }
 
     private String isRed;
