@@ -4,10 +4,10 @@
 <link rel="stylesheet" href="/resources/css/include/header.css"/>
 <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+x
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function() {  
         <c:if test="${not empty sessionScope.login}">
         $(".gallery-community-bar").mouseenter(function () {
             $(".gallery-community-menu").stop(true, true).slideDown();
