@@ -4993,7 +4993,7 @@ input[type="button"].btn-block {
 .card-body {
     flex: 1 1 auto;
     min-height: 1px;
-    padding: 1.25rem;
+    padding: 2rem 2.5rem 1rem 2.5rem;
 }
 
 .card-title {
@@ -10897,6 +10897,8 @@ a.text-dark:focus {
     }
 
     .table {
+        width: 80%;
+        margin: 0 auto;
         border-collapse: collapse !important;
     }
 
@@ -10992,6 +10994,7 @@ a.text-dark:focus {
 .pagination-nav {
     display: flex;
     justify-content: center;
+    margin: 0 0 26px 0;
 }
 
 #selected-count {
@@ -11029,6 +11032,10 @@ a.text-dark:focus {
 #delete-member {
     background-color: #e74a3b;
 }
+
+
+/* 1:1문의 */
+
 
 
 
