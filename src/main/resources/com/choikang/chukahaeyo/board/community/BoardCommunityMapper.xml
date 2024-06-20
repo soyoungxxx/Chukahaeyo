@@ -85,7 +85,7 @@
     <insert id="insertCommunity" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
         INSERT INTO Community (memberID, commTitle, commContents, commPostDate)
         VALUES (#{memberID} , #{commTitle}, #{commContents}, NOW())
-        <selectKey keyProperty="commID" order="AFTER" resultType="string">
+        <selectKey keyProperty="commID" order="AFTER" resultType="int">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
