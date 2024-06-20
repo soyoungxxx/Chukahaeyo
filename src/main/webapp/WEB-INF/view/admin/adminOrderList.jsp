@@ -58,7 +58,7 @@
                                         <th>주문자 이메일</th>
                                         <th>주문일자</th>
                                         <th>주문상태</th>
-                                        <th>영수증 URL</th>
+<%--                                        <th>영수증 URL</th>--%>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -75,7 +75,7 @@
                                             <c:if test="${payment.canceledAt == null}">
                                                 <td>취소 결제</td>
                                             </c:if>
-                                            <td>${payment.receiptURL}</td>
+<%--                                            <td>${payment.receiptURL}</td>--%>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
