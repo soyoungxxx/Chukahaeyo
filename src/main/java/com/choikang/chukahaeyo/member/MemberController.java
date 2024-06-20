@@ -1,33 +1,21 @@
 package com.choikang.chukahaeyo.member;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
-import com.choikang.chukahaeyo.exception.ErrorCode;
-import com.choikang.chukahaeyo.exception.SuccessCode;
 import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
-import com.choikang.chukahaeyo.payment.CancelDTO;
-import com.choikang.chukahaeyo.payment.PaymentDTO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 @Controller
 public class MemberController {
@@ -195,13 +183,13 @@ public class MemberController {
         List<CardVO> cardList = service.getCardList(memberID);
         List<PaymentVO> paymentList = service.getPaymentList(memberID);
 
-        Date twoDaysAgo = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
-        for (int i = 0; i < paymentList.size(); i++) {
-            Date tempDate = (paymentList.get(i)).getPayDate();
-            if (twoDaysAgo.before(tempDate)) {
-                paymentList.get(i).setIsWithinTwoDays(1);
+        Timestamp twoDaysAgo = new Timestamp(System.currentTimeMillis() - 2L * 24 * 60 * 60 * 1000); // 2일 전의 Timestamp 계산
+        for (PaymentVO payment : paymentList) {
+            Timestamp tempDate = payment.getPayDate();
+            if (tempDate != null && twoDaysAgo.before(tempDate)) {
+                payment.setIsWithinTwoDays(1);
             } else {
-                paymentList.get(i).setIsWithinTwoDays(0);
+                payment.setIsWithinTwoDays(0);
             }
         }
         model.addAttribute("cardList", cardList);
@@ -214,7 +202,6 @@ public class MemberController {
     public String getAllPaymentList(Model model, @RequestParam(defaultValue = "1") int page,
                                     @RequestParam(defaultValue = "10") int size) {
         List<PaymentVO> paymentList = service.getPaymentAllList();
-
 
         int totalPayments = paymentList.size();
         int totalPages = (int) Math.ceil((double) totalPayments / size);
@@ -241,7 +228,6 @@ public class MemberController {
         return "/admin/adminMemberList";
     }
 
-
     // 회원 탈퇴
     @ResponseBody
     @PostMapping("/admin/memberDelete")
@@ -258,7 +244,6 @@ public class MemberController {
         }
     }
 
-
     // 로그아웃(일반 회원, 관리자)
     @GetMapping("/logout")
     public String logout(HttpSession session, HttpServletRequest request, Model model) {
@@ -270,7 +255,6 @@ public class MemberController {
         } else {
             model.addAttribute("url", "/");
         }
-
         return "include/alert";
     }
 
@@ -309,5 +293,4 @@ public class MemberController {
         model.addAttribute("url", "/");
         return "include/alert";
     }
-
 }
