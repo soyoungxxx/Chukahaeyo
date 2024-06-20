@@ -83,7 +83,58 @@ body, .show-gallery, .overlay, .card-gallery, .move-gallery {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.mainBear {
+.main-card {
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-overlay {
+    font-size: 71px;
+    color: black;
+    position: absolute;
+    top: 13%;
+    left: 11.5%;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.card-overlay {
+    font-size: 22px;
+    color: whitesmoke;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.card a, .navigator a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.main-bear {
     display: block;
     width: 250px;
     position: relative;
@@ -122,40 +173,4 @@ body, .show-gallery, .overlay, .card-gallery, .move-gallery {
     flex-direction: column; /* 세로로 정렬 */
     align-items: center; /* 중앙 정렬 */
     width: 100%;
-}
-
-.card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.card-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.overlay {
-    font-size: 22px;
-    color: whitesmoke;
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    letter-spacing: 1px;
-    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-}
-
-.card a, .navigator a {
-    display: block;
-    text-decoration: none;
-    color: inherit;
 }

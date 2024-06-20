@@ -21,11 +21,11 @@
             <div class="slideshow-container">
                 <c:forEach var="card" items="${top3Cards}">
                     <div class="slides fade">
-                        <div class="card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}" data-url="card/completedCard/${card.cardID}">
+                        <div class="main-card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}" data-url="card/completedCard/${card.cardID}">
                             <div class="card-image" onclick="redirectToUrl(this)">
                                 <img src="resources/img/main/main0${card.categoryID}.png" alt="" style="width:100%">
-                                <div class="overlay">
-                                    <div class="">수정 예정${card.cardName}</div>
+                                <div class="main-overlay">
+                                    <div class="">${card.cardName}</div>
                                 </div>
                             </div>
                         </div>
@@ -37,9 +37,9 @@
 
             <!-- 내생일, 반려동물 생일, 단체 행사 링크 -->
             <div class="navigator">
-                <img src="resources/img/main/mainbear1.png" alt="" class="mainBear" onclick="redirectToUrl(this)" data-url="card/edit/myCard">
-                <img src="resources/img/main/mainbear2.png" alt="" class="mainBear" onclick="redirectToUrl(this)" data-url="card/edit/myPet">
-                <img src="resources/img/main/mainbear3.png" alt="" class="mainBear" onclick="redirectToUrl(this)" data-url="card/edit/invitation">
+                <img src="resources/img/main/mainbear1.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/myCard">
+                <img src="resources/img/main/mainbear2.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/myPet">
+                <img src="resources/img/main/mainbear3.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/invitation">
             </div>
 
             <div class="card-gallery">
@@ -48,7 +48,7 @@
                         <div class="card" data-url="card/completedCard/${card.cardID}" onclick="redirectToUrl(this)">
                             <div class="card-image">
                                 <img src="${card.templateThumbnail}" alt="Card Image">
-                                <div class="overlay">
+                                <div class="card-overlay">
                                     <div class="text">${card.cardName}</div>
                                 </div>
                             </div>
