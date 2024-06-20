@@ -9,7 +9,16 @@ $(document).ready(function() {
 		maxHeight: null,
 		// 에디터 한글 설정
 		lang: 'ko-KR',
-
+		toolbar: [
+			['style', ['style']],
+			['font', ['bold', 'underline', 'clear']],
+			['fontname', ['fontname']],
+			['color', ['color']],
+			['para', ['ul', 'ol', 'paragraph']],
+			['table', ['table']],
+			['insert', ['link', 'picture']],
+			['view', ['codeview', 'help']],
+		],
 		// focus는 작성 페이지 접속시 에디터에 커서를 위치하도록 하려면 설정해주세요.
 		focus : true,
 		// callbacks은 이미지 업로드 처리입니다.
