@@ -28,7 +28,8 @@ public enum SuccessCode {
     GUESTBOOK_CREATE_SUCCESS(HttpStatus.CREATED, "방명록을 성공적으로 등록하였습니다."),
     PAYMENT_SUCCESS(HttpStatus.OK, "결제를 성공했습니다."),
     CANCEL_SUCCESS(HttpStatus.OK, "취소를 성공했습니다."),
-    LIKE_UPDATE_SUCCESS(HttpStatus.OK, "좋아요 업데이트를 성공했습니다.");
+    LIKE_UPDATE_SUCCESS(HttpStatus.OK, "좋아요 업데이트를 성공했습니다."),
+    DELETE_SUCCESS(HttpStatus.OK, "S3 bucket에서 사진을 성공적으로 삭제하였습니다.");
 
 
     private final HttpStatus httpStatus;
