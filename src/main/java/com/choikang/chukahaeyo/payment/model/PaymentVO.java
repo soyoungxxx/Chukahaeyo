@@ -18,8 +18,8 @@ public class PaymentVO {
     private String orderAmount; // 주문 가격
     private boolean isOrdered; // 주문 여부 -> 주문 요청이 들어가면 true(결제 창이 켜지는 경우)
     private String applyNum; //카드 승인 번호
-    private String buyerEmail; //구매자 이메일 주소
-    private String buyerName; //구매자 이름
+    private String memberEmail; //구매자 이메일 주소
+    private String memberName; //구매자 이름
     private Timestamp paidAt; // 결제 완료 시간
     private String status; // 결제 여부
     private int isWithinTwoDays; // 결제일이 오늘로부터 이틀 이내인지 저장
