@@ -11,7 +11,7 @@ import java.util.List;
 public interface CardMapper {
     void insertUrl(CardVO cardVO);
     void deleteCard(int cardID);
-    void insertCardInCart(CardVO cardVO);
+    void insertCardInDatabase(CardVO cardVO);
     void updateCardPaymentStatus(int cardID);
     void updateCardLike(int cardID);
     void insertCardGuestBook(GuestBookVO guestBookVO);

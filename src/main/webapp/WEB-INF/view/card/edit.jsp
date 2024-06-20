@@ -20,6 +20,18 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 </head>
 <body>
+<c:if test="${categoryPath} == myCard">
+    <c:set var="categoryID" value="1"/>
+    <c:set var="categoryName" value="내 생일 카드"/>
+</c:if>
+<c:if test="${categoryPath} == myPet">
+    <c:set var="categoryID" value="2"/>
+    <c:set var="categoryName" value="반려동물 생일 카드"/>
+</c:if>
+<c:if test="${categoryPath} == invitation">
+    <c:set var="categoryID" value="3"/>
+    <c:set var="categoryName" value="초대 카드"/>
+</c:if>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
 <main class="main" style="height: 50%;">
     <div class="sticker1" style="margin-right: 50px"></div>
@@ -184,327 +196,19 @@
 <script src="https://cdn.jsdelivr.net/npm/js-confetti@0.9.0/dist/js-confetti.browser.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="/resources/js/card/card.js?ver=1"></script>
+
+<script src="/resources/js/card/edit/edit.js"></script>
+<script src="/resources/js/card/edit/address.js"></script>
+<script src="/resources/js/card/edit/editPayment.js"></script>
+<script src="/resources/js/card/edit/previewDiv.js"></script>
+<script src="/resources/js/card/edit/editSelectFrame.js"></script>
+<script src="/resources/js/card/card.js"></script>
 
 <script>
-    let categoryId;
+    // 필요한 변수 선언
+    let categoryID = ${categoryID};
     let templateThumbnail;
     let address = " ";
-
-    $(window).on('beforeunload', function () {
-        return "수정사항이 취소됩니다. 계속하시겠어요?";
-    })
-
-    // 주소 api 호출
-    $('.edit-search-addr').click(function () {
-        new daum.Postcode({
-            oncomplete: function (data) {
-                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
-
-                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-                    extraRoadAddr += data.bname;
-                }
-                // 건물명이 있고, 공동주택일 경우 추가한다.
-                if (data.buildingName !== '' && data.apartment === 'Y') {
-                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if (extraRoadAddr !== '') {
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                address = roadAddr + " " + extraRoadAddr;
-
-                $(".extra-address").html(address + "<br>" + $('#addr2').val());
-
-                getMap(roadAddr);
-            }
-        }).open();
-    })
-
-    // 필수 항목 다 적었나 체크
-    function checkRequires() {
-        // 이름, 날짜, 사진, 문구 전부 작성해야 함
-        if ($('#edit-name').val() === '' || ($('#edit-day').val() === '' && $('#edit-days') === '') ||
-            $('.edit-file-label').text() === '첨부하기' || $('#edit-text').val() === '') {
-            alert("필수 항목을 다 작성하지 않으셨습니다.")
-            return false;
-        }
-        // 이모티콘 네 개 다 작성해야 함
-        if ($('#emoji1').val() === '' || $('#emoji2').val() === '' || $('#emoji3').val() === '' || $('#emoji4').val() === '') {
-            alert("이모티콘을 4개 적어주세요!");
-            return false;
-        }
-        return true;
-    }
-
-    var file;
-
-    // 이미지 업로드 기능
-    function loadFile(input) {
-        file = input.files[0];
-        // 파일 이름 표시
-        $('.edit-file-label').text(file.name);
-        var newImage = document.createElement("img");
-        newImage.setAttribute("class", "uploadedImage");
-        newImage.src = URL.createObjectURL(file);
-        // conponent 추가
-        $('.uploadedImage').replaceWith(newImage);
-    }
-
-    // 실시간 반영!
-    $('.all-content').ready(function () {
-        // 이름
-        $('#edit-name').on('input', function () {
-            var nameText = $(this).val();
-            $('.card-name').text(nameText + originText);
-        });
-        // 설명
-        $('#edit-text').on('input', function () {
-            var editText = $(this).val();
-            editText = editText.replaceAll(/(\n|\r\n)/g, "<br>");
-            $('.card-message').html(editText);
-        });
-        // 시간
-        $('#edit-time').change(function () {
-            var time = $('#edit-time').val();
-            $('.extra-time').text(time);
-        });
-        // 이모지
-        $('#emoji1').change(function () {
-            emoji[0] = $("#emoji1").val();
-        });
-        $('#emoji2').change(function () {
-            emoji[1] = $("#emoji2").val();
-        });
-        $('#emoji3').change(function () {
-            emoji[2] = $("#emoji3").val();
-        });
-        $('#emoji4').change(function () {
-            emoji[3] = $("#emoji4").val();
-        });
-
-        // 장소
-        $('#addr2').on('input', function () {
-            $(".extra-address").html(address + "<br>" + $(this).val());
-        })
-
-        // 준비물
-        $('.edit-prepare').on('input', function () {
-            var pre = $(this).val();
-            $('.extra-preparation').text(pre);
-        });
-        // 계좌 번호
-        $('#edit-bank').on('input', function () {
-            var bank = $(this).val();
-            $('.extra-account-bank').text(bank);
-        })
-        $('#edit-account-number').on('input', function () {
-            var accountNumber = $(this).val();
-            $('.extra-account-number').text(" " + accountNumber);
-        })
-    });
-
-    $(function () {
-        $('#edit-days').daterangepicker({
-            autoUpdateInput: false,
-            locale: {
-                cancelLabel: 'Clear'
-            }
-        });
-        $('#edit-days').on('apply.daterangepicker', function (ev, picker) {
-            var startDate = picker.startDate.format('YYYY/MM/DD');
-            var endDate = picker.endDate.format('YYYY/MM/DD');
-            var selectDates = startDate+ ' - ' + endDate;
-            $(this).val(selectDates);
-            $('.card-date').text(selectDates)
-            $('#cardStartDate').val(startDate);
-            $('#cardEndDate').val(endDate);
-        });
-
-        $('#edit-days').on('cancel.daterangepicker', function (ev, picker) {
-            $(this).val('');
-        });
-
-        $('#edit-day').daterangepicker({
-            singleDatePicker: true,
-            showDropdowns: true,
-            autoUpdateInput: false,
-            minYear: 1901,
-            maxYear: parseInt(moment().format('YYYY'), 10)
-        });
-        $('#edit-day').on('apply.daterangepicker', function (ev, picker) {
-            var selectDate = picker.startDate.format('YYYY/MM/DD');
-            $(this).val(selectDate);
-            $('.card-date').text(selectDate);
-            $('#cardStartDate').val(selectDate);
-        })
-        // 각각 library를 이용해 초기값 세팅
-
-        // 처음 선택 => 시각과 날짜 하나기 때문에 여러 개 선택은 숨김
-        $('#edit-days').hide();
-        $('#edit-times').hide();
-        $('.edit-showTime').hide();
-        $('.edit-place').hide();
-        $('.edit-prepare').hide();
-        $('.edit-account').hide();
-
-        // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
-        $('#edit-dayRadio').click(function () {
-            $('#edit-days').hide();
-            $('#edit-day').show();
-        })
-        $('#edit-daysRadio').click(function () {
-            $('#edit-day').hide();
-            $('#edit-days').show();
-        })
-
-        // 어떤 버튼을 클릭하냐에 따라 hide and show - 시간
-        $('#edit-timeRadio').click(function () {
-            $('#edit-times').hide();
-            $('#edit-time').show();
-        })
-        $('#edit-timesRadio').click(function () {
-            $('#edit-times').show();
-        })
-
-        // 체크박스 제어
-        $('#edit-time-select').click(function () {
-            $('.edit-showTime').toggle();
-            $('.extra-time').toggle();
-        })
-        $('#edit-place-select').click(function () {
-            $('.edit-place').toggle();
-            $('.extra-place').toggle();
-        })
-        $('#edit-prepare-select').click(function () {
-            $('.edit-prepare').toggle();
-            $('.extra-preparation').toggle();
-        })
-        $('#edit-account-select').click(function () {
-            $('.edit-account').toggle();
-            $('.extra-account').toggle();
-        })
-    });
-
-    // 결제
-    var IMP = window.IMP;
-    IMP.init("imp72336673");
-
-    function requestPay() {
-        var makeMerchantUid = 'merchant_' + new Date().getTime();
-
-        console.log("Payment requested");
-
-        IMP.request_pay({
-            pg: 'html5_inicis', // 토스페이
-            pay_method: 'card',
-            merchant_uid: "IMP" + makeMerchantUid,
-            name: '축하해요 카드 결제',
-            amount: 1000,
-            buyer_email: 'Iamport@chai.finance',
-            buyer_name: '아임포트',
-            buyer_tel: '010-1234-5678',
-            buyer_addr: '서울특별시 강남구 삼성동',
-            buyer_postcode: '123-456',
-            display: {
-                card_quota: [3]  // 할부개월 3개월까지 활성화
-            }
-        }, function (rsp) {
-            if (rsp.success) {
-                console.log("결제 성공", rsp);
-                console.log("응답 객체 구조:", JSON.stringify(rsp, null, 2));
-                $.ajax({
-                    url: '/payments/process',
-                    type: 'POST',
-                    contentType: 'application/json; charset=UTF-8',
-                    data: JSON.stringify({
-                        applyNum: rsp.apply_num,
-                        buyer_email: rsp.buyer_email,
-                        payNo: rsp.imp_uid,
-                        merchantUid: rsp.merchant_uid,
-                        payAmount: rsp.paid_amount,
-                        paidAt: rsp.paid_at,
-                        status: rsp.status,
-                        receiptURL: rsp.receipt_url
-                    }),
-                    success: function (response) {
-                        console.log("response" + response)
-                        if (response > -1) {
-                            saveHiddenData();
-                            $('#cardIsPaid').val('true');
-                            $(window).off('beforeunload');
-                            $('#payID').val(response);
-                            $('#cart-submit-button').click();
-                        }
-                    },
-                    error: function (xhr, status, error) {
-                        console.log("결제 후 DB 저장 실패", error);
-                    }
-                });
-            } else {
-                console.log("결제 실패", rsp);
-                alert('Payment failed: ' + rsp.error_msg);
-            }
-        });
-    }
-
-    document.getElementById('edit-pay-button').addEventListener('click', function () {
-        if (checkRequires()) {
-            requestPay();
-        }
-    });
-
-    var originText;
-
-    $('.edit-frame').click(function () {
-        var template_id = $(this).attr("id");
-        categoryId = ${categoryId};
-        templateThumbnail = $(this).attr("src");
-
-        removeInfo();
-        $('.edit-upper-div').unwrap();
-        $('.edit-upper-div').remove();
-
-        if ($('#edit-time-select').is(':checked')) $('#edit-time-select').click();
-        if ($('#edit-place-select').is(':checked')) $('#edit-place-select').click();
-        if ($('#edit-prepare-select').is(':checked')) $('#edit-prepare-select').click();
-        if ($('#edit-account-select').is(':checked')) $('#edit-account-select').click();
-
-        $.ajax({
-            type: "GET",
-            url: "/card/edit/template.do",
-            data: {id: template_id},
-            contentType: "text/html; charset:UTF-8",
-            success: function (data) {
-                $('.edit-preview-div').html(data);
-                originText = $('.card-name').text();
-                $('.date').text($('#edit-day').val()); // 템플릿 선택 시 날짜 초기값 세팅
-
-                // 템플릿 선택시.. css 선택
-                let templateCss = templateThumbnail.substring(25);
-                console.log(templateCss);
-                templateCss = templateCss.substring(0, templateCss.length - 4);
-                console.log(templateCss);
-
-                $('#cardCss').prop("href", "/resources/css/template/" + templateCss + ".css");
-            }
-        })
-    })
-
-    function removeInfo() {
-        $("input[type='text']").val("");
-        $("textarea").val("");
-        $(".edit-file-label").val("");
-        $("input[type='time']").val("");
-    }
 
     function setReadOnly() {
         $("input[type='text']").readOnly(false);
@@ -513,36 +217,6 @@
         $("input[type='time']").readOnly(false);
         // $("input[type='date']").
     }
-
-    function saveHiddenData() {
-        $('#map').text("");
-        $('#map').removeAttr("style");
-        $("#card-design").val($('.edit-preview-div').html());
-
-        $('#cardName').val($('.card-name').text());
-        $('#submit-templateThumbnail').val(templateThumbnail);
-        $('#submit-categoryId').val(categoryId);
-        $("#cardEmojis").val(emoji);
-        console.log($("#cardEmojis"));
-    }
-
-    $('#edit-cart-button').click(function () {
-        saveHiddenData();
-        $('#cardIsPaid').val('false');
-        $(window).off('beforeunload');
-        $('#cart-submit-button').click();
-    })
-
-    $('#publicButton').click(function () {
-        var isPublicValue = $('#public').val();
-        if (isPublicValue === 'true') {
-            $('#public').val('false');
-            $('#publicButton').val('비공개');
-        } else {
-            $('#public').val('true');
-            $('#publicButton').val('공개');
-        }
-    })
 </script>
 </body>
 </html>
