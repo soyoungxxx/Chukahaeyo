@@ -23,12 +23,60 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     return s.join(dec);
 }
 
+function dateFormat(date) {
+    return  date.getFullYear() +
+            '-' + ((date.getMonth()) < 9 ? "0" + (date.getMonth()) : (date.getMonth())) +
+            '-' + ((date.getDate() < 9 ? "0" + (date.getDate()) : date.getDate()));
+}
+
+function dateFormat2(date) {
+    return  (date.getMonth()) + '월 ' + date.getDate() + '일';
+}
+
+// 날짜 설정하기
+let todayDate = new Date();
+const year = todayDate.getFullYear();
+const month = todayDate.getMonth()+1;
+const date = todayDate.getDate();
+
+const endDate = dateFormat(new Date(year, month, date));
+const startDate = dateFormat(new Date(year, month, date-6))
+console.log(todayDate)
+console.log(startDate);
+
+let visitData = [];
+$(document).ready(function() {
+    $.ajax({
+        url: '/admin/visitor.do',
+        type: 'GET',
+        data: {startDate:startDate, endDate:endDate},
+        async: false,
+        success: function(result) {
+            console.log(result);
+            visitData = result;
+            console.log(visitData[0]);
+        },
+        error: function() {
+            alert("방문자 수를 불러오는 데 실패했습니다.");
+        }
+    });
+})
+
 // Area Chart Example
 var ctx = document.getElementById("myAreaChart");
+console.log(visitData[0])
 var myLineChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: ["월", "화", "수", "목", "금", "토", "일"],
+        labels: [
+            dateFormat2(new Date(year, month, date-6)),
+            dateFormat2(new Date(year, month, date-5)),
+            dateFormat2(new Date(year, month, date-4)),
+            dateFormat2(new Date(year, month, date-3)),
+            dateFormat2(new Date(year, month, date-2)),
+            dateFormat2(new Date(year, month, date-1)),
+            month + '월 ' + date + '일'
+        ],
         datasets: [{
             label: "일일 방문자 수",
             lineTension: 0.3,
@@ -42,10 +90,13 @@ var myLineChart = new Chart(ctx, {
             pointHoverBorderColor: "rgba(78, 115, 223, 1)",
             pointHitRadius: 10,
             pointBorderWidth: 2,
-            data: [0, 100, 200, 5000, 30000, 8000, 650],
+            data: [1, visitData[1], 0, 0, 0, 9, 9],
         }],
     },
     options: {
+        font : {
+            size: 50
+        },
         maintainAspectRatio: false,
         layout: {
             padding: {
@@ -74,6 +125,7 @@ var myLineChart = new Chart(ctx, {
                     padding: 10,
                     // Include a dollar sign in the ticks
                     callback: function(value, index, values) {
+                        if (index === values.length - 1) return "";
                         return number_format(value) + '명';
                     }
                 },
@@ -89,12 +141,12 @@ var myLineChart = new Chart(ctx, {
         legend: {
             display: false
         },
-        tooltip: {
+        tooltips: {
             backgroundColor: "rgb(255,255,255)",
             bodyFontColor: "#858796",
             titleMarginBottom: 10,
             titleFontColor: '#6e707e',
-            titleFontSize: 14,
+            titleFontSize: 16,
             borderColor: '#dddfeb',
             borderWidth: 1,
             xPadding: 15,
@@ -106,7 +158,7 @@ var myLineChart = new Chart(ctx, {
             callbacks: {
                 label: function(tooltipItem, chart) {
                     var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                    return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '명';
+                    return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
                 }
             }
         }
