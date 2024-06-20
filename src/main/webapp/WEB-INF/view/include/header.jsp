@@ -4,8 +4,6 @@
 <link rel="stylesheet" href="/resources/css/include/header.css"/>
 <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
 
-x
-
 <script>
     $(document).ready(function() {  
         <c:if test="${not empty sessionScope.login}">
@@ -42,7 +40,7 @@ x
                 <div class="gallery-community-menu-item" onclick="location.href='/board/community/list?query=${memberName}&querytype=writer'">내가 쓴 글</div>
                 <hr>
                 <div class="gallery-community-menu-item" onclick="location.href='/board/community/list'">전체 글 보기</div>
-
+            </div>
         </div>
     </nav>
     <nav class="nav2">
