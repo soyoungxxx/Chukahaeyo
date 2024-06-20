@@ -1,4 +1,4 @@
-$(document).ready(function() {
+window.addEventListener("load" , function(e){
 	//여기 아래 부분
 	$('#summernote').summernote({
 

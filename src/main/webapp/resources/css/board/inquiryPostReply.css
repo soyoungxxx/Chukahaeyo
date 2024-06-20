@@ -105,7 +105,27 @@ body .container{
 
 
 
+.list {
+    width: 757px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.inquiry-list-list {
+    margin-top: 15px;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: 1px solid black;
+    cursor: pointer;
+
+}
+.inquiry-list-list a{
+    color: black;
+
+}
 
 
 

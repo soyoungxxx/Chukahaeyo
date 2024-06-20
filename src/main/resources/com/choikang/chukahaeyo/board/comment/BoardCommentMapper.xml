@@ -24,7 +24,7 @@
     <insert id="mainInsert" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO">
         INSERT INTO Reply (replyContent , replyGno , replyOno , replyNested ,replyPostDate , memberID , commID)
         VALUES (#{replyContent} , #{replyGno} , 0 , 0 , now() , #{memberID} , #{commID})
-        <selectKey keyProperty="replyID" order="AFTER" resultType="string">
+        <selectKey keyProperty="replyID" order="AFTER" resultType="int">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
@@ -50,7 +50,7 @@
     <insert id="subInsert" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO">
         INSERT INTO Reply (replyContent , replyGno , replyOno , replyNested ,replyPostDate , memberID , commID)
         VALUES (#{replyContent} , #{replyGno} , #{replyOno} , #{replyNested}+1 , now() , #{memberID} , #{commID})
-        <selectKey keyProperty="replyID" order="AFTER" resultType="string">
+        <selectKey keyProperty="replyID" order="AFTER" resultType="int">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>

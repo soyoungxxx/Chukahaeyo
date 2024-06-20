@@ -55,9 +55,9 @@ public class BoardCommunityController {
     @GetMapping("/community/detail")
     public String communityDetail(CommunityVO vo,HttpServletRequest req , HttpSession session) {
         if( session.getAttribute("memberID") == null){
-            vo.setMemberID("0");
+            vo.setMemberID(0);
         }else {
-            vo.setMemberID(String.valueOf(session.getAttribute("memberID")));
+            vo.setMemberID((int)session.getAttribute("memberID"));
         }
         if( session.getAttribute("memberName") == null){
             vo.setMemberName("");
@@ -83,9 +83,9 @@ public class BoardCommunityController {
     @GetMapping("/community/update")
     public String communityUpdateView(CommunityVO vo , HttpServletRequest req , HttpSession session) throws UnsupportedEncodingException {
         if( session.getAttribute("memberID") == null){
-            vo.setMemberID("0");
+            vo.setMemberID(0);
         }else {
-            vo.setMemberID(String.valueOf(session.getAttribute("memberID")));
+            vo.setMemberID((int)session.getAttribute("memberID"));
         }
         if( session.getAttribute("memberName") == null){
             vo.setMemberName("");
@@ -134,7 +134,7 @@ public class BoardCommunityController {
     public String communityWriteInsert(@ModelAttribute CommunityVO vo , HttpSession session) throws UnsupportedEncodingException {
 
         //세션에서 memberId 넣어주고
-        vo.setMemberID(String.valueOf(session.getAttribute("memberID")));
+        vo.setMemberID((int)session.getAttribute("memberID"));
 
         //서비스 타고 no 받는다.
         boardCommunityService.insertCommunity(vo);
@@ -212,9 +212,9 @@ public class BoardCommunityController {
     @GetMapping("/community/heartred")
     public Map communityHeartred(CommunityVO vo, HttpSession session) {
         if( session.getAttribute("memberID") == null){
-            vo.setMemberID("0");
+            vo.setMemberID(0);
         }else {
-            vo.setMemberID(String.valueOf(session.getAttribute("memberID")));
+            vo.setMemberID((int)session.getAttribute("memberID"));
         }
         Map<String, Object> map = new HashMap<>();
         map.put("isRed", boardCommunityService.deleteHeart(vo));
@@ -230,9 +230,9 @@ public class BoardCommunityController {
     @GetMapping("/community/heartblack")
     public Map communityHeartblack(CommunityVO vo, HttpSession session) {
         if( session.getAttribute("memberID") == null){
-            vo.setMemberID("0");
+            vo.setMemberID(0);
         }else {
-            vo.setMemberID(String.valueOf(session.getAttribute("memberID")));
+            vo.setMemberID((int)session.getAttribute("memberID"));
         }
         Map<String, Object> map = new HashMap<>();
         map.put("isRed", boardCommunityService.insertHeart(vo));

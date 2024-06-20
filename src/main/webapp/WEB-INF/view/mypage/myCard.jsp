@@ -51,9 +51,6 @@
                                     <div class="like">
                                         👍 Like ${card.cardLikeCnt}
                                     </div>
-                                        <%--                                    <button class="button" data-card-id="${card.cardID}" onclick="copyUrl(this)">--%>
-                                        <%--                                        URL 복사--%>
-                                        <%--                                    </button>--%>
                                     <button class="button copy-button" data-card-id="${card.cardID}" data-clipboard-text="">
                                         URL 복사
                                     </button>

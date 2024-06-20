@@ -31,7 +31,6 @@ public class GalleryController {
         List<CardVO> latest3Cards = cardService.getLatest3CardList();
         model.addAttribute("latest3Cards", latest3Cards);
         System.out.println("Latest 3 Cards: " + latest3Cards);
-
         return "index";
     }
 }
