@@ -1,31 +1,20 @@
-
 /*font*/
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
 
-body .container{
+body .container {
     font-family: "Jua", sans-serif;
     font-weight: 400;
     font-size: 20px;
     font-style: normal;
-  }  
+}
 /*font*/
 
-
-
-
-
-
-
 .container {
-
     width: 1000px;
     height: 100%;
     display: flex;
     flex-direction: column;
-
 }
-
-
 
 /*community-logo*/
 .community-logo {
@@ -34,33 +23,24 @@ body .container{
     background-repeat: no-repeat;
     width: 100px;
     height: 40px;
-
     margin-top: 40px;
     margin-bottom: 80px;
 }
-
-
 
 /*search*/
 .search {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
     margin-bottom: 25px;
 }
 
-
-
-
-.sort-box{
-    margin-left: 20px;
+.sort-box {
     width: 100px;
     height: 40px;
     font-size: 15px;
     border-radius: 10px;
 }
-
 
 .search .selectbox {
     width: 120px;
@@ -71,24 +51,25 @@ body .container{
 
 .search .textbox {
     width: 120px;
-    height: 35px;
+    height: 40px;
     font-size: 15px;
-    
+    border: 1px solid;
+    border-color: rgb(118, 118, 118) rgb(133, 133, 133);
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 5px;
 }
 
 .search .submitbox {
     width: 50px;
     height: 40px;
     font-size: 15px;
-
     color: white;
     border: none;
     background-color: #949FFF;
     border-radius: 10px;
-    cursor : pointer;
+    cursor: pointer;
 }
-
-
 
 /*list*/
 .list .list-board {
@@ -102,7 +83,6 @@ body .container{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-
     height: 40px;
     line-height: 40px;
 }
@@ -111,7 +91,6 @@ body .container{
 .list .list-board .list-title {
     border-bottom: 1px solid #B9B5B5;
     background-color: #F3F3F3;
-
 }
 
 .list .list-board .list-title .no {
@@ -139,26 +118,23 @@ body .container{
     text-align: center;
 }
 
-
 .list .list-board .list-title .like {
     width: 80px;
     text-align: center;
 }
+
 .list .list-board .list-title .reply-count {
     width: 80px;
     text-align: center;
 }
 
-
 /*list-data*/
-
 .list .list-board .list-data {
     border-bottom: 1px solid #B9B5B5;
-
 }
+
 .list .list-board .is-top {
     background-color: #DBDDFAFF;
-
 }
 
 .list .list-board .list-data .no {
@@ -171,7 +147,8 @@ body .container{
     text-align: start;
     padding-left: 50px;
 }
-.list .list-board .list-data .title a{
+
+.list .list-board .list-data .title a {
     text-decoration: none;
     cursor: pointer;
     color: black;
@@ -192,11 +169,11 @@ body .container{
     text-align: center;
 }
 
-
 .list .list-board .list-data .like {
     width: 80px;
     text-align: center;
 }
+
 .list .list-board .list-data .reply-count {
     width: 80px;
     text-align: center;
@@ -206,18 +183,12 @@ body .container{
 .list .list-board .list-no-data {
     text-align: center;
     border-bottom: 1px solid #B9B5B5;
-    
     height: 50px;
     line-height: 50px;
 }
 
-
-
-
-
-
 /*write-button*/
-.write-button{
+.write-button {
     width: 80px;
     height: 40px;
     line-height: 40px;
@@ -229,27 +200,17 @@ body .container{
     cursor: pointer;
     border-radius: 10px;
 }
-.write-button a{
+
+.write-button a {
     text-decoration: none;
     color: white;
 }
 
-
-
-
-
-
-
-
-
-
 /*paging*/
-
 .paging {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
 }
 
 .paging a {
@@ -262,12 +223,9 @@ body .container{
     line-height: 30px;
     text-align: center;
     margin: 5px;
-
-    
-
 }
 
-.paging .current{
+.paging .current {
     display: inline-block;
     text-decoration: none;
     color: #949FFF;
@@ -277,5 +235,4 @@ body .container{
     line-height: 30px;
     text-align: center;
     margin: 5px;
-
 }
