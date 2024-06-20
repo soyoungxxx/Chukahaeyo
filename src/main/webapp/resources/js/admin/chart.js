@@ -52,9 +52,107 @@ $(document).ready(function() {
         data: {startDate:startDate, endDate:endDate},
         async: false,
         success: function(result) {
-            console.log(result);
-            visitData = result;
-            console.log(visitData[0]);
+            var ctx = document.getElementById("myAreaChart");
+            // Area Chart Example
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [
+                        dateFormat2(new Date(year, month, date-6)),
+                        dateFormat2(new Date(year, month, date-5)),
+                        dateFormat2(new Date(year, month, date-4)),
+                        dateFormat2(new Date(year, month, date-3)),
+                        dateFormat2(new Date(year, month, date-2)),
+                        dateFormat2(new Date(year, month, date-1)),
+                        month + '월 ' + date + '일'
+                    ],
+                    datasets: [{
+                        label: "일일 방문자 수",
+                        lineTension: 0.3,
+                        backgroundColor: "rgba(78, 115, 223, 0.05)",
+                        borderColor: "rgba(78, 115, 223, 1)",
+                        pointRadius: 3,
+                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                        pointBorderColor: "rgba(78, 115, 223, 1)",
+                        pointHoverRadius: 3,
+                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                        pointHitRadius: 10,
+                        pointBorderWidth: 2,
+                        data: [result[0], result[1], result[2], result[3], result[4], result[5], result[6]],
+                    }],
+                },
+                options: {
+                    font : {
+                        size: 50
+                    },
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 25,
+                            top: 25,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            time: {
+                                unit: 'date'
+                            },
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                maxTicksLimit: 5,
+                                padding: 10,
+                                // Include a dollar sign in the ticks
+                                callback: function(value, index, values) {
+                                    if (index === values.length - 1) return "";
+                                    return number_format(value) + '명';
+                                }
+                            },
+                            gridLines: {
+                                color: "rgb(234, 236, 244)",
+                                zeroLineColor: "rgb(234, 236, 244)",
+                                drawBorder: false,
+                                borderDash: [2],
+                                zeroLineBorderDash: [2]
+                            }
+                        }],
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        titleMarginBottom: 10,
+                        titleFontColor: '#6e707e',
+                        titleFontSize: 16,
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        intersect: false,
+                        mode: 'index',
+                        caretPadding: 10,
+                        callbacks: {
+                            label: function(tooltipItem, chart) {
+                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
+                            }
+                        }
+                    }
+                }
+            });
         },
         error: function() {
             alert("방문자 수를 불러오는 데 실패했습니다.");
@@ -62,108 +160,6 @@ $(document).ready(function() {
     });
 })
 
-// Area Chart Example
-var ctx = document.getElementById("myAreaChart");
-console.log(visitData[0])
-var myLineChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: [
-            dateFormat2(new Date(year, month, date-6)),
-            dateFormat2(new Date(year, month, date-5)),
-            dateFormat2(new Date(year, month, date-4)),
-            dateFormat2(new Date(year, month, date-3)),
-            dateFormat2(new Date(year, month, date-2)),
-            dateFormat2(new Date(year, month, date-1)),
-            month + '월 ' + date + '일'
-        ],
-        datasets: [{
-            label: "일일 방문자 수",
-            lineTension: 0.3,
-            backgroundColor: "rgba(78, 115, 223, 0.05)",
-            borderColor: "rgba(78, 115, 223, 1)",
-            pointRadius: 3,
-            pointBackgroundColor: "rgba(78, 115, 223, 1)",
-            pointBorderColor: "rgba(78, 115, 223, 1)",
-            pointHoverRadius: 3,
-            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-            pointHitRadius: 10,
-            pointBorderWidth: 2,
-            data: [1, visitData[1], 0, 0, 0, 9, 9],
-        }],
-    },
-    options: {
-        font : {
-            size: 50
-        },
-        maintainAspectRatio: false,
-        layout: {
-            padding: {
-                left: 10,
-                right: 25,
-                top: 25,
-                bottom: 0
-            }
-        },
-        scales: {
-            xAxes: [{
-                time: {
-                    unit: 'date'
-                },
-                gridLines: {
-                    display: false,
-                    drawBorder: false
-                },
-                ticks: {
-                    maxTicksLimit: 7
-                }
-            }],
-            yAxes: [{
-                ticks: {
-                    maxTicksLimit: 5,
-                    padding: 10,
-                    // Include a dollar sign in the ticks
-                    callback: function(value, index, values) {
-                        if (index === values.length - 1) return "";
-                        return number_format(value) + '명';
-                    }
-                },
-                gridLines: {
-                    color: "rgb(234, 236, 244)",
-                    zeroLineColor: "rgb(234, 236, 244)",
-                    drawBorder: false,
-                    borderDash: [2],
-                    zeroLineBorderDash: [2]
-                }
-            }],
-        },
-        legend: {
-            display: false
-        },
-        tooltips: {
-            backgroundColor: "rgb(255,255,255)",
-            bodyFontColor: "#858796",
-            titleMarginBottom: 10,
-            titleFontColor: '#6e707e',
-            titleFontSize: 16,
-            borderColor: '#dddfeb',
-            borderWidth: 1,
-            xPadding: 15,
-            yPadding: 15,
-            displayColors: false,
-            intersect: false,
-            mode: 'index',
-            caretPadding: 10,
-            callbacks: {
-                label: function(tooltipItem, chart) {
-                    var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                    return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
-                }
-            }
-        }
-    }
-});
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
