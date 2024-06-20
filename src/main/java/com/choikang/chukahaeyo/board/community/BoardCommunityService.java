@@ -114,4 +114,29 @@ public class BoardCommunityService {
         boardCommunityMapper.deleteLike(vo);
         boardCommunityMapper.deleteCommunity(vo);
     }
+
+    public Map<String, Object> getCommunityMyList(CommunityVO vo) {
+        int count = boardCommunityMapper.myCount(vo); // 총개수
+        // 총페이지수
+        int totalPage = count / 10;
+        if (count % 10 > 0) totalPage++;
+        List<CommunityVO> list = boardCommunityMapper.getCommunityMyList(vo); // 목록
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("count", count);
+        map.put("totalPage", totalPage);
+        map.put("list", list);
+
+        // 하단에 페이징처리
+        int endPage = (int)(Math.ceil(Integer.parseInt(vo.getPage())/10.0)*10);
+        int startPage = endPage - 9;
+        if (endPage > totalPage) endPage = totalPage;
+        boolean isPrev = startPage > 1;
+        boolean isNext = endPage < totalPage;
+        map.put("endPage", endPage);
+        map.put("startPage", startPage);
+        map.put("isPrev", isPrev);
+        map.put("isNext", isNext);
+        return map;
+    }
 }

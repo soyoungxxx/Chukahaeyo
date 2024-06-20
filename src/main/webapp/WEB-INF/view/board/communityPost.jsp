@@ -89,7 +89,7 @@
         <div class="container">
 
             <div class="community-logo"></div>
-
+            <input type="hidden" class="ismy" name="ismy" value="${communityVO.ismy}"/>
 
             <div class="title-container">
                 <div class="title-title">제목</div>

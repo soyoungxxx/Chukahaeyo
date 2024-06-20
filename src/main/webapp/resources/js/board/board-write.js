@@ -53,6 +53,7 @@ window.addEventListener("load" , function(e){
 
 
 	$(".write-button").click(function(e){
+		let ismy = $(".ismy").val();
 		let contents = $('#summernote').summernote('code');
 		let title = $(".title-text").val();
 		contents = contents.trim();
@@ -99,9 +100,16 @@ window.addEventListener("load" , function(e){
 		data_2.setAttribute('name', 'commContents');
 		data_2.setAttribute('value', contents);
 
+
+
+		const data_3 = document.createElement('input');
+		data_3.setAttribute('type', 'hidden');
+		data_3.setAttribute('name', 'ismy');
+		data_3.setAttribute('value', ismy);
 		// form 태그에 input 태그 넣고 summit 가능하게 처리
 		form.appendChild(data_1);
 		form.appendChild(data_2);
+		form.appendChild(data_3);
 
 		document.body.appendChild(form);
 
