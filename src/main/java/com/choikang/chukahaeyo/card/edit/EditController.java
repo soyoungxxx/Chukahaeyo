@@ -45,19 +45,19 @@ public class EditController {
 
     @PostMapping("/edit/card.do")
     public String insertCardInDatabase(CardVO cardVO, HttpSession session, @RequestParam(value="imageFile") MultipartFile file, Model model) {
-        String redirectURL; // URL 결정
-        if (cardVO.getCardIsPaid()) {
-            redirectURL = "/payments/success";
-        } else {
-            redirectURL = "/cart";
-        }
         // image s3 위치 가져와서 저장. imageService 호출
         cardVO.setCardImage(imageService.saveFile(file));
         // db에 카드 데이터 저장. editService 호출
         editService.insertCardInDatabase(cardVO, session);
         // db에 URL 업데이트. shortURLService 호출
         String shortUrl = shortUrlService.shortUrl(cardVO.getCardID());
-        model.addAttribute("shortUrl", shortUrl); // 뷰에 값 전달
+        String redirectURL; // URL 결정
+        if (cardVO.getCardIsPaid()) {
+            redirectURL = "/payments/success";
+            model.addAttribute("shortUrl", shortUrl); // 뷰에 값 전달
+        } else {
+            redirectURL = "/cart";
+        }
         return "redirect:" + redirectURL;
     }
 
