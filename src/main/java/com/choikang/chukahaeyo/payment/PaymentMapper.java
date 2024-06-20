@@ -8,4 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface PaymentMapper {
     void insertPayment(PaymentVO paymentVO); //결제 정보를 DB에 저장
     void cancelPayment(PaymentVO paymentVO);
+    int selectPaymentDaySum(String date);
+    int selectPaymentMonthSum(String date);
+    int selectPaymentYearSum(String date);
 }

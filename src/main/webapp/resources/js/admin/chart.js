@@ -42,15 +42,15 @@ const date = todayDate.getDate();
 const endDate = dateFormat(new Date(year, month, date));
 const startDate = dateFormat(new Date(year, month, date-6))
 
+
+
 let visitData = [];
 $(document).ready(function() {
-    $.ajax({
+    $.ajax({ // 방문자 수 차트
         url: '/admin/visitor.do',
         type: 'GET',
         data: {startDate:startDate, endDate:endDate},
-        async: false,
         success: function(result) {
-            console.log(result.length);
             while (result.length < 7) {
                 result.unshift(0);
             }
@@ -158,6 +158,20 @@ $(document).ready(function() {
         },
         error: function() {
             alert("방문자 수를 불러오는 데 실패했습니다.");
+        }
+    });
+
+    $.ajax({
+        url: '/admin/payment.do',
+        type: 'GET',
+        data: {date:dateFormat(new Date(year, month, date))},
+        success: function(result) {
+            $('#dailyAmount').text(number_format(result[0]));
+            $('#monthlyAmount').text(number_format(result[1]));
+            $('#yearlyAmount').text(number_format(result[2]));
+        },
+        error: function() {
+            alert("매출을 불러오는 데 실패했습니다.");
         }
     });
 })

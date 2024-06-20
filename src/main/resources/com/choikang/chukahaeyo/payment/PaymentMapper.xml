@@ -29,5 +29,22 @@
         WHERE payNo = #{payNo}
     </update>
 
+    <select id="selectPaymentDaySum" parameterType="String" resultType="int">
+        SELECT IFNULL(SUM(payAmount), 0) FROM Payment
+        WHERE canceledAt IS NULL
+          AND DATE(payDate) = #{date}
+    </select>
+
+    <select id="selectPaymentMonthSum" parameterType="String" resultType="int">
+        SELECT IFNULL(SUM(payAmount), 0) FROM Payment
+        WHERE canceledAt IS NULL
+          AND DATE(payDate) BETWEEN DATE_ADD(#{date}, INTERVAL -1 MONTH) AND #{date}
+    </select>
+
+    <select id="selectPaymentYearSum" parameterType="String" resultType="int">
+        SELECT IFNULL(SUM(payAmount), 0) FROM Payment
+        WHERE canceledAt IS NULL
+          AND DATE(payDate) BETWEEN DATE_ADD(#{date}, INTERVAL -1 YEAR) AND #{date}
+    </select>
 
 </mapper>

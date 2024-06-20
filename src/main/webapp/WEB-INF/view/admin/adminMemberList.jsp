@@ -190,18 +190,8 @@
 <script src="/resources/js/admin/jquery.js"></script>
 <script src="/resources/js/admin/bootstrap.js"></script>
 
-<!-- Core plugin JavaScript-->
-<%--<script src="/resources/js/admin/easing.js"></script>--%>
-
 <!-- Custom scripts for all pages-->
 <script src="/resources/js/admin/admin.js"></script>
 
-<!-- Page level plugins -->
-<script src="/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/js/demo/chart-area-demo.js"></script>
-<script src="/js/demo/chart-pie-demo.js"></script>
-<script src="/js/demo/chart-bar-demo.js"></script>
 </body>
 </html>
