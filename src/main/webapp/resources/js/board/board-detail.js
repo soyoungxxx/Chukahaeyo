@@ -76,7 +76,7 @@ window.addEventListener('load' , function(e){
                                     <input type="hidden" class="reply-nested" name="replyNested" value="${comment.replyNested}"/>
                                     <div class="sub-data-comment-inner-writer">${comment.memberName}</div>
                                     <div class="sub-data-comment-inner-content">${comment.replyContent}</div>
-                                    <div class="sub-data-comment-inner-date">${moment(date).format('YY/MM/DD hh:mm')} <a class="sub-data-comment-replyshow">대댓글 달기</a></div>
+                                    <div class="sub-data-comment-inner-date">${moment(date).format('YY/MM/DD HH:mm')} <a class="sub-data-comment-replyshow">대댓글 달기</a></div>
                                     <div class="sub-data-comment-write">
                                         <div>
                                             <div class="sub-data-comment-write-nickname">${$(".my-member-name").val()}</div>
@@ -100,7 +100,7 @@ window.addEventListener('load' , function(e){
                                     <input type="hidden" class="reply-nested" name="replyNested" value="${comment.replyNested}"/>
                                     <div class="main-data-comment-writer">${comment.memberName}</div>
                                     <div class="main-data-comment-content">${comment.replyContent}</div>
-                                    <div class="main-data-comment-date">${moment(date).format('YY/MM/DD hh:mm')} <a class="main-data-comment-replyshow">대댓글 달기</a></div>
+                                    <div class="main-data-comment-date">${moment(date).format('YY/MM/DD HH:mm')} <a class="main-data-comment-replyshow">대댓글 달기</a></div>
                                     <div class="main-data-comment-write">
                                         <div>
                                             <div class="main-data-comment-write-nickname">${$(".my-member-name").val()}</div>
