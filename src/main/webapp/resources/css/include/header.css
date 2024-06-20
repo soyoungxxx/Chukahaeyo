@@ -40,67 +40,28 @@
     color: #949FFF;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-/*community-menu bar*/
->>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
-=======
-/*community-menu bar*/
->>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
 .gallery-community-menu{
     display: none;
     border: 1px solid black;
-    margin-top: 0px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-<<<<<<< HEAD
-<<<<<<< HEAD
-    position: relative;
+    margin: 0 10px 10px 10px;
     z-index: 100;
     background-color: white;
-=======
-=======
->>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
     position: absolute;
-    z-index: 100;
-    background-color: white;
     width: 150px;
-<<<<<<< HEAD
->>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
-=======
->>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
 }
+
 .gallery-community-menu hr{
-    margin: 0px;
+    margin: 0;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-.gallery-community-menu-one{
-    cursor: pointer;
-    margin: 10px;
-}
-.gallery-community-menu-two{
-    cursor: pointer;
-    margin: 10px;
-=======
-=======
->>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
+
 .gallery-community-menu-item{
     cursor: pointer;
     padding: 10px;
     white-space: nowrap;
 }
+
 .gallery-community-menu-item:hover {
     background-color: #f0f0f0;
-}
-.gallery-community-menu-two a{
-    color: black;
-<<<<<<< HEAD
->>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
-=======
->>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
 }
 
 /*nav2*/
