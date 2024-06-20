@@ -1770,6 +1770,7 @@ pre code {
 .table-bordered thead th,
 .table-bordered thead td {
     border-bottom-width: 2px;
+    min-width: 120px;
 }
 
 .table-borderless th,
@@ -4959,6 +4960,7 @@ input[type="button"].btn-block {
     background-clip: border-box;
     border: 1px solid #e3e6f0;
     border-radius: 0.35rem;
+    font-size: 16px;
 }
 
 .card>hr {
@@ -10985,6 +10987,11 @@ a.text-dark:focus {
 
 .member-top {
     display: flex;
+}
+
+.pagination-nav {
+    display: flex;
+    justify-content: center;
 }
 
 #selected-count {
