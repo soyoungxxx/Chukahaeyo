@@ -56,6 +56,7 @@ public class MemberController {
         } else {
             session.setAttribute("login", login); // login 객체 또는 true 설정
             session.setAttribute("adminID", login.getAdminID());
+            session.setAttribute("adminEmail", login.getAdminEmail());
 
             // 리다이렉트할 URI 확인
             String redirectURI = (String) session.getAttribute("redirectURI");
@@ -210,11 +211,26 @@ public class MemberController {
 
     // 관리자: 결제 내역 가져오기
     @GetMapping("/admin/adminOrderList")
-    public String getAllPaymentList(Model model) {
+    public String getAllPaymentList(Model model, @RequestParam(defaultValue = "1") int page,
+                                    @RequestParam(defaultValue = "10") int size) {
         List<PaymentVO> paymentList = service.getPaymentAllList();
-        model.addAttribute("paymentList", paymentList);
-        return "/admin/adminOrderList";
 
+
+        int totalPayments = paymentList.size();
+        int totalPages = (int) Math.ceil((double) totalPayments / size);
+
+        int start = (page - 1) * size;
+        int end = Math.min(start + size, totalPayments);
+
+        List<PaymentVO> payments = paymentList.subList(start, end);
+
+        model.addAttribute("payments", payments);
+
+        model.addAttribute("currentPage", page);
+        model.addAttribute("pageSize", size);
+        model.addAttribute("totalPages", totalPages);
+
+        return "/admin/adminOrderList";
     }
 
     // 관리자: 멤버 모든 목록 가져오기
@@ -232,7 +248,7 @@ public class MemberController {
     public ResponseEntity<String> memberDelete(@RequestBody MemberDeleteDTO selectedMembers) {
         try {
             MemberVO memberVO = new MemberVO();
-            for(String memberId : selectedMembers.getMemberIds()) {
+            for (String memberId : selectedMembers.getMemberIds()) {
                 memberVO.setMemberID(Integer.parseInt(memberId));
                 service.withdrawMember(memberVO);
             }
