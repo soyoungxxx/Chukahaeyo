@@ -121,7 +121,9 @@
                             <div class="inquiry-list-button">답변</div>
                         </div>
                         </c:if>
-
+                        <div class="list">
+                            <div class="inquiry-list-list"><a href="/admin/board/inquiry/list">목록</a></div>
+                        </div>
 
                     </div>
 

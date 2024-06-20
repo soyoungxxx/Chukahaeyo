@@ -35,7 +35,7 @@ public class BoardCommentService {
         vo.setReplyGno(boardCommentMapper.maxGno(vo));
         boardCommentMapper.mainInsert(vo);
 
-        return Integer.parseInt(vo.getReplyID());
+        return vo.getReplyID();
 
 
 
@@ -57,6 +57,6 @@ public class BoardCommentService {
 
 
 
-        return Integer.parseInt(vo.getReplyID());
+        return vo.getReplyID();
     }
 }

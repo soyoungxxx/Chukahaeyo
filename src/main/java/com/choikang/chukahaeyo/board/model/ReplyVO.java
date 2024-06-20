@@ -6,14 +6,14 @@ import java.sql.Timestamp;
 
 @Data
 public class ReplyVO {
-    private String replyID;
+    private int replyID;
     private String replyContent;
     private int replyGno;
     private int replyOno;
     private int replyNested;
     private Timestamp replyPostDate;
-    private String memberID;
-    private String commID;
+    private int memberID;
+    private int commID;
 
     private String memberName;
 }

@@ -7,8 +7,8 @@ import java.sql.Timestamp;
 
 @Data
 public class CommunityVO {
-    private String commID;
-    private String memberID;
+    private int commID;
+    private int memberID;
     private String commTitle;
     private String commContents;
     private Timestamp commPostDate;
