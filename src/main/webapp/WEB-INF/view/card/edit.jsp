@@ -197,17 +197,10 @@
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f80eccfb0c421c46d537f807e477ffc3&libraries=services"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script src="/resources/js/card/edit/edit.js"></script>
-<script src="/resources/js/card/edit/address.js"></script>
-<script src="/resources/js/card/edit/editPayment.js"></script>
-<script src="/resources/js/card/edit/previewDiv.js"></script>
-<script src="/resources/js/card/edit/editSelectFrame.js"></script>
-<script src="/resources/js/card/edit/uploadImage.js"></script>
-<script src="/resources/js/card/card.js"></script>
-
 <script>
     // 필요한 변수 선언
-    let categoryID = ${categoryID};
+    let categoryID = Number('${categoryID}');
+    console.log(categoryID);
     let templateThumbnail;
     let address = " ";
 
@@ -219,5 +212,12 @@
         // $("input[type='date']").
     }
 </script>
+<script src="/resources/js/card/edit/edit.js"></script>
+<script src="/resources/js/card/edit/address.js"></script>
+<script src="/resources/js/card/edit/editPayment.js"></script>
+<script src="/resources/js/card/edit/previewDiv.js"></script>
+<script src="/resources/js/card/edit/editSelectFrame.js"></script>
+<script src="/resources/js/card/edit/uploadImage.js"></script>
+<script src="/resources/js/card/card.js"></script>
 </body>
 </html>
