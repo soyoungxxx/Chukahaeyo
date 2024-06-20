@@ -1,5 +1,5 @@
 window.addEventListener("load" , function(e){
-	//여기 아래 부분
+
 	$('#summernote').summernote({
 
 		// 에디터 크기 설정
@@ -12,6 +12,18 @@ window.addEventListener("load" , function(e){
 
 		// focus는 작성 페이지 접속시 에디터에 커서를 위치하도록 하려면 설정해주세요.
 		focus : true,
+
+		toolbar: [
+			['style', ['style']],
+			['font', ['bold', 'underline', 'clear']],
+			['fontname', ['fontname']],
+			['color', ['color']],
+			['para', ['ul', 'ol', 'paragraph']],
+			['table', ['table']],
+			['insert', ['link', 'picture']],
+			['view', ['codeview', 'help']],
+		],
+
 		// callbacks은 이미지 업로드 처리입니다.
 		callbacks : {
 			onImageUpload : function(files, editor, welEditable) {
