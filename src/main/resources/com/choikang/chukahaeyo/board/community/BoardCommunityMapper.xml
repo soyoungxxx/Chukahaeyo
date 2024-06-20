@@ -16,6 +16,26 @@
             </if>
         </where>
     </sql>
+    <sql id="mySearchSql">
+        WHERE 1=1
+            <if test="query != null and query != ''">
+                <if test="querytype == 'all'">
+                    AND (commTitle LIKE '%${query}%' OR commContents LIKE '%${query}%' OR memberName LIKE '%${query}%')
+                </if>
+                <if test="querytype == 'titlecontent'">
+                    AND (commTitle LIKE '%${query}%' OR commContents LIKE '%${query}%')
+                </if>
+                <if test="querytype == 'writer'">
+                    AND (memberName LIKE '%${query}%')
+                </if>
+            </if>
+            AND c.memberID = #{memberID}
+
+    </sql>
+
+
+
+
 
     <select id="getCommunityList" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="com.choikang.chukahaeyo.board.model.CommunityVO">
         (SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
@@ -84,7 +104,7 @@
 
     <insert id="insertCommunity" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
         INSERT INTO Community (memberID, commTitle, commContents, commPostDate)
-        VALUES (#{memberID} , #{commTitle}, #{commContents}, NOW())
+        VALUES (#{memberID} , #{commTitle}, #{commContents}, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR))
         <selectKey keyProperty="commID" order="AFTER" resultType="int">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -98,33 +118,30 @@
         FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
         where commID = #{commID}
     </select>
-    <delete id="deleteHeart" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
 
+    <delete id="deleteHeart" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
         delete from BoardLike
         where commID = #{commID} and memberID = #{memberID}
-
     </delete>
+
     <select id="getRedCount" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="int">
         select count(*) as isRed from BoardLike where commID = #{commID} AND memberID = #{memberID}
     </select>
 
-
-
     <select id="getLikeCount" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="int">
         SELECT COUNT(*) FROM BoardLike WHERE commID = #{commID}
     </select>
-
 
     <insert id="insertHeart" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
         INSERT INTO BoardLike (memberID , commID)
         VALUES (#{memberID} , #{commID})
     </insert>
 
-
-
     <update id="updateCommunity" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO">
         <![CDATA[
-        UPDATE Community SET commTitle = #{commTitle} , commContents = #{commContents} , commEditedDate = now() WHERE commID = #{commID}
+        UPDATE Community
+        SET commTitle = #{commTitle}, commContents = #{commContents}, commEditedDate = DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR)
+        WHERE commID = #{commID}
         ]]>
     </update>
 
@@ -141,5 +158,50 @@
         UPDATE Community SET commViewCount = commViewCount + 1 WHERE commID = #{commID}
         ]]>
     </update>
+    <select id="myCount" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="int">
+        SELECT count(*)
+        FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
+        <include refid="mySearchSql"/>
+        ORDER BY commPostDate DESC
+    </select>
 
+
+
+    <select id="getCommunityMyList" parameterType="com.choikang.chukahaeyo.board.model.CommunityVO" resultType="com.choikang.chukahaeyo.board.model.CommunityVO">
+        (select * from
+        (SELECT commID, c.memberID, commTitle, commContents, commPostDate, commEditedDate, commViewCount, memberEmail, memberPwd, memberName,
+        (SELECT count(*) FROM BoardLike WHERE commID = c.commID) AS BoardLike,
+        "false" isTop ,
+        (SELECT COUNT(*) FROM Reply WHERE commID = c.commID) AS replyCount
+        FROM Community c LEFT JOIN Members m ON m.memberID = c.memberID
+        <include refid="mySearchSql"/>
+
+        <if test="sort == 'date'">
+            ORDER BY commPostDate DESC
+        </if>
+        <if test="sort == 'view'">
+            ORDER BY commViewCount DESC
+        </if>
+        <if test="sort == 'reply'">
+            ORDER BY replyCount DESC
+        </if>
+        <if test="sort == 'like'">
+            ORDER BY BoardLike DESC
+        </if>
+        ) zz
+        <if test="sort == 'date'">
+            ORDER BY commPostDate DESC
+        </if>
+        <if test="sort == 'view'">
+            ORDER BY commViewCount DESC
+        </if>
+        <if test="sort == 'reply'">
+            ORDER BY replyCount DESC
+        </if>
+        <if test="sort == 'like'">
+            ORDER BY BoardLike DESC
+        </if>
+        )
+        LIMIT #{startIdx}, 10
+    </select>
 </mapper>

@@ -19,6 +19,8 @@ public class PaymentController {
     public ResponseEntity<String> processPayment(@RequestBody PaymentDTO paymentDTO, HttpSession session) {
         try {
             paymentDTO.setMemberID((Integer) session.getAttribute("memberID"));
+            paymentDTO.setMemberName(session.getAttribute("memberName").toString());
+            paymentDTO.setMemberEmail(session.getAttribute("memberEmail").toString());
             int payID = paymentService.processPayment(paymentDTO);
             return new ResponseEntity<>(Integer.toString(payID), SuccessCode.PAYMENT_SUCCESS.getHttpStatus());
         } catch (Exception e) {

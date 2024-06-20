@@ -50,7 +50,16 @@ public class BoardCommunityController {
 
         return "board/comunityList";
     }
+    @GetMapping("/community/mylist")
+    public String communityMyList(@ModelAttribute CommunityVO vo , HttpServletRequest req , HttpSession session) {
 
+        vo.setMemberID((int)session.getAttribute("memberID"));
+
+        req.setAttribute("map", boardCommunityService.getCommunityMyList(vo));
+
+
+        return "board/myCommunityList";
+    }
 
     @GetMapping("/community/detail")
     public String communityDetail(CommunityVO vo,HttpServletRequest req , HttpSession session) {
@@ -75,7 +84,7 @@ public class BoardCommunityController {
 
 
     @GetMapping("/community/write")
-    public String communityWriteView() throws UnsupportedEncodingException {
+    public String communityWriteView(CommunityVO vo) throws UnsupportedEncodingException {
 
         return "board/communityPost";
     }
@@ -142,7 +151,7 @@ public class BoardCommunityController {
 
 
 
-        return "redirect:detail?commID="+vo.getCommID();
+        return "redirect:detail?commID="+vo.getCommID()+"&ismy="+vo.getIsmy();
     }
 
 

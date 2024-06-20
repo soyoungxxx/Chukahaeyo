@@ -11033,6 +11033,10 @@ a.text-dark:focus {
     background-color: #e74a3b;
 }
 
+.canceled-payment{
+    color: #ee2222;
+    font-weight: 500;
+}
 
 /* 1:1문의 */
 
