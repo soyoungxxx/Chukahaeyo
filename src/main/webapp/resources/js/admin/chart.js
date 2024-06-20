@@ -41,8 +41,6 @@ const date = todayDate.getDate();
 
 const endDate = dateFormat(new Date(year, month, date));
 const startDate = dateFormat(new Date(year, month, date-6))
-console.log(todayDate)
-console.log(startDate);
 
 let visitData = [];
 $(document).ready(function() {
@@ -52,6 +50,10 @@ $(document).ready(function() {
         data: {startDate:startDate, endDate:endDate},
         async: false,
         success: function(result) {
+            console.log(result.length);
+            while (result.length < 7) {
+                result.unshift(0);
+            }
             var ctx = document.getElementById("myAreaChart");
             // Area Chart Example
             var myLineChart = new Chart(ctx, {
