@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
 
 <script>
-    $(document).ready(function() {  
+    $(document).ready(function() {
         <c:if test="${not empty sessionScope.login}">
         $(".gallery-community-bar").mouseenter(function () {
             $(".gallery-community-menu").stop(true, true).slideDown();
@@ -23,7 +23,6 @@
         </c:if>
     });
 </script>
-
 
 <div class="header">
     <a href="/">

@@ -10,6 +10,7 @@ import com.choikang.chukahaeyo.payment.PaymentDTO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -77,7 +78,11 @@ public class MemberController {
             model.addAttribute("url", "/member/login");
             return "include/alert";
         } else if (!login.isMemberAuth()) {
-            model.addAttribute("msg", "인증되지 않은 유저입니다. 메일 인증을 완료해주세요.");
+            model.addAttribute("msg", "인증되지 않은 회원입니다. 메일 인증을 완료해주세요.");
+            model.addAttribute("url", "/member/login");
+            return "include/alert";
+        } else if (login.isMemberWithdraw()) {
+            model.addAttribute("msg", "탈퇴한 회원입니다.");
             model.addAttribute("url", "/member/login");
             return "include/alert";
         } else {
@@ -204,11 +209,37 @@ public class MemberController {
     }
 
     // 관리자: 결제 내역 가져오기
-    @GetMapping("/admin/adminPage")
+    @GetMapping("/admin/adminOrderList")
     public String getAllPaymentList(Model model) {
         List<PaymentVO> paymentList = service.getPaymentAllList();
         model.addAttribute("paymentList", paymentList);
-        return "/admin/adminPage";
+        return "/admin/adminOrderList";
+
+    }
+
+    // 관리자: 멤버 모든 목록 가져오기
+    @GetMapping("/admin/adminMemberList")
+    public String getAllMemberList(Model model) {
+        List<MemberVO> memberList = service.getMemberAllList();
+        model.addAttribute("memberList", memberList);
+        return "/admin/adminMemberList";
+    }
+
+
+    // 회원 탈퇴
+    @ResponseBody
+    @PostMapping("/admin/memberDelete")
+    public ResponseEntity<String> memberDelete(@RequestBody MemberDeleteDTO selectedMembers) {
+        try {
+            MemberVO memberVO = new MemberVO();
+            for(String memberId : selectedMembers.getMemberIds()) {
+                memberVO.setMemberID(Integer.parseInt(memberId));
+                service.withdrawMember(memberVO);
+            }
+            return new ResponseEntity<>("회원 삭제가 완료되었습니다.", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("회원 삭제 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 

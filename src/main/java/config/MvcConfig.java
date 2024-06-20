@@ -1,5 +1,6 @@
 package config;
 
+import com.choikang.chukahaeyo.exception.CookieInterceptor;
 import com.choikang.chukahaeyo.exception.LoginInterceptor;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.annotations.Mapper;
@@ -51,7 +52,6 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry reg) {
-        //reg.addViewController("/").setViewName("index");
         reg.addViewController("/mypage/myPage");
         reg.addViewController("/mypage/myCard");
         reg.addViewController("/card/edit");
@@ -70,6 +70,13 @@ public class MvcConfig implements WebMvcConfigurer {
                 // "/card/edit/**"
                 .addPathPatterns("/mypage/**", "/cart/**", "/card/edit/**")
                 .excludePathPatterns("/member/login", "/member/register", "/member/emailAuth", "/member/verify");
+        registry.addInterceptor(cookieInterceptor())
+                .addPathPatterns("/**");
+    }
+
+    @Bean
+    public CookieInterceptor cookieInterceptor() {
+        return new CookieInterceptor();
     }
 
     @Bean
