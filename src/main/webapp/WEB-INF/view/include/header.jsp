@@ -39,7 +39,7 @@
                 <hr>
                 <div class="gallery-community-menu-item" onclick="location.href='/board/community/list'">전체 글 보기</div>
             </div>
-            </div>
+        </div>
     </nav>
     <nav class="nav2">
         <c:if test="${empty sessionScope.login}">
