@@ -4,16 +4,15 @@
 
     <update id="insertUrl" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
         UPDATE Card
-        SET cardURL = #{cardURL},
-            cardQR  = #{cardQR}
+        SET cardURL = #{cardURL}, cardQR  = #{cardQR}
         WHERE cardID = #{cardID}
     </update>
 
     <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
         INSERT INTO Card
-        (cardName, cardIsPublic, cardIsPaid, cardStartDate, cardEndDate, cardImage, cardEmojis,
+        (cardName, cardIsPublic, cardIsPaid, cardDate, cardStartDate, cardEndDate, cardImage, cardEmojis,
         cardDesign, templateThumbnail, categoryID, memberID, payID)
-        VALUES (#{cardName}, #{cardIsPublic}, #{cardIsPaid}, #{cardStartDate}, #{cardEndDate}, #{cardImage},
+        VALUES (#{cardName}, #{cardIsPublic}, #{cardIsPaid}, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR), #{cardStartDate}, #{cardEndDate}, #{cardImage},
         #{cardEmojis}, #{cardDesign}, #{templateThumbnail}, #{categoryID}, #{memberID}, #{payID})
 
         <selectKey order="AFTER" keyProperty="cardID" resultType="int">
@@ -24,22 +23,20 @@
     <select id="getPersonalCart" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
         FROM Card
-        WHERE (memberID = #{memberID})
-          AND (cardIsPaid = FALSE)
+        WHERE (memberID = #{memberID}) AND (cardIsPaid = FALSE)
     </select>
 
     <select id="getPersonalCard" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
         FROM Card
-        WHERE (memberID = #{memberID})
-          AND (cardIsPaid = TRUE)
+        WHERE (memberID = #{memberID}) AND (cardIsPaid = TRUE)
+        ORDER BY payID DESC
     </select>
 
     <select id="getPublicCardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
         FROM Card
-        WHERE (cardIsPublic = TRUE)
-          AND (cardIsPaid = TRUE)
+        WHERE (cardIsPublic = TRUE) AND (cardIsPaid = TRUE)
     </select>
 
     <select id="getLatest3CardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
@@ -47,8 +44,7 @@
         FROM (SELECT *,
                      ROW_NUMBER() OVER (PARTITION BY categoryId ORDER BY cardDate DESC) as rn
               FROM Card
-              WHERE (cardIsPublic = TRUE)
-                AND (cardIsPaid = TRUE)) ranked
+              WHERE (cardIsPublic = TRUE) AND (cardIsPaid = TRUE)) ranked
         WHERE rn = 1;
     </select>
 

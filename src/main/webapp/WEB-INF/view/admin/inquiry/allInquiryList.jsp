@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -50,16 +52,21 @@
 
                     <div class="container">
 
-                        <div class="inquiry-logo">1:1 문의관리</div>
+                        <div class="inquiry-logo">문의내역</div>
                         <div class="search">
-                            <form>
-                                <select class="selectbox" name="">
-                                    <option value="">전체</option>
-                                    <option value="">제목+내용</option>
-                                    <option value="">작성자</option>
+                            <form action="list" >
+                                <select class="sort-box" name="sort">
+                                    <option value="all" <c:if test="${inquiryVO.sort == 'all'}">selected</c:if>>모두</option>
+                                    <option value="unanswered" <c:if test="${inquiryVO.sort == 'unanswered'}">selected</c:if>>답변미완료</option>
+                                    <option value="answered" <c:if test="${inquiryVO.sort == 'answered'}">selected</c:if>>답변완료</option>
                                 </select>
-                                <input class="textbox" type="text" placeholder="검색어" name="" />
-                                <input class="submitbox" type="button" value="검색" />
+                                <select class="selectbox" name="querytype">
+                                    <option value="all" <c:if test="${inquiryVO.querytype == 'all'}">selected</c:if>>전체</option>
+                                    <option value="titlecontent" <c:if test="${inquiryVO.querytype == 'titlecontent'}">selected</c:if>>제목+내용</option>
+                                    <option value="writer" <c:if test="${inquiryVO.querytype == 'writer'}">selected</c:if>>작성자</option>
+                                </select>
+                                <input class="textbox" type="text" placeholder="검색어" name="query" value="${inquiryVO.query}"/>
+                                <input class="submitbox" type="submit" value="검색" />
                             </form>
                         </div>
                         <div class="list">
@@ -74,113 +81,49 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr class="list-data">
-                                    <th class="no">1123</th>
-                                    <th class="title">제목 입니다.</th>
-                                    <th class="writer">서현오</th>
-                                    <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/img/checked.png">
-                                    </th>
-                                </tr>
-                                <tr class="list-data">
-                                    <th class="no">1123</th>
-                                    <th class="title">제목 입니다.</th>
-                                    <th class="writer">서현오</th>
-                                    <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/img/checked.png">
-                                    </th>
-                                </tr>
-                                <tr class="list-data">
-                                    <th class="no">1123</th>
-                                    <th class="title">제목 입니다.</th>
-                                    <th class="writer">서현오</th>
-                                    <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/img/checked.png">
-                                    </th>
-                                </tr>
-                                <tr class="list-data">
-                                    <th class="no">1123</th>
-                                    <th class="title">제목 입니다.</th>
-                                    <th class="writer">서현오</th>
-                                    <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/img/checked.png">
-                                    </th>
-                                </tr>
-                                <tr class="list-data">
-                                    <th class="no">1123</th>
-                                    <th class="title">제목 입니다.</th>
-                                    <th class="writer">서현오</th>
-                                    <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/img/checked.png">
-                                    </th>
-                                </tr>
-                                <tr class="list-data">
-                                    <th class="no">1123</th>
-                                    <th class="title">제목 입니다.</th>
-                                    <th class="writer">서현오</th>
-                                    <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/img/checked.png">
-                                    </th>
-                                </tr>
-                                <tr class="list-data">
-                                    <th class="no">1123</th>
-                                    <th class="title">제목 입니다.</th>
-                                    <th class="writer">서현오</th>
-                                    <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"></th>
-                                </tr>
-                                <tr class="list-data">
-                                    <th class="no">1123</th>
-                                    <th class="title">제목 입니다.</th>
-                                    <th class="writer">서현오</th>
-                                    <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/img/checked.png">
-                                    </th>
-                                </tr>
-                                <tr class="list-data">
-                                    <th class="no">1123</th>
-                                    <th class="title">제목 입니다.</th>
-                                    <th class="writer">서현오</th>
-                                    <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/img/checked.png">
-                                    </th>
-                                </tr>
-                                <tr class="list-data">
-                                    <th class="no">1123</th>
-                                    <th class="title">제목 입니다.</th>
-                                    <th class="writer">서현오</th>
-                                    <th class="regdate">24.01.20</th>
-                                    <th class="is-answered"><img class="is-answered-img" src="/img/checked.png">
-                                    </th>
-                                </tr>
-                                <tr class="list-no-data">
-                                    <td class="no-data" colspan='6'>작성글이 없습니다.</td>
-                                </tr>
+                                <c:if test="${empty map.list}">
+                                    <tr class="list-no-data">
+                                        <td class="no-data" colspan='6'>작성글이 없습니다.</td>
+                                    </tr>
+                                </c:if>
+                                <c:forEach var="vo" items="${map.list}">
+                                    <tr class="list-data">
+                                        <th class="no">${vo.inquiryID}</th>
+                                        <th class="title"><a href="write?inquiryID=${vo.inquiryID}&query=${inquiryVO.query}&querytype=${inquiryVO.querytype}&page=${inquiryVO.page}">${vo.inquiryQuestionTitle}</a></th>
+                                        <th class="writer">${vo.memberName}</th>
+                                        <th class="regdate"><fmt:formatDate value="${vo.inquiryPostDate }" pattern="YYYY.MM.dd"/></th>
+                                        <th class="is-answered">
+                                            <c:if test="${vo.adminID != 0}">
+                                                <img class="is-answered-img" src="/resources/img/board/checked.png">
+                                            </c:if>
+                                        </th>
+                                    </tr>
+
+                                </c:forEach>
+
+
+
                                 </tbody>
                             </table>
 
                         </div>
-                        <div class="write-button">
-                            글쓰기
-                        </div>
+
 
                         <ul class='paging'>
-
-                            <li><a href="#">
-                                < </a>
-                            </li>
-                            <li><a href='#' class='current'>1</a></li>
-                            <li><a href='#'>2</a></li>
-                            <li><a href='#'>3</a></li>
-                            <li><a href='#'>4</a></li>
-                            <li><a href='#'>5</a></li>
-                            <li><a href='#'>6</a></li>
-                            <li><a href='#'>7</a></li>
-                            <li><a href='#'>8</a></li>
-                            <li><a href='#'>9</a></li>
-                            <li><a href='#'>10</a></li>
-                            <li><a href="#"> > </a></li>
-
+                            <c:if test="${map.isPrev }">
+                                <li><a href="list?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}"> < </a></li>
+                            </c:if>
+                            <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
+                                <c:if test="${p == inquiryVO.page}">
+                                    <li><a href='#;' class='current'>${p}</a></li>
+                                </c:if>
+                                <c:if test="${p != inquiryVO.page}">
+                                    <li><a href='list?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a></li>
+                                </c:if>
+                            </c:forEach>
+                            <c:if test="${map.isNext }">
+                                <li><a href="list?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}"> > </a></li>
+                            </c:if>
                         </ul>
 
 

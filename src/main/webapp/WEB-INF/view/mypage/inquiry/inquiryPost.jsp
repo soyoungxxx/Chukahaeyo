@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>1:1문의 등록</title>
+    <title>축하해요 1:1문의</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <!--jQuery-->
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -14,7 +14,43 @@
     <script src="/resources/summernote/summernote-ko-KR.js"></script>
     <script src="/resources/summernote/summernote-lite.js"></script>
     <!--summernote-->
+    <script src="/resources/js/common/xDB.js"></script>
+    <script>
+        function imageUploader(file, el) {
+            var formData = new FormData();
+            formData.append('file', file);
 
+            $.ajax({
+                data : formData,
+                type : "POST",
+                // url은 자신의 이미지 업로드 처리 컨트롤러 경로로 설정해주세요.
+                url : '/board/community/image-upload',
+                contentType : false,
+                processData : false,
+                enctype : 'multipart/form-data',
+                success : function(data) {
+                    $(el).summernote('insertImage', "${pageContext.request.contextPath}/resources/assets/images/upload/"+data, function($image) {
+                        $image.css('width', "100%");
+                    });
+                    // 값이 잘 넘어오는지 콘솔 확인 해보셔도됩니다.
+                    console.log(data);
+                }
+            });
+        }
+
+        function deleteSummernoteImageFile(imageName){
+            data = new FormData()
+            data.append('file' , imageName);
+            $.ajax({
+                data:data,
+                type:'POST',
+                url: '/board/community/image-delete',
+                contentType:false,
+                enctype:'multipart/form-data',
+                processData:false
+            })
+        }
+    </script>
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css" />
     <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css" />
     <link rel="stylesheet" href="/resources/css/board/inquiryPost.css" />

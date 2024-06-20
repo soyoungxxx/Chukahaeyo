@@ -70,7 +70,10 @@ $(document).ready(function() {
 			alert("제목이 20자를 넘을수 없습니다.");
 			return;
 		}
-
+		if(xCheck(contents) || xCheck(title)){
+			alert("욕설이 포함될수 없습니다.");
+			return;
+		}
 
 
 

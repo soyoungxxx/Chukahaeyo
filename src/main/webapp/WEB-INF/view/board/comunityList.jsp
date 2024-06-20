@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>축하해요 커뮤니티</title>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
@@ -19,6 +19,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap"
           rel="stylesheet">
     <!--font-->
+
+
+    <script>
+
+        window.addEventListener('load' , function(e){
+
+            $(".sort-box").change(function(e){
+                let val = $(".sort-box").val();
+                if(val == "date"){
+                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=date';
+                }else if(val == "view"){
+                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=view';
+                }else if(val == "reply"){
+                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=reply';
+                }else if(val =="like"){
+                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=like';
+                }
+            });
+
+
+
+
+        });
+
+
+
+    </script>
+
 </head>
 
 <body>
@@ -76,7 +104,7 @@
                         <tr class="list-data <c:if test="${vo.isTop == 'true'}">is-top</c:if>">
                             <th class="no">${vo.commID}</th>
                             <th class="title"><a
-                                    href="detail?commID=${vo.commID}&query=${communityVO.query}&querytype=${communityVO.querytype}&page=${communityVO.page}">${vo.commTitle}</a>
+                                    href="detail?commID=${vo.commID}&query=${communityVO.query}&querytype=${communityVO.querytype}&page=${communityVO.page}&sort=${communityVO.sort}">${vo.commTitle}</a>
                             </th>
                             <th class="writer">${vo.memberName}</th>
                             <th class="regdate"><fmt:formatDate value="${vo.commPostDate }" pattern="YYYY.MM.dd"/></th>
@@ -106,7 +134,7 @@
             <ul class='paging'>
                 <c:if test="${map.isPrev }">
                     <li>
-                        <a href="list?page=${map.startPage-1 }&querytype=${communityVO.querytype}&query=${communityVO.query}">
+                        <a href="list?page=${map.startPage-1 }&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}">
                             < </a></li>
                 </c:if>
                 <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
@@ -115,13 +143,13 @@
                     </c:if>
                     <c:if test="${p != communityVO.page}">
                         <li>
-                            <a href='list?page=${p}&querytype=${communityVO.querytype}&query=${communityVO.query}'>${p}</a>
+                            <a href='list?page=${p}&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}'>${p}</a>
                         </li>
                     </c:if>
                 </c:forEach>
                 <c:if test="${map.isNext }">
                     <li>
-                        <a href="list?page=${map.endPage+1 }&querytype=${communityVO.querytype}&query=${communityVO.query}">
+                        <a href="list?page=${map.endPage+1 }&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}">
                             > </a></li>
                 </c:if>
             </ul>

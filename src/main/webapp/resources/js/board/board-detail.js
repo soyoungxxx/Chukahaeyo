@@ -1,7 +1,7 @@
-window.onload = function () {
-    $(".delete").click(function(e){
-        if( confirm("정말로 지우시겠습니까?") ) {
-            let commID =  $(".board-id").val();
+window.addEventListener('load' , function(e){
+    $(".delete").click(function (e) {
+        if (confirm("정말로 지우시겠습니까?")) {
+            let commID = $(".board-id").val();
 
             const form = document.createElement('form'); // form 태그 생성
             form.setAttribute('method', 'post'); // 전송 방식 결정 (get or post)
@@ -20,17 +20,10 @@ window.onload = function () {
             form.submit();
 
 
-
         }
 
 
     });
-
-
-
-
-
-
 
 
     function commentAjax(replyID) {
@@ -56,7 +49,6 @@ window.onload = function () {
                     </div>
                     `
                 );
-
 
 
                 if (result.totalCount == 0) {
@@ -127,18 +119,16 @@ window.onload = function () {
 
 
                 /*focus 주기*/
-                $(".sub-data-comment , .main-data-comment").each(function(index , item){
-                    if($(item).find(".reply-id").val() == replyID){
+                $(".sub-data-comment , .main-data-comment").each(function (index, item) {
+                    if ($(item).find(".reply-id").val() == replyID) {
                         var offset = $(item).find(".reply-id").closest(".main-data-comment , .sub-data-comment").offset();
-                        $("html, body").animate({scrollTop: offset.top},0);
+                        $("html, body").animate({scrollTop: offset.top}, 0);
                         return false;
                     }
                     return true;
 
                 });
                 /*focus 주기*/
-
-
 
 
                 console.log(result);
@@ -179,6 +169,13 @@ window.onload = function () {
                         $(e.target).css("pointer-events", "auto");
                         return;
                     }
+                    let content = $(".main-comment-write-text").val();
+                    if (xCheck(content)) {
+                        alert("욕설은 포함될수 없습니다.");
+                        $(e.target).css("pointer-events", "auto");
+                        return;
+                    }
+
 
                     $.ajax({
                         type: "post",
@@ -212,6 +209,14 @@ window.onload = function () {
                         $(e.target).css("pointer-events", "auto");
                         return;
                     }
+                    let content = $(e.target).closest(".sub-data-comment").find(".sub-data-comment-replytext").val();
+                    if (xCheck(content)) {
+                        alert("욕설은 포함될수 없습니다.");
+                        $(e.target).css("pointer-events", "auto");
+                        return;
+                    }
+
+
                     $.ajax({
                         type: "post",
                         url: '/board/comment/subwrite',
@@ -252,7 +257,12 @@ window.onload = function () {
                         $(e.target).css("pointer-events", "auto");
                         return;
                     }
-
+                    let content = $(e.target).closest(".main-data-comment").find(".main-data-comment-replytext").val();
+                    if (xCheck(content)) {
+                        alert("욕설은 포함될수 없습니다.");
+                        $(e.target).css("pointer-events", "auto");
+                        return;
+                    }
 
                     $.ajax({
                         type: "post",
@@ -276,14 +286,13 @@ window.onload = function () {
 
                 });
 
-                $(".main-data-comment-write-cancel-button").click(function(e){
+                $(".main-data-comment-write-cancel-button").click(function (e) {
                     $(e.target).closest(".main-data-comment").find(".main-data-comment-write").hide();
                 });
 
-                $(".sub-data-comment-write-cancel-button").click(function(e){
+                $(".sub-data-comment-write-cancel-button").click(function (e) {
                     $(e.target).closest(".sub-data-comment").find(".sub-data-comment-write").hide();
                 });
-
 
 
                 /*event 넣기*/
@@ -359,13 +368,13 @@ window.onload = function () {
 
     $(".list").click(function (e) {
 
-        location.href = '/board/community/list?query=' + $(".query").val() + '&querytype=' + $(".querytype").val() + '&page=' + $(".page").val();
+        location.href = '/board/community/list?query=' + $(".query").val() + '&querytype=' + $(".querytype").val() + '&page=' + $(".page").val() + '&sort=' + $(".sort").val();
 
 
     });
 
 
-};
+});
 
 
 

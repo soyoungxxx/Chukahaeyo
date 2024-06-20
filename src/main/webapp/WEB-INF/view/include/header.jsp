@@ -5,27 +5,25 @@
 <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
 
 <script>
-    window.addEventListener('load', function() {
+    $(document).ready(function() {  
         <c:if test="${not empty sessionScope.login}">
-        $(".gallery-community-bar").mouseover(function (e) {
-            $(".gallery-community-menu").slideDown()
-
+        $(".gallery-community-bar").mouseenter(function () {
+            $(".gallery-community-menu").stop(true, true).slideDown();
         });
 
-        $(".gallery-community-menu").mouseleave(function (e) {
-            $(".gallery-community-menu").slideUp()
-
-        });
-        $(".gallery-community-menu").mouseover(function (e) {
-            $(".gallery-community-menu").slideDown()
-
+        $(".gallery-community").mouseleave(function () {
+            $(".gallery-community-menu").stop(true, true).slideUp();
         });
 
-
+        $(".gallery-community-menu").mouseenter(function () {
+            $(this).stop(true, true).show();
+        }).mouseleave(function () {
+            $(this).stop(true, true).slideUp();
+        });
         </c:if>
     });
-
 </script>
+
 <div class="header">
     <a href="/">
         <div class="logo"></div>
@@ -38,10 +36,17 @@
         <div class="community">
             <a class="gallery-community gallery-community-bar" href="/board/community/list">커뮤니티</a>
             <div class="gallery-community-menu">
+<<<<<<< HEAD
                 <div class="gallery-community-menu-one">내가 쓴 글</div>
                 <hr>
                 <div class="gallery-community-menu-two">커뮤니티</div>
             </div>
+=======
+                <div class="gallery-community-menu-item" onclick="location.href='/board/community/list?query=${memberName}&querytype=writer'">내가 쓴 글</div>
+                <hr>
+                <div class="gallery-community-menu-item" onclick="location.href='/board/community/list'">전체 글 보기</div>
+
+>>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
         </div>
     </nav>
     <nav class="nav2">

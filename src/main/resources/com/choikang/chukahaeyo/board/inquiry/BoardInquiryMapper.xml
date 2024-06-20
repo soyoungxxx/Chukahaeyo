@@ -14,6 +14,18 @@
                     memberName LIKE '${query}'
                 </if>
             </if>
+            <if test="sort != null and sort != ''">
+                <if test="sort == 'all'">
+
+                </if>
+                <if test="sort == 'answered'">
+                    adminID is not null
+                </if>
+                <if test="sort == 'unanswered'">
+                    adminID is null
+                </if>
+            </if>
+
         </where>
     </sql>
 
@@ -48,6 +60,13 @@
     <select id="getInquiryDetail" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO" resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
         SELECT inquiryID , inquiryQuestion , inquiryQuestionTitle , inquiryAnswer , inquiryPostDate , i.memberID , adminID , memberEmail , memberName
         FROM Inquiry i LEFT JOIN Members m ON m.memberID = i.memberID
-        WHERE inquiryID = #{inquiryID};
+        WHERE inquiryID = #{inquiryID}
     </select>
+
+
+    <update id="insertAnswer" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO">
+        <![CDATA[
+        UPDATE Inquiry SET inquiryAnswer = #{inquiryAnswer} , adminID = #{adminID} WHERE inquiryID = #{inquiryID}
+        ]]>
+    </update>
 </mapper>

@@ -40,6 +40,10 @@
     color: #949FFF;
 }
 
+<<<<<<< HEAD
+=======
+/*community-menu bar*/
+>>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
 .gallery-community-menu{
     display: none;
     border: 1px solid black;
@@ -47,13 +51,21 @@
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
+<<<<<<< HEAD
     position: relative;
     z-index: 100;
     background-color: white;
+=======
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+    width: 150px;
+>>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
 }
 .gallery-community-menu hr{
     margin: 0px;
 }
+<<<<<<< HEAD
 .gallery-community-menu-one{
     cursor: pointer;
     margin: 10px;
@@ -61,6 +73,18 @@
 .gallery-community-menu-two{
     cursor: pointer;
     margin: 10px;
+=======
+.gallery-community-menu-item{
+    cursor: pointer;
+    padding: 10px;
+    white-space: nowrap;
+}
+.gallery-community-menu-item:hover {
+    background-color: #f0f0f0;
+}
+.gallery-community-menu-two a{
+    color: black;
+>>>>>>> c8946527c63e906000fb3e2f79db7e077e11e29b
 }
 
 /*nav2*/

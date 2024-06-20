@@ -41,6 +41,7 @@ body .container{
 
 /*search*/
 .search {
+
     display: flex;
     flex-direction: row;
     justify-content: end;
@@ -55,6 +56,15 @@ body .container{
     font-size: 12px;
     border-radius: 10px;
 }
+
+.search .sort-box{
+    width: 90px;
+    height: 30px;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+
 
 .search .textbox {
     width: 90px;
@@ -152,6 +162,11 @@ body .container{
     color: #98897B;
 }
 
+.list .list-board .list-data .title a {
+    color: #98897B;
+}
+
+
 .list .list-board .list-data .writer {
     width: 75px;
     text-align: center;
@@ -204,7 +219,10 @@ body .container{
     border-radius: 10px;
     margin-right: 200px;
 }
+.write-button a {
+    color: white;
 
+}
 
 
 
@@ -241,3 +259,21 @@ body .container{
 
 }
 
+
+
+
+
+
+
+.paging .current{
+    display: inline-block;
+    text-decoration: none;
+    color: #949FFF;
+    border: 1px solid #949FFF;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin: 5px;
+
+}
