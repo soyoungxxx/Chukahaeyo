@@ -3,14 +3,14 @@ var IMP = window.IMP;
 IMP.init("imp72336673");
 
 function requestPay() {
-    var makeMerchantUid = 'merchant_' + new Date().getTime();
+    var makeMerchantUid = 'mid_' + new Date().getTime();
 
     console.log("Payment requested");
 
     IMP.request_pay({
-        pg: 'html5_inicis', // 토스페이
+        pg: 'html5_inicis', // 토스페이g
         pay_method: 'card',
-        merchant_uid: "IMP" + makeMerchantUid,
+        merchant_uid: makeMerchantUid,
         name: '축하해요 카드 결제',
         amount: 1000,
         buyer_email: 'Iamport@chai.finance',
