@@ -71,12 +71,13 @@
                             <div class="payment-info">
                                 <p>주문일자: <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.payDate}"/></p>
                                 <p>금액: <fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.payAmount}"/>원</p><br>
-                                <c:if test="${payment.isWithinTwoDays == '1' || payment.canceledAt == null}">
+                                <c:if test="${payment.canceledAt != 0 && payment.canceledAt != null}">
+                                    <p class="cancel-info">취소된 상품입니다.</p>
+                                </c:if>
+                                <c:if test="${payment.isWithinTwoDays == '1' && payment.canceledAt == 0}">
                                     <a href="#" onclick="cancelPayment('${payment.payNo}');">취소</a>
                                 </c:if>
-                                <c:if test="${payment.canceledAt != 0 && payment.canceledAt != null}">
-                                    <p>취소된 상품입니다.</p>
-                                </c:if>
+
                             </div>
                         </div>
                     </c:forEach>

@@ -55,6 +55,7 @@
                                         <th>No.</th>
                                         <th>결제ID</th>
                                         <th>결제금액(원)</th>
+                                        <th>주문자명</th>
                                         <th>주문자 이메일</th>
                                         <th>주문일자</th>
                                         <th>주문상태</th>
@@ -66,14 +67,19 @@
                                         <tr>
                                             <td>${payment.payID}</td>
                                             <td>${payment.merchantUid}</td>
-                                            <td>${payment.payAmount}</td>
-                                            <td>${payment.memberID}</td>
-                                            <td>${payment.payDate}</td>
-                                            <c:if test="${payment.canceledAt != null}">
+                                            <td>
+                                                <fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.payAmount}"/>
+                                            </td>
+                                            <td>${payment.buyerName}</td>
+                                            <td>${payment.buyerEmail}</td>
+                                            <td>
+                                                <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.payDate}"/>
+                                            </td>
+                                            <c:if test="${payment.canceledAt == 0}">
                                                 <td>결제 완료</td>
                                             </c:if>
-                                            <c:if test="${payment.canceledAt == null}">
-                                                <td>취소 결제</td>
+                                            <c:if test="${payment.canceledAt != 0}">
+                                                <td class="canceled-payment">취소 결제</td>
                                             </c:if>
 <%--                                            <td>${payment.receiptURL}</td>--%>
                                         </tr>

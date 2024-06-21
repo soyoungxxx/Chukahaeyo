@@ -45,8 +45,8 @@
         service
     </div>
 
-    <li class="nav-item" id="inquiry">
-        <a class="nav-link" href="/admin/adminInquiryList">
+    <li class="nav-item" id="allInquiryList">
+        <a class="nav-link" href="/admin/inquiry/allInquiryList">
             <!-- fa-folder: 이미지 class 태그 -->
             <i class="fas fa-fw fa-folder"></i>
             <span>1:1 문의</span>
