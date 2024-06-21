@@ -28,12 +28,12 @@
                 data : formData,
                 type : "POST",
                 // url은 자신의 이미지 업로드 처리 컨트롤러 경로로 설정해주세요.
-                url : '/board/community/image-upload',
+                url : '/upload',
                 contentType : false,
                 processData : false,
                 enctype : 'multipart/form-data',
                 success : function(data) {
-                    $(el).summernote('insertImage', "${pageContext.request.contextPath}/resources/assets/images/upload/"+data, function($image) {
+                    $(el).summernote('insertImage', data, function($image) {
                         $image.css('width', "100%");
                     });
                     // 값이 잘 넘어오는지 콘솔 확인 해보셔도됩니다.
@@ -58,11 +58,12 @@
     <!--jQuery-->
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <!--jQuery-->
-    <script src="/resources/js/board/inquiryPostReply.js"></script>
+
     <!--summernote-->
     <link href="/resources/summernote/summernote-lite.css" rel="stylesheet">
     <script src="/resources/summernote/summernote-ko-KR.js"></script>
     <script src="/resources/summernote/summernote-lite.js"></script>
+    <script src="/resources/js/board/inquiryPostReply.js"></script>
     <!--summernote-->
 </head>
 <body id="page-top">
@@ -106,19 +107,10 @@
                                     <div class="inquiry-list-button">답변</div>
                                 </div>
                             </c:if>
+                            <div class="list">
+                                <div class="inquiry-list-list"><a href="/admin/board/inquiry/list">목록</a></div>
+                            </div>
                         </div>
-<<<<<<< HEAD
-                        <c:if test="${object.adminID == 0}">
-                        <div class="inquiry-list">
-                            <div class="inquiry-list-button">답변</div>
-                        </div>
-                        </c:if>
-                        <div class="list">
-                            <div class="inquiry-list-list"><a href="/admin/board/inquiry/list">목록</a></div>
-                        </div>
-
-=======
->>>>>>> 7fd70d6daa1e6ca9dc1da12cfaacaa1d51c02f2b
                     </div>
 
                 </div>
