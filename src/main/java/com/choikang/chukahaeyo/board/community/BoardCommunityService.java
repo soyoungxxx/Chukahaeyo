@@ -3,13 +3,11 @@ package com.choikang.chukahaeyo.board.community;
 import com.choikang.chukahaeyo.board.comment.BoardCommentMapper;
 import com.choikang.chukahaeyo.board.model.CommunityVO;
 import com.choikang.chukahaeyo.board.model.ReplyVO;
+import com.choikang.chukahaeyo.s3.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +26,8 @@ public class BoardCommunityService {
     @Autowired
     WebApplicationContext context;
 
+    @Autowired
+    S3Service s3Service;
 
     public Map<String, Object> getCommunityList(CommunityVO vo) {
         int count = boardCommunityMapper.count(vo); // 총개수
@@ -98,13 +98,10 @@ public class BoardCommunityService {
 
             String[] srcValues = srcValue.split("/");
             String fileName = srcValues[srcValues.length-1];
-            String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/images/upload");
-            Path path = Paths.get(uploadDirectory , fileName);
-            try{
-                Files.delete(path);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+
+            System.out.println("fileName: "+fileName);
+            s3Service.deleteFile(fileName);
+
         }
 
 
