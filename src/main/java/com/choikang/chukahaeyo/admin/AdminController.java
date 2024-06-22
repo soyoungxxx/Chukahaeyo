@@ -23,7 +23,6 @@ public class AdminController {
 
     @GetMapping("/admin/month/payment.do")
     public List<Integer> selectMonthlySum(String date) {
-        List<Integer> list = new ArrayList<>();
-        return list;
+        return paymentService.selectSixMonthsSum(date);
     }
 }

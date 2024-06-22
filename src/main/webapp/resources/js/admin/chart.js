@@ -25,12 +25,16 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 function dateFormat(date) {
     return  date.getFullYear() +
-            '-' + ((date.getMonth()) < 9 ? "0" + (date.getMonth()) : (date.getMonth())) +
-            '-' + ((date.getDate() < 9 ? "0" + (date.getDate()) : date.getDate()));
+        '-' + ((date.getMonth()) < 9 ? "0" + (date.getMonth()) : (date.getMonth())) +
+        '-' + ((date.getDate() < 9 ? "0" + (date.getDate()) : date.getDate()));
 }
 
 function dateFormat2(date) {
     return  (date.getMonth()) + '월 ' + date.getDate() + '일';
+}
+
+function monthDateFormat(date) {
+    return (date.getMonth()) + '월';
 }
 
 // 날짜 설정하기
@@ -161,7 +165,7 @@ $(document).ready(function() {
         }
     });
 
-    $.ajax({
+    $.ajax({ // 매출 차트는 아니고 그냥 매출
         url: '/admin/payment.do',
         type: 'GET',
         data: {date:dateFormat(new Date(year, month, date))},
@@ -175,30 +179,33 @@ $(document).ready(function() {
         }
     });
 
-    $.ajax({
+    $.ajax({ // 월 매출 차트
         url: '/admin/month/payment.do',
         type: 'GET',
         data: {date:dateFormat(new Date(year, month, date))},
         success: function(result) {
+            while (result.length < 6) {
+                result.unshift(0);
+            }
             // Bar Chart Example
             var ctx = document.getElementById("myBarChart");
             var myBarChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: [
-                        dateFormat2(new Date(year, month-5, date)),
-                        dateFormat2(new Date(year, month-4, date)),
-                        dateFormat2(new Date(year, month-3, date)),
-                        dateFormat2(new Date(year, month-2, date)),
-                        dateFormat2(new Date(year, month-1, date)),
-                        dateFormat2(new Date(year, month, date)),
+                        monthDateFormat(new Date(year, month-5, date)),
+                        monthDateFormat(new Date(year, month-4, date)),
+                        monthDateFormat(new Date(year, month-3, date)),
+                        monthDateFormat(new Date(year, month-2, date)),
+                        monthDateFormat(new Date(year, month-1, date)),
+                        monthDateFormat(new Date(year, month, date)),
                     ],
                     datasets: [{
-                        label: "Revenue",
+                        label: "매출",
                         backgroundColor: "#4e73df",
                         hoverBackgroundColor: "#2e59d9",
                         borderColor: "#4e73df",
-                        data: [4215, 5312, 6251, 7841, 9821, 14984],
+                        data: [result[0], result[1], result[2], result[3], result[4], result[5]],
                     }],
                 },
                 options: {
@@ -228,12 +235,11 @@ $(document).ready(function() {
                         yAxes: [{
                             ticks: {
                                 min: 0,
-                                max: 15000,
                                 maxTicksLimit: 5,
                                 padding: 10,
-                                // Include a dollar sign in the ticks
                                 callback: function(value, index, values) {
-                                    return '$' + number_format(value);
+                                    if (index === values.length - 1) return "";
+                                    return number_format(value) + '원';
                                 }
                             },
                             gridLines: {
@@ -263,7 +269,7 @@ $(document).ready(function() {
                         callbacks: {
                             label: function(tooltipItem, chart) {
                                 var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                                return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                                return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '원';
                             }
                         }
                     },
@@ -274,36 +280,51 @@ $(document).ready(function() {
             alert("월매출을 불러오는 데 실패했습니다.");
         }
     });
+
+    $.ajax({ // 월 매출 차트
+        url: '/admin/category/payment.do',
+        type: 'GET',
+        data: {date:dateFormat(new Date(year, month, date))},
+        success: function(result) {
+            while (result.length < 3) {
+                result.unshift(0);
+            }
+            // Pie Chart Example
+            var ctx = document.getElementById("myPieChart");
+            var myPieChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ["사람", "반려동물", "초대"],
+                    datasets: [{
+                        data: [55, 30, 15],
+                        backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+                        hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                        hoverBorderColor: "rgba(234, 236, 244, 1)",
+                    }],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        caretPadding: 10,
+                    },
+                    legend: {
+                        display: false
+                    },
+                    cutoutPercentage: 80,
+                },
+            });
+        },
+        error: function() {
+            alert("카테고리별 매출을 불러오는 데 실패했습니다.");
+        }
+    });
 })
 
-// Pie Chart Example
-var ctx = document.getElementById("myPieChart");
-var myPieChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ["사람", "반려동물", "초대"],
-        datasets: [{
-            data: [55, 30, 15],
-            backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-            hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
-            hoverBorderColor: "rgba(234, 236, 244, 1)",
-        }],
-    },
-    options: {
-        maintainAspectRatio: false,
-        tooltips: {
-            backgroundColor: "rgb(255,255,255)",
-            bodyFontColor: "#858796",
-            borderColor: '#dddfeb',
-            borderWidth: 1,
-            xPadding: 15,
-            yPadding: 15,
-            displayColors: false,
-            caretPadding: 10,
-        },
-        legend: {
-            display: false
-        },
-        cutoutPercentage: 80,
-    },
-});
+

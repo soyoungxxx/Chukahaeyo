@@ -42,13 +42,20 @@
     <select id="selectPaymentMonthSum" parameterType="String" resultType="int">
         SELECT IFNULL(SUM(payAmount), 0) FROM Payment
         WHERE canceledAt IS NULL
-          AND DATE(payDate) BETWEEN DATE_ADD(#{date}, INTERVAL -1 MONTH) AND #{date}
+          AND MONTH(payDate) = MONTH(#{date}) AND YEAR(payDate) = YEAR(#{date})
     </select>
 
     <select id="selectPaymentYearSum" parameterType="String" resultType="int">
         SELECT IFNULL(SUM(payAmount), 0) FROM Payment
         WHERE canceledAt IS NULL
-          AND DATE(payDate) BETWEEN DATE_ADD(#{date}, INTERVAL -1 YEAR) AND #{date}
+          AND YEAR(payDate) = YEAR(#{date})
     </select>
 
+    <select id="selectSixMonthsSum" parameterType="String" resultType="int">
+        SELECT SUM(payAmount)
+        FROM Payment
+        WHERE canceledAt IS NULL AND
+              MONTH(payDate) BETWEEN MONTH(#{date}) AND MONTH(DATE_ADD(#{date}, INTERVAL -6 MONTH))
+        GROUP BY MONTH(payDate)
+    </select>
 </mapper>

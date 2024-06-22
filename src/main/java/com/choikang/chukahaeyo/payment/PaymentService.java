@@ -152,4 +152,8 @@ public class PaymentService {
         list.add(paymentMapper.selectPaymentYearSum(date));
         return list;
     }
+
+    public List<Integer> selectSixMonthsSum(String date) {
+        return paymentMapper.selectSixMonthsSum(date);
+    }
 }
