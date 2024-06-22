@@ -286,9 +286,8 @@ $(document).ready(function() {
         type: 'GET',
         data: {date:dateFormat(new Date(year, month, date))},
         success: function(result) {
-            while (result.length < 3) {
-                result.unshift(0);
-            }
+            console.log(result);
+
             // Pie Chart Example
             var ctx = document.getElementById("myPieChart");
             var myPieChart = new Chart(ctx, {
@@ -296,7 +295,7 @@ $(document).ready(function() {
                 data: {
                     labels: ["사람", "반려동물", "초대"],
                     datasets: [{
-                        data: [55, 30, 15],
+                        data: [result[0], result[1], result[2]],
                         backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
                         hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
                         hoverBorderColor: "rgba(234, 236, 244, 1)",
