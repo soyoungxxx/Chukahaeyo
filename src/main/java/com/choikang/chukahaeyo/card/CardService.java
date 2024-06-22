@@ -37,4 +37,8 @@ public class CardService {
     public void updateCardPaymentStatus(int cardID) {
         cardMapper.updateCardPaymentStatus(cardID);
     }
+
+    public Boolean selectCardIsPublic(int cardID) {
+        return cardMapper.selectCardIsPublic(cardID);
+    }
 }

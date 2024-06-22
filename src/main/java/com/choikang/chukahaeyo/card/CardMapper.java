@@ -25,4 +25,6 @@ public interface CardMapper {
     List<CardVO> getTop3CardList();
     List<CardVO> getLatest3CardList();
     List<GuestBookVO> selectGuestBooks(int cardID);
+
+    boolean selectCardIsPublic(int cardID);
 }
