@@ -17,56 +17,48 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="container">
-                <!-- 이미지 슬라이드 영역 -->
-                <div class="slideshow-container">
-                    <c:forEach var="card" items="${top3Cards}">
-                        <div class="slides fade">
-                            <div class="card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}">
-                                <div class="card-image">
-                                    <a href="card/completedCard/${card.cardID}">
-                                        <img src="resources/img/main/mainad01.png" alt="" style="width:100%">
-                                        <div class="overlay">
-                                            <div class="">수정 예정${card.categoryID}</div>
-                                        </div>
-                                    </a>
+            <!-- 이미지 슬라이드 영역 -->
+            <div class="slideshow-container">
+                <c:forEach var="card" items="${top3Cards}">
+                    <div class="slides fade">
+                        <div class="main-card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}" data-url="card/completedCard/${card.cardID}">
+                            <div class="card-image" onclick="redirectToUrl(this)">
+                                <img src="resources/img/main/main0${card.categoryID}.png" alt="" style="width:100%">
+                                <div class="main-overlay">
+                                    <div class="">${card.cardName}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+                <a class="prev-slide" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next-slide" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+
+            <!-- 내생일, 반려동물 생일, 단체 행사 링크 -->
+            <div class="navigator">
+                <img src="resources/img/main/mainbear1.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/myCard">
+                <img src="resources/img/main/mainbear2.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/myPet">
+                <img src="resources/img/main/mainbear3.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/invitation">
+            </div>
+
+            <div class="card-gallery">
+                <div class="list-gallery">
+                    <c:forEach var="card" items="${latest3Cards}">
+                        <div class="card" data-url="card/completedCard/${card.cardID}" onclick="redirectToUrl(this)">
+                            <div class="card-image">
+                                <img src="${card.templateThumbnail}" alt="Card Image">
+                                <div class="card-overlay">
+                                    <div class="text">${card.cardName}</div>
                                 </div>
                             </div>
                         </div>
                     </c:forEach>
-                    <a class="prev-slide" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="next-slide" onclick="plusSlides(1)">&#10095;</a>
                 </div>
-
-            <!-- 내생일, 반려동물 생일, 단체 행사 링크 -->
-            <div class="navigator">
-                <a href="card/edit/myCard">
-                    <img src="resources/img/main/mainbear1.png" alt="" class="mainBear">
-                </a>
-                <a href="card/edit/myPet">
-                    <img src="resources/img/main/mainbear2.png" alt="" class="mainBear">
-                </a>
-                <a href="card/edit/invitation">
-                    <img src="resources/img/main/mainbear3.png" alt="" class="mainBear">
-                </a>
-            </div>
-
-            <div class="show-gallery">
-                더 많은 카드가 궁금하다면? >
-                <a href="gallery"><input type="button" class="move-gallery" value="명예의 전당 이동"/></a>
-            </div>
-            <div class="card-gallery">
-                <c:forEach var="card" items="${latest3Cards}">
-                    <div class="card">
-                        <a href="card/completedCard/${card.cardID}">
-                        <div class="card-image">
-                            <img src="${card.templateThumbnail}" alt="Card Image">
-                            <div class="overlay">
-                                <div class="text">${card.cardName}</div>
-                            </div>
-                        </div>
-                        </a>
-                    </div>
-                </c:forEach>
+                <div class="show-gallery">
+                    더 많은 카드가 궁금하다면? >
+                    <a href="gallery"><input type="button" class="move-gallery" value="명예의 전당 이동"/></a>
+                </div>
             </div>
         </div>
     </div>
@@ -94,7 +86,15 @@
             slideIndex = 1
         }
         slides[slideIndex - 1].style.display = "block";
-        setTimeout(showSlides, 6000); // 6초마다 슬라이드 전환
+        setTimeout(showSlides, 3000); // 6초마다 슬라이드 전환
+    }
+
+    function redirectToUrl(element) {
+        var card = element.closest('.card');
+        var url = card ? card.getAttribute('data-url') : element.getAttribute('data-url');
+        if (url) {
+            window.location.href = url;
+        }
     }
 </script>
 </body>

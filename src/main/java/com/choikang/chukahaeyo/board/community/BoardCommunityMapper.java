@@ -33,5 +33,9 @@ public interface BoardCommunityMapper {
 
     int updateCommunityViewCount(CommunityVO vo);
 
+    int myCount(CommunityVO vo);
+
+    List<CommunityVO> getCommunityMyList(CommunityVO vo);
+
     // xml 작성
 }

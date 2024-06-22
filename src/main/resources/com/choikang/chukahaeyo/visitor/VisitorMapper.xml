@@ -9,4 +9,10 @@
                    #{visitorCookie}, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR)
                )
     </insert>
+    <select id="selectVisitor" parameterType="com.choikang.chukahaeyo.visitor.model.VisitorVO" resultType="int">
+        SELECT COUNT(*) FROM Visitor
+        WHERE SUBSTR(visitDate, 1, 10) BETWEEN #{startDate} AND #{endDate}
+        GROUP BY DATE(visitDate)
+        ORDER BY DATE(visitDate);
+    </select>
 </mapper>

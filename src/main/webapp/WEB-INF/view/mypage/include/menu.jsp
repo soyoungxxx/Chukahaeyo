@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
-
 <div class="menu">
     <div class="mypage-menu">
         <ul>
@@ -20,7 +19,7 @@
         const currentUrl = window.location.pathname;
 
         menuItems.forEach(item => {
-            if (item.getAttribute('href') === currentUrl) {
+            if (item.getAttribute('href').split("?")[0] === currentUrl) {
                 item.classList.add('selectedMenu');
             }
         });

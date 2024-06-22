@@ -8,7 +8,7 @@
         WHERE cardID = #{cardID}
     </update>
 
-    <insert id="insertCardInCart" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
+    <insert id="insertCardInDatabase" parameterType="com.choikang.chukahaeyo.card.model.CardVO">
         INSERT INTO Card
         (cardName, cardIsPublic, cardIsPaid, cardDate, cardStartDate, cardEndDate, cardImage, cardEmojis,
         cardDesign, templateThumbnail, categoryID, memberID, payID)

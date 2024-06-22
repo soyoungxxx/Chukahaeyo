@@ -72,7 +72,8 @@ public class MvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/mypage/**", "/cart/**", "/card/edit/**")
                 .excludePathPatterns("/member/login", "/member/register", "/member/emailAuth", "/member/verify");
         registry.addInterceptor(cookieInterceptor())
-                .addPathPatterns("/**");
+                .addPathPatterns("/**")
+                .excludePathPatterns("/admin/**");
         registry.addInterceptor(completedCardInterceptor())
                 .addPathPatterns("/card/completedCard/**");
     }
