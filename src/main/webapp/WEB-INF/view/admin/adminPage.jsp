@@ -112,8 +112,7 @@
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 가입자
                                             </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                $<fmt:formatNumber type="number" maxFractionDigits="3" value="${MemberAmount}"/>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="member-count">
                                             </div>
                                         </div>
                                         <div class="col-auto">

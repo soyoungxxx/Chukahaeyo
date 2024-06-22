@@ -54,4 +54,7 @@ public interface MemberMapper {
     List<MemberVO> getMemberAllList();
 
     void withdrawMember(MemberVO memberVO);
+
+    // 관리자 페이지 가입자 수
+    int selectTodayRegisterMember(String date);
 }

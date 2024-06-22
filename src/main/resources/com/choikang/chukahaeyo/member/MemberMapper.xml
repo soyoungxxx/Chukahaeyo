@@ -72,5 +72,7 @@
         UPDATE Members SET memberWithdraw=true where memberID = #{memberID}
     </update>
 
-
+    <select id="selectTodayRegisterMember" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM Members WHERE DATE(memberRegisterDate) = #{date}
+    </select>
 </mapper>

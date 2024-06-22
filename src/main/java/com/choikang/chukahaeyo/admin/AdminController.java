@@ -1,6 +1,7 @@
 package com.choikang.chukahaeyo.admin;
 
 import com.choikang.chukahaeyo.card.CardService;
+import com.choikang.chukahaeyo.member.MemberService;
 import com.choikang.chukahaeyo.payment.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class AdminController {
     @Autowired
     CardService cardService;
 
+    @Autowired
+    MemberService memberService;
+
     @GetMapping("/payment.do")
     public List<Integer> selectPaymentSum(String date) {
         return paymentService.selectPaymentSum(date);
@@ -35,5 +39,10 @@ public class AdminController {
     @GetMapping("/category/payment.do")
     public List<Integer> selectCardsByCategory(String date) {
         return cardService.selectCardsByCategory(date);
+    }
+
+    @GetMapping("/member/count.do")
+    public int selectTodayRegisterMember(String date) {
+        return memberService.selectTodayRegisterMember(date);
     }
 }

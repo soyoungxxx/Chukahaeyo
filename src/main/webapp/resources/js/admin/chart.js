@@ -179,6 +179,15 @@ $(document).ready(function() {
         }
     });
 
+    $.ajax({
+        url: '/admin/member/count.do',
+        type: 'GET',
+        data: {date:dateFormat(new Date(year, month, date))},
+        success: function(result) {
+            $('#member-count').text(number_format(result) + '명');
+        }
+    })
+
     $.ajax({ // 월 매출 차트
         url: '/admin/month/payment.do',
         type: 'GET',
