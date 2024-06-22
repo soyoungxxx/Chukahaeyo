@@ -19,7 +19,7 @@ body, .show-gallery, .overlay, .card-gallery, .move-gallery {
     font-family: "Jua", sans-serif;
 }
 
-.mainBear, .card-image, .card, .move-gallery {
+.main-bear, .card-image, .card, .move-gallery {
     cursor: pointer;
 }
 
