@@ -40,8 +40,7 @@
                         <div class="inquiry-logo">문의 내역</div>
                         <div class="inquiry-info">
                             <div class="inquiry-info-title">${object.inquiryQuestionTitle}</div>
-                            <div class="inquiry-info-sub">작성자 : ${object.memberName} |
-                                작성일 : <fmt:formatDate value="${object.inquiryPostDate }" pattern="yy/MM/dd HH:mm"/></div>
+                            <div class="inquiry-info-sub">작성자 : ${object.memberName} | 작성일 : <fmt:formatDate value="${object.inquiryPostDate }" pattern="yy/MM/dd HH:mm"/></div>
                         </div>
                         <div class="inquiry-content">
                             ${object.inquiryQuestion}
