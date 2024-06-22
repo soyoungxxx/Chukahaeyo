@@ -37,6 +37,7 @@
     /*height: 280px;*/
     /*object-fit: cover;*/
     display: block;
+    filter: blur(1px);
 }
 
 .card-content {
@@ -50,8 +51,9 @@
     font-family: "Jua", sans-serif;
     font-size: 22px;
     position: absolute;
-    top: 45%;
+    top: 48%;
     left: 50%;
+    width: 70%;
     transform: translate(-50%, -50%);
     color: white;
     text-align: center;
