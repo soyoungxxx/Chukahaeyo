@@ -70,8 +70,8 @@
                                             <td>
                                                 <fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.payAmount}"/>
                                             </td>
-                                            <td>${payment.buyerName}</td>
-                                            <td>${payment.buyerEmail}</td>
+                                            <td>${payment.memberName}</td>
+                                            <td>${payment.memberEmail}</td>
                                             <td>
                                                 <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.payDate}"/>
                                             </td>
@@ -79,7 +79,7 @@
                                                 <td>결제 완료</td>
                                             </c:if>
                                             <c:if test="${payment.canceledAt != 0}">
-                                                <td class="canceled-payment">취소 결제</td>
+                                                <td class="canceled-payment">결제 취소</td>
                                             </c:if>
 <%--                                            <td>${payment.receiptURL}</td>--%>
                                         </tr>

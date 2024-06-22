@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
     <meta charset="utf-8">
     <title>Admin 축하해요</title>
@@ -17,8 +19,6 @@
     <link rel="stylesheet" href="/resources/css/board/allInquiryList.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css"/>
     <link href="/resources/css/admin/all.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
     <link href="/resources/css/admin/admin.css" rel="stylesheet">
 </head>
 <body id="page-top">
@@ -46,7 +46,7 @@
                             <div class="container">
 
                                 <div class="search">
-                                    <form action="list">
+                                    <form action="/admin/inquiry/allInquiryList">
                                         <select class="sort-box" name="sort">
                                             <option value="all"
                                                     <c:if test="${inquiryVO.sort == 'all'}">selected</c:if>>전체
@@ -117,10 +117,10 @@
                                     </table>
                                 </div>
 
-                                <ul class='paging'>
+                                <l class='paging'>
                                     <c:if test="${map.isPrev }">
                                         <li>
-                                            <a href="list?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
+                                            <a href="allInquiryList?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
                                                 < </a></li>
                                     </c:if>
                                     <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
@@ -129,16 +129,16 @@
                                         </c:if>
                                         <c:if test="${p != inquiryVO.page}">
                                             <li>
-                                                <a href='list?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a>
+                                                <a href='allInquiryList?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a>
                                             </li>
                                         </c:if>
                                     </c:forEach>
                                     <c:if test="${map.isNext }">
                                         <li>
-                                            <a href="list?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
+                                            <a href="allInquiryList?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
                                                 > </a></li>
                                     </c:if>
-                                </ul>
+                                </l>
                             </div>
 
                         </div>
