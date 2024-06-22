@@ -132,3 +132,11 @@ function getMap(roadAddr) {
         }
     });
 }
+
+$(document).on('click', '.more-card', function() {
+    if (window.location.pathname.includes('/card/edit/')) {
+
+    } else {
+        location.href='/gallery'
+    }
+});
