@@ -61,7 +61,7 @@
     </select>
 
     <select id="getPaymentAllList"  resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
-        SELECT * from Payment
+        SELECT * from Payment ORDER BY payDate DESC;
     </select>
 
     <select id="getMemberAllList" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
@@ -71,6 +71,31 @@
     <update id="withdrawMember" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
         UPDATE Members SET memberWithdraw=true where memberID = #{memberID}
     </update>
+
+    <select id="getFilteredPaymentList" parameterType="map" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        SELECT * FROM Payment
+        WHERE 1=1
+        <if test="startDate != null and startDate != ''">
+            AND payDate &gt;= #{startDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            AND payDate &lt;= #{endDate}
+        </if>
+        <if test="status != null and status != ''">
+            <choose>
+                <when test="status == 'canceled'">
+                    AND canceledAt IS NOT NULL
+                </when>
+                <otherwise>
+                    AND canceledAt IS NULL
+                </otherwise>
+            </choose>
+        </if>
+        <if test="search != null and search != ''">
+            AND memberName LIKE CONCAT('%', #{search}, '%')
+        </if>
+        ORDER BY payDate DESC
+    </select>
 
 
 </mapper>

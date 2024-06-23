@@ -32,11 +32,11 @@ body .container{
     background-image: url("/resources/img/logo/community.png");
     background-size: contain;
     background-repeat: no-repeat;
-    width: 150px;
-    height: 60px;
+    width: 200px;
+    height: 80px;
 
-    margin-top: 40px;
-    margin-bottom: 80px;
+
+    margin: 20px 40px 40px 20px;
 
 
     position: relative;
