@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.ResponseEntity;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -44,6 +45,11 @@ public class CartController {
         return "mypage/myCard";
     }
 
+    @PostMapping("/card/togglePublicStatus")
+    public ResponseEntity<CardVO> togglePublicStatus(@RequestParam int cardID) {
+        CardVO updatedCard = cardService.togglePublicStatus(cardID);
+        return ResponseEntity.ok(updatedCard);
+    }
 
     // 카드 삭제 로직
     @PostMapping("/deleteCard")

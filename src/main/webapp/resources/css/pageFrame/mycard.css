@@ -82,13 +82,34 @@
     padding: 10px 10px 10px 20px;
 }
 
-.card-info > .like {
-    font-size: 17px;
+.card-info > .left-section {
+    display: flex;
+    align-items: center;
+    font-size: 19px;
     margin: 0;
     word-wrap: break-word;
 }
 
-.card-info > .copy-button {
+.card-info > .right-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toggle-public {
+    font-size: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s; /* 눌렀다 켜지는 느낌을 위한 트랜지션 */
+}
+
+.toggle-public:active {
+    transform: scale(0.9); /* 눌렀을 때 살짝 줄어드는 효과 */
+    color: #007BFF; /* 눌렀을 때 색상 변경 */
+}
+
+.card-info > .right-section > .copy-button {
     font-family: "Noto Sans KR", sans-serif;
     border: none;
     border-radius: 10px;
