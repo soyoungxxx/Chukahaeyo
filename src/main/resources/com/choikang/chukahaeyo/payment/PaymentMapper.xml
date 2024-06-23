@@ -8,13 +8,17 @@
                              payAmount,
                              memberID,
                              receiptURL,
-                             merchantUid)
+                             merchantUid,
+                             memberEmail,
+                             memberName)
         VALUES (DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR),
                 #{payNo},
                 #{payAmount},
                 #{memberID},
                 #{receiptURL},
-                #{merchantUid})
+                #{merchantUid},
+                #{memberEmail},
+                #{memberName})
         <selectKey order="AFTER" keyProperty="payID" resultType="int">
             SELECT LAST_INSERT_ID()
         </selectKey>

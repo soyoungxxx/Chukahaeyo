@@ -25,10 +25,7 @@ public class BoardCommentService {
         map.put("totalCount", totalCount);
         map.put("list", list); // 모델에 직접 넣어줘도 됨
 
-
         return map;
-
-
     }
 
     public int mainInsert(ReplyVO vo) {

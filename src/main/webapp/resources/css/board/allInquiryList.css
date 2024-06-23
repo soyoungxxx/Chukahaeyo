@@ -3,26 +3,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
 
 body .container{
-    font-family: "Jua", sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    font-style: normal;
+
 }
-/*font*/
-
-
-
-
 
 
 
 .container {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #858796;
 
-    width: 1000px;
     height: 100%;
     display: flex;
     flex-direction: column;
-
+    /*margin: 0 !important;*/
+    padding: 0 !important;
 }
 
 
@@ -41,67 +37,69 @@ body .container{
 
 /*search*/
 .search {
-
     display: flex;
+    width: 95%;
     flex-direction: row;
     justify-content: end;
 
-    margin-bottom: 15px;
-    margin-right: 200px;
+    font-size: 14px;
+    margin: 10px auto 15px auto;
+
 }
 
 .search .selectbox {
-    width: 90px;
-    height: 30px;
-    font-size: 12px;
-    border-radius: 10px;
+    width: 100px;
+    height: 35px;
+    /*border-radius: 10px;*/
 }
 
 .search .sort-box{
-    width: 90px;
-    height: 30px;
-    font-size: 12px;
-    border-radius: 10px;
+    width: 100px;
+    height: 35px;
+    /*font-size: 12px;*/
+    /*border-radius: 10px;*/
 }
 
-
-
 .search .textbox {
-    width: 90px;
-    height: 28px;
-    font-size: 12px;
+    width: 200px;
+    height: 35px;
+    /*font-size: 12px;*/
 
 }
 
 .search .submitbox {
-    width: 37px;
-    height: 30px;
-    font-size: 12px;
-
+    width: 60px;
+    height: 35px;
+    /*font-size: 12px;*/
     color: white;
     border: none;
     background-color: #949FFF;
-    border-radius: 10px;
+    /*border-radius: 10px;*/
     cursor : pointer;
+    font-weight: 500;
 }
-
 
 
 /*list*/
 .list .list-board {
     border-top: 1px solid black;
     table-layout: fixed;
-    margin-left: 40px;
+    margin: auto;
 }
 
 /*list-ellipsis*/
+.list-board{
+    width: 95%;
+    margin-left: 0;
+}
+
 .list th {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 
-    height: 40px;
-    line-height: 40px;
+    height: 50px;
+    line-height: 50px;
 }
 
 /*list-title*/
@@ -112,30 +110,27 @@ body .container{
 }
 
 .list .list-board .list-title .no {
-    width: 60px;
+    width: 8%;
     text-align: center;
 }
 
 .list .list-board .list-title .title {
-    width: 435px;
+    width: 48%;
     text-align: center;
 }
 
 .list .list-board .list-title .writer {
-    width: 75px;
+    width: 12%;
     text-align: center;
 }
 
 .list .list-board .list-title .regdate {
-    width: 90px;
+    width: 18%;
     text-align: center;
 }
 
-
-
-
 .list .list-board .list-title .is-answered {
-    width: 60px;
+    width: 14%;
     text-align: center;
 }
 
@@ -143,7 +138,6 @@ body .container{
 
 
 /*list-data*/
-
 .list .list-board .list-data {
     border-bottom: 1px solid #B9B5B5;
 
@@ -185,10 +179,11 @@ body .container{
     text-align: center;
 }
 .list .list-board .list-data .is-answered .is-answered-img {
-    width: 20px;
-    height: 20px;
-    position: relative;
-    top: 5px;
+    width: 22px;
+    height: 22px;
+    /*position: relative;*/
+    /*top: 4px;*/
+    margin-bottom: 2px;
 }
 
 /*list-no-data*/
@@ -216,12 +211,11 @@ body .container{
     align-self: self-end;
     margin: 10px;
     cursor: pointer;
-    border-radius: 10px;
-    margin-right: 200px;
+    /*border-radius: 10px;*/
 }
+
 .write-button a {
     color: white;
-
 }
 
 
@@ -239,7 +233,8 @@ body .container{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-right: 200px;
+    padding: 0;
+    margin: 25px 0 30px 0;
 }
 
 .paging a {
@@ -249,31 +244,24 @@ body .container{
     border: 1px solid #D9D9D9;
     width: 30px;
     height: 30px;
-    line-height: 30px;
+    line-height: 28px;
     text-align: center;
     margin-top: 5px;
     margin-left: 5px;
     margin-right: 5px;
-
-
-
 }
-
-
-
-
-
 
 
 .paging .current{
     display: inline-block;
     text-decoration: none;
     color: #949FFF;
-    border: 1px solid #949FFF;
+    border: 2px solid #949FFF;
     width: 30px;
     height: 30px;
-    line-height: 30px;
+    line-height: 26px;
     text-align: center;
+    font-weight: bold;
     margin: 5px;
 
 }

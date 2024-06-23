@@ -25,13 +25,13 @@
             $(".sort-box").change(function(e){
                 let val = $(".sort-box").val();
                 if(val == "date"){
-                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=date';
+                    location.href = '/board/community/mylist?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=date';
                 }else if(val == "view"){
-                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=view';
+                    location.href = '/board/community/mylist?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=view';
                 }else if(val == "reply"){
-                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=reply';
+                    location.href = '/board/community/mylist?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=reply';
                 }else if(val =="like"){
-                    location.href = '/board/community/list?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=like';
+                    location.href = '/board/community/mylist?page=${communityVO.page}&query=${communityVO.query}&querytype=${communityVO.querytype}&sort=like';
                 }
             });
         });
@@ -51,7 +51,7 @@
 
             <div class="community-logo"></div>
             <div>
-                <form class="search" action="list">
+                <form class="search" action="mylist">
                     <select class="sort-box" name="sort">
                         <option value="date" <c:if test="${communityVO.sort == 'date'}">selected</c:if>>최신순</option>
                         <option value="view" <c:if test="${communityVO.sort == 'view'}">selected</c:if>>조회순</option>
@@ -92,7 +92,7 @@
                         <tr class="list-data <c:if test="${vo.isTop == 'true'}">is-top</c:if>">
                             <th class="no">${vo.commID}</th>
                             <th class="title"><a
-                                    href="detail?commID=${vo.commID}&query=${communityVO.query}&querytype=${communityVO.querytype}&page=${communityVO.page}&sort=${communityVO.sort}">${vo.commTitle}</a>
+                                    href="detail?commID=${vo.commID}&query=${communityVO.query}&querytype=${communityVO.querytype}&page=${communityVO.page}&sort=${communityVO.sort}&ismy=true">${vo.commTitle}</a>
                             </th>
                             <th class="writer">${vo.memberName}</th>
                             <th class="regdate"><fmt:formatDate value="${vo.commPostDate }" pattern="YYYY.MM.dd"/></th>
@@ -113,14 +113,14 @@
             </div>
             <c:if test="${not empty memberID}">
                 <div class="write-button">
-                    <a href="write">글쓰기</a>
+                    <a href="write?ismy=true">글쓰기</a>
                 </div>
             </c:if>
 
             <ul class='paging'>
                 <c:if test="${map.isPrev }">
                     <li>
-                        <a href="list?page=${map.startPage-1 }&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}">
+                        <a href="mylist?page=${map.startPage-1 }&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}">
                             < </a></li>
                 </c:if>
                 <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
@@ -129,13 +129,13 @@
                     </c:if>
                     <c:if test="${p != communityVO.page}">
                         <li>
-                            <a href='list?page=${p}&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}'>${p}</a>
+                            <a href='mylist?page=${p}&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}'>${p}</a>
                         </li>
                     </c:if>
                 </c:forEach>
                 <c:if test="${map.isNext }">
                     <li>
-                        <a href="list?page=${map.endPage+1 }&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}">
+                        <a href="mylist?page=${map.endPage+1 }&querytype=${communityVO.querytype}&query=${communityVO.query}&sort=${communityVO.sort}">
                             > </a></li>
                 </c:if>
             </ul>

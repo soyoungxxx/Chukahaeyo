@@ -1,7 +1,7 @@
 package config;
 
 import com.choikang.chukahaeyo.exception.CookieInterceptor;
-import com.choikang.chukahaeyo.exception.LoginInterceptor;
+import com.choikang.chukahaeyo.exception.AccessControlInterceptor;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -58,21 +58,22 @@ public class MvcConfig implements WebMvcConfigurer {
         reg.addViewController("/admin/adminPage");
         reg.addViewController("/admin/adminLogin");
         reg.addViewController("/mypage/myHistory");
-
     }
 
     @Autowired
-    private LoginInterceptor loginInterceptor;
+    private AccessControlInterceptor accessControlInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor())
-                // "/card/edit/**"
-                .addPathPatterns("/mypage/**", "/cart/**", "/card/edit/**")
-                .excludePathPatterns("/member/login", "/member/register", "/member/emailAuth", "/member/verify");
+        registry.addInterceptor(accessControlInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns("/resources/**", "/static/**", "/public/**");
+
         registry.addInterceptor(cookieInterceptor())
-                .addPathPatterns("/**");
+                .addPathPatterns("/**")
+                .excludePathPatterns("/admin/**");
     }
+
 
     @Bean
     public CookieInterceptor cookieInterceptor() {

@@ -2,7 +2,7 @@
 $('.all-content').ready(function () {
     $('#edit-name').on('input', function () { // 이름
         var nameText = $(this).val();
-        $('.card-name').text(nameText + originText);
+        $('.card-name').text(nameText);
     });
     $('#edit-text').on('input', function () { // 설명
         var editText = $(this).val();

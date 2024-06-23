@@ -1,33 +1,21 @@
 package com.choikang.chukahaeyo.member;
 
 import com.choikang.chukahaeyo.card.model.CardVO;
-import com.choikang.chukahaeyo.exception.ErrorCode;
-import com.choikang.chukahaeyo.exception.SuccessCode;
 import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
-import com.choikang.chukahaeyo.payment.CancelDTO;
-import com.choikang.chukahaeyo.payment.PaymentDTO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
 @Controller
 public class MemberController {
@@ -56,6 +44,7 @@ public class MemberController {
         } else {
             session.setAttribute("login", login); // login 객체 또는 true 설정
             session.setAttribute("adminID", login.getAdminID());
+            session.setAttribute("adminEmail", login.getAdminEmail());
 
             // 리다이렉트할 URI 확인
             String redirectURI = (String) session.getAttribute("redirectURI");
@@ -194,13 +183,13 @@ public class MemberController {
         List<CardVO> cardList = service.getCardList(memberID);
         List<PaymentVO> paymentList = service.getPaymentList(memberID);
 
-        Date twoDaysAgo = new Date(new Date().getTime() - 24 * 60 * 60 * 1000);
-        for (int i = 0; i < paymentList.size(); i++) {
-            Date tempDate = (paymentList.get(i)).getPayDate();
-            if (twoDaysAgo.before(tempDate)) {
-                paymentList.get(i).setIsWithinTwoDays(1);
+        Timestamp twoDaysAgo = new Timestamp(System.currentTimeMillis() - 2L * 24 * 60 * 60 * 1000); // 2일 전의 Timestamp 계산
+        for (PaymentVO payment : paymentList) {
+            Timestamp tempDate = payment.getPayDate();
+            if (tempDate != null && twoDaysAgo.before(tempDate)) {
+                payment.setIsWithinTwoDays(1);
             } else {
-                paymentList.get(i).setIsWithinTwoDays(0);
+                payment.setIsWithinTwoDays(0);
             }
         }
         model.addAttribute("cardList", cardList);
@@ -210,11 +199,25 @@ public class MemberController {
 
     // 관리자: 결제 내역 가져오기
     @GetMapping("/admin/adminOrderList")
-    public String getAllPaymentList(Model model) {
+    public String getAllPaymentList(Model model, @RequestParam(defaultValue = "1") int page,
+                                    @RequestParam(defaultValue = "10") int size) {
         List<PaymentVO> paymentList = service.getPaymentAllList();
-        model.addAttribute("paymentList", paymentList);
-        return "/admin/adminOrderList";
 
+        int totalPayments = paymentList.size();
+        int totalPages = (int) Math.ceil((double) totalPayments / size);
+
+        int start = (page - 1) * size;
+        int end = Math.min(start + size, totalPayments);
+
+        List<PaymentVO> payments = paymentList.subList(start, end);
+
+        model.addAttribute("payments", payments);
+
+        model.addAttribute("currentPage", page);
+        model.addAttribute("pageSize", size);
+        model.addAttribute("totalPages", totalPages);
+
+        return "/admin/adminOrderList";
     }
 
     // 관리자: 멤버 모든 목록 가져오기
@@ -225,14 +228,13 @@ public class MemberController {
         return "/admin/adminMemberList";
     }
 
-
     // 회원 탈퇴
     @ResponseBody
     @PostMapping("/admin/memberDelete")
     public ResponseEntity<String> memberDelete(@RequestBody MemberDeleteDTO selectedMembers) {
         try {
             MemberVO memberVO = new MemberVO();
-            for(String memberId : selectedMembers.getMemberIds()) {
+            for (String memberId : selectedMembers.getMemberIds()) {
                 memberVO.setMemberID(Integer.parseInt(memberId));
                 service.withdrawMember(memberVO);
             }
@@ -241,7 +243,6 @@ public class MemberController {
             return new ResponseEntity<>("회원 삭제 중 오류가 발생했습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
     // 로그아웃(일반 회원, 관리자)
     @GetMapping("/logout")
@@ -254,7 +255,6 @@ public class MemberController {
         } else {
             model.addAttribute("url", "/");
         }
-
         return "include/alert";
     }
 
@@ -293,5 +293,4 @@ public class MemberController {
         model.addAttribute("url", "/");
         return "include/alert";
     }
-
 }

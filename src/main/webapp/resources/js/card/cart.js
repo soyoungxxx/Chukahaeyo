@@ -68,7 +68,7 @@ function proceedToPayment() {
 
     console.log("Selected Cards:", selectedCards);
     if (confirm("결제하시겠습니까?")) {
-        var makeMerchantUid = 'merchant_' + new Date().getTime();
+        var makeMerchantUid = 'mid_' + new Date().getTime();
         let totalAmount = selectedCards.reduce((sum, card) => sum + parseFloat(card.cardPrice), 0);
 
         // 아임포트 초기화
@@ -78,7 +78,7 @@ function proceedToPayment() {
         IMP.request_pay({
             pg: 'html5_inicis',
             pay_method: 'card',
-            merchant_uid: "IMP" + makeMerchantUid,
+            merchant_uid: makeMerchantUid,
             name: '축하해요 카드 결제',
             amount: totalAmount,
             buyer_email: memberEmail,

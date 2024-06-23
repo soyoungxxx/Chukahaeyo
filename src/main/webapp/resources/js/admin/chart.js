@@ -23,95 +23,145 @@ function number_format(number, decimals, dec_point, thousands_sep) {
     return s.join(dec);
 }
 
-// Area Chart Example
-var ctx = document.getElementById("myAreaChart");
-var myLineChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ["월", "화", "수", "목", "금", "토", "일"],
-        datasets: [{
-            label: "일일 방문자 수",
-            lineTension: 0.3,
-            backgroundColor: "rgba(78, 115, 223, 0.05)",
-            borderColor: "rgba(78, 115, 223, 1)",
-            pointRadius: 3,
-            pointBackgroundColor: "rgba(78, 115, 223, 1)",
-            pointBorderColor: "rgba(78, 115, 223, 1)",
-            pointHoverRadius: 3,
-            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-            pointHitRadius: 10,
-            pointBorderWidth: 2,
-            data: [0, 100, 200, 5000, 30000, 8000, 650],
-        }],
-    },
-    options: {
-        maintainAspectRatio: false,
-        layout: {
-            padding: {
-                left: 10,
-                right: 25,
-                top: 25,
-                bottom: 0
+function dateFormat(date) {
+    return  date.getFullYear() +
+            '-' + ((date.getMonth()) < 9 ? "0" + (date.getMonth()) : (date.getMonth())) +
+            '-' + ((date.getDate() < 9 ? "0" + (date.getDate()) : date.getDate()));
+}
+
+function dateFormat2(date) {
+    return  (date.getMonth()) + '월 ' + date.getDate() + '일';
+}
+
+// 날짜 설정하기
+let todayDate = new Date();
+const year = todayDate.getFullYear();
+const month = todayDate.getMonth()+1;
+const date = todayDate.getDate();
+
+const endDate = dateFormat(new Date(year, month, date));
+const startDate = dateFormat(new Date(year, month, date-6))
+
+let visitData = [];
+$(document).ready(function() {
+    $.ajax({
+        url: '/admin/visitor.do',
+        type: 'GET',
+        data: {startDate:startDate, endDate:endDate},
+        async: false,
+        success: function(result) {
+            console.log(result.length);
+            while (result.length < 7) {
+                result.unshift(0);
             }
-        },
-        scales: {
-            xAxes: [{
-                time: {
-                    unit: 'date'
+            var ctx = document.getElementById("myAreaChart");
+            // Area Chart Example
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [
+                        dateFormat2(new Date(year, month, date-6)),
+                        dateFormat2(new Date(year, month, date-5)),
+                        dateFormat2(new Date(year, month, date-4)),
+                        dateFormat2(new Date(year, month, date-3)),
+                        dateFormat2(new Date(year, month, date-2)),
+                        dateFormat2(new Date(year, month, date-1)),
+                        month + '월 ' + date + '일'
+                    ],
+                    datasets: [{
+                        label: "일일 방문자 수",
+                        lineTension: 0.3,
+                        backgroundColor: "rgba(78, 115, 223, 0.05)",
+                        borderColor: "rgba(78, 115, 223, 1)",
+                        pointRadius: 3,
+                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                        pointBorderColor: "rgba(78, 115, 223, 1)",
+                        pointHoverRadius: 3,
+                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                        pointHitRadius: 10,
+                        pointBorderWidth: 2,
+                        data: [result[0], result[1], result[2], result[3], result[4], result[5], result[6]],
+                    }],
                 },
-                gridLines: {
-                    display: false,
-                    drawBorder: false
-                },
-                ticks: {
-                    maxTicksLimit: 7
-                }
-            }],
-            yAxes: [{
-                ticks: {
-                    maxTicksLimit: 5,
-                    padding: 10,
-                    // Include a dollar sign in the ticks
-                    callback: function(value, index, values) {
-                        return number_format(value) + '명';
+                options: {
+                    font : {
+                        size: 50
+                    },
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 25,
+                            top: 25,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            time: {
+                                unit: 'date'
+                            },
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                maxTicksLimit: 5,
+                                padding: 10,
+                                // Include a dollar sign in the ticks
+                                callback: function(value, index, values) {
+                                    if (index === values.length - 1) return "";
+                                    return number_format(value) + '명';
+                                }
+                            },
+                            gridLines: {
+                                color: "rgb(234, 236, 244)",
+                                zeroLineColor: "rgb(234, 236, 244)",
+                                drawBorder: false,
+                                borderDash: [2],
+                                zeroLineBorderDash: [2]
+                            }
+                        }],
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        titleMarginBottom: 10,
+                        titleFontColor: '#6e707e',
+                        titleFontSize: 16,
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        intersect: false,
+                        mode: 'index',
+                        caretPadding: 10,
+                        callbacks: {
+                            label: function(tooltipItem, chart) {
+                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
+                            }
+                        }
                     }
-                },
-                gridLines: {
-                    color: "rgb(234, 236, 244)",
-                    zeroLineColor: "rgb(234, 236, 244)",
-                    drawBorder: false,
-                    borderDash: [2],
-                    zeroLineBorderDash: [2]
                 }
-            }],
+            });
         },
-        legend: {
-            display: false
-        },
-        tooltip: {
-            backgroundColor: "rgb(255,255,255)",
-            bodyFontColor: "#858796",
-            titleMarginBottom: 10,
-            titleFontColor: '#6e707e',
-            titleFontSize: 14,
-            borderColor: '#dddfeb',
-            borderWidth: 1,
-            xPadding: 15,
-            yPadding: 15,
-            displayColors: false,
-            intersect: false,
-            mode: 'index',
-            caretPadding: 10,
-            callbacks: {
-                label: function(tooltipItem, chart) {
-                    var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                    return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '명';
-                }
-            }
+        error: function() {
+            alert("방문자 수를 불러오는 데 실패했습니다.");
         }
-    }
-});
+    });
+})
+
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");

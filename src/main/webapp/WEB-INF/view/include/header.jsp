@@ -6,24 +6,27 @@
 
 <script>
     $(document).ready(function() {
-        <c:if test="${not empty sessionScope.login}">
-        $(".gallery-community-bar").mouseenter(function () {
-            $(".gallery-community-menu").stop(true, true).slideDown();
+        var isLoggedIn = ${not empty sessionScope.login ? 'true' : 'false'};
+
+        $(".gallery-community-bar").click(function (e) {
+            if (isLoggedIn) {
+                e.preventDefault();
+                e.stopPropagation();
+                $(".gallery-community-menu").slideToggle();
+            } else {
+                location.href = '/board/community/list';
+            }
         });
 
-        $(".gallery-community").mouseleave(function () {
-            $(".gallery-community-menu").stop(true, true).slideUp();
+        $(document).click(function () {
+            $(".gallery-community-menu").slideUp();
         });
 
-        $(".gallery-community-menu").mouseenter(function () {
-            $(this).stop(true, true).show();
-        }).mouseleave(function () {
-            $(this).stop(true, true).slideUp();
+        $(".gallery-community-menu").click(function (e) {
+            e.stopPropagation();
         });
-        </c:if>
     });
 </script>
-
 <div class="header">
     <a href="/">
         <div class="logo"></div>
@@ -34,9 +37,9 @@
         <div class="party-invite-card"><a href="/card/edit/invitation">파티 초대 카드</a></div>
         <div class="gallery"><a class="gallery-community" href="/gallery">&nbsp;&nbsp;&nbsp;&nbsp;명예의 전당</a></div>
         <div class="community">
-            <a class="gallery-community gallery-community-bar" href="/board/community/list">커뮤니티</a>
+            <a class="gallery-community gallery-community-bar" href="#">커뮤니티</a>
             <div class="gallery-community-menu">
-                <div class="gallery-community-menu-item" onclick="location.href='/board/community/list?query=${memberName}&querytype=writer'">내가 쓴 글</div>
+                <div class="gallery-community-menu-item" onclick="location.href='/board/community/mylist'">내가 쓴 글</div>
                 <hr>
                 <div class="gallery-community-menu-item" onclick="location.href='/board/community/list'">전체 글 보기</div>
             </div>

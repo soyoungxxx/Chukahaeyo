@@ -1,39 +1,57 @@
 
 
-$(document).ready(function() {
+window.addEventListener('load', function(){
 	//여기 아래 부분
-	$('#summernote').summernote({
+	$.getScript('https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js', function ()
+	{
+		$('#summernote').summernote({
 
-		// 에디터 크기 설정
-		width: 760,
-		height: 300,
-		minHeight: null,             // 최소 높이
-		maxHeight: null,
-		// 에디터 한글 설정
-		lang: 'ko-KR',
+			// 에디터 크기 설정
+			width: 760,
+			height: 300,
+			minHeight: null,             // 최소 높이
+			maxHeight: null,
+			// 에디터 한글 설정
+			lang: 'ko-KR',
 
-		// focus는 작성 페이지 접속시 에디터에 커서를 위치하도록 하려면 설정해주세요.
-		focus : true,
-		// callbacks은 이미지 업로드 처리입니다.
-		callbacks : {
-			onImageUpload : function(files, editor, welEditable) {
-				// 다중 이미지 처리를 위해 for문을 사용했습니다.
-				for (var i = 0; i < files.length; i++) {
-					imageUploader(files[i], this);
+			// focus는 작성 페이지 접속시 에디터에 커서를 위치하도록 하려면 설정해주세요.
+			focus : true,
+			toolbar: [
+				['style', ['style']],
+				['font', ['bold', 'underline', 'clear']],
+				['fontname', ['fontname']],
+				['color', ['color']],
+				['para', ['ul', 'ol', 'paragraph']],
+				['table', ['table']],
+				['insert', ['link', 'picture']],
+				['view', ['codeview', 'help']],
+			],
+			// callbacks은 이미지 업로드 처리입니다.
+			callbacks : {
+				onImageUpload : function(files, editor, welEditable) {
+					// 다중 이미지 처리를 위해 for문을 사용했습니다.
+					for (var i = 0; i < files.length; i++) {
+						imageUploader(files[i], this);
+					}
+				},
+
+				onMediaDelete: function($target,editor,$editable){
+
+					let deletedImageUrl = $target.attr('src').split('/').pop();
+
+					deleteSummernoteImageFile(deletedImageUrl);
+
 				}
-			},
-
-			onMediaDelete: function($target,editor,$editable){
-
-				let deletedImageUrl = $target.attr('src').split('/').pop();
-
-				deleteSummernoteImageFile(deletedImageUrl);
 
 			}
 
-		}
+		});
 
 	});
+
+
+
+
 
 
 

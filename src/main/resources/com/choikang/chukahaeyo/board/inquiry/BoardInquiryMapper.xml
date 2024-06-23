@@ -35,8 +35,6 @@
         <include refid="searchSql"/>
     </select>
 
-
-
     <select id="getInquiryList" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO" resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
         SELECT inquiryID , inquiryQuestion , inquiryQuestionTitle , inquiryAnswer , inquiryPostDate , i.memberID , adminID , memberEmail , memberName
         FROM Inquiry i LEFT JOIN Members m ON m.memberID = i.memberID
@@ -50,7 +48,7 @@
         insert into Inquiry (
         inquiryQuestion , inquiryQuestionTitle , inquiryPostDate , memberID
         ) values(
-        #{inquiryQuestion} , #{inquiryQuestionTitle} , now() , #{memberID}
+        #{inquiryQuestion} , #{inquiryQuestionTitle} , DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR) , #{memberID}
         )
         <selectKey keyProperty="inquiryID" order="AFTER" resultType="int">
             SELECT LAST_INSERT_ID()
@@ -62,7 +60,6 @@
         FROM Inquiry i LEFT JOIN Members m ON m.memberID = i.memberID
         WHERE inquiryID = #{inquiryID}
     </select>
-
 
     <update id="insertAnswer" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO">
         <![CDATA[

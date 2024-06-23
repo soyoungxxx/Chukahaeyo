@@ -1,4 +1,4 @@
-import com.choikang.chukahaeyo.payment.PaymentService;
+import com.choikang.chukahaeyo.s3.S3Service;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -13,18 +13,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = {config.MvcConfig.class})
 @WebAppConfiguration
 @Slf4j
-public class CancelTest {
+public class S3Test {
     @Autowired
-    PaymentService paymentService;
+    S3Service s3Service;
 
     @Test
-    public void cancelTest() {
-        paymentService.cancelPayment("imp_817444192380");
-    }
-
-    @Test
-    public void tokenTest() {
-        String token = paymentService.getToken();
-        log.debug(token);
+    public void cancelTest(){
+        s3Service.deleteFile("d26e29fe-fb0b-4807-bb1d-.png");
     }
 }

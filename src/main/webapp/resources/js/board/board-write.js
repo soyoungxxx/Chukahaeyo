@@ -1,17 +1,29 @@
 window.addEventListener("load" , function(e){
-	//여기 아래 부분
+
 	$('#summernote').summernote({
 
 		// 에디터 크기 설정
-		width: 800,
-		height: 300,
+		width: 1000,
+		height: 500,
 		minHeight: null,             // 최소 높이
 		maxHeight: null,
 		// 에디터 한글 설정
 		lang: 'ko-KR',
-
+		placeholder: "내용을 입력하세요.",
 		// focus는 작성 페이지 접속시 에디터에 커서를 위치하도록 하려면 설정해주세요.
 		focus : true,
+
+		toolbar: [
+			['style', ['style']],
+			['font', ['bold', 'underline', 'clear']],
+			['fontname', ['fontname']],
+			['color', ['color']],
+			['para', ['ul', 'ol', 'paragraph']],
+			['table', ['table']],
+			['insert', ['link', 'picture']],
+			['view', ['codeview', 'help']],
+		],
+
 		// callbacks은 이미지 업로드 처리입니다.
 		callbacks : {
 			onImageUpload : function(files, editor, welEditable) {
@@ -41,6 +53,7 @@ window.addEventListener("load" , function(e){
 
 
 	$(".write-button").click(function(e){
+		let ismy = $(".ismy").val();
 		let contents = $('#summernote').summernote('code');
 		let title = $(".title-text").val();
 		contents = contents.trim();
@@ -87,9 +100,16 @@ window.addEventListener("load" , function(e){
 		data_2.setAttribute('name', 'commContents');
 		data_2.setAttribute('value', contents);
 
+
+
+		const data_3 = document.createElement('input');
+		data_3.setAttribute('type', 'hidden');
+		data_3.setAttribute('name', 'ismy');
+		data_3.setAttribute('value', ismy);
 		// form 태그에 input 태그 넣고 summit 가능하게 처리
 		form.appendChild(data_1);
 		form.appendChild(data_2);
+		form.appendChild(data_3);
 
 		document.body.appendChild(form);
 
