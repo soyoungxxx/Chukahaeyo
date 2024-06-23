@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <link rel="stylesheet" href="/resources/css/include/footer.css"/>
 <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
@@ -11,7 +12,8 @@
     </div>
     <div>
         <div class="customer-center">고객센터</div>
-        <a href="#">자주 묻는 질문</a>
+        <a href="/board/service">자주 묻는 질문</a><br>
+        <a href="/board/inquiry/list?page=1&query=${sessionScope.login.memberName}&querytype=writer">1:1 문의</a>
     </div>
     <div>
         <img src="${pageContext.request.contextPath}/resources/img/logo/gray-logo.png" style="width: 180px; height: 55px;">
