@@ -117,7 +117,7 @@
                                     </table>
                                 </div>
 
-                                <l class='paging'>
+                                <ul class='paging'>
                                     <c:if test="${map.isPrev }">
                                         <li>
                                             <a href="allInquiryList?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
@@ -138,7 +138,7 @@
                                             <a href="allInquiryList?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
                                                 > </a></li>
                                     </c:if>
-                                </l>
+                                </ul>
                             </div>
 
                         </div>
@@ -157,67 +157,6 @@
 
 </main>
 
-<script>
-    function updateSelectedCount() {
-        const checkboxes = document.getElementsByClassName('member-select-btn');
-        let selectedCount = 0;
-
-        for (let i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                selectedCount++;
-            }
-        }
-        document.getElementById('selected-count').innerText = selectedCount + '개 항목 선택';
-    }
-
-    function selectAll() {
-        const checkboxes = document.getElementsByClassName('member-select-btn');
-
-        for (let i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = true;
-        }
-
-        updateSelectedCount();
-    }
-
-    function deselectAll() {
-        const checkboxes = document.getElementsByClassName('member-select-btn');
-
-        for (let i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = false;
-        }
-        updateSelectedCount();
-    }
-
-    function deleteMembers() {
-        var selectedMembers = [];
-        $('.member-select-btn:checked').each(function () {
-            selectedMembers.push($(this).attr('id').replace('checkbox', ''));
-        });
-
-        if (selectedMembers.length === 0) {
-            alert("삭제할 회원을 선택하세요.");
-            return;
-        }
-
-        console.log(selectedMembers);
-
-        $.ajax({
-            url: '/admin/memberDelete',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({memberIds: selectedMembers}),
-            success: function () {
-                alert("회원 삭제가 완료되었습니다.");
-                location.reload();
-            },
-            error: function (xhr, status, error) {
-                alert("회원 삭제 중 오류가 발생했습니다.");
-                console.error(error);
-            }
-        });
-    }
-</script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/resources/js/admin/jquery.js"></script>

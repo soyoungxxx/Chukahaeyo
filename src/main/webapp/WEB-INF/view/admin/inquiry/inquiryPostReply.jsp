@@ -16,7 +16,6 @@
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" href="/resources/css/pageFrame/admin.css"/>
-    <link rel="stylesheet" href="/resources/css/board/allInquiryList.css"/>
     <link rel="stylesheet" href="/resources/css/board/inquiryPostReply.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css"/>
     <link rel="stylesheet" href="/resources/css/admin/admin.css">
@@ -113,12 +112,12 @@
                                             ${object.inquiryAnswer}
                                         </div>
                                         <div class="inquiry-answer-info">답변자 : 관리자</div>
+                                        <c:if test="${object.adminID == 0}">
+                                            <div class="inquiry-list">
+                                                <div class="inquiry-list-button">답변</div>
+                                            </div>
+                                        </c:if>
                                     </div>
-                                    <c:if test="${object.adminID == 0}">
-                                        <div class="inquiry-list">
-                                            <div class="inquiry-list-button">답변</div>
-                                        </div>
-                                    </c:if>
                                 </div>
 
 

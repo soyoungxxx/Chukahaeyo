@@ -38,9 +38,6 @@ public class AdminBoardController {
     @PostMapping("/write")
     public String inquiryWriteInsert(InquiryVO vo , HttpSession session) throws UnsupportedEncodingException {
         vo.setAdminID((int)session.getAttribute("adminID"));
-        System.out.println(vo.getInquiryID());
-        System.out.println("왜 안될까??? 진심으로 궁금함");
-
 
         boardInquiryService.insertAnswer(vo);
         return "redirect:write?inquiryID="+vo.getInquiryID();
