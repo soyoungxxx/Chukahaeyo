@@ -3,13 +3,13 @@ window.addEventListener("load" , function(e){
 	$('#summernote').summernote({
 
 		// 에디터 크기 설정
-		width: 800,
-		height: 300,
+		width: 1000,
+		height: 500,
 		minHeight: null,             // 최소 높이
 		maxHeight: null,
 		// 에디터 한글 설정
 		lang: 'ko-KR',
-
+		placeholder: "내용을 입력하세요.",
 		// focus는 작성 페이지 접속시 에디터에 커서를 위치하도록 하려면 설정해주세요.
 		focus : true,
 
