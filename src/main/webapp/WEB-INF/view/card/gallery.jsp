@@ -61,9 +61,9 @@
                 <div class="select-wrapper">
                     <select id="category">
                         <option value="all">카테고리 선택</option>
-                        <option value="1">카테고리 1</option>
-                        <option value="2">카테고리 2</option>
-                        <option value="3">카테고리 3</option>
+                        <option value="1">내 생일 카드</option>
+                        <option value="2">반려동물 생일 카드</option>
+                        <option value="3">파티 초대 카드</option>
                     </select>
                 </div>
                 <div class="category-wrapper">
