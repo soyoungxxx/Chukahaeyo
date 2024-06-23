@@ -11033,9 +11033,62 @@ a.text-dark:focus {
     background-color: #e74a3b;
 }
 
-.canceled-payment{
+.success-payment > a{
+    color: #858796;
+    text-decoration: none;
+}
+
+.canceled-payment > a{
     color: #ee2222;
     font-weight: 500;
+    text-decoration: none;
+}
+
+
+.payment-status{
+    overflow: visible;
+}
+
+.order-status-info {
+    width: 16px;
+    height: 16px;
+    margin: 2px 2px 3px 2px;
+}
+
+.pay-tooltip {
+    display: inline-block;
+    position: relative;
+}
+
+.pay-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 100;
+    top: 50%; /* 툴팁의 위치를 아래로 설정 */
+    left: -400%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.pay-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.order-filter-form{
+    margin-bottom: 1rem !important;
+}
+
+#order-filter-btn{
+    margin-top: 2rem;
 }
 
 /* 1:1문의 */

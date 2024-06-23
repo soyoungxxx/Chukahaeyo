@@ -38,9 +38,6 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <!-- <h1 class="h3 mb-2 text-gray-800"> 주문목록</h1> -->
-
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -48,6 +45,43 @@
                         </div>
 
                         <div class="card-body">
+
+                            <form action="/admin/adminOrderList" id="filterForm" class="order-filter-form"
+                                  method="post">
+                                <div class="form-row">
+                                    <div class="col-md-3 mb-3">
+                                        <label for="startDate">시작 날짜</label>
+                                        <input type="date" class="form-control" id="startDate" name="startDate"
+                                               value="${startDate}">
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="endDate">종료 날짜</label>
+                                        <input type="date" class="form-control" id="endDate" name="endDate"
+                                               value="${endDate}">
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <label for="status">결제 상태</label>
+                                        <select class="form-control" id="status" name="status">
+                                            <option value="" ${status == '' ? 'selected' : ''}>전체</option>
+                                            <option value="success" ${status == 'success' ? 'selected' : ''}>결제 완료
+                                            </option>
+                                            <option value="canceled" ${status == 'canceled' ? 'selected' : ''}>결제 취소
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <label for="search">주문자명</label>
+                                        <input type="text" class="form-control" id="search" name="search"
+                                               placeholder="주문자명 입력" value="${search}">
+                                    </div>
+                                    <div class="col-md-2 mb-2">
+                                        <input type="submit" class="btn btn-primary w-100" id="order-filter-btn"
+                                               value="필터 적용">
+                                    </div>
+                                </div>
+                            </form>
+
+
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable">
                                     <thead>
@@ -58,8 +92,13 @@
                                         <th>주문자명</th>
                                         <th>주문자 이메일</th>
                                         <th>주문일자</th>
-                                        <th>주문상태</th>
-<%--                                        <th>영수증 URL</th>--%>
+                                        <th class="payment-status">주문상태
+                                            <div class="pay-tooltip">
+                                                <img src="/resources/img/admin/help-mark.png" class="order-status-info"
+                                                     alt="info">
+                                                <div class="tooltip-text">상태 내역을 클릭하면 영수증을 확인하실 수 있습니다.</div>
+                                            </div>
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -68,7 +107,8 @@
                                             <td>${payment.payID}</td>
                                             <td>${payment.merchantUid}</td>
                                             <td>
-                                                <fmt:formatNumber type="number" maxFractionDigits="3" value="${payment.payAmount}"/>
+                                                <fmt:formatNumber type="number" maxFractionDigits="3"
+                                                                  value="${payment.payAmount}"/>
                                             </td>
                                             <td>${payment.memberName}</td>
                                             <td>${payment.memberEmail}</td>
@@ -76,45 +116,48 @@
                                                 <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.payDate}"/>
                                             </td>
                                             <c:if test="${payment.canceledAt == 0}">
-                                                <td>결제 완료</td>
+                                                <td class="success-payment">
+                                                    <a href="${payment.receiptURL}">결제 완료</a>
+                                                </td>
+
                                             </c:if>
                                             <c:if test="${payment.canceledAt != 0}">
-                                                <td class="canceled-payment">결제 취소</td>
+                                                <td class="canceled-payment">
+                                                    <a href="${payment.cancelReceiptURL}">결제 취소</a>
+                                                </td>
                                             </c:if>
-<%--                                            <td>${payment.receiptURL}</td>--%>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
+                        <%-- 페이징 처리 --%>
                         <nav aria-label="page-nav" class="pagination-nav">
                             <ul class="pagination">
                                 <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
-                                    <a class="page-link" href="?page=${currentPage - 1}&size=${pageSize}" tabindex="-1">Previous</a>
+                                    <a class="page-link" href="#" onclick="submitPageForm(${currentPage - 1})"
+                                       tabindex="-1">Previous</a>
                                 </li>
                                 <c:forEach var="i" begin="1" end="${totalPages}">
                                     <li class="page-item ${i == currentPage ? 'active' : ''}">
-                                        <a class="page-link" href="?page=${i}&size=${pageSize}">${i}</a>
+                                        <a class="page-link" href="#" onclick="submitPageForm(${i})">${i}</a>
                                     </li>
                                 </c:forEach>
                                 <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
-                                    <a class="page-link" href="?page=${currentPage + 1}&size=${pageSize}">Next</a>
+                                    <a class="page-link" href="#" onclick="submitPageForm(${currentPage +1})">Next</a>
                                 </li>
                             </ul>
                         </nav>
 
-
                     </div>
-
                 </div>
-<%--                <!-- /.container-fluid -->--%>
-
             </div>
+
             <!-- End of Main Content -->
 
             <%@ include file="/WEB-INF/view/include/adminFooter.jsp" %>
-
         </div>
     </div>
     <!-- End of Content Wrapper -->
@@ -122,6 +165,18 @@
     <%@ include file="/WEB-INF/view/include/adminLogoutModal.jsp" %>
 
 </main>
+
+<script>
+    function submitPageForm(pageNumber) {
+        const form = document.getElementById('filterForm');
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'page';
+        input.value = pageNumber;
+        form.appendChild(input);
+        form.submit();
+    }
+</script>
 
 <!-- Bootstrap core JavaScript-->
 <script src="/resources/js/admin/jquery.js"></script>

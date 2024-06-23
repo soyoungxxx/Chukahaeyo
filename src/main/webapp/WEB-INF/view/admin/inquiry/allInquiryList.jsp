@@ -157,6 +157,10 @@
 
 </main>
 
+<script>
+
+</script>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="/resources/js/admin/jquery.js"></script>
