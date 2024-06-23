@@ -53,7 +53,7 @@ jobs:
         sudo rm -rf /home/ubuntu/shinhan_team2_chukahaeyo/apache-tomcat-9.0.89/webapps/ROOT
         sudo rm -rf /home/ubuntu/shinhan_team2_chukahaeyo/apache-tomcat-9.0.89/webapps/ROOT.war
         EOF
-
+        
     - name: Upload WAR file
       run: |
         scp -i ~/.ssh/id_rsa target/chukahaeyo-1.0.0-BUILD-SNAPSHOT.war ubuntu@3.36.97.132:/home/ubuntu/shinhan_team2_chukahaeyo/apache-tomcat-9.0.89/webapps/ROOT.war
