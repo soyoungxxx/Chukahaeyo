@@ -81,6 +81,12 @@
         WHERE cardID = #{cardID}
     </update>
 
+    <update id="togglePublicStatus" parameterType="int">
+        UPDATE Card
+        SET cardIsPublic = NOT cardIsPublic
+        WHERE cardID = #{cardID}
+    </update>
+
     <insert id="insertCardGuestBook" parameterType="com.choikang.chukahaeyo.card.model.GuestBookVO">
         INSERT INTO GuestBook (guestName, guestBookText, guestBookPostDate, cardID)
         VALUES (#{guestName}, #{guestBookText}, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR), #{cardID})

@@ -81,6 +81,17 @@
     align-items: center;
     padding: 10px 10px 10px 20px;
 }
+.left-section {
+    display: flex;
+    align-items: center;
+}
+.right-section {
+    display: flex;
+    align-items: center;
+}
+.right-section button {
+    margin-left: 10px; /* 버튼 사이의 간격 조절 */
+}
 
 .card-info > .like {
     font-size: 17px;
@@ -88,7 +99,7 @@
     word-wrap: break-word;
 }
 
-.card-info > .copy-button {
+.card-info > .right-section > .copy-button {
     font-family: "Noto Sans KR", sans-serif;
     border: none;
     border-radius: 10px;
