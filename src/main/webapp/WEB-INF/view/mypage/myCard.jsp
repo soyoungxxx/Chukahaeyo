@@ -28,7 +28,7 @@
                 <div class="mypage-content">
                     <div class="card-grid">
                         <c:forEach var="card" items="${cardList}">
-                            <div class="card" data-card-id="${card.cardID}">
+                            <div class="card" data-card-id="${card.cardID}" data-card-name="${card.cardName}">
                                 <a href="#" class="card-link">
                                     <div class="card-image">
                                         <img src="${card.templateThumbnail}" alt="Card Image">
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="right-section">
                                         <button class="toggle-public" data-card-id="${card.cardID}">
-                                            <span>${card.cardIsPublic ? "🔓" : "🔒"}</span>
+                                                ${card.cardIsPublic ? "🔓" : "🔒"}
                                         </button>
                                         <button class="copy-button" data-card-id="${card.cardID}" data-clipboard-text="">
                                             URL 복사
@@ -101,9 +101,8 @@
                 type: 'POST',
                 data: { cardID: cardId },
                 success: function(response) {
-                    const span = button.find('span');
-                    const isPublic = span.text() === '🔓';
-                    span.text(isPublic ? '🔒' : '🔓');
+                    const isPublic = button.text() === '🔓';
+                    button.text(isPublic ? '🔒' : '🔓');
 
                     // 서버에서 반환된 카드 정보를 콘솔에 출력
                     console.log('카드 정보 업데이트: ', response);

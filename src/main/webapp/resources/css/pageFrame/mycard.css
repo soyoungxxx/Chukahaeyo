@@ -111,3 +111,16 @@
     padding: 5px 10px 5px 10px;
     cursor: pointer;
 }
+
+.toggle-public {
+    font-size: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s; /* 눌렀다 켜지는 느낌을 위한 트랜지션 */
+}
+
+.toggle-public:active {
+    transform: scale(0.9); /* 눌렀을 때 살짝 줄어드는 효과 */
+    color: #007BFF; /* 눌렀을 때 색상 변경 */
+}
