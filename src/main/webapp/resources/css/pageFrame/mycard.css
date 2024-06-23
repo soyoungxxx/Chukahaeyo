@@ -81,35 +81,19 @@
     align-items: center;
     padding: 10px 10px 10px 20px;
 }
-.left-section {
-    display: flex;
-    align-items: center;
-}
-.right-section {
-    display: flex;
-    align-items: center;
-}
-.right-section button {
-    margin-left: 10px; /* 버튼 사이의 간격 조절 */
-}
 
-.card-info > .like {
-    font-size: 17px;
+.card-info > .left-section {
+    display: flex;
+    align-items: center;
+    font-size: 19px;
     margin: 0;
     word-wrap: break-word;
 }
 
-.card-info > .right-section > .copy-button {
-    font-family: "Noto Sans KR", sans-serif;
-    border: none;
-    border-radius: 10px;
-    background-color: #4B5CFF;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    color: white;
-    padding: 5px 10px 5px 10px;
-    cursor: pointer;
+.card-info > .right-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .toggle-public {
@@ -123,4 +107,17 @@
 .toggle-public:active {
     transform: scale(0.9); /* 눌렀을 때 살짝 줄어드는 효과 */
     color: #007BFF; /* 눌렀을 때 색상 변경 */
+}
+
+.card-info > .right-section > .copy-button {
+    font-family: "Noto Sans KR", sans-serif;
+    border: none;
+    border-radius: 10px;
+    background-color: #4B5CFF;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
 }
