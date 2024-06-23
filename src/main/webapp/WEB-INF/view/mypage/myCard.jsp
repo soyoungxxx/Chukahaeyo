@@ -28,7 +28,7 @@
                 <div class="mypage-content">
                     <div class="card-grid">
                         <c:forEach var="card" items="${cardList}">
-                            <div class="card" data-card-id="${card.cardID}">
+                            <div class="card" data-card-id="${card.cardID}" data-card-name="${card.cardName}">
                                 <a href="#" class="card-link">
                                     <div class="card-image">
                                         <img src="${card.templateThumbnail}" alt="Card Image">
@@ -48,12 +48,17 @@
                                     </div>
                                 </a>
                                 <div class="card-info">
-                                    <div class="like">
+                                    <div class="left-section">
                                         👍 Like ${card.cardLikeCnt}
                                     </div>
-                                    <button class="copy-button" data-card-id="${card.cardID}" data-clipboard-text="">
-                                        URL 복사
-                                    </button>
+                                    <div class="right-section">
+                                        <button class="toggle-public" data-card-id="${card.cardID}">
+                                                ${card.cardIsPublic ? "🔓" : "🔒"}
+                                        </button>
+                                        <button class="copy-button" data-card-id="${card.cardID}" data-clipboard-text="">
+                                            URL 복사
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </c:forEach>
@@ -83,6 +88,33 @@
         }).on('error', function(e) {
             console.error('URL 복사 실패: ', e);
             alert('URL 복사에 실패했습니다.');
+        });
+
+        // 공개 상태 토글
+        $('.toggle-public').on('click', function() {
+            const button = $(this);
+            const cardId = button.data('card-id');
+            const cardName = button.closest('.card').data('card-name');
+
+            $.ajax({
+                url: '/card/togglePublicStatus',
+                type: 'POST',
+                data: { cardID: cardId },
+                success: function(response) {
+                    const isPublic = button.text() === '🔓';
+                    button.text(isPublic ? '🔒' : '🔓');
+
+                    // 서버에서 반환된 카드 정보를 콘솔에 출력
+                    console.log('카드 정보 업데이트: ', response);
+
+                    // 공개 상태 변경 알림
+                    alert(cardName + ' 카드를 ' + (isPublic ? '비공개' : '공개') + ' 상태로 바꿉니다.');
+                },
+                error: function(err) {
+                    console.error('공개 상태 변경 실패: ', err);
+                    alert('공개 상태 변경에 실패했습니다.');
+                }
+            });
         });
     });
 
