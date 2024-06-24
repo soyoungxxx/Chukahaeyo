@@ -37,20 +37,22 @@
                 <div class="mypage-content">
                     <div class="container">
                         <input type="hidden" class="inquiry-id" value="${object.inquiryID}"/>
-                        <div class="inquiry-logo">문의 내역</div>
                         <div class="inquiry-info">
                             <div class="inquiry-info-title">${object.inquiryQuestionTitle}</div>
                             <div class="inquiry-info-sub">작성자 : ${object.memberName} | 작성일 : <fmt:formatDate value="${object.inquiryPostDate }" pattern="yy/MM/dd HH:mm"/></div>
                         </div>
                         <div class="inquiry-content">
-                            ${object.inquiryQuestion}
+                            <div class="inquiry-content-sub">
+                                ${object.inquiryQuestion}
+                            </div>
                         </div>
                         <c:if test="${object.adminID != 0}">
                             <div class="inquiry-answer">
+                                <div class="inquiry-answer-info">답변</div>
                                 <div class="inquiry-answer-content">
                                         ${object.inquiryAnswer}
                                 </div>
-                                <div class="inquiry-answer-info">답변자 : 관리자</div>
+
                             </div>
                         </c:if>
 
