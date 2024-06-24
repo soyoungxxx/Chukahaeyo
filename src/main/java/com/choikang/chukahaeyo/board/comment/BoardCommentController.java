@@ -14,45 +14,32 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 
-
 @Controller
 @RequestMapping("/board")
 public class BoardCommentController {
-
     @Autowired
     BoardCommentService boardCommentService;
 
-
-
     @ResponseBody
     @GetMapping("/comment/list")
-    public Map commentList(ReplyVO vo , Model model) {
-
-        
-        
+    public Map commentList(ReplyVO vo, Model model) {
 
         return boardCommentService.index(vo);
     }
 
-
     @ResponseBody
     @PostMapping("/comment/mainwrite")
-    public int commentMainWrite(ReplyVO vo , HttpSession session) {
+    public int commentMainWrite(ReplyVO vo, HttpSession session) {
+        vo.setMemberID((int) session.getAttribute("memberID"));
 
-
-        vo.setMemberID((int)session.getAttribute("memberID"));
         return boardCommentService.mainInsert(vo);
     }
 
     @ResponseBody
     @PostMapping("/comment/subwrite")
-    public int commentSubWrite(ReplyVO vo , HttpSession session) {
+    public int commentSubWrite(ReplyVO vo, HttpSession session) {
+        vo.setMemberID((int) session.getAttribute("memberID"));
 
-
-        vo.setMemberID((int)session.getAttribute("memberID"));
         return boardCommentService.subInsert(vo);
     }
-
-
-
 }
