@@ -14,11 +14,12 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <script>
-        function cancelPayment(payNo) {
+        function cancelPayment(payID, payNo) {
             console.log("결제 번호 " + payNo + "가 취소되었습니다.");
             $.ajax({
                 url: '/payments/cancel',
                 data: {
+                    payID :payID,
                     payNo :payNo
                 },
                 type: 'POST',
@@ -75,7 +76,7 @@
                                     <p class="cancel-info">취소된 상품입니다.</p>
                                 </c:if>
                                 <c:if test="${payment.isWithinTwoDays == '1' && payment.canceledAt == 0}">
-                                    <a href="#" onclick="cancelPayment('${payment.payNo}');">취소</a>
+                                    <a href="#" onclick="cancelPayment('${payment.payID}', '${payment.payNo}');">취소</a>
                                 </c:if>
 
                             </div>

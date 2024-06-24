@@ -33,5 +33,11 @@
         WHERE payNo = #{payNo}
     </update>
 
+    <delete id="deletePayment" parameterType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        UPDATE Card
+        SET isCanceled = true
+        WHERE payID = #{payID}
+    </delete>
+
 
 </mapper>

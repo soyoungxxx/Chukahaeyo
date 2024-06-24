@@ -13,6 +13,14 @@
     <script>
         const pwdRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,20}$/;
 
+        $(document).ready(function() {
+            $('#memberCheckPwd').on('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    authPwd();
+                }
+            });
+        });
+
         function authPwd() {
             if ($("#memberCheckPwd").val() == '') {
                 alert("비밀번호를 입력해 주세요");
