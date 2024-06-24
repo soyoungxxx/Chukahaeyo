@@ -62,7 +62,7 @@ public class EditController {
         return "redirect:" + redirectURL;
     }
 
-    @PostMapping("/completedCard/{cardID}")
+    @GetMapping("/completedCard/{cardID}")
     public String getCompletedCardPage(@PathVariable int cardID, Model model) {
         // 카드 정보, editService 호출 후 뷰에 값 전달
         CardVO cardVO = editService.getCompletedCardPage(cardID);
