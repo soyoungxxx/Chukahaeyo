@@ -336,3 +336,7 @@ canvas {
 .extra-account {
      display: none;
 }
+
+.more-card {
+    cursor: pointer;
+}

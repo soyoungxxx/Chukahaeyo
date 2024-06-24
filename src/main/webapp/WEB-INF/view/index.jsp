@@ -105,9 +105,10 @@
         slideInterval = setInterval(showSlides, 3000);
     }
 
+
     // 카드 또는 이미지 클릭 시 URL로 이동하는 함수
     function redirectToUrl(element) {
-        var card = element.closest('.card');
+        var card = element.closest('.main-card') || element.closest('.card');
         var url = card ? card.getAttribute('data-url') : element.getAttribute('data-url');
         if (url) {
             window.location.href = url;

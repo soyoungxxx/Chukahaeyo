@@ -52,6 +52,7 @@
     width: 100%;
     height: auto;
     padding-bottom: 10px;
+    filter: blur(1px);
 }
 
 .card-content {

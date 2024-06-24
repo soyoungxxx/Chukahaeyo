@@ -3,9 +3,9 @@ package com.choikang.chukahaeyo.card;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.card.model.GuestBookVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface CardMapper {
@@ -15,7 +15,9 @@ public interface CardMapper {
     void updateCardPaymentStatus(int cardID);
     void updateCardLike(int cardID);
     void insertCardGuestBook(GuestBookVO guestBookVO);
-  
+
+    void togglePublicStatus(int cardID);
+
     String getCardDesign(int cardID);
     CardVO getCompletedCardPage(int cardID);
 
@@ -25,4 +27,6 @@ public interface CardMapper {
     List<CardVO> getTop3CardList();
     List<CardVO> getLatest3CardList();
     List<GuestBookVO> selectGuestBooks(int cardID);
+    List<Integer> selectCardsByCategory(String date);
+    boolean selectCardIsPublic(int cardID);
 }

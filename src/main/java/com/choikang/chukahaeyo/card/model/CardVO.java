@@ -9,6 +9,7 @@ public class CardVO {
     private int cardID;
     private String cardName;
     private boolean cardIsPublic;
+    private boolean isCanceled;
     private int cardLikeCnt;
     private int cardPrice;
     private Timestamp cardDate;

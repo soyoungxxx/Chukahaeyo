@@ -20,15 +20,15 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
 </head>
 <body>
-<c:if test="${categoryPath} == myCard">
+<c:if test="${categoryPath == 'myCard'}">
     <c:set var="categoryID" value="1"/>
     <c:set var="categoryName" value="내 생일 카드"/>
 </c:if>
-<c:if test="${categoryPath} == myPet">
+<c:if test="${categoryPath == 'myPet'}">
     <c:set var="categoryID" value="2"/>
     <c:set var="categoryName" value="반려동물 생일 카드"/>
 </c:if>
-<c:if test="${categoryPath} == invitation">
+<c:if test="${categoryPath == 'invitation'}">
     <c:set var="categoryID" value="3"/>
     <c:set var="categoryName" value="초대 카드"/>
 </c:if>
@@ -46,7 +46,7 @@
                         <div class="edit-div-components">
                             <span class="head-text">이름</span>
                             <span class="edit-warn-text">필수 항목입니다.</span>
-                            <input type="text" class="edit-text" id="edit-name" maxlength="18"/>
+                            <input type="text" class="edit-text" id="edit-name" maxlength="7"/>
                         </div>
                         <hr>
                         <div class="edit-div-components">
@@ -99,10 +99,7 @@
                                 <!-- -->
                     </span>
                             <div class="edit-showTime">
-                                <input type="radio" checked id="edit-timeRadio" name="edit-time">시각 선택 <br>
-                                <input type="radio" id="edit-timesRadio" name="edit-time"/>범위 시간 선택<br>
                                 <input type="time" id="edit-time" placeholder="시간 선택"/>
-                                <input type="time" id="edit-times" placeholder="시간 선택"/>
                             </div>
                         </div>
                         <hr>
@@ -183,7 +180,7 @@
             </div>
             <div class="edit-frame-div">
                 <c:forEach items="${list}" var="t">
-                    <img src="${t.templateThumbnail}" class="edit-frame" id="${t.templateID}"> <br>
+                    <img src="${t.templateThumbnail}" class="edit-frame" id="${t.templateID}" style="cursor: pointer;"> <br>
                 </c:forEach>
             </div>
         </div>
@@ -200,7 +197,6 @@
 <script>
     // 필요한 변수 선언
     let categoryID = Number('${categoryID}');
-    console.log(categoryID);
     let templateThumbnail;
     let address = " ";
 

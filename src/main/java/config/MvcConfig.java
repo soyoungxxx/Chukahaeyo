@@ -1,5 +1,6 @@
 package config;
 
+import com.choikang.chukahaeyo.exception.CompletedCardInterceptor;
 import com.choikang.chukahaeyo.exception.CookieInterceptor;
 import com.choikang.chukahaeyo.exception.AccessControlInterceptor;
 import com.zaxxer.hikari.HikariDataSource;
@@ -72,12 +73,19 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(cookieInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/admin/**");
+//        registry.addInterceptor(completedCardInterceptor())
+//                .addPathPatterns("/card/completedCard/**");
     }
 
 
     @Bean
     public CookieInterceptor cookieInterceptor() {
         return new CookieInterceptor();
+    }
+
+    @Bean
+    public CompletedCardInterceptor completedCardInterceptor() {
+        return new CompletedCardInterceptor();
     }
 
     @Bean

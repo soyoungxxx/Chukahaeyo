@@ -5,6 +5,7 @@ import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -43,6 +44,14 @@ public interface MemberMapper {
     // 결제 내역 가져오기
     List<PaymentVO> getPaymentList(int memberID);
 
+    // 필터링된 결제 내역 가져오기
+    List<PaymentVO> getFilteredPaymentList(
+            // map type으로 넘겨주기 때문에 param 타입을 명시해줘야함
+            @Param("startDate") String startDate,
+            @Param("endDate") String endDate,
+            @Param("status") String status,
+            @Param("search") String search);
+
     // 관리자 페이지 결제 내역 가져오기
     List<PaymentVO> getPaymentAllList();
 
@@ -53,5 +62,9 @@ public interface MemberMapper {
     // 관리자 페이지 멤버 목록 가져오기
     List<MemberVO> getMemberAllList();
 
+    // 회원 탈퇴
     void withdrawMember(MemberVO memberVO);
+
+    // 관리자 페이지 가입자 수
+    int selectTodayRegisterMember(String date);
 }

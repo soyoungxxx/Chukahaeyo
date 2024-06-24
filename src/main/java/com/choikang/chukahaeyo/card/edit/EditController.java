@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -74,6 +75,7 @@ public class EditController {
         // 방명록 정보, editService 호출 후 뷰에 값 전달
         List<GuestBookVO> guestBooks = editService.selectGuestBooks(cardVO.getCardID());
         model.addAttribute("guestBooks", guestBooks);
+
         return "card/completedCard";
     }
 
@@ -96,4 +98,5 @@ public class EditController {
             return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
         }
     }
+
 }

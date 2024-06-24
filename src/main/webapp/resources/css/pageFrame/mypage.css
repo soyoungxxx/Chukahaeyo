@@ -14,8 +14,8 @@
 }
 
 .mypage-header > img {
-    width: 160px;
-    margin: 35px 10px 15px 140px;
+    height: 60px;
+    margin: 25px 10px 15px 100px;
 }
 
 .mypage-header > hr {
@@ -132,8 +132,8 @@
     margin: 20px auto;
 }
 
-.changeInfo > ul > li > #userEmail {
-    background-color: #FAFAFA;
+.changeInfo > ul > li > #memberEmail {
+    background-color: #efefef;
 }
 
 #checkPwdMsg {
@@ -230,6 +230,7 @@
     margin-left: 50px;
     margin-top: 35px;
 }
+
 
 .pwd-auth-form > div > #memberCheckPwd {
     font-family: "Noto Sans KR", sans-serif;

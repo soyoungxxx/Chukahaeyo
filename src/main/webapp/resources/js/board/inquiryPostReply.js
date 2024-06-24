@@ -7,7 +7,7 @@ window.addEventListener('load', function(){
 		$('#summernote').summernote({
 
 			// 에디터 크기 설정
-			width: 760,
+			// width: 760,
 			height: 300,
 			minHeight: null,             // 최소 높이
 			maxHeight: null,
@@ -53,9 +53,7 @@ window.addEventListener('load', function(){
 
 
 
-
-
-	$(".inquiry-list-button").click(function(e){
+	$(".inquiry-list-answer").click(function(e){
 		let contents = $('#summernote').summernote('code');
 		contents = contents.trim();
 		let id = $(".inquiry-id").val();
@@ -71,12 +69,9 @@ window.addEventListener('load', function(){
 		}
 
 
-
-
-
 		const form = document.createElement('form'); // form 태그 생성
 		form.setAttribute('method', 'post'); // 전송 방식 결정 (get or post)
-		form.setAttribute('action', "/admin/board/inquiry/write"); // 전송할 url 지정
+		form.setAttribute('action', "/admin/inquiry/write"); // 전송할 url 지정
 
 
 		// 여러 개의 데이터를 보낼 경우 위와 같은 코드 반복
@@ -85,8 +80,7 @@ window.addEventListener('load', function(){
 		data_1.setAttribute('name', 'inquiryID');
 		data_1.setAttribute('value', id);
 
-
-
+		
 
 		// 여러 개의 데이터를 보낼 경우 위와 같은 코드 반복
 		const data_2 = document.createElement('input');

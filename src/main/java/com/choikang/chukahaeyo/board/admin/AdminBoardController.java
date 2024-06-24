@@ -42,8 +42,6 @@ public class AdminBoardController {
         boardInquiryService.insertAnswer(vo);
         return "redirect:write?inquiryID="+vo.getInquiryID();
 
-
-
     }
 
 

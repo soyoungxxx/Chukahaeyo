@@ -11,6 +11,13 @@ $('.all-content').ready(function () {
     });
     $('#edit-time').change(function () { // 시간
         var time = $('#edit-time').val();
+        if (time.split(":")[0] > 12) {
+            console.log(time.split(":")[0] - 12);
+            console.log("PM " + (time.split(":")[0] - 12) + ":" + time.split(":")[1])
+            time = "PM " + (time.split(":")[0] - 12) + ":" + time.split(":")[1];
+        } else {
+            time = "AM " + time;
+        }
         $('.extra-time').text(time);
     });
     $('#emoji1').change(function () { // 이모지

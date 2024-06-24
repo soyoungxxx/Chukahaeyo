@@ -7,6 +7,10 @@ h2 {
     margin-top: 50px;
 }
 
+input[type="button"] {
+    cursor: pointer;
+}
+
 /*edit, preview, frame이 들어가는 공간*/
 .edit-main-div {
     justify-content: center;
@@ -122,6 +126,7 @@ h2 {
     color: white;
     background-color: #df4849;
     display: inline-block;
+    cursor: pointer;
 }
 
 .edit-inputFile:focus + .edit-file-label,
@@ -262,4 +267,10 @@ input[type="time"] {
     margin: 30px;
     width: 80%;
     height: auto;
+}
+
+#edit-time {
+    border: none;
+    width: 90%;
+    height: 30px;
 }

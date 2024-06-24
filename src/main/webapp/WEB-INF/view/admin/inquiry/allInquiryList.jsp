@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
     <meta charset="utf-8">
     <title>Admin 축하해요</title>
@@ -17,8 +19,6 @@
     <link rel="stylesheet" href="/resources/css/board/allInquiryList.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css"/>
     <link href="/resources/css/admin/all.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
     <link href="/resources/css/admin/admin.css" rel="stylesheet">
 </head>
 <body id="page-top">
@@ -46,36 +46,49 @@
                             <div class="container">
 
                                 <div class="search">
-                                    <form action="list">
-                                        <select class="sort-box" name="sort">
-                                            <option value="all"
-                                                    <c:if test="${inquiryVO.sort == 'all'}">selected</c:if>>전체
-                                            </option>
-                                            <option value="unanswered"
-                                                    <c:if test="${inquiryVO.sort == 'unanswered'}">selected</c:if>>
-                                                답변미완료
-                                            </option>
-                                            <option value="answered"
-                                                    <c:if test="${inquiryVO.sort == 'answered'}">selected</c:if>>
-                                                답변완료
-                                            </option>
-                                        </select>
-                                        <select class="selectbox" name="querytype">
-                                            <option value="all"
-                                                    <c:if test="${inquiryVO.querytype == 'all'}">selected</c:if>>전체
-                                            </option>
-                                            <option value="titlecontent"
-                                                    <c:if test="${inquiryVO.querytype == 'titlecontent'}">selected</c:if>>
-                                                제목+내용
-                                            </option>
-                                            <option value="writer"
-                                                    <c:if test="${inquiryVO.querytype == 'writer'}">selected</c:if>>
-                                                작성자
-                                            </option>
-                                        </select>
-                                        <input class="textbox" type="text" placeholder="검색어" name="query"
-                                               value="${inquiryVO.query}"/>
-                                        <input class="submitbox" type="submit" value="검색"/>
+                                    <form action="/admin/inquiry/allInquiryList">
+                                        <div class="form-row">
+                                            <div class="col-md-3 mb-2">
+                                                <select class="form-control" name="sort">
+                                                    <option value="all"
+                                                            <c:if test="${inquiryVO.sort == 'all'}">selected</c:if>>전체
+                                                    </option>
+                                                    <option value="unanswered"
+                                                            <c:if test="${inquiryVO.sort == 'unanswered'}">selected</c:if>>
+                                                        답변미완료
+                                                    </option>
+                                                    <option value="answered"
+                                                            <c:if test="${inquiryVO.sort == 'answered'}">selected</c:if>>
+                                                        답변완료
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3 mb-2">
+                                                <select class="form-control" name="querytype">
+                                                    <option value="all"
+                                                            <c:if test="${inquiryVO.querytype == 'all'}">selected</c:if>>
+                                                        전체
+                                                    </option>
+                                                    <option value="titlecontent"
+                                                            <c:if test="${inquiryVO.querytype == 'titlecontent'}">selected</c:if>>
+                                                        제목+내용
+                                                    </option>
+                                                    <option value="writer"
+                                                            <c:if test="${inquiryVO.querytype == 'writer'}">selected</c:if>>
+                                                        작성자
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 mb-2">
+                                                <input class="form-control" type="text" placeholder="검색어" name="query"
+                                                       value="${inquiryVO.query}"/>
+                                            </div>
+                                            <div class="col-md-2 mb-2">
+                                                <input class="btn btn-primary w-100" type="submit" value="검색"/>
+                                            </div>
+
+                                        </div>
+
                                     </form>
                                 </div>
 
@@ -117,29 +130,32 @@
                                     </table>
                                 </div>
 
-                                <ul class='paging'>
-                                    <c:if test="${map.isPrev }">
-                                        <li>
-                                            <a href="list?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
-                                                < </a></li>
-                                    </c:if>
-                                    <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
-                                        <c:if test="${p == inquiryVO.page}">
-                                            <li><a href='#;' class='current'>${p}</a></li>
+                                <nav aria-label="page-nav" class="pagination-nav all-inquiry">
+                                    <ul class='pagination'>
+                                        <c:if test="${map.isPrev }">
+                                            <li class="page-item">
+                                                <a class="page-link"  href="allInquiryList?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
+                                                    < </a></li>
                                         </c:if>
-                                        <c:if test="${p != inquiryVO.page}">
+                                        <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
+                                            <c:if test="${p == inquiryVO.page}">
+                                                <li class="page-item ${i == currentPage ? 'active' : ''}"><a class="page-link"  href='#;' class='current'>${p}</a></li>
+                                            </c:if>
+                                            <c:if test="${p != inquiryVO.page}">
+                                                <li class="page-item">
+                                                    <a class="page-link" href='allInquiryList?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a>
+                                                </li>
+                                            </c:if>
+                                        </c:forEach>
+                                        <c:if test="${map.isNext }">
                                             <li>
-                                                <a href='list?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a>
-                                            </li>
+                                                <a class="page-link" href="allInquiryList?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
+                                                    > </a></li>
                                         </c:if>
-                                    </c:forEach>
-                                    <c:if test="${map.isNext }">
-                                        <li>
-                                            <a href="list?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
-                                                > </a></li>
-                                    </c:if>
-                                </ul>
+                                    </ul>
+                                </nav>
                             </div>
+
 
                         </div>
                     </div>
@@ -158,66 +174,9 @@
 </main>
 
 <script>
-    function updateSelectedCount() {
-        const checkboxes = document.getElementsByClassName('member-select-btn');
-        let selectedCount = 0;
 
-        for (let i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                selectedCount++;
-            }
-        }
-        document.getElementById('selected-count').innerText = selectedCount + '개 항목 선택';
-    }
-
-    function selectAll() {
-        const checkboxes = document.getElementsByClassName('member-select-btn');
-
-        for (let i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = true;
-        }
-
-        updateSelectedCount();
-    }
-
-    function deselectAll() {
-        const checkboxes = document.getElementsByClassName('member-select-btn');
-
-        for (let i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = false;
-        }
-        updateSelectedCount();
-    }
-
-    function deleteMembers() {
-        var selectedMembers = [];
-        $('.member-select-btn:checked').each(function () {
-            selectedMembers.push($(this).attr('id').replace('checkbox', ''));
-        });
-
-        if (selectedMembers.length === 0) {
-            alert("삭제할 회원을 선택하세요.");
-            return;
-        }
-
-        console.log(selectedMembers);
-
-        $.ajax({
-            url: '/admin/memberDelete',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({memberIds: selectedMembers}),
-            success: function () {
-                alert("회원 삭제가 완료되었습니다.");
-                location.reload();
-            },
-            error: function (xhr, status, error) {
-                alert("회원 삭제 중 오류가 발생했습니다.");
-                console.error(error);
-            }
-        });
-    }
 </script>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="/resources/js/admin/jquery.js"></script>

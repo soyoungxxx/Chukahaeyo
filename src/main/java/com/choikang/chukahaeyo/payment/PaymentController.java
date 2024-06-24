@@ -47,12 +47,12 @@ public class PaymentController {
 //    }
 
     @PostMapping("/cancel")
-    public ResponseEntity<String> cancelPayment(@RequestParam String payNo) {
+    public ResponseEntity<String> cancelPayment(@RequestParam int payID, @RequestParam String payNo) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json;charset=UTF-8");
         try {
-            paymentService.cancelPayment(payNo);
+            paymentService.cancelPayment(payID, payNo);
             return new ResponseEntity<>(SuccessCode.CANCEL_SUCCESS.getMessage(), headers, SuccessCode.CANCEL_SUCCESS.getHttpStatus());
         } catch (Exception e) {
             return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), headers, ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
