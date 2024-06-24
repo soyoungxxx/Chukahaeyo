@@ -145,8 +145,5 @@ public class MemberService {
 
     public int selectTodayRegisterMember(String date) {
         return memberMapper.selectTodayRegisterMember(date);
-
-    public void withdrawMember(MemberVO memberVO) {
-        memberMapper.withdrawMember(memberVO);
     }
 }
