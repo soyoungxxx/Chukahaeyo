@@ -45,6 +45,16 @@
             <input type="hidden" class="board-id" value="${object.commID}"/>
             <input type="hidden" class="my-member-id" value="${communityVO.memberID}"/>
             <input type="hidden" class="my-member-name" value="${communityVO.memberName}"/>
+            <div class="title-buttons-container">
+                <div class="title">${object.commTitle}</div>
+
+                <c:if test="${object.memberID == memberID}">
+                    <div class="buttons">
+                        <div class="edit"><a href="/board/community/update?commID=${object.commID}">수정</a></div>
+                        <div class="delete">삭제</div>
+                    </div>
+                </c:if>
+            </div>
             <div class="writer-container">
                 <div class="writer-text">${object.memberName}</div>
                 <div class="writer-date">
@@ -52,19 +62,7 @@
                 </div>
             </div>
 
-            <div class="title-container">
-                <div class="title">${object.commTitle}</div>
-                <c:if test="${not empty memberID}">
-                    <c:if test="${object.isRed == 1}">
-                        <div class="like heartred"></div>
-                        <div class="like heartblack" style="display: none;"></div>
-                    </c:if>
-                    <c:if test="${object.isRed != 1}">
-                        <div class="like heartblack"></div>
-                        <div class="like heartred" style="display: none;"></div>
-                    </c:if>
-                </c:if>
-            </div>
+
 
             <div class="content">
                 ${object.commContents}
@@ -76,17 +74,30 @@
                 <input type="hidden" class="page" value="${communityVO.page}"/>
                 <input type="hidden" class="sort" value="${communityVO.sort}"/>
                 <input type="hidden" class="ismy" value="${communityVO.ismy}"/>
+
+                <div class="title-container">
+
+                    <c:if test="${not empty memberID}">
+                        <c:if test="${object.isRed == 1}">
+                            <div class="like heartred"></div>
+                            <div class="like heartblack" style="display: none;"></div>
+                        </c:if>
+                        <c:if test="${object.isRed != 1}">
+                            <div class="like heartblack"></div>
+                            <div class="like heartred" style="display: none;"></div>
+                        </c:if>
+                    </c:if>
+                </div>
                 <div class="list">목록</div>
-                <c:if test="${object.memberID == memberID}">
-                    <div class="edit"><a href="/board/community/update?commID=${object.commID}">수정</a></div>
-                    <div class="delete">삭제</div>
-                </c:if>
+
             </div>
 
             <div class="likecommentdisply-container">
-                <div class="like-display">좋아요 :</div>
+                <div class="like-display"><div class="like-icon"></div></div>
+                <span style="color: #CF8488;">:</span>
                 <div class="like-display-data">${object.boardLike}</div>
-                <div class="comment-display">댓글 :</div>
+                <div class="comment-display"><div class="comment-icon"></div></div>
+                <span style="color: #88D0D2;">:</span>
                 <div class="comment-display-data">${object.replyCount}</div>
             </div>
 

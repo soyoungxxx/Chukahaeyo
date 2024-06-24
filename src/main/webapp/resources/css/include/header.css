@@ -7,7 +7,7 @@
     min-width: 1400px;
     display: flex;
     flex-direction: row;
-    align-items: end;
+    align-items: flex-end;
     border-bottom: 1px solid black;
     justify-content: center;
 }
@@ -16,7 +16,7 @@
 .logo {
     width: 180px;
     height: 65px;
-    background-image: url("/resources/img/logo/logo.png");
+    background-image: url("/resources/img/logo/logo3.png");
     background-size: contain;
     background-repeat: no-repeat;
     cursor : pointer;
@@ -40,28 +40,34 @@
     color: #949FFF;
 }
 
-.gallery-community-menu{
+.gallery-community-menu {
     display: none;
     border: 1px solid black;
-    margin: 0 10px 10px 10px;
+    margin: 2.5px 10px 10px -32px;
     z-index: 100;
     background-color: white;
     position: absolute;
-    width: 150px;
+    width: 130px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-.gallery-community-menu hr{
+.gallery-community-menu hr {
     margin: 0;
+    border: none;
+    border-top: 1px solid #e0e0e0;
 }
 
-.gallery-community-menu-item{
+.gallery-community-menu-item {
     cursor: pointer;
     padding: 10px;
     white-space: nowrap;
+    transition: background-color 0.3s ease;
 }
 
 .gallery-community-menu-item:hover {
     background-color: #f0f0f0;
+    border-radius: 4px;
 }
 
 /*nav2*/

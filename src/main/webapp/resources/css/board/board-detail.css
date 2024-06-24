@@ -3,8 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
 
 body .container{
-    font-family: "Jua", sans-serif;
-    font-weight: 400;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
     font-size: 20px;
     font-style: normal;
   }  
@@ -32,11 +32,10 @@ body .container{
     background-image: url("/resources/img/logo/community.png");
     background-size: contain;
     background-repeat: no-repeat;
-    width: 100px;
-    height: 40px;
+    width: 200px;
+    height: 80px;
 
-    margin-top: 40px;
-    margin-bottom: 80px;
+    margin: 20px 40px 40px 20px;
 
 
     position: relative;
@@ -45,8 +44,18 @@ body .container{
 
 
 /*writer-container*/
+.writer-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+
+}
+
+
 .writer-container .writer-text{
     margin-bottom: 5px;
+    margin-right: 10px;
+    color: #535353;
 }
 
 .writer-container .writer-date {
@@ -62,13 +71,20 @@ body .container{
     flex-direction: row;
     justify-content: space-between;
 }
-
-.title-container .title {
+.title-buttons-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.buttons{
+    display: flex;
+    flex-direction: row;
+}
+.title {
     width: 800px;
     min-height: 50px;
     font-size: 50px;
     color: #535353;
-    margin-bottom: 50px;
 }
 .title-container .heartred{
     background-image: url("/resources/img/board/heartred.png");
@@ -77,6 +93,7 @@ body .container{
     height: 50px;
     background-repeat: no-repeat;
     cursor:pointer;
+    margin-top: 45px;
 
 }
 .title-container .heartblack{
@@ -86,6 +103,7 @@ body .container{
     height: 50px;
     background-repeat: no-repeat;
     cursor:pointer;
+    margin-top: 50px;
 
 }
 
@@ -126,7 +144,7 @@ body .container{
     margin-left: 30px;
 }
 
-.button-container .edit {
+.edit {
     width: 80px;
     height: 40px;
     line-height: 40px;
@@ -138,13 +156,12 @@ body .container{
     border-radius: 10px;
     margin-left: 30px;
 }
-
-.button-container .edit a{
+.edit a{
     color: white;
 }
 
 
-.button-container .delete{
+.delete{
     width: 80px;
     height: 40px;
     line-height: 40px;
@@ -154,9 +171,9 @@ body .container{
     margin-top: 50px;
     cursor: pointer;
     border-radius: 10px;
-    margin-left: 30px;
+    margin-left: 15px;
 }
-.button-container .delete a{
+.delete a{
     color: white;
 }
 
@@ -170,6 +187,7 @@ body .container{
     display: flex;
     flex-direction: row;
     justify-content: start;
+    align-items: center;
 }
 
 .likecommentdisply-container .like-display{
@@ -228,7 +246,7 @@ body .container{
 
 
 .main-data-comment-replytext{
-    width: 400px;
+    width: 100%;
     height: 50px;
     border: none;
     outline: none;
@@ -257,7 +275,7 @@ body .container{
 
 
 .main-data-comment-write{
-    width: 450px;
+    width: auto;
     height: auto;
     border: 1px solid #b3b3b3;
     margin: 15px;
@@ -281,6 +299,7 @@ body .container{
 
 .main-data-comment-replyshow{
     cursor: pointer;
+    color: #8c9193;
 }
 
 
@@ -317,6 +336,7 @@ body .container{
 
 .sub-data-comment-inner{
     display: inline-block;
+    width: 100%;
 }
 .sub-data-comment-inner-writer{
     margin-bottom: 5px;
@@ -328,7 +348,7 @@ body .container{
 
 
 .sub-data-comment-replytext{
-    width: 400px;
+    width: 100%;
     height: 50px;
     border: none;
     outline: none;
@@ -347,6 +367,7 @@ body .container{
 }
 .sub-data-comment-replyshow{
     cursor: pointer;
+    color: #8c9193;
 }
 
 
@@ -366,7 +387,7 @@ body .container{
 
 
 .sub-data-comment-write{
-    width: 450px;
+    width: 100%;
     height: auto;
     border: 1px solid #b3b3b3;
     margin: 15px;
@@ -411,7 +432,7 @@ body .container{
 
 
 .main-comment-write-text{
-    width: 750px;
+    width: 100%;
     height: 50px;
     border: none;
     outline: none;
@@ -440,7 +461,7 @@ body .container{
 
 
 .main-comment-write{
-    width: 800px;
+    width: auto;
     height: auto;
     border: 1px solid #b3b3b3;
     margin: 15px;
@@ -448,3 +469,24 @@ body .container{
 
 
 
+
+
+
+
+
+
+.like-icon{
+    background-image: url("/resources/img/board/heartred.png");
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.comment-icon{
+    background-image: url("/resources/img/board/chatCount.png");
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}

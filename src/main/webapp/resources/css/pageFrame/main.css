@@ -19,7 +19,7 @@ body, .show-gallery, .overlay, .card-gallery, .move-gallery {
     font-family: "Jua", sans-serif;
 }
 
-.mainBear, .card-image, .card, .move-gallery {
+.main-bear, .card-image, .card, .move-gallery {
     cursor: pointer;
 }
 
@@ -83,45 +83,9 @@ body, .show-gallery, .overlay, .card-gallery, .move-gallery {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.mainBear {
-    display: block;
-    width: 250px;
-    position: relative;
-    z-index: 10;
-}
-
-.list-gallery {
-    width: 1000px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    justify-content: center;
-    margin-top: 30px;
-}
-
-.show-gallery {
-    justify-content: center;
-    align-items: flex-end;
-    margin-top: 15px;
-    font-size: 23px;
-    position: relative;
-    text-align: right; /* 텍스트를 중앙에 정렬 */
-}
-
-.move-gallery {
-    font-size: 23px;
-    background-color: lightgray;
-    border: none;
-    border-radius: 5px;
-    padding: 7px 9px 7px 9px;
-    margin-bottom: 20px;
-}
-
-.card-gallery {
-    display: flex;
-    flex-direction: column; /* 세로로 정렬 */
-    align-items: center; /* 중앙 정렬 */
-    width: 100%;
+.main-card {
+    background-color: #fff;
+    overflow: hidden;
 }
 
 .card {
@@ -142,20 +106,80 @@ body, .show-gallery, .overlay, .card-gallery, .move-gallery {
     object-fit: cover;
 }
 
-.overlay {
+.card > .card-image img {
+    filter: blur(2px);
+}
+
+.main-overlay {
+    font-size: 71px;
+    color: black;
+    position: absolute;
+    top: 13%;
+    left: 11.5%;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.card-overlay {
     font-size: 22px;
     color: whitesmoke;
     position: absolute;
     top: 60%;
     left: 50%;
+    width: 80%;
     transform: translate(-50%, -50%);
     text-align: center;
     letter-spacing: 1px;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    z-index: 100;
 }
 
 .card a, .navigator a {
     display: block;
     text-decoration: none;
     color: inherit;
+}
+
+.main-bear {
+    display: block;
+    width: 250px;
+    position: relative;
+    z-index: 10;
+}
+
+.card-gallery {
+    display: flex;
+    flex-direction: column; /* 세로로 정렬 */
+    align-items: center;
+    width: 100%;
+}
+
+.list-gallery {
+    width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.show-gallery-container {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    width: 100%;
+}
+
+.show-gallery {
+    width: 1000px;
+    font-size: 23px;
+    text-align: right; /* 텍스트를 오른쪽에 정렬 */
+    margin-top: 15px;
+}
+
+.move-gallery {
+    font-size: 23px;
+    background-color: #949FFF;
+    border: none;
+    border-radius: 10px;
+    padding: 7px 9px 2px 9px;
 }

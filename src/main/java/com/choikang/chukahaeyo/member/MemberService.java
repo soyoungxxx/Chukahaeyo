@@ -112,28 +112,41 @@ public class MemberService {
     }
 
     // 카드 내역 가져오기
-    public List<CardVO> getCardList(int memberID){
+    public List<CardVO> getCardList(int memberID) {
         return memberMapper.getCardList(memberID);
     }
 
     // 결제 내역 가져오기
-    public List<PaymentVO> getPaymentList(int memberID){
+    public List<PaymentVO> getPaymentList(int memberID) {
         return memberMapper.getPaymentList(memberID);
     }
 
-    public List<PaymentVO> getPaymentAllList(){
+    // 결제 내역 가져오기
+    public List<PaymentVO> getPaymentAllList() {
         return memberMapper.getPaymentAllList();
     }
 
+    // 필터링된 결제 내역 가져오기
+    public List<PaymentVO> getFilteredPaymentList(String startDate, String endDate, String status, String search) {
+        return memberMapper.getFilteredPaymentList(startDate, endDate, status, search);
+    }
+
     // 관리자 로그인
-    public AdminVO adminLogin(AdminVO adminVO){return memberMapper.adminLogin(adminVO);}
+    public AdminVO adminLogin(AdminVO adminVO) {
+        return memberMapper.adminLogin(adminVO);
+    }
 
     // 관리자: 회원정보 가져오기
-    public List<MemberVO> getMemberAllList(){return memberMapper.getMemberAllList();}
+    public List<MemberVO> getMemberAllList() {
+        return memberMapper.getMemberAllList();
+    }
 
     public void withdrawMember(MemberVO memberVO){memberMapper.withdrawMember(memberVO);}
 
     public int selectTodayRegisterMember(String date) {
         return memberMapper.selectTodayRegisterMember(date);
+
+    public void withdrawMember(MemberVO memberVO) {
+        memberMapper.withdrawMember(memberVO);
     }
 }

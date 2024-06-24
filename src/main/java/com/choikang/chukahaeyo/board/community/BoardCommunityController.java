@@ -2,6 +2,7 @@ package com.choikang.chukahaeyo.board.community;
 
 
 import com.choikang.chukahaeyo.board.model.CommunityVO;
+import com.choikang.chukahaeyo.s3.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -32,6 +30,8 @@ public class BoardCommunityController {
     @Autowired
     WebApplicationContext context;
 
+    @Autowired
+    S3Service s3Service;
 
     @GetMapping("/service")
     public String serviceFaq() {
@@ -191,16 +191,7 @@ public class BoardCommunityController {
             // 서버에 저장할 경로
             String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/images/upload");
 
-
-            Path path = Paths.get(uploadDirectory , fileName);
-            try{
-                Files.delete(path);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-            System.out.println("************************ 업로드 컨트롤러 실행 ************************");
-            System.out.println(uploadDirectory);
+            s3Service.deleteFile(fileName);
 
             // Ajax에서 업로드 된 파일의 이름을 응답 받을 수 있도록 해줍니다.
             return ResponseEntity.ok(uploadDirectory);

@@ -13,6 +13,7 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/view/include/header.jsp" %>
+
 <main class="main">
     <div class="sticker1"></div>
     <div style="width: 100%;">
@@ -21,11 +22,11 @@
             <div class="slideshow-container">
                 <c:forEach var="card" items="${top3Cards}">
                     <div class="slides fade">
-                        <div class="card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}" data-url="card/completedCard/${card.cardID}">
+                        <div class="main-card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}" data-url="card/completedCard/${card.cardID}">
                             <div class="card-image" onclick="redirectToUrl(this)">
                                 <img src="resources/img/main/main0${card.categoryID}.png" alt="" style="width:100%">
-                                <div class="overlay">
-                                    <div class="">수정 예정${card.cardName}</div>
+                                <div class="main-overlay">
+                                    <div class="">${card.cardName}</div>
                                 </div>
                             </div>
                         </div>
@@ -37,18 +38,19 @@
 
             <!-- 내생일, 반려동물 생일, 단체 행사 링크 -->
             <div class="navigator">
-                <img src="resources/img/main/mainbear1.png" alt="" class="mainBear" onclick="redirectToUrl(this)" data-url="card/edit/myCard">
-                <img src="resources/img/main/mainbear2.png" alt="" class="mainBear" onclick="redirectToUrl(this)" data-url="card/edit/myPet">
-                <img src="resources/img/main/mainbear3.png" alt="" class="mainBear" onclick="redirectToUrl(this)" data-url="card/edit/invitation">
+                <img src="resources/img/main/mainbear1.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/myCard">
+                <img src="resources/img/main/mainbear2.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/myPet">
+                <img src="resources/img/main/mainbear3.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/invitation">
             </div>
 
+            <!-- 명예의 전당 -->
             <div class="card-gallery">
                 <div class="list-gallery">
                     <c:forEach var="card" items="${latest3Cards}">
                         <div class="card" data-url="card/completedCard/${card.cardID}" onclick="redirectToUrl(this)">
                             <div class="card-image">
                                 <img src="${card.templateThumbnail}" alt="Card Image">
-                                <div class="overlay">
+                                <div class="card-overlay">
                                     <div class="text">${card.cardName}</div>
                                 </div>
                             </div>
@@ -69,33 +71,54 @@
 <!-- 슬라이드 쇼 스크립트 -->
 <script>
     var slideIndex = 0;
-    showSlides();
+    var slides = document.getElementsByClassName("slides");
+    var slideInterval;
 
-    function plusSlides(n) {
-        showSlides(slideIndex += n);
-    }
-
+    // 슬라이드를 보여주는 함수
     function showSlides() {
-        var i;
-        var slides = document.getElementsByClassName("slides");
-        for (i = 0; i < slides.length; i++) {
+        for (var i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
         slideIndex++;
         if (slideIndex > slides.length) {
-            slideIndex = 1
+            slideIndex = 1;
         }
         slides[slideIndex - 1].style.display = "block";
-        setTimeout(showSlides, 3000); // 6초마다 슬라이드 전환
+        clearInterval(slideInterval); // 이전 인터벌 제거
+        slideInterval = setInterval(showSlides, 3000); // 자동 슬라이드를 위한 새 인터벌 설정
     }
 
+    // 슬라이드 이동을 위한 함수
+    function plusSlides(n) {
+        clearInterval(slideInterval); // 자동 슬라이드를 위한 인터벌 제거
+        slideIndex += n;
+        if (slideIndex < 1) {
+            slideIndex = slides.length;
+        }
+        if (slideIndex > slides.length) {
+            slideIndex = 1;
+        }
+        for (var i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+        slideInterval = setInterval(showSlides, 3000);
+    }
+
+
+    // 카드 또는 이미지 클릭 시 URL로 이동하는 함수
     function redirectToUrl(element) {
-        var card = element.closest('.card');
+        var card = element.closest('.main-card') || element.closest('.card');
         var url = card ? card.getAttribute('data-url') : element.getAttribute('data-url');
         if (url) {
             window.location.href = url;
         }
     }
+
+    // 페이지 로드 시 슬라이드를 시작
+    window.onload = function () {
+        showSlides();
+    };
 </script>
 </body>
 </html>
