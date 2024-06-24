@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
     <meta charset="utf-8">
     <title>Admin 축하해요</title>
@@ -17,8 +19,6 @@
     <link rel="stylesheet" href="/resources/css/board/allInquiryList.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css"/>
     <link href="/resources/css/admin/all.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
     <link href="/resources/css/admin/admin.css" rel="stylesheet">
 </head>
 <body id="page-top">
@@ -46,7 +46,7 @@
                             <div class="container">
 
                                 <div class="search">
-                                    <form action="list">
+                                    <form action="/admin/inquiry/allInquiryList">
                                         <select class="sort-box" name="sort">
                                             <option value="all"
                                                     <c:if test="${inquiryVO.sort == 'all'}">selected</c:if>>전체
@@ -120,7 +120,7 @@
                                 <ul class='paging'>
                                     <c:if test="${map.isPrev }">
                                         <li>
-                                            <a href="list?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
+                                            <a href="allInquiryList?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
                                                 < </a></li>
                                     </c:if>
                                     <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
@@ -129,13 +129,13 @@
                                         </c:if>
                                         <c:if test="${p != inquiryVO.page}">
                                             <li>
-                                                <a href='list?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a>
+                                                <a href='allInquiryList?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a>
                                             </li>
                                         </c:if>
                                     </c:forEach>
                                     <c:if test="${map.isNext }">
                                         <li>
-                                            <a href="list?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
+                                            <a href="allInquiryList?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
                                                 > </a></li>
                                     </c:if>
                                 </ul>
@@ -158,66 +158,9 @@
 </main>
 
 <script>
-    function updateSelectedCount() {
-        const checkboxes = document.getElementsByClassName('member-select-btn');
-        let selectedCount = 0;
 
-        for (let i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                selectedCount++;
-            }
-        }
-        document.getElementById('selected-count').innerText = selectedCount + '개 항목 선택';
-    }
-
-    function selectAll() {
-        const checkboxes = document.getElementsByClassName('member-select-btn');
-
-        for (let i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = true;
-        }
-
-        updateSelectedCount();
-    }
-
-    function deselectAll() {
-        const checkboxes = document.getElementsByClassName('member-select-btn');
-
-        for (let i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = false;
-        }
-        updateSelectedCount();
-    }
-
-    function deleteMembers() {
-        var selectedMembers = [];
-        $('.member-select-btn:checked').each(function () {
-            selectedMembers.push($(this).attr('id').replace('checkbox', ''));
-        });
-
-        if (selectedMembers.length === 0) {
-            alert("삭제할 회원을 선택하세요.");
-            return;
-        }
-
-        console.log(selectedMembers);
-
-        $.ajax({
-            url: '/admin/memberDelete',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify({memberIds: selectedMembers}),
-            success: function () {
-                alert("회원 삭제가 완료되었습니다.");
-                location.reload();
-            },
-            error: function (xhr, status, error) {
-                alert("회원 삭제 중 오류가 발생했습니다.");
-                console.error(error);
-            }
-        });
-    }
 </script>
+
 
 <!-- Bootstrap core JavaScript-->
 <script src="/resources/js/admin/jquery.js"></script>

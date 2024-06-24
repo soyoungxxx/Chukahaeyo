@@ -220,6 +220,40 @@ public class MemberController {
         return "/admin/adminOrderList";
     }
 
+    // 관리자: 결제 내역 필터해서 가져오기
+    @PostMapping("/admin/adminOrderList")
+    public String getFilteredPaymentList(Model model,
+                                         @RequestParam(name = "page", required = false, defaultValue = "1") int page,
+                                         @RequestParam(name = "size", required = false, defaultValue = "10") int size,
+                                         @RequestParam(required = false) String startDate,
+                                         @RequestParam(required = false) String endDate,
+                                         @RequestParam(required = false) String status,
+                                         @RequestParam(required = false) String search) {
+        // required: false로 하지않으면 필수 요소로 설정됨.
+        List<PaymentVO> paymentList = service.getFilteredPaymentList(startDate, endDate, status, search);
+
+        int totalPayments = paymentList.size();
+        int totalPages = (int) Math.ceil((double) totalPayments / size);
+
+        int start = (page - 1) * size;
+        int end = Math.min(start + size, totalPayments);
+
+        List<PaymentVO> payments = paymentList.subList(start, end);
+
+        model.addAttribute("payments", payments);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("pageSize", size);
+        model.addAttribute("totalPages", totalPages);
+
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+        model.addAttribute("status", status);
+        model.addAttribute("search", search);
+
+        return "/admin/adminOrderList";
+    }
+
+
     // 관리자: 멤버 모든 목록 가져오기
     @GetMapping("/admin/adminMemberList")
     public String getAllMemberList(Model model) {

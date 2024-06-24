@@ -92,12 +92,12 @@
             <input type="hidden" class="ismy" name="ismy" value="${communityVO.ismy}"/>
 
             <div class="title-container">
-                <div class="title-title">제목</div>
+                
                 <input class="title-text" type="text" placeholder="제목을 입력하세요." />
             </div>
 
             <div class="data-container">
-                <div class="data-title">내용</div>
+
                 <form method="post">
                     <textarea class="data-text" id="summernote" name="editordata"></textarea>
                 </form>
