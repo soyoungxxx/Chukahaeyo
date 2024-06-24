@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CardService {
@@ -49,6 +50,10 @@ public class CardService {
     public void updateCardPaymentStatus(int cardID) {
         cardMapper.updateCardPaymentStatus(cardID);
     }
+
+
+    public List<Integer> selectCardsByCategory(String date) {
+        return cardMapper.selectCardsByCategory(date);
 
     public Boolean selectCardIsPublic(int cardID) {
         return cardMapper.selectCardIsPublic(cardID);

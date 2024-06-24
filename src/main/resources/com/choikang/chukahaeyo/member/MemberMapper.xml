@@ -72,6 +72,10 @@
         UPDATE Members SET memberWithdraw=true where memberID = #{memberID}
     </update>
 
+    <select id="selectTodayRegisterMember" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM Members WHERE DATE(memberRegisterDate) = #{date}
+    </select>
+
     <select id="getFilteredPaymentList" parameterType="map" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
         SELECT * FROM Payment
         WHERE 1=1
@@ -96,6 +100,5 @@
         </if>
         ORDER BY payDate DESC
     </select>
-
 
 </mapper>

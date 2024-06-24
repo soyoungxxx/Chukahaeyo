@@ -99,8 +99,16 @@
         ORDER BY guestBookPostDate
     </select>
 
+
+    <select id="selectCardsByCategory" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+        FROM Card
+        WHERE MONTH(cardDate) = MONTH(#{date})
+        GROUP BY categoryID
+        ORDER BY categoryID;
+    </select>
+
     <select id="selectCardIsPublic" parameterType="int" resultType="boolean">
         SELECT cardIsPublic FROM Card WHERE cardID = #{cardID}
     </select>
-
 </mapper>

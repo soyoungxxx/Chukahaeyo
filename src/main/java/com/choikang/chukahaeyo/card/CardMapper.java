@@ -5,6 +5,7 @@ import com.choikang.chukahaeyo.card.model.GuestBookVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface CardMapper {
@@ -26,6 +27,6 @@ public interface CardMapper {
     List<CardVO> getTop3CardList();
     List<CardVO> getLatest3CardList();
     List<GuestBookVO> selectGuestBooks(int cardID);
-
+    List<Integer> selectCardsByCategory(String date);
     boolean selectCardIsPublic(int cardID);
 }
