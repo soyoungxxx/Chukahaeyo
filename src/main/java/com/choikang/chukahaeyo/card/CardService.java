@@ -54,8 +54,9 @@ public class CardService {
 
     public List<Integer> selectCardsByCategory(String date) {
         return cardMapper.selectCardsByCategory(date);
+    }
 
-    public Boolean selectCardIsPublic(int cardID) {
+    public boolean selectCardIsPublic(int cardID) {
         return cardMapper.selectCardIsPublic(cardID);
     }
 }
