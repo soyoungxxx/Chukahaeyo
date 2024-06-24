@@ -33,26 +33,18 @@ public class BoardCommentService {
         boardCommentMapper.mainInsert(vo);
 
         return vo.getReplyID();
-
-
-
-
     }
 
     public int subInsert(ReplyVO vo) {
-
         ReplyVO correctLine = boardCommentMapper.getCorrectLine(vo);
-        if(correctLine == null) {
+        if (correctLine == null) {
             int correctOno = boardCommentMapper.getCorrectOno(vo);
             vo.setReplyOno(correctOno);
-        }else {
+        } else {
             vo.setReplyOno(correctLine.getReplyOno());
         }
         boardCommentMapper.updateOno(vo);
-
         boardCommentMapper.subInsert(vo);
-
-
 
         return vo.getReplyID();
     }
