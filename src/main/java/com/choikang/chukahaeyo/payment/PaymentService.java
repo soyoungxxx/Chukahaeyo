@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -144,5 +146,17 @@ public class PaymentService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Integer> selectPaymentSum(String date) {
+        List<Integer> list = new ArrayList<>();
+        list.add(paymentMapper.selectPaymentDaySum(date));
+        list.add(paymentMapper.selectPaymentMonthSum(date));
+        list.add(paymentMapper.selectPaymentYearSum(date));
+        return list;
+    }
+
+    public List<Integer> selectSixMonthsSum(String date) {
+        return paymentMapper.selectSixMonthsSum(date);
     }
 }

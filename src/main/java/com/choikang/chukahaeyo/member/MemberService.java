@@ -141,7 +141,9 @@ public class MemberService {
         return memberMapper.getMemberAllList();
     }
 
-    public void withdrawMember(MemberVO memberVO) {
-        memberMapper.withdrawMember(memberVO);
+    public void withdrawMember(MemberVO memberVO){memberMapper.withdrawMember(memberVO);}
+
+    public int selectTodayRegisterMember(String date) {
+        return memberMapper.selectTodayRegisterMember(date);
     }
 }
