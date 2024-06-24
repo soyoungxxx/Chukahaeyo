@@ -93,7 +93,8 @@ function saveHiddenData() {
     $('#submit-templateThumbnail').val(templateThumbnail);
     $('#submit-categoryId').val(categoryID);
     $("#cardEmojis").val(emoji);
-    console.log($("#cardEmojis"));
+
+    $(".guest-messages").empty();
 }
 
 // 장바구니 선택 시 저장 로직

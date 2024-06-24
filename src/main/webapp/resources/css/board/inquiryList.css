@@ -2,30 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
 
 body .container{
-    font-family: "Jua", sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-    font-style: normal;
+    font-family: "Noto Sans KR", sans-serif;
   }  
 /*font*/
 
 .container {
-    width: 95%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    margin: 40px 0 0 40px;
 }
 
 /*inquiry-logo*/
-.inquiry-logo {
-    font-size: 20px;
-    width: 100px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    margin-top: 40px;
-    margin-bottom: 30px;
-    margin-left: 20px;
+.container > h3 {
+    font-size: 25px;
+    margin: 20px 0 30px 0;
 }
 
 /*search*/
@@ -67,9 +55,9 @@ body .container{
 
 /*list*/
 .list .list-board {
+    width: 100%;
     border-top: 1px solid black;
     table-layout: fixed;
-    margin-left: 40px;
 }
 
 /*list-ellipsis*/
@@ -169,17 +157,17 @@ body .container{
 
 /*write-button*/
 .write-button{
-    width: 80px;
+    float: right;
+    width: 138px;
     height: 40px;
     line-height: 40px;
     text-align: center;
     background-color: #949FFF;
     color: white;
     align-self: self-end;
-    margin: 10px;
     cursor: pointer;
     border-radius: 10px;
-    margin-right: 200px;
+    margin-bottom: 20px;
 }
 .write-button a {
     color: white;
