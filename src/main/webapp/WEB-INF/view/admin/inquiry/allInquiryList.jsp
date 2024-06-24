@@ -47,35 +47,48 @@
 
                                 <div class="search">
                                     <form action="/admin/inquiry/allInquiryList">
-                                        <select class="sort-box" name="sort">
-                                            <option value="all"
-                                                    <c:if test="${inquiryVO.sort == 'all'}">selected</c:if>>전체
-                                            </option>
-                                            <option value="unanswered"
-                                                    <c:if test="${inquiryVO.sort == 'unanswered'}">selected</c:if>>
-                                                답변미완료
-                                            </option>
-                                            <option value="answered"
-                                                    <c:if test="${inquiryVO.sort == 'answered'}">selected</c:if>>
-                                                답변완료
-                                            </option>
-                                        </select>
-                                        <select class="selectbox" name="querytype">
-                                            <option value="all"
-                                                    <c:if test="${inquiryVO.querytype == 'all'}">selected</c:if>>전체
-                                            </option>
-                                            <option value="titlecontent"
-                                                    <c:if test="${inquiryVO.querytype == 'titlecontent'}">selected</c:if>>
-                                                제목+내용
-                                            </option>
-                                            <option value="writer"
-                                                    <c:if test="${inquiryVO.querytype == 'writer'}">selected</c:if>>
-                                                작성자
-                                            </option>
-                                        </select>
-                                        <input class="textbox" type="text" placeholder="검색어" name="query"
-                                               value="${inquiryVO.query}"/>
-                                        <input class="submitbox" type="submit" value="검색"/>
+                                        <div class="form-row">
+                                            <div class="col-md-3 mb-2">
+                                                <select class="form-control" name="sort">
+                                                    <option value="all"
+                                                            <c:if test="${inquiryVO.sort == 'all'}">selected</c:if>>전체
+                                                    </option>
+                                                    <option value="unanswered"
+                                                            <c:if test="${inquiryVO.sort == 'unanswered'}">selected</c:if>>
+                                                        답변미완료
+                                                    </option>
+                                                    <option value="answered"
+                                                            <c:if test="${inquiryVO.sort == 'answered'}">selected</c:if>>
+                                                        답변완료
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3 mb-2">
+                                                <select class="form-control" name="querytype">
+                                                    <option value="all"
+                                                            <c:if test="${inquiryVO.querytype == 'all'}">selected</c:if>>
+                                                        전체
+                                                    </option>
+                                                    <option value="titlecontent"
+                                                            <c:if test="${inquiryVO.querytype == 'titlecontent'}">selected</c:if>>
+                                                        제목+내용
+                                                    </option>
+                                                    <option value="writer"
+                                                            <c:if test="${inquiryVO.querytype == 'writer'}">selected</c:if>>
+                                                        작성자
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4 mb-2">
+                                                <input class="form-control" type="text" placeholder="검색어" name="query"
+                                                       value="${inquiryVO.query}"/>
+                                            </div>
+                                            <div class="col-md-2 mb-2">
+                                                <input class="btn btn-primary w-100" type="submit" value="검색"/>
+                                            </div>
+
+                                        </div>
+
                                     </form>
                                 </div>
 
@@ -117,29 +130,32 @@
                                     </table>
                                 </div>
 
-                                <ul class='paging'>
-                                    <c:if test="${map.isPrev }">
-                                        <li>
-                                            <a href="allInquiryList?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
-                                                < </a></li>
-                                    </c:if>
-                                    <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
-                                        <c:if test="${p == inquiryVO.page}">
-                                            <li><a href='#;' class='current'>${p}</a></li>
+                                <nav aria-label="page-nav" class="pagination-nav all-inquiry">
+                                    <ul class='pagination'>
+                                        <c:if test="${map.isPrev }">
+                                            <li class="page-item">
+                                                <a class="page-link"  href="allInquiryList?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
+                                                    < </a></li>
                                         </c:if>
-                                        <c:if test="${p != inquiryVO.page}">
+                                        <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
+                                            <c:if test="${p == inquiryVO.page}">
+                                                <li class="page-item ${i == currentPage ? 'active' : ''}"><a class="page-link"  href='#;' class='current'>${p}</a></li>
+                                            </c:if>
+                                            <c:if test="${p != inquiryVO.page}">
+                                                <li class="page-item">
+                                                    <a class="page-link" href='allInquiryList?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a>
+                                                </li>
+                                            </c:if>
+                                        </c:forEach>
+                                        <c:if test="${map.isNext }">
                                             <li>
-                                                <a href='allInquiryList?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a>
-                                            </li>
+                                                <a class="page-link" href="allInquiryList?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
+                                                    > </a></li>
                                         </c:if>
-                                    </c:forEach>
-                                    <c:if test="${map.isNext }">
-                                        <li>
-                                            <a href="allInquiryList?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
-                                                > </a></li>
-                                    </c:if>
-                                </ul>
+                                    </ul>
+                                </nav>
                             </div>
+
 
                         </div>
                     </div>

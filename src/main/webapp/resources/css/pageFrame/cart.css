@@ -3,6 +3,7 @@
 
 .container {
     width: 90%;
+    /*max-height: 720px;*/
     font-family: "Noto Sans KR", sans-serif;
     display: flex;
     flex-wrap: wrap;
@@ -26,7 +27,22 @@
     padding-left: 10px;
     margin: 10px 10px 0 0;
     overflow-y: auto;
-    max-height: calc(100vh - 240px); /* 부모 높이에 맞추지 않도록 자동 높이 설정 */
+    max-height: 750px; /* 부모 높이에 맞추지 않도록 자동 높이 설정 */
+}
+
+.cart-grid > .empty-cart {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 30px;
+    margin-top: 100px;
+}
+
+.cart-grid > .empty-cart img {
+    width: 300px;
 }
 
 .align-to-left {
@@ -96,7 +112,7 @@
     right: 10px;
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 25px;
     cursor: pointer;
 }
 
@@ -108,12 +124,12 @@
 
 .cart-receipt {
     padding: 10px 20px 10px 20px;
-    min-height: calc(100vh - 350px);
+    /*min-height: calc(100vh - 350px);*/
     background-color: #F0F0F0;
 }
 
 .cart-list {
-    height: calc(100vh - 550px);
+    height: 450px;
     padding: 10px;
     overflow-y: auto;
 }

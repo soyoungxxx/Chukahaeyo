@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css" />
     <link rel="stylesheet" href="/resources/css/board/inquiryList.css" />
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -27,31 +29,11 @@
             <div class="mypage-wrap">
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <div class="mypage-content">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <div class="container">
-
-                        <div class="inquiry-logo">문의내역</div>
+                        <h3>문의 내역</h3>
+                        <div class="write-button">
+                            <a href="write">1:1 문의하기</a>
+                        </div>
                         <div class="search">
                             <form action="list" >
                                 <select class="selectbox" name="querytype">
@@ -92,19 +74,10 @@
                                             </c:if>
                                         </th>
                                     </tr>
-
                                 </c:forEach>
-
-
-
                                 </tbody>
                             </table>
-
                         </div>
-                        <div class="write-button">
-                            <a href="write">글쓰기</a>
-                        </div>
-
                         <ul class='paging'>
                             <c:if test="${map.isPrev }">
                                 <li><a href="list?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}"> < </a></li>
@@ -121,46 +94,7 @@
                                 <li><a href="list?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}"> > </a></li>
                             </c:if>
                         </ul>
-
-
-
-
-
-
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>
@@ -169,5 +103,4 @@
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 </body>
-
 </html>
