@@ -74,8 +74,8 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(cookieInterceptor())
                 .addPathPatterns("/**")
                 .excludePathPatterns("/admin/**");
-        registry.addInterceptor(completedCardInterceptor())
-                .addPathPatterns("/card/completedCard/**");
+//        registry.addInterceptor(completedCardInterceptor())
+//                .addPathPatterns("/card/completedCard/**");
     }
 
     @Bean

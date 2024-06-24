@@ -16,7 +16,6 @@ window.addEventListener('load', function() {
 
 function getHeight() {
     var docHeight = $(".card-roof-img").height() + $('.card-content').height() + 100;
-    console.log(docHeight);
     if (imageBasicHeight <= docHeight) {
         image.height(imageBasicHeight);
     } else {
@@ -58,23 +57,31 @@ $(document).on('click', '.guestbook-submit-button', function() {
     $(".guest-nickname").val("");
     $(".guest-message").val("");
 
-    // ajax
-    $.ajax({
-        url: '/card/completedCard/guestBook.do',
-        type: 'POST',
-        contentType: 'application/json; charset=UTF-8',
-        data: JSON.stringify({
-            guestName: name,
-            guestBookText: message,
-            cardID: cardID
-        }),
-        success: function(response) {
-            console.log("방명록을 등록하였습니다.");
-        },
-        error : function(response) {
-            console.log("방명록 업데이트에 실패하였습니다.");
+    if (window.location.pathname.includes("/completedCard")) {
+        if (name === "" || message === "") {
+            alert("빈 칸은 입력하실 수 없습니다.");
+            return;
         }
-    });
+
+        // ajax
+        $.ajax({
+            url: '/card/completedCard/guestBook.do',
+            type: 'POST',
+            contentType: 'application/json; charset=UTF-8',
+            data: JSON.stringify({
+                guestName: name,
+                guestBookText: message,
+                cardID: cardID
+            }),
+            success: function(response) {
+
+            },
+            error : function(response) {
+                console.log("방명록 업데이트에 실패하였습니다.");
+            }
+        });
+    }
+
     showGuestBook(name, message);
 })
 
@@ -120,7 +127,6 @@ function getMap(roadAddr) {
     var geocoder = new kakao.maps.services.Geocoder();
     geocoder.addressSearch(roadAddr, function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
-            console.log(1);
             var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
             var marker = new kakao.maps.Marker({

@@ -200,7 +200,6 @@
 <script>
     // 필요한 변수 선언
     let categoryID = Number('${categoryID}');
-    console.log(categoryID);
     let templateThumbnail;
     let address = " ";
 
