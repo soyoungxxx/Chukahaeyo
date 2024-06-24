@@ -25,21 +25,31 @@
         <img src="/resources/img/logo/cart_logo.png" alt="장바구니 logo" class="cart-logo">
         <div class="container">
             <div class="cart-grid">
-                <c:forEach var="card" items="${cardList}">
-                    <div class="card" data-id="${card.cardID}">
-                        <img src="${card.templateThumbnail}" alt="템플릿">
-                        <div class="card-overlay">
-                            <p>${card.cardName}</p>
-                            <p>${card.cardStartDate}</p>
+                <c:choose>
+                    <c:when test="${empty cardList}">
+                        <div class="empty-cart">
+                            <img src="/resources/img/cart/empty-cart.png" alt="Empty Cart"><br>
+                            카드꾸러미가 비어있습니다.
                         </div>
-                        <button class="close-button" onclick="deleteCard(${card.cardID}, event)">X</button>
-                        <div class="card-content">
-                            <p class="card-text">${card.cardName}</p>
-                            <input type="checkbox" class="card-checkbox" value="${card.cardPrice}"
-                                   onclick="event.stopPropagation(); updateTotal(); updateReceipt();">
-                        </div>
-                    </div>
-                </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach var="card" items="${cardList}">
+                            <div class="card" data-id="${card.cardID}">
+                                <img src="${card.templateThumbnail}" alt="템플릿">
+                                <div class="card-overlay">
+                                    <p>${card.cardName}</p>
+                                    <p>${card.cardStartDate}</p>
+                                </div>
+                                <button class="close-button" onclick="deleteCard(${card.cardID}, event)">X</button>
+                                <div class="card-content">
+                                    <p class="card-text">${card.cardName}</p>
+                                    <input type="checkbox" class="card-checkbox" value="${card.cardPrice}"
+                                           onclick="event.stopPropagation(); updateTotal(); updateReceipt();">
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
             <div class="cart-payment">
                 <div class="cart-receipt">
