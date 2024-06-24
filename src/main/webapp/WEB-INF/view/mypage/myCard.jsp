@@ -53,7 +53,8 @@
                                     </div>
                                     <div class="right-section">
                                         <button class="toggle-public" data-card-id="${card.cardID}">
-                                                ${card.cardIsPublic ? "🔓" : "🔒"}
+<%--                                            <img src="<c:out value='${card.cardIsPublic ? "/resources/img/cart/unlock.png" : "/resources/img/cart/lock.png"}'/>" alt="카드 공개 상태" class="${card.cardIsPublic ? 'unlock' : 'lock'}">--%>
+                                            <img src="<c:out value='${card.cardIsPublic ? "/resources/img/cart/unlock.png" : "/resources/img/cart/lock.png"}'/>" alt="카드 공개 상태" class="${card.cardIsPublic ? 'unlock' : 'lock'}">
                                         </button>
                                         <button class="copy-button" data-card-id="${card.cardID}" data-clipboard-text="">
                                             URL 복사
@@ -101,8 +102,10 @@
                 type: 'POST',
                 data: { cardID: cardId },
                 success: function(response) {
-                    const isPublic = button.text() === '🔓';
-                    button.text(isPublic ? '🔒' : '🔓');
+                    const img = button.find('img');
+                    const isPublic = img.attr('src').includes('unlock');
+                    img.attr('src', isPublic ? '/resources/img/cart/lock.png' : '/resources/img/cart/unlock.png');
+                    img.removeClass(isPublic ? 'unlock' : 'lock').addClass(isPublic ? 'lock' : 'unlock');
 
                     // 서버에서 반환된 카드 정보를 콘솔에 출력
                     console.log('카드 정보 업데이트: ', response);
