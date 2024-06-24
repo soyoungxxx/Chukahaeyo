@@ -1,4 +1,4 @@
-package com.choikang.chukahaeyo.s3;
+package com.choikang.chukahaeyo.common.s3;
 
 import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;

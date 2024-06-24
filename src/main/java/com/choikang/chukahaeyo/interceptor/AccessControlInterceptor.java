@@ -1,4 +1,4 @@
-package com.choikang.chukahaeyo.exception;
+package com.choikang.chukahaeyo.interceptor;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -18,7 +18,7 @@ public class AccessControlInterceptor implements HandlerInterceptor {
         boolean isLoggedIn = session.getAttribute("login") != null;
 
         // 비로그인 상태에서 접근할 수 없는 경로
-        if (!isLoggedIn && (uri.startsWith("/mypage/") || uri.startsWith("/cart") || uri.startsWith("/card/edit/") || uri.startsWith("/payments/"))) {
+        if (!isLoggedIn && (uri.startsWith("/mypage/") || uri.startsWith("/cart") || uri.startsWith("/card/edit/") || uri.startsWith("/payments/")|| uri.startsWith("/board/community/write"))) {
             String queryString = request.getQueryString();
             String target = uri + (queryString == null ? "" : "?" + queryString);
 

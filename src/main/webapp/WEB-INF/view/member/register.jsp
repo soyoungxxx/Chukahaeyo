@@ -142,7 +142,7 @@
                     } else {
                         var email = $("#memberEmail");
                         email.val("");
-                        alert('중복된 이메일입니다.\r\n다른 이메일을 입력해 주세요');
+                        alert('사용할 수 없는 이메일입니다.\r\n다른 이메일을 입력해 주세요');
                     }
                 }
             })
@@ -235,7 +235,7 @@
                         <div class="register_form">
                             <ul>
                                 <li class="email_check">
-                                    <input type="text" id="memberEmail" name="memberEmail" placeholder="이메일"
+                                    <input type="text" id="memberEmail" name="memberEmail" placeholder="이메일(인증 가능한 이메일을 입력해주세요.)"
                                            onchange="changeValueCheckEmail();">
                                     <span>
                                         <a href="javascript:checkEmail();" class="check_btn"

@@ -46,7 +46,6 @@ public class PaymentService {
         }
     }
 
-
     public String getToken() {
         System.out.println("key : " + key);
         System.out.println("secret Key : " + secretKey);

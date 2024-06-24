@@ -2,7 +2,7 @@ package com.choikang.chukahaeyo.board.community;
 
 
 import com.choikang.chukahaeyo.board.model.CommunityVO;
-import com.choikang.chukahaeyo.s3.S3Service;
+import com.choikang.chukahaeyo.common.s3.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ShortUrlController {
     private final ShortUrlService shortUrlService;
 
-    @GetMapping("/origin") // 카드를 저장한 URL을 반환하는 컨트롤러. 추후 사용자별 다른 URL을 반환하도록 수정
+    @GetMapping("/origin")
     @ResponseBody
     public String url() {
         return "http://3.36.97.132:9090/payments/success"; // test용으로 URL을 미리 넣어둔 것. 추후 사용자별 카드 URL로 변경 예정
