@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // Ensure that clicking on any part of the card checks/unchecks the checkbox
-    $('.card').on('click', function(event) {
+    $('.card').on('click', function (event) {
         if (!$(event.target).is('.close-button, .card-checkbox')) {
             let checkbox = $(this).find('.card-checkbox');
             checkbox.prop('checked', !checkbox.prop('checked'));
@@ -66,6 +66,10 @@ function proceedToPayment() {
         selectedCards.push(cardInfo);
     });
 
+    if (selectedCards.length === 0) {
+        alert('결제할 카드를 선택해 주세요.');
+        return;
+    }
     console.log("Selected Cards:", selectedCards);
     if (confirm("결제하시겠습니까?")) {
         var makeMerchantUid = 'mid_' + new Date().getTime();
