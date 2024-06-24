@@ -37,8 +37,6 @@ body .container{
 
 /*inquiry-info*/
 .inquiry-info{
-    width: 80%;
-    min-width: 760px;
     min-height: 80px;
     border-top: 1px solid #414141;
     background-color: #F2F2F2;
@@ -58,8 +56,6 @@ body .container{
 }
 
 .inquiry-content{
-    width: 80%;
-    min-width: 760px;
     padding: 15px;
 }
 
@@ -68,8 +64,6 @@ body .container{
 /*inquiry-answer*/
 .inquiry-answer{
     padding: 15px;
-    width: 80%;
-    min-width: 760px;
     border-top: 1px solid #CCCCCC;
     border-bottom: 1px solid #CCCCCC;
     background-color: #FBFAF6;
@@ -82,53 +76,58 @@ body .container{
 }
 
 
-.inquiry-list {
-    width: 757px;
+/*.inquiry-list {*/
+/*    width: 757px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+.inquiry-list-list {
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-
+    justify-content: right;
+    align-items: flex-end;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    margin: 10px 0 0 0;
 }
+
 
 .inquiry-list-button{
-    margin-top: 15px;
     width: 100px;
     height: 50px;
     line-height: 50px;
     text-align: center;
-    border: 1px solid black;
+    font-size: 16px;
+    margin: 0 5px 0 0;
+    border: 1px solid #414141;
+    background-color: #F2F2F2;
+    color: #2e2e2e;
     cursor: pointer;
 }
 
-
-
-
-.list {
-    width: 757px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.inquiry-list-list {
-    margin-top: 15px;
+.inquiry-list-answer{
     width: 100px;
     height: 50px;
     line-height: 50px;
     text-align: center;
-    border: 1px solid black;
+    font-size: 16px;
+    margin: 0 5px 0 0;
+    color: white;
+    background-color: #949FFF;
     cursor: pointer;
+ }
 
+/*.editor.note-frame{*/
+/*    width: 90% !important;*/
+/*}*/
+
+.note-frame {
+    width: 100% !important;
 }
-.inquiry-list-list a{
-    color: black;
-
-}
-
-.editor.note-frame{
-    width: 90% !important;
-}
-
 
 
 
