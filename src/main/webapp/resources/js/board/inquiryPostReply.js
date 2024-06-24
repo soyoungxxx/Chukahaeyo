@@ -69,8 +69,6 @@ window.addEventListener('load', function(){
 		}
 
 
-
-
 		const form = document.createElement('form'); // form 태그 생성
 		form.setAttribute('method', 'post'); // 전송 방식 결정 (get or post)
 		form.setAttribute('action', "/admin/inquiry/write"); // 전송할 url 지정
@@ -82,8 +80,7 @@ window.addEventListener('load', function(){
 		data_1.setAttribute('name', 'inquiryID');
 		data_1.setAttribute('value', id);
 
-
-
+		
 
 		// 여러 개의 데이터를 보낼 경우 위와 같은 코드 반복
 		const data_2 = document.createElement('input');

@@ -580,7 +580,7 @@ pre code {
     .container-md,
     .container-lg,
     .container-xl {
-        max-width: 1200px;
+        max-width: 100%;
     }
 }
 
@@ -11092,7 +11092,9 @@ a.text-dark:focus {
 }
 
 /* 1:1문의 */
-
+.all-inquiry{
+    margin-top: 20px !important;
+}
 
 
 
