@@ -63,7 +63,7 @@ function requestPay() {
 // 필수 항목 다 적었나 체크
 function checkRequires() {
     // 이름, 날짜, 사진, 문구 전부 작성해야 함
-    if ($('#edit-name').val() === '' || ($('#edit-day').val() === '' && $('#edit-days') === '') ||
+    if ($('#edit-name').val() === '' || ($('#edit-day').val() != '' || $('#edit-days') != '') ||
         $('.edit-file-label').text() === '첨부하기' || $('#edit-text').val() === '') {
         alert("필수 항목을 다 작성하지 않으셨습니다.")
         return false;
@@ -93,7 +93,8 @@ function saveHiddenData() {
     $('#submit-templateThumbnail').val(templateThumbnail);
     $('#submit-categoryId').val(categoryID);
     $("#cardEmojis").val(emoji);
-    console.log($("#cardEmojis"));
+
+    $(".guest-messages").empty();
 }
 
 // 장바구니 선택 시 저장 로직
