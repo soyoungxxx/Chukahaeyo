@@ -37,17 +37,13 @@
 <main class="main">
     <div class="sticker1"></div>
     <div style="width: 100%; display: flex; flex-direction: row; justify-content: center;">
-        <!-- //여기에 태그 만들면됨 -->
-        <!-- //여기에 태그 만들면됨 -->
         <div class="container">
-
             <div class="community-logo"></div>
             <input type="hidden" class="board-id" value="${object.commID}"/>
             <input type="hidden" class="my-member-id" value="${communityVO.memberID}"/>
             <input type="hidden" class="my-member-name" value="${communityVO.memberName}"/>
             <div class="title-buttons-container">
                 <div class="title">${object.commTitle}</div>
-
                 <c:if test="${object.memberID == memberID}">
                     <div class="buttons">
                         <div class="edit"><a href="/board/community/update?commID=${object.commID}">수정</a></div>
@@ -61,22 +57,16 @@
                     <fmt:formatDate value="${object.commPostDate}" pattern="yy/MM/dd HH:mm"/>
                 </div>
             </div>
-
-
-
             <div class="content">
                 ${object.commContents}
             </div>
-
             <div class="button-container">
                 <input type="hidden" class="query" value="${communityVO.query}"/>
                 <input type="hidden" class="querytype" value="${communityVO.querytype}"/>
                 <input type="hidden" class="page" value="${communityVO.page}"/>
                 <input type="hidden" class="sort" value="${communityVO.sort}"/>
                 <input type="hidden" class="ismy" value="${communityVO.ismy}"/>
-
                 <div class="title-container">
-
                     <c:if test="${not empty memberID}">
                         <c:if test="${object.isRed == 1}">
                             <div class="like heartred"></div>
@@ -89,21 +79,20 @@
                     </c:if>
                 </div>
                 <div class="list">목록</div>
-
             </div>
-
             <div class="likecommentdisply-container">
-                <div class="like-display"><div class="like-icon"></div></div>
+                <div class="like-display">
+                    <div class="like-icon"></div>
+                </div>
                 <span style="color: #CF8488;">:</span>
                 <div class="like-display-data">${object.boardLike}</div>
-                <div class="comment-display"><div class="comment-icon"></div></div>
+                <div class="comment-display">
+                    <div class="comment-icon"></div>
+                </div>
                 <span style="color: #88D0D2;">:</span>
                 <div class="comment-display-data">${object.replyCount}</div>
             </div>
-
-            <div class="comment-container">
-
-            </div>
+            <div class="comment-container"></div>
         </div>
     </div>
     <div class="sticker2"></div>
