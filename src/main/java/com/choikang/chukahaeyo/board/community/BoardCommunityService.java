@@ -3,7 +3,7 @@ package com.choikang.chukahaeyo.board.community;
 import com.choikang.chukahaeyo.board.comment.BoardCommentMapper;
 import com.choikang.chukahaeyo.board.model.CommunityVO;
 import com.choikang.chukahaeyo.board.model.ReplyVO;
-import com.choikang.chukahaeyo.s3.S3Service;
+import com.choikang.chukahaeyo.common.s3.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;

@@ -1,4 +1,4 @@
-package com.choikang.chukahaeyo.exception;
+package com.choikang.chukahaeyo.interceptor;
 
 import com.choikang.chukahaeyo.card.CardService;
 import com.choikang.chukahaeyo.visitor.VisitorService;
