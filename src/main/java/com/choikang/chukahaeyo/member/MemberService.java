@@ -8,12 +8,16 @@ import com.choikang.chukahaeyo.payment.PaymentDTO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import com.siot.IamportRestClient.response.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
+import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MemberService {
@@ -116,12 +120,8 @@ public class MemberService {
         return memberMapper.getCardList(memberID);
     }
 
-    // 결제 내역 가져오기
-    public List<PaymentVO> getPaymentList(int memberID) {
-        return memberMapper.getPaymentList(memberID);
-    }
 
-    // 결제 내역 가져오기
+    // 결제내역 가져오기
     public List<PaymentVO> getPaymentAllList() {
         return memberMapper.getPaymentAllList();
     }
@@ -141,7 +141,48 @@ public class MemberService {
         return memberMapper.getMemberAllList();
     }
 
+    // 결제내역 페이지네이션
+    public Map<String, Object> paginationPayment(int page, int size,  List<PaymentVO> paymentList){
+        // return으로 전달할 Map 객체
+        Map<String, Object> map = new HashMap<>();
+
+        // 전체 paymentList조회
+        if(paymentList == null){
+            paymentList = getPaymentAllList();
+        }
+
+        int totalPayments = paymentList.size();
+        int totalPages = (int) Math.ceil((double) totalPayments / size);
+
+        int start = (page - 1) * size;
+        int end = Math.min(start + size, totalPayments);
+
+        List<PaymentVO> payments = paymentList.subList(start, end);
+
+        map.put("paymentList", payments);
+        map.put("totalPages", totalPages);
+        System.out.println(map.get("totalPages"));
+
+        return map;
+    }
+
+    // 결제내역: 2일이내 목록 필터
+    public List<PaymentVO> checkCancelable(List<PaymentVO> payments){
+        Timestamp twoDaysAgo = new Timestamp(System.currentTimeMillis() - 2L * 24 * 60 * 60 * 1000); // 2일 전의 Timestamp 계산
+        for (PaymentVO payment : payments) {
+            Timestamp tempDate = payment.getPayDate();
+            if (tempDate != null && twoDaysAgo.before(tempDate)) {
+                payment.setIsWithinTwoDays(1);
+            } else {
+                payment.setIsWithinTwoDays(0);
+            }
+        }
+        return payments;
+    }
+
+
     public void withdrawMember(MemberVO memberVO){memberMapper.withdrawMember(memberVO);}
+
 
     public int selectTodayRegisterMember(String date) {
         return memberMapper.selectTodayRegisterMember(date);
