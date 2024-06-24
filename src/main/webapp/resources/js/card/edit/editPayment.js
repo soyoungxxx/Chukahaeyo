@@ -65,7 +65,7 @@ function checkRequires() {
     // 이름, 날짜, 사진, 문구 전부 작성해야 함
     if ($('.card-name').text() === '' || $('.card-date').text() === '' ||
         $('.edit-file-label').text() === '첨부하기' || $('.card-message').text() === '') {
-        alert("필수 항목을 다 작성하지 않으셨습니다.")
+        alert("필수 항목을 다 작성하지 않으셨습니다!")
         return false;
     }
     // 이모티콘 네 개 다 작성해야 함
