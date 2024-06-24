@@ -4,8 +4,8 @@ $(document).ready(function() {
 	$('#summernote').summernote({
 
 		// 에디터 크기 설정
-		width: 600,
-		height: 300,
+		width: '90%',
+		height: 400,
 		minHeight: null,             // 최소 높이
 		maxHeight: null,
 		// 에디터 한글 설정

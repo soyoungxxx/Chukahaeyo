@@ -72,81 +72,20 @@
             <div class="mypage-wrap">
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <div class="mypage-content">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     <div class="container">
-
-                        <div class="inquiry-logo">문의내역</div>
-
-
                         <div class="title-container">
-                            <div class="title-title">제목</div>
                             <input class="title-text" type="text" placeholder="제목을 입력하세요." />
                         </div>
-
                         <div class="data-container">
-                            <div class="data-title">내용</div>
                             <form method="post">
                                 <textarea class="data-text" id="summernote" name="editordata"></textarea>
                             </form>
-
                         </div>
-
-                        <div class="write-button">
-                            글쓰기
+                        <div style="width:90%">
+                            <div class="write-button">등록하기</div>
                         </div>
-
-
 
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>
