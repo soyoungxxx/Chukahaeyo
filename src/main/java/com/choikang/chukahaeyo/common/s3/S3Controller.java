@@ -1,4 +1,4 @@
-package com.choikang.chukahaeyo.s3;
+package com.choikang.chukahaeyo.common.s3;
 
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.SuccessCode;

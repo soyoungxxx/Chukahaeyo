@@ -1,4 +1,4 @@
-package com.choikang.chukahaeyo.exception;
+package com.choikang.chukahaeyo.interceptor;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
