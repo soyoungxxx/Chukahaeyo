@@ -39,24 +39,17 @@ public class BoardCommunityController {
         return "board/service/faq";
     }
 
-
     @GetMapping("/community/list")
     public String communityList(@ModelAttribute CommunityVO vo , HttpServletRequest req) {
-
-
-
         req.setAttribute("map", boardCommunityService.getCommunityList(vo));
-
 
         return "board/comunityList";
     }
+
     @GetMapping("/community/mylist")
     public String communityMyList(@ModelAttribute CommunityVO vo , HttpServletRequest req , HttpSession session) {
-
         vo.setMemberID((int)session.getAttribute("memberID"));
-
         req.setAttribute("map", boardCommunityService.getCommunityMyList(vo));
-
 
         return "board/myCommunityList";
     }
@@ -73,15 +66,10 @@ public class BoardCommunityController {
         }else {
             vo.setMemberName(String.valueOf(session.getAttribute("memberName")));
         }
-
-
         req.setAttribute("object" , boardCommunityService.getCommunityDetail(vo));
-
 
         return "board/communityDetail";
     }
-
-
 
     @GetMapping("/community/write")
     public String communityWriteView(CommunityVO vo) throws UnsupportedEncodingException {
@@ -101,63 +89,36 @@ public class BoardCommunityController {
         }else {
             vo.setMemberName(String.valueOf(session.getAttribute("memberName")));
         }
-
-
-
-
         req.setAttribute("object" ,boardCommunityService.getCommunityDetail(vo));
-
-
 
         return "board/communityUpdate";
     }
 
     @PostMapping("/community/update")
     public String communityUpdateAction(CommunityVO vo) throws UnsupportedEncodingException {
-
-
         boardCommunityService.updateCommunity(vo);
-
-
 
         return "redirect:detail?commID="+vo.getCommID();
     }
 
-
     @PostMapping("/community/delete")
     public String communityDeleteAction(CommunityVO vo) throws UnsupportedEncodingException {
-
         boardCommunityService.deleteCommunity(vo);
-
-
 
         return "redirect:list";
     }
 
-
-
-
-
-
     @PostMapping("/community/write")
     public String communityWriteInsert(@ModelAttribute CommunityVO vo , HttpSession session) throws UnsupportedEncodingException {
-
-        //세션에서 memberId 넣어주고
         vo.setMemberID((int)session.getAttribute("memberID"));
-
-        //서비스 타고 no 받는다.
         boardCommunityService.insertCommunity(vo);
-
-
-
 
         return "redirect:detail?commID="+vo.getCommID()+"&ismy="+vo.getIsmy();
     }
 
-
     @PostMapping(value = "/community/image-upload")
     // @RequestParam은 자바스크립트에서 설정한 이름과 반드시 같아야합니다.
-    public ResponseEntity<?> imageUpload(@RequestParam("file") MultipartFile file) throws IllegalStateException, IOException {
+    public ResponseEntity<?> imageUpload(@RequestParam("file") MultipartFile file) throws IllegalStateException {
         try {
             // 서버에 저장할 경로
             String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/images/upload");
@@ -182,31 +143,20 @@ public class BoardCommunityController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("이미지 업로드 실패");
         }
-
     }
     @PostMapping(value = "/community/image-delete")
-    // @RequestParam은 자바스크립트에서 설정한 이름과 반드시 같아야합니다.
+    //@RequestParam은 자바스크립트에서 설정한 이름과 반드시 같아야 함
     public ResponseEntity<?> imageDelete(@RequestParam("file") String fileName) throws IllegalStateException, IOException {
         try {
             // 서버에 저장할 경로
             String uploadDirectory = context.getServletContext().getRealPath("/resources/assets/images/upload");
-
             s3Service.deleteFile(fileName);
-
             // Ajax에서 업로드 된 파일의 이름을 응답 받을 수 있도록 해줍니다.
             return ResponseEntity.ok(uploadDirectory);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("이미지 업로드 실패");
         }
-
     }
-
-
-
-
-
-
-
 
     @ResponseBody
     @GetMapping("/community/heartred")
@@ -220,11 +170,8 @@ public class BoardCommunityController {
         map.put("isRed", boardCommunityService.deleteHeart(vo));
         map.put("boardLike", boardCommunityService.getLikeCount(vo));
 
-
         return map;
-
     }
-
 
     @ResponseBody
     @GetMapping("/community/heartblack")
@@ -238,9 +185,6 @@ public class BoardCommunityController {
         map.put("isRed", boardCommunityService.insertHeart(vo));
         map.put("boardLike", boardCommunityService.getLikeCount(vo));
 
-
         return map;
-
     }
-
 }
