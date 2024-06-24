@@ -99,10 +99,7 @@
                                 <!-- -->
                     </span>
                             <div class="edit-showTime">
-                                <input type="radio" checked id="edit-timeRadio" name="edit-time">시각 선택 <br>
-                                <input type="radio" id="edit-timesRadio" name="edit-time"/>범위 시간 선택<br>
                                 <input type="time" id="edit-time" placeholder="시간 선택"/>
-                                <input type="time" id="edit-times" placeholder="시간 선택"/>
                             </div>
                         </div>
                         <hr>
@@ -183,7 +180,7 @@
             </div>
             <div class="edit-frame-div">
                 <c:forEach items="${list}" var="t">
-                    <img src="${t.templateThumbnail}" class="edit-frame" id="${t.templateID}"> <br>
+                    <img src="${t.templateThumbnail}" class="edit-frame" id="${t.templateID}" style="cursor: pointer;"> <br>
                 </c:forEach>
             </div>
         </div>

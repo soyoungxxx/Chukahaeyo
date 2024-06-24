@@ -5,7 +5,6 @@ $(window).on('beforeunload', function () {
 $(document).ready(function () {
     // 처음 선택 => 시각과 날짜 하나기 때문에 여러 개 선택은 숨김
     $('#edit-days').hide();
-    $('#edit-times').hide();
     $('.edit-showTime').hide();
     $('.edit-place').hide();
     $('.edit-prepare').hide();
@@ -56,15 +55,6 @@ $(document).ready(function () {
     $('#edit-daysRadio').click(function () {
         $('#edit-day').hide();
         $('#edit-days').show();
-    })
-
-    // 어떤 버튼을 클릭하냐에 따라 hide and show - 시간
-    $('#edit-timeRadio').click(function () {
-        $('#edit-times').hide();
-        $('#edit-time').show();
-    })
-    $('#edit-timesRadio').click(function () {
-        $('#edit-times').show();
     })
 
     // 체크박스 제어
