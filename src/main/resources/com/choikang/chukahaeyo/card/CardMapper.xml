@@ -23,20 +23,20 @@
     <select id="getPersonalCart" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
         FROM Card
-        WHERE (memberID = #{memberID}) AND (cardIsPaid = FALSE)
+        WHERE (memberID = #{memberID}) AND (cardIsPaid = FALSE) AND (isCanceled = FALSE)
     </select>
 
     <select id="getPersonalCard" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
         FROM Card
-        WHERE (memberID = #{memberID}) AND (cardIsPaid = TRUE)
+        WHERE (memberID = #{memberID}) AND (cardIsPaid = TRUE) AND (isCanceled = FALSE)
         ORDER BY payID DESC
     </select>
 
     <select id="getPublicCardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
         FROM Card
-        WHERE (cardIsPublic = TRUE) AND (cardIsPaid = TRUE)
+        WHERE (cardIsPublic = TRUE) AND (cardIsPaid = TRUE) AND (isCanceled = FALSE)
     </select>
 
     <select id="getLatest3CardList" resultType="com.choikang.chukahaeyo.card.model.CardVO">
@@ -81,6 +81,12 @@
         WHERE cardID = #{cardID}
     </update>
 
+    <update id="togglePublicStatus" parameterType="int">
+        UPDATE Card
+        SET cardIsPublic = NOT cardIsPublic
+        WHERE cardID = #{cardID}
+    </update>
+
     <insert id="insertCardGuestBook" parameterType="com.choikang.chukahaeyo.card.model.GuestBookVO">
         INSERT INTO GuestBook (guestName, guestBookText, guestBookPostDate, cardID)
         VALUES (#{guestName}, #{guestBookText}, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR), #{cardID})
@@ -93,4 +99,16 @@
         ORDER BY guestBookPostDate
     </select>
 
+
+    <select id="selectCardsByCategory" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+        FROM Card
+        WHERE MONTH(cardDate) = MONTH(#{date})
+        GROUP BY categoryID
+        ORDER BY categoryID;
+    </select>
+
+    <select id="selectCardIsPublic" parameterType="int" resultType="boolean">
+        SELECT cardIsPublic FROM Card WHERE cardID = #{cardID}
+    </select>
 </mapper>

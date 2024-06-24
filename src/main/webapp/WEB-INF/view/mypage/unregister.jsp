@@ -30,10 +30,10 @@
             var src = img.attr('src');
 
             if (src.includes("agree-check-not")) {
-                img.attr('src', "/resources/img/agree-check.png");
+                img.attr('src', "/resources/img/member/agree-check.png");
                 img.attr('data-value', "1");
             } else {
-                img.attr('src', "/resources/img/agree-check-not.png");
+                img.attr('src', "/resources/img/member/agree-check-not.png");
                 img.attr('data-value', "0");
             }
         }

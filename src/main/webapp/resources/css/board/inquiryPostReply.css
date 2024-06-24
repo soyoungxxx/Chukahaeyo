@@ -1,9 +1,9 @@
 
 /*font*/
-@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
 body .container{
-    font-family: "Jua", sans-serif;
+    font-family: "Noto Sans KR", sans-serif;
     font-weight: 400;
     font-size: 15px;
     font-style: normal;
@@ -12,20 +12,13 @@ body .container{
 
 
 
-
-
-
-
 .container {
-
     width: 1000px;
     height: 100%;
     display: flex;
     flex-direction: column;
     margin: 30px;
-
 }
-
 
 
 /*inquiry-logo*/
@@ -44,8 +37,7 @@ body .container{
 
 /*inquiry-info*/
 .inquiry-info{
-    width: 757px;
-    min-height: 50px;
+    min-height: 80px;
     border-top: 1px solid #414141;
     background-color: #F2F2F2;
     border-bottom: 1px solid #D2D2D2;
@@ -53,8 +45,10 @@ body .container{
 }
 
 .inquiry-info .inquiry-info-title{
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: bold;
 }
+
 .inquiry-info-sub{
     padding-top: 15px;
     font-size: 15px;
@@ -62,7 +56,6 @@ body .container{
 }
 
 .inquiry-content{
-    width: 757px;
     padding: 15px;
 }
 
@@ -71,7 +64,6 @@ body .container{
 /*inquiry-answer*/
 .inquiry-answer{
     padding: 15px;
-    width: 757px;
     border-top: 1px solid #CCCCCC;
     border-bottom: 1px solid #CCCCCC;
     background-color: #FBFAF6;
@@ -84,49 +76,58 @@ body .container{
 }
 
 
-.inquiry-list {
-    width: 757px;
+/*.inquiry-list {*/
+/*    width: 757px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+.inquiry-list-list {
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-
+    justify-content: right;
+    align-items: flex-end;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    margin: 10px 0 0 0;
 }
+
 
 .inquiry-list-button{
-    margin-top: 15px;
     width: 100px;
     height: 50px;
     line-height: 50px;
     text-align: center;
-    border: 1px solid black;
+    font-size: 16px;
+    margin: 0 5px 0 0;
+    border: 1px solid #414141;
+    background-color: #F2F2F2;
+    color: #2e2e2e;
     cursor: pointer;
 }
 
-
-
-
-.list {
-    width: 757px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.inquiry-list-list {
-    margin-top: 15px;
+.inquiry-list-answer{
     width: 100px;
     height: 50px;
     line-height: 50px;
     text-align: center;
-    border: 1px solid black;
+    font-size: 16px;
+    margin: 0 5px 0 0;
+    color: white;
+    background-color: #949FFF;
     cursor: pointer;
+ }
 
+/*.editor.note-frame{*/
+/*    width: 90% !important;*/
+/*}*/
+
+.note-frame {
+    width: 100% !important;
 }
-.inquiry-list-list a{
-    color: black;
-
-}
-
 
 
 

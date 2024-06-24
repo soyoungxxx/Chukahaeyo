@@ -1,26 +1,9 @@
-.edit-preview-div {
-    background-attachment: fixed;
-}
-
-/* fixed 화면 데코 이미지 */
-.background-right {
-    content:url("/resources/img/card/animalBirthday/whiteDog/sparkle-right.png");
-    width: 220px;
-    position: fixed;
-    z-index: 100;
-    margin-left: -450px;
-    margin-top: -200px;
-    pointer-events: none;
-}
-
-.background-left {
-    content:url("/resources/img/card/animalBirthday/whiteDog/sparkle-left.png");
-    width: 220px;
-    position: fixed;
-    z-index: 100;
-    margin-left: 220px;
-    margin-top: -200px;
-    pointer-events: none;
+#card-bg {
+    content: url("/resources/img/card/animalBirthday/whiteDog/bg.png");
+    width: 200%;
+    position:absolute;
+    object-fit: cover;
+    object-position: top;
 }
 
 .card-name {

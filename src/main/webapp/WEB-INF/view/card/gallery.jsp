@@ -56,7 +56,7 @@
     <div class="sticker1"></div>
     <div style="width: 100%;">
         <div class="top-bar">
-            <img src="/resources/img/logo/gallery_logo.png" alt="갤러리 로고" class="gallery-logo">
+            <img src="/resources/img/logo/gallery_logo2.png" alt="갤러리 로고" class="gallery-logo">
             <div class="filters">
                 <div class="select-wrapper">
                     <select id="category">
