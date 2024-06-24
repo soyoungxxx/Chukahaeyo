@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -83,8 +84,8 @@ public class PaymentService {
             throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, ErrorCode.INTERNAL_SERVER_ERROR.getMessage());
         }
     }
-
-    public void cancelPayment(String payNo) {
+    @Transactional
+    public void cancelPayment(int payID, String payNo) {
         try {
             String apiUrl = "https://api.iamport.kr/payments/cancel";
 
@@ -132,9 +133,11 @@ public class PaymentService {
                 cancelDTO.setCancelReceiptURL(cancelReceiptURL);
 
                 PaymentVO paymentVO = cancelDTO.of(cancelDTO);
+                paymentVO.setPayID(payID);
                 paymentVO.setPayNo(payNo);
 
                 paymentMapper.cancelPayment(paymentVO);
+                paymentMapper.deletePayment(paymentVO);
 
                 System.out.println("DB 저장 성공");
             } else {

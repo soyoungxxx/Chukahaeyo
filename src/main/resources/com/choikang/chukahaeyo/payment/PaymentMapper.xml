@@ -33,11 +33,20 @@
         WHERE payNo = #{payNo}
     </update>
 
+
+    <delete id="deletePayment" parameterType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        UPDATE Card
+        SET isCanceled = true
+        WHERE payID = #{payID}
+    </delete>
+
+
     <select id="selectPaymentDaySum" parameterType="String" resultType="int">
         SELECT IFNULL(SUM(payAmount), 0) FROM Payment
         WHERE canceledAt IS NULL
           AND DATE(payDate) = #{date}
     </select>
+
 
     <select id="selectPaymentMonthSum" parameterType="String" resultType="int">
         SELECT IFNULL(SUM(payAmount), 0) FROM Payment

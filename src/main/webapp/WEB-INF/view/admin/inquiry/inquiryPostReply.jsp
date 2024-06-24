@@ -101,30 +101,32 @@
                                         <div class="inquiry-info-sub">작성자 : ${object.memberName} | 작성일 : <fmt:formatDate
                                                 value="${object.inquiryPostDate }" pattern="yy/MM/dd HH:mm"/></div>
                                     </div>
+
                                     <div class="inquiry-content">
                                         ${object.inquiryQuestion}
                                     </div>
+
+
                                     <div class="inquiry-answer">
+
+
                                         <c:if test="${object.adminID == 0}">
                                             <textarea class="data-text" id="summernote" name="editordata"></textarea>
                                         </c:if>
                                         <div class="inquiry-answer-content">
                                             ${object.inquiryAnswer}
                                         </div>
-                                        <div class="inquiry-answer-info">답변자 : 관리자</div>
+                                        <%--  <div class="inquiry-answer-info">답변자 : 관리자</div>--%>
+                                    </div>
+
+                                    <div class="inquiry-list-list">
+                                        <div class="inquiry-list-button" onclick="location.href='/admin/inquiry/allInquiryList'">목록</div>
                                         <c:if test="${object.adminID == 0}">
-                                            <div class="inquiry-list">
-                                                <div class="inquiry-list-button">답변</div>
-                                            </div>
+                                            <div class="inquiry-list-answer">답변</div>
                                         </c:if>
                                     </div>
+
                                 </div>
-
-
-                                <div class="list">
-                                    <div class="inquiry-list-list"><a href="/admin/inquiry/allInquiryList">목록</a></div>
-                                </div>
-
                             </div>
                         </div>
                     </div>

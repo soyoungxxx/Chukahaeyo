@@ -117,7 +117,7 @@
 
 
 .faq-container {
-    width: 700px;
+    width: 90%;
     align-items: center;
 }
 
@@ -125,6 +125,10 @@
 .faq-container span {
     display: inline-block;
     margin: 10px;
+}
+
+.faq-container hr{
+    border: 1px #dedede solid;
 }
 
 .faq-inner-container {
@@ -164,6 +168,7 @@
     transform: rotate(180deg);
     color: #4B5CFF;
 }
+
 
 
 

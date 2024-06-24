@@ -7,7 +7,7 @@ window.addEventListener('load', function(){
 		$('#summernote').summernote({
 
 			// 에디터 크기 설정
-			width: 760,
+			// width: 760,
 			height: 300,
 			minHeight: null,             // 최소 높이
 			maxHeight: null,
@@ -53,9 +53,7 @@ window.addEventListener('load', function(){
 
 
 
-
-
-	$(".inquiry-list-button").click(function(e){
+	$(".inquiry-list-answer").click(function(e){
 		let contents = $('#summernote').summernote('code');
 		contents = contents.trim();
 		let id = $(".inquiry-id").val();
