@@ -178,10 +178,17 @@ public class MemberController {
 
     // 결제내역: 회원의 결제 내역 가져오기
     @GetMapping("/mypage/myHistory")
-    public String getPayHistoryCard(HttpSession session, Model model) {
+    public String getPayHistoryCard(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page,
+                                    @RequestParam(defaultValue = "10") int size) {
         int memberID = (int) session.getAttribute("memberID");
         List<CardVO> cardList = service.getCardList(memberID);
         List<PaymentVO> paymentList = service.getPaymentList(memberID);
+
+//        int totalPayments = paymentList.size();
+//        int totalPages = (int) Math.ceil((double) totalPayments / size);
+//
+//        int start = (page - 1) * size;
+//        int end = Math.min(start + size, totalPayments);
 
         Timestamp twoDaysAgo = new Timestamp(System.currentTimeMillis() - 2L * 24 * 60 * 60 * 1000); // 2일 전의 Timestamp 계산
         for (PaymentVO payment : paymentList) {
