@@ -99,4 +99,8 @@
         ORDER BY guestBookPostDate
     </select>
 
+    <select id="selectCardIsPublic" parameterType="int" resultType="boolean">
+        SELECT cardIsPublic FROM Card WHERE cardID = #{cardID}
+    </select>
+
 </mapper>

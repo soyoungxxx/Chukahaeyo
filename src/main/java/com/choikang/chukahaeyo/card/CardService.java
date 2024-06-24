@@ -50,4 +50,7 @@ public class CardService {
         cardMapper.updateCardPaymentStatus(cardID);
     }
 
+    public Boolean selectCardIsPublic(int cardID) {
+        return cardMapper.selectCardIsPublic(cardID);
+    }
 }
