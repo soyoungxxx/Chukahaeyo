@@ -7,7 +7,7 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(250px, 1fr));
     width: 100%;
-    max-height: calc(100vh - 250px); /* 스크롤 가능한 최대 높이 설정 */
+    max-height: 720px; /* 스크롤 가능한 최대 높이 설정 */
     gap: 20px;
     padding: 20px;
     box-sizing: border-box;
@@ -34,8 +34,6 @@
 
 .card-image img {
     width: 100%;
-    /*height: 280px;*/
-    /*object-fit: cover;*/
     display: block;
     filter: blur(1px);
 }
@@ -125,5 +123,4 @@
 
 .toggle-public:active {
     transform: scale(0.9); /* 눌렀을 때 살짝 줄어드는 효과 */
-    color: #007BFF; /* 눌렀을 때 색상 변경 */
 }
