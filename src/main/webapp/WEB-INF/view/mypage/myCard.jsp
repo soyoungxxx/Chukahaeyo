@@ -53,7 +53,6 @@
                                     </div>
                                     <div class="right-section">
                                         <button class="toggle-public" data-card-id="${card.cardID}">
-<%--                                            <img src="<c:out value='${card.cardIsPublic ? "/resources/img/cart/unlock.png" : "/resources/img/cart/lock.png"}'/>" alt="카드 공개 상태" class="${card.cardIsPublic ? 'unlock' : 'lock'}">--%>
                                             <img src="<c:out value='${card.cardIsPublic ? "/resources/img/cart/unlock.png" : "/resources/img/cart/lock.png"}'/>" alt="카드 공개 상태" class="${card.cardIsPublic ? 'unlock' : 'lock'}">
                                         </button>
                                         <button class="copy-button" data-card-id="${card.cardID}" data-clipboard-text="">
