@@ -64,7 +64,9 @@ public class MemberService {
         int memberID = selectMemberId(memberEmail);
 
         String encryptedData = encrypt(memberID + ":" + memberEmail);
-        System.out.println(encryptedData);
+        if(encryptedData != null && encryptedData.contains("/")){
+            encryptedData = encryptedData.replace('/', '@');
+        }
 
         // 회원가입 인증 링크
         String verifyURL = "http://3.36.97.132:9090/member/verify?data=" + encryptedData;
@@ -116,6 +118,10 @@ public class MemberService {
     // 회원가입: 암호화 된 링크 접속 가능하도록 복호화
     public String decrypt(String strToDecrypt) {
         try {
+            if(strToDecrypt != null && strToDecrypt.contains("@")){
+                strToDecrypt = strToDecrypt.replace('@', '/');
+                System.out.println("Modified Data: " + strToDecrypt);
+            }
             SecretKeySpec secretKey = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
