@@ -62,23 +62,28 @@ public class EditController {
         } else {
             redirectURL = "/cart";
         }
+        System.out.println("edit/card.do redirectURL:"+redirectURL);
         return "redirect:" + redirectURL;
     }
 
-    @GetMapping("/card/completedCard/{cardID}")
-    public RedirectView getCompletedCardPage(@PathVariable int cardID) {
-        String originUrl = "/card/completedCard/" + cardID;
+    @GetMapping("/completedCard/{cardID}")
+    public String getCompletedCardPage(@PathVariable int cardID) {
+        String originUrl = "completedCard/" + cardID;
+        System.out.println("원래 url : " + originUrl);
         String encodeUrl = Base64Util.encode(originUrl);
-        return new RedirectView("http://3.36.97.132:9090/card/" + encodeUrl);
+        System.out.println("암호화된 Url : " + encodeUrl);
+
+        return "redirect:/card/" + encodeUrl;
     }
-    @GetMapping("/card/{encodedUrl}")
+    @GetMapping("/{encodedUrl}")
     public String decodeCompletedCardPage(@PathVariable String encodedUrl, Model model) {
         try {
             // URL 디코딩
             String decodedUrl = Base64Util.decode(encodedUrl);
+            System.out.println("받아와 디코딩된 url : " + decodedUrl);
             String[] parts = decodedUrl.split("/");
             int cardID = Integer.parseInt(parts[parts.length - 1]);
-
+            System.out.println("카드 ID : " + cardID);
             // 카드 정보 가져오기
             CardVO cardVO = editService.getCompletedCardPage(cardID);
             model.addAttribute("cardVO", cardVO);
