@@ -74,7 +74,7 @@
                 alert("비밀번호 확인란과 비밀번호가 일치하지 않습니다.");
                 $("#pwdCheck").focus();
                 var text = document.getElementById("checkPwdMsg");
-                text.style.display = "block";
+                text.style.display = "none";
                 return false;
             } else {
                 var text = document.getElementById("checkPwdMsg");
@@ -83,31 +83,27 @@
         }
 
         function checkInput() {
-            if ($("#memberPwd").val() == '') {
-                alert("비밀번호를 입력해 주세요");
-                $("#memberPwd").focus();
-                return false;
+            // 비밀번호가 입력된 경우 실행
+            if ($("#memberPwd").val() != '') {
+                if ($("#pwdCheck").val() == '') {
+                    alert("비밀번호 확인란을 입력해주세요");
+                    $("#pwdCheck").focus();
+                    return false;
+                }
+                if (!pwdRegex.test($("#memberPwd").val())) {
+                    alert("비밀번호를 올바른 형식으로 작성해주세요.");
+                    $("#memberPwd").focus();
+                    return false;
+                }
+                if ($("#pwdCheck").val() !== $("#memberPwd").val()) {
+                    alert("비밀번호 확인란과 비밀번호가 일치하지 않습니다. 비밀번호 확인란을 다시 작성해주십시오.");
+                    $("#pwdCheck").focus();
+                    return false;
+                }
             }
 
-            if ($("#pwdCheck").val() == '') {
-                alert("비밀번호 확인란을 입력해주세요");
-                $("#pwdCheck").focus();
-                return false;
-            }
-            if (!pwdRegex.test($("#memberPwd").val())) {
-                alert("비밀번호를 올바른 형식으로 작성해주세요.");
-                $("#memberPwd").focus();
-                return false;
-            }
-            if ($("#pwdCheck").val() !== $("#memberPwd").val()) {
-                alert("비밀번호 확인란과 비밀번호가 일치하지 않습니다. 비밀번호 확인란을 다시 작성해주십시오.");
-                $("#pwdCheck").focus();
-                return false;
-            }
-
-            if ($("#memberName").val() == '') {
-                alert("이름을 입력해주세요");
-                $("#memberName").focus();
+            if($("#memberPwd").val() == '' && $("#memberName").val() == ''){
+                alert("변경된 정보가 없습니다.");
                 return false;
             }
         }
@@ -153,7 +149,7 @@
                                 </li>
 
                                 <li>
-                                    <input type="text" id="memberName" name="memberName" value="${member.memberName}" placeholder="이름">
+                                    <input type="text" id="memberName" name="memberName" placeholder="이름">
                                 </li>
                             </ul>
 
