@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.mail.internet.MimeMessage;
+import java.lang.reflect.Member;
 import java.sql.Timestamp;
 import java.util.Base64;
 import java.util.HashMap;
@@ -149,8 +150,8 @@ public class MemberService {
     }
 
     // 회원 정보 수정
-    public int changeMemberInfo(MemberVO memberVO) {
-        return memberMapper.changeMemberInfo(memberVO);
+    public int changeMemberInfo(int memberID, MemberVO changeInfo) {
+        return memberMapper.changeMemberInfo(memberID, changeInfo);
     }
 
     // 카드 내역 가져오기

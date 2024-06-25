@@ -53,10 +53,16 @@
         where (memberID = #{memberID} AND memberPwd = MD5(#{memberPwd}))
     </select>
 
-    <update id="changeMemberInfo" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
+    <update id="changeMemberInfo" parameterType="map">
         UPDATE Members
-        SET memberName = #{memberName},
-            memberPwd  = MD5(#{memberPwd})
+        <set>
+            <if test="changeInfo.memberName != null">
+                memberName = #{changeInfo.memberName},
+            </if>
+            <if test="changeInfo.memberPwd != null and changeInfo.memberPwd != ''">
+                memberPwd = MD5(#{changeInfo.memberPwd}),
+            </if>
+        </set>
         WHERE memberID = #{memberID}
     </update>
 

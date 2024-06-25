@@ -105,9 +105,14 @@
 
                                     <c:forEach var="card" items="${cardList}">
                                         <c:if test="${card.payID == payment.payID}">
-                                            <a href="javascript:openCard('${card.cardID}');">
-                                                <img src="${card.templateThumbnail}" class="payment-item-img">
-                                            </a>
+                                            <div class="card-image">
+                                                <a href="javascript:openCard('${card.cardID}');">
+                                                    <img src="${card.templateThumbnail}" class="payment-item-img">
+                                                </a>
+                                                <div class="card-overlay">
+                                                    <p>${card.cardName}</p>
+                                                </div>
+                                            </div>
                                         </c:if>
                                     </c:forEach>
 
