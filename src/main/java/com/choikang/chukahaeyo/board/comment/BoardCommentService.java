@@ -25,10 +25,7 @@ public class BoardCommentService {
         map.put("totalCount", totalCount);
         map.put("list", list); // 모델에 직접 넣어줘도 됨
 
-
         return map;
-
-
     }
 
     public int mainInsert(ReplyVO vo) {
@@ -36,26 +33,18 @@ public class BoardCommentService {
         boardCommentMapper.mainInsert(vo);
 
         return vo.getReplyID();
-
-
-
-
     }
 
     public int subInsert(ReplyVO vo) {
-
         ReplyVO correctLine = boardCommentMapper.getCorrectLine(vo);
-        if(correctLine == null) {
+        if (correctLine == null) {
             int correctOno = boardCommentMapper.getCorrectOno(vo);
             vo.setReplyOno(correctOno);
-        }else {
+        } else {
             vo.setReplyOno(correctLine.getReplyOno());
         }
         boardCommentMapper.updateOno(vo);
-
         boardCommentMapper.subInsert(vo);
-
-
 
         return vo.getReplyID();
     }

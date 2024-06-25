@@ -398,26 +398,37 @@
 }
 
 /*결제 내역*/
+.payment-list-wrap{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.payment-list-nav{
+    margin-top: 15px !important;
+}
 
 .payment-list {
     display: flex;
 
     margin: 20px 0 0 20px;
 
-    width: 90%;
+    width: 95%;
     border: 1px solid #000000;
 }
 
 .payment-items {
     align-items: flex-start;
     flex-wrap: wrap;
-
     display: block;
-
     width: 75%;
-
     padding: 10px;
     margin: 10px 0;
+    white-space: nowrap;
+    overflow-x: auto;
 }
 
 .payment-item-img {
@@ -428,6 +439,7 @@
 
     max-width: 100%;
     box-sizing: border-box;
+    filter: drop-shadow(2px 2px 2px rgba(200, 200, 200, 0.5) );
 }
 
 .payment-info {

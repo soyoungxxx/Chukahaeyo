@@ -53,7 +53,7 @@
     </select>
 
     <select id="getPaymentList"  parameterType="int" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
-        SELECT * from Payment where memberID = #{memberID}
+        SELECT * from Payment where memberID = #{memberID} ORDER BY payDate DESC;
     </select>
 
     <select id="adminLogin" parameterType="com.choikang.chukahaeyo.member.model.AdminVO" resultType="com.choikang.chukahaeyo.member.model.AdminVO">

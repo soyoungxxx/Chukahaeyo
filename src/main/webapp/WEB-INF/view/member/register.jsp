@@ -107,7 +107,21 @@
             if (!pwdRegex.test($("#memberPwd").val())) {
                 alert("비밀번호를 올바른 형식으로 작성해주세요.");
                 $("#memberPwd").focus();
+                $('#pwd-check-fail').css('display', 'block');
                 return false;
+            }
+            else{
+                $('#pwd-check-fail').css('display', 'none');
+                if(($("#pwdCheck").val() != null && $("#pwdCheck").val() != "")){
+                    if($("#pwdCheck").val() !== $("#memberPwd").val()){
+                        $('#check-fail').css('display', 'block');
+                        $('#check-success').css('display', 'none');
+                    }
+                    else{
+                        $('#check-fail').css('display', 'none');
+                        $('#check-success').css('display', 'block');
+                    }
+                }
             }
         }
 
@@ -115,7 +129,12 @@
             if ($("#pwdCheck").val() !== $("#memberPwd").val()) {
                 alert("비밀번호 확인란과 비밀번호가 일치하지 않습니다.");
                 $("#pwdCheck").focus();
-                return false;
+                $('#check-fail').css('display', 'block');
+                $('#check-success').css('display', 'none');
+            }
+            else{
+                $('#check-success').css('display', 'block');
+                $('#check-fail').css('display', 'none');
             }
         }
 
@@ -139,10 +158,12 @@
                     console.log(res);
                     if (!res) {
                         alert('사용 가능한 이메일입니다.');
+                        $('#check-duplmail').css('display', 'block');
                     } else {
                         var email = $("#memberEmail");
                         email.val("");
-                        alert('중복된 이메일입니다.\r\n다른 이메일을 입력해 주세요');
+                        alert('사용할 수 없는 이메일입니다.\r\n다른 이메일을 입력해 주세요');
+                        $('#check-duplmail').css('display', 'none');
                     }
                 }
             })
@@ -235,25 +256,32 @@
                         <div class="register_form">
                             <ul>
                                 <li class="email_check">
-                                    <input type="text" id="memberEmail" name="memberEmail" placeholder="이메일"
+                                    <input type="text" id="memberEmail" name="memberEmail" placeholder="이메일(인증 가능한 이메일을 입력해주세요.)"
                                            onchange="changeValueCheckEmail();">
                                     <span>
                                         <a href="javascript:checkEmail();" class="check_btn"
                                            id="emailCheck" data-value='0'>중복확인</a>
                                     </span>
                                 </li>
+                                <div class="check-result">
+                                    <p id="check-duplmail">중복확인을 완료하였습니다✅</p>
+                                </div>
 
                                 <li>
                                     <input type="password" id="memberPwd" name="memberPwd"
                                            placeholder="비밀번호(영문자 및 숫자, 기호 포함 8자리 이상)" onchange="return checkPwd();">
                                 </li>
+                                <div class="check-result">
+                                    <p id="pwd-check-fail">비밀번호를 올바른 형식으로 작성해주세요⚠️</p>
+                                </div>
+
                                 <li>
                                     <input type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인"
                                            onchange="return checkDuplPwd();">
                                 </li>
-                                <div class="check_result">
-                                    <p id="check_success">비밀번호가 확인되었습니다.</p>
-                                    <p id="check_fail">비밀번호가 일치하지 않습니다!</p>
+                                <div class="check-result">
+                                    <p id="check-success">비밀번호가 확인되었습니다✅</p>
+                                    <p id="check-fail">비밀번호가 일치하지 않습니다⚠️</p>
                                 </div>
                                 <li>
                                     <input type="text" id="memberName" name="memberName" placeholder="이름">

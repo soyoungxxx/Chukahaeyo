@@ -10,7 +10,6 @@ import java.util.List;
 public interface BoardCommunityMapper {
     List<CommunityVO> getCommunityList(CommunityVO communityVO);
 
-
     int count(CommunityVO vo);
 
     int insertCommunity(CommunityVO vo);
@@ -36,6 +35,4 @@ public interface BoardCommunityMapper {
     int myCount(CommunityVO vo);
 
     List<CommunityVO> getCommunityMyList(CommunityVO vo);
-
-    // xml 작성
 }
