@@ -71,26 +71,34 @@ public class EditController {
         String encodeUrl = Base64Util.encode(originUrl);
         return new RedirectView("http://3.36.97.132:9090/card/" + encodeUrl);
     }
-
     @GetMapping("/card/{encodedUrl}")
     public String decodeCompletedCardPage(@PathVariable String encodedUrl, Model model) {
-        String decodedUrl = Base64Util.decode(encodedUrl);
-        String[] parts = decodedUrl.split("/");
-        int cardID = Integer.parseInt(parts[parts.length - 1]);
+        try {
+            // URL 디코딩
+            String decodedUrl = Base64Util.decode(encodedUrl);
+            String[] parts = decodedUrl.split("/");
+            int cardID = Integer.parseInt(parts[parts.length - 1]);
 
-        // 카드 정보, editService 호출 후 뷰에 값 전달
-        CardVO cardVO = editService.getCompletedCardPage(cardID);
-        model.addAttribute("cardVO", cardVO);
+            // 카드 정보 가져오기
+            CardVO cardVO = editService.getCompletedCardPage(cardID);
+            model.addAttribute("cardVO", cardVO);
 
-        // 카드의 css 정보
-        String css = cardVO.getTemplateThumbnail().substring(25, cardVO.getTemplateThumbnail().length() - 4);
-        model.addAttribute("css", css);
+            // 카드의 CSS 정보 추출
+            String css = cardVO.getTemplateThumbnail().substring(25, cardVO.getTemplateThumbnail().length() - 4);
+            model.addAttribute("css", css);
 
-        // 방명록 정보, editService 호출 후 뷰에 값 전달
-        List<GuestBookVO> guestBooks = editService.selectGuestBooks(cardVO.getCardID());
-        model.addAttribute("guestBooks", guestBooks);
+            // 방명록 정보 가져오기
+            List<GuestBookVO> guestBooks = editService.selectGuestBooks(cardVO.getCardID());
+            model.addAttribute("guestBooks", guestBooks);
 
-        return "card/completedCard";
+            return "card/completedCard";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", "Invalid URL encoding.");
+            return "error";
+        } catch (Exception e) {
+            model.addAttribute("error", "An error occurred while processing your request.");
+            return "error";
+        }
     }
 
     @PostMapping("/completedCard/like.do")
