@@ -2,7 +2,7 @@ package config;
 
 import com.choikang.chukahaeyo.exception.CompletedCardInterceptor;
 import com.choikang.chukahaeyo.exception.CookieInterceptor;
-import com.choikang.chukahaeyo.exception.AccessControlInterceptor;
+import com.choikang.chukahaeyo.interceptor.AccessControlInterceptor;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSessionFactory;
