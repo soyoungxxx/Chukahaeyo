@@ -78,7 +78,7 @@ public class EditController {
         List<GuestBookVO> guestBooks = editService.selectGuestBooks(cardVO.getCardID());
         model.addAttribute("guestBooks", guestBooks);
 
-        return encodeUrl;
+        return "card/encodeUrl";
     }
 
 
