@@ -107,7 +107,7 @@
         SELECT *
         FROM GuestBook
         WHERE cardID = #{cardID}
-        ORDER BY guestBookPostDate
+        ORDER BY guestBookPostDate DESC
     </select>
 
 
