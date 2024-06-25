@@ -85,6 +85,8 @@ document.getElementById('edit-pay-button').addEventListener('click', function ()
 
 // hidden input 값 설정
 function saveHiddenData() {
+    console.log(1);
+    $(".guest-messages").empty();
     $('#map').text("");
     $('#map').removeAttr("style");
     $("#card-design").val($('.edit-preview-div').html());
@@ -93,8 +95,6 @@ function saveHiddenData() {
     $('#submit-templateThumbnail').val(templateThumbnail);
     $('#submit-categoryId').val(categoryID);
     $("#cardEmojis").val(emoji);
-
-    $(".guest-messages").empty();
 }
 
 // 장바구니 선택 시 저장 로직

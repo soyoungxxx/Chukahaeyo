@@ -212,10 +212,10 @@
 </script>
 <script src="/resources/js/card/edit/edit.js"></script>
 <script src="/resources/js/card/edit/address.js"></script>
-<script src="/resources/js/card/edit/editPayment.js"></script>
 <script src="/resources/js/card/edit/previewDiv.js"></script>
 <script src="/resources/js/card/edit/editSelectFrame.js"></script>
 <script src="/resources/js/card/edit/uploadImage.js"></script>
+<script src="/resources/js/card/edit/editPayment.js"></script>
 <script src="/resources/js/card/card.js"></script>
 </body>
 </html>
