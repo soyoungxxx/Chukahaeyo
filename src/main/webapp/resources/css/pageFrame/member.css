@@ -226,7 +226,7 @@
     padding: 0;
 }
 
-#check-fail {
+#check-fail, #pwd-check-fail {
     color: red;
     display: none;
 }

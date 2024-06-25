@@ -107,7 +107,21 @@
             if (!pwdRegex.test($("#memberPwd").val())) {
                 alert("비밀번호를 올바른 형식으로 작성해주세요.");
                 $("#memberPwd").focus();
+                $('#pwd-check-fail').css('display', 'block');
                 return false;
+            }
+            else{
+                $('#pwd-check-fail').css('display', 'none');
+                if(($("#pwdCheck").val() != null && $("#pwdCheck").val() != "")){
+                    if($("#pwdCheck").val() !== $("#memberPwd").val()){
+                        $('#check-fail').css('display', 'block');
+                        $('#check-success').css('display', 'none');
+                    }
+                    else{
+                        $('#check-fail').css('display', 'none');
+                        $('#check-success').css('display', 'block');
+                    }
+                }
             }
         }
 
@@ -257,6 +271,10 @@
                                     <input type="password" id="memberPwd" name="memberPwd"
                                            placeholder="비밀번호(영문자 및 숫자, 기호 포함 8자리 이상)" onchange="return checkPwd();">
                                 </li>
+                                <div class="check-result">
+                                    <p id="pwd-check-fail">비밀번호를 올바른 형식으로 작성해주세요⚠️</p>
+                                </div>
+
                                 <li>
                                     <input type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인"
                                            onchange="return checkDuplPwd();">
