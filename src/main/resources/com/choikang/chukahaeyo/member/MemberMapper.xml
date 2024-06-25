@@ -66,11 +66,9 @@
         where memberID = #{memberID}
     </select>
 
-    <select id="getPaymentList" parameterType="int" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+    <select id="getCardAllList" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
         SELECT *
-        from Payment
-        where memberID = #{memberID}
-        ORDER BY payDate DESC;
+        from Card
     </select>
 
     <select id="adminLogin" parameterType="com.choikang.chukahaeyo.member.model.AdminVO"

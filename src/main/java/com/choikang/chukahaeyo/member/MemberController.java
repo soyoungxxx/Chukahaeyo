@@ -222,8 +222,10 @@ public class MemberController {
                                     @RequestParam(defaultValue = "10") int size) {
         Map<String, Object> map = service.paginationPayment(page, size, null);
         List<PaymentVO> paymentList = (List<PaymentVO>) map.get("paymentList");
+        List<CardVO> cardList = service.getCardAllList();
 
         model.addAttribute("payments", paymentList);
+        model.addAttribute("cardList", cardList);
         model.addAttribute("currentPage", page);
         model.addAttribute("pageSize", size);
         model.addAttribute("totalPages", (Integer) map.get("totalPages"));

@@ -41,8 +41,8 @@ public interface MemberMapper {
     // 카드 목록 가져오기
     List<CardVO> getCardList(int memberID);
 
-    // 결제 내역 가져오기
-    List<PaymentVO> getPaymentList(int memberID);
+    // 카드 전체 목록 가져오기
+    List<CardVO> getCardAllList();
 
     // 필터링된 결제 내역 가져오기
     List<PaymentVO> getFilteredPaymentList(
