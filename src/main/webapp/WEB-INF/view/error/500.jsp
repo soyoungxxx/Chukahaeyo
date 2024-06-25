@@ -8,28 +8,14 @@
     <title>500 에러 페이지</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
-    <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css"/>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
-
-        .main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-
         .ErrorPage500-content {
-            max-width: 600px;
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+            margin-top: 100px;
             padding: 20px;
         }
-
         .ErrorPage500-content img {
             max-width: 100%;
             height: auto;
