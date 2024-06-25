@@ -3,18 +3,17 @@ package com.choikang.chukahaeyo.member;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
-import com.choikang.chukahaeyo.payment.CancelDTO;
-import com.choikang.chukahaeyo.payment.PaymentDTO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
-import com.siot.IamportRestClient.response.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import javax.mail.internet.MimeMessage;
 import java.sql.Timestamp;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +25,9 @@ public class MemberService {
 
     @Autowired
     private JavaMailSender mailSender;
+
+    // 회원가입: 인증 메일 링크 생성 시 사용되는 키. 길이를 16, 24, 32바이트 중 하나로 설정해야함
+    private static final String SECRET_KEY = "chukahaeyochoikang2teamshinhands";
 
     // 로그인
     public MemberVO login(MemberVO memberVO) {
@@ -61,8 +63,11 @@ public class MemberService {
     public void mailAuthCheck(String memberEmail, String memberName) {
         int memberID = selectMemberId(memberEmail);
 
+        String encryptedData = encrypt(memberID + ":" + memberEmail);
+        System.out.println(encryptedData);
+
         // 회원가입 인증 링크
-        String verifyURL = "http://3.36.97.132:9090/member/verify?memberID=" + memberID;
+        String verifyURL = "http://3.36.97.132:9090/member/verify?data=" + encryptedData;
         String from = "dawndawnchoi@naver.com";//보내는 사람 메일주소
         String to = memberEmail; // 회원 가입 한 사람 메일 주소
         String title = "[축하해요] 회원가입 인증을 완료해주세요."; // 메일 제목
@@ -93,6 +98,33 @@ public class MemberService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // 회원가입: 메일 인증 링크 url에 id입력해서 접근 불가능하도록 암호화
+    private String encrypt(String strToEncrypt) {
+        try {
+            SecretKeySpec secretKey = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // 회원가입: 암호화 된 링크 접속 가능하도록 복호화
+    public String decrypt(String strToDecrypt) {
+        try {
+            SecretKeySpec secretKey = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
+            Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            String temp = new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+            return temp.split(":")[0];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // 가입 인증
