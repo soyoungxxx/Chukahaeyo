@@ -25,7 +25,6 @@
     margin: auto;
 }
 
-
 /* 헤더 */
 .service-header > .service-logo {
     height: 60px;
@@ -96,15 +95,12 @@
     color: #4B5CFF !important;
 }
 
-
-
-/*실제 FAQ들어가는 부분 */
+/*실제 FAQ 들어가는 부분 */
 .container {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-
 
 .faq-title {
     margin-top: 40px;
@@ -115,19 +111,17 @@
     font-weight: 600;
 }
 
-
 .faq-container {
     width: 90%;
     align-items: center;
 }
-
 
 .faq-container span {
     display: inline-block;
     margin: 10px;
 }
 
-.faq-container hr{
+.faq-container hr {
     border: 1px #dedede solid;
 }
 
@@ -142,12 +136,24 @@
 .faq-inner-container > span {
     transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
 }
+
 .faq-inner-container .arrow {
+    display: block;
     width: 25px;
     height: 25px;
     margin: auto 10px;
+
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+    transform: rotate(180deg);
+    transition: transform 0.3s ease-in-out;
+
+    background-image: url("/resources/img/board/toggle.png");
+
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    border: none !important;
+    outline: none !important;
 }
 
 .content {
@@ -155,7 +161,7 @@
     font-size: 16px;
     margin: 0 10px 25px 10px;
     display: none;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 
 
@@ -165,8 +171,14 @@
 }
 
 .faq-inner-container.active .arrow {
-    transform: rotate(180deg);
-    color: #4B5CFF;
+    transform: rotate(90deg);
+
+    background-image: url("/resources/img/board/toggle-active.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    border: none !important;
+    outline: none !important;
 }
 
 

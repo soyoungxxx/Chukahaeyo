@@ -17,7 +17,6 @@ html {
 
 .all-content {
     font-family: "Noto Sans KR", sans-serif;
-
     display: flex;
     position: relative;
     flex-direction: column;
@@ -334,7 +333,7 @@ canvas {
 .extra-place,
 .extra-preparation,
 .extra-account {
-     display: none;
+    display: none;
 }
 
 .more-card {

@@ -1,6 +1,5 @@
 package com.choikang.chukahaeyo.board.inquiry;
 
-
 import com.choikang.chukahaeyo.board.model.InquiryVO;
 import org.apache.ibatis.annotations.Mapper;
 

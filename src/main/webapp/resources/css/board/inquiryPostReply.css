@@ -1,16 +1,14 @@
-
 /*font*/
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
 
-body .container{
+body .container {
     font-family: "Noto Sans KR", sans-serif;
     font-weight: 400;
     font-size: 15px;
     font-style: normal;
-  }  
+}
+
 /*font*/
-
-
 
 .container {
     width: 1000px;
@@ -19,7 +17,6 @@ body .container{
     flex-direction: column;
     margin: 30px;
 }
-
 
 /*inquiry-logo*/
 .inquiry-logo {
@@ -32,56 +29,43 @@ body .container{
     margin-bottom: 30px;
 }
 
-
-
-
 /*inquiry-info*/
-.inquiry-info{
+.inquiry-info {
     min-height: 80px;
     border-top: 1px solid #414141;
     background-color: #F2F2F2;
     border-bottom: 1px solid #D2D2D2;
-    padding:15px
+    padding: 15px
 }
 
-.inquiry-info .inquiry-info-title{
+.inquiry-info .inquiry-info-title {
     font-size: 18px;
     font-weight: bold;
 }
 
-.inquiry-info-sub{
+.inquiry-info-sub {
     padding-top: 15px;
     font-size: 15px;
     color: #1F1F1F;
 }
 
-.inquiry-content{
+.inquiry-content {
     padding: 15px;
 }
 
-
-
 /*inquiry-answer*/
-.inquiry-answer{
+.inquiry-answer {
     padding: 15px;
     border-top: 1px solid #CCCCCC;
     border-bottom: 1px solid #CCCCCC;
     background-color: #FBFAF6;
-
 }
 
-.inquiry-answer-info{
+.inquiry-answer-info {
     padding-top: 15px;
     color: #D1A25B;
 }
 
-
-/*.inquiry-list {*/
-/*    width: 757px;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
 .inquiry-list-list {
     width: 100%;
     display: flex;
@@ -95,8 +79,7 @@ body .container{
     margin: 10px 0 0 0;
 }
 
-
-.inquiry-list-button{
+.inquiry-list-button {
     width: 100px;
     height: 50px;
     line-height: 50px;
@@ -109,7 +92,7 @@ body .container{
     cursor: pointer;
 }
 
-.inquiry-list-answer{
+.inquiry-list-answer {
     width: 100px;
     height: 50px;
     line-height: 50px;
@@ -119,11 +102,7 @@ body .container{
     color: white;
     background-color: #949FFF;
     cursor: pointer;
- }
-
-/*.editor.note-frame{*/
-/*    width: 90% !important;*/
-/*}*/
+}
 
 .note-frame {
     width: 100% !important;

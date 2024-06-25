@@ -4,6 +4,7 @@ import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.card.model.GuestBookVO;
 import com.choikang.chukahaeyo.card.model.TemplateVO;
 import com.choikang.chukahaeyo.card.url.ShortUrlService;
+import com.choikang.chukahaeyo.common.Base64Util;
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.SuccessCode;
 import com.choikang.chukahaeyo.common.s3.S3Service;
@@ -13,8 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -44,7 +48,7 @@ public class EditController {
     }
 
     @PostMapping("/edit/card.do")
-    public String insertCardInDatabase(CardVO cardVO, HttpSession session, @RequestParam(value="imageFile") MultipartFile file, Model model) {
+    public String insertCardInDatabase(CardVO cardVO, HttpSession session, @RequestParam(value = "imageFile") MultipartFile file, Model model) {
         // image s3 위치 가져와서 저장. imageService 호출
         cardVO.setCardImage(imageService.saveFile(file));
         // db에 카드 데이터 저장. editService 호출
@@ -58,24 +62,46 @@ public class EditController {
         } else {
             redirectURL = "/cart";
         }
+        System.out.println("edit/card.do redirectURL:"+redirectURL);
         return "redirect:" + redirectURL;
     }
 
     @GetMapping("/completedCard/{cardID}")
-    public String getCompletedCardPage(@PathVariable int cardID, Model model) {
-        // 카드 정보, editService 호출 후 뷰에 값 전달
-        CardVO cardVO = editService.getCompletedCardPage(cardID);
-        model.addAttribute("cardVO", cardVO);
+    public String getCompletedCardPage(@PathVariable int cardID) {
+        String originUrl = "completedCard/" + cardID;
+        String encodeUrl = Base64Util.encode(originUrl);
 
-        // 카드의 css 정보
-        String css = cardVO.getTemplateThumbnail().substring(25, cardVO.getTemplateThumbnail().length() - 4);
-        model.addAttribute("css", css);
+        return "redirect:/card/" + encodeUrl;
+    }
+    @GetMapping("/{encodedUrl}")
+    public String decodeCompletedCardPage(@PathVariable String encodedUrl, Model model) {
+        try {
+            // URL 디코딩
+            String decodedUrl = Base64Util.decode(encodedUrl);
+            System.out.println("받아와 디코딩된 url : " + decodedUrl);
+            String[] parts = decodedUrl.split("/");
+            int cardID = Integer.parseInt(parts[parts.length - 1]);
+            System.out.println("카드 ID : " + cardID);
+            // 카드 정보 가져오기
+            CardVO cardVO = editService.getCompletedCardPage(cardID);
+            model.addAttribute("cardVO", cardVO);
 
-        // 방명록 정보, editService 호출 후 뷰에 값 전달
-        List<GuestBookVO> guestBooks = editService.selectGuestBooks(cardVO.getCardID());
-        model.addAttribute("guestBooks", guestBooks);
+            // 카드의 CSS 정보 추출
+            String css = cardVO.getTemplateThumbnail().substring(25, cardVO.getTemplateThumbnail().length() - 4);
+            model.addAttribute("css", css);
 
-        return "card/completedCard";
+            // 방명록 정보 가져오기
+            List<GuestBookVO> guestBooks = editService.selectGuestBooks(cardVO.getCardID());
+            model.addAttribute("guestBooks", guestBooks);
+
+            return "card/completedCard";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", "Invalid URL encoding.");
+            return "error";
+        } catch (Exception e) {
+            model.addAttribute("error", "An error occurred while processing your request.");
+            return "error";
+        }
     }
 
     @PostMapping("/completedCard/like.do")
@@ -93,7 +119,7 @@ public class EditController {
         try {
             editService.insertCardGuestBook(guestBookVO);
             return new ResponseEntity<>(SuccessCode.GUESTBOOK_CREATE_SUCCESS.getMessage(), SuccessCode.GUESTBOOK_CREATE_SUCCESS.getHttpStatus());
-        } catch(Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
         }
     }

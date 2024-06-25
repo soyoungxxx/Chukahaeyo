@@ -5,6 +5,7 @@
     justify-content: center;
     font-family: "Noto Sans KR", sans-serif;
 }
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -69,7 +70,7 @@ select:focus {
     border-color: #007bff; /* 포커스 시 테두리 색상 */
 }
 
-.category-wrapper{
+.category-wrapper {
     padding-bottom: 10px;
     font-size: 18px;
 }
@@ -132,6 +133,7 @@ select:focus {
     letter-spacing: 3px;
     text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
+
 .card-info {
     padding: 15px;
 }
@@ -148,10 +150,12 @@ a {
     color: black;
     text-decoration: none;
 }
+
 a:hover {
     color: black;
     text-decoration: none;
 }
+
 a:visited {
     color: black;
 }
