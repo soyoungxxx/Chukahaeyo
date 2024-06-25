@@ -1,6 +1,6 @@
 package com.choikang.chukahaeyo.payment;
 
-import com.choikang.chukahaeyo.common.Decode;
+import com.choikang.chukahaeyo.common.DecodeUniCode;
 
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.model.CustomException;
@@ -49,6 +49,7 @@ public class PaymentService {
     public String getToken() {
         System.out.println("key : " + key);
         System.out.println("secret Key : " + secretKey);
+
 
         try {
             String apiUrl = "https://api.iamport.kr/users/getToken"; // 요청을 보낼 api 주소
@@ -127,7 +128,7 @@ public class PaymentService {
                 if (failReason == null) {
                     cancelDTO.setFailReason(failReason);
                 } else {
-                    cancelDTO.setFailReason(Decode.unicodeDecode(failReason));
+                    cancelDTO.setFailReason(DecodeUniCode.unicodeDecode(failReason));
                 }
                 cancelDTO.setCancelReceiptURL(cancelReceiptURL);
 
