@@ -29,7 +29,7 @@ import java.util.Properties;
 @EnableWebMvc
 @MapperScan(basePackages = {"com.choikang.chukahaeyo"}, annotationClass = Mapper.class) // 인터페이스 스캔
 //@EnableTransactionManagement
-//@PropertySource("classpath:db.properties")
+//@PropertySource("classpath:application.properties")
 public class MvcConfig implements WebMvcConfigurer {
 
     @Value("${db.driver}")
