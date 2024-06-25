@@ -29,7 +29,7 @@ import java.util.Properties;
 @EnableWebMvc
 @MapperScan(basePackages = {"com.choikang.chukahaeyo"}, annotationClass = Mapper.class) // 인터페이스 스캔
 //@EnableTransactionManagement
-//@PropertySource("classpath:db.properties")
+//@PropertySource("classpath:application.properties")
 public class MvcConfig implements WebMvcConfigurer {
 
     @Value("${db.driver}")
@@ -110,9 +110,9 @@ public class MvcConfig implements WebMvcConfigurer {
         PropertyPlaceholderConfigurer config = new PropertyPlaceholderConfigurer();
         String value = System.getProperty("spring.profiles.active");
         if ("aws".equals(value)) {
-            config.setLocations(new FileSystemResource("/home/ubuntu/shinhan_team2_chukahaeyo/apache-tomcat-9.0.89/webapps/db.properties"));
+            config.setLocations(new FileSystemResource("/home/ubuntu/shinhan_team2_chukahaeyo/apache-tomcat-9.0.89/webapps/application.properties"));
         } else {
-            config.setLocations(new ClassPathResource("db.properties"));
+            config.setLocations(new ClassPathResource("application.properties"));
         }
         return config;
     }
