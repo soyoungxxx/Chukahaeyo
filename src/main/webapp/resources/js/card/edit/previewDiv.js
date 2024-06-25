@@ -38,7 +38,8 @@ $('.all-content').ready(function () {
     // 준비물
     $('.edit-prepare').on('input', function () {
         var pre = $(this).val();
-        $('.extra-preparation').text(pre);
+        pre = pre.replaceAll(/(\n|\r\n)/g, "<br>");
+        $('.extra-preparation').html("< 준비물 > <br> "+ pre);
     });
     // 계좌 번호
     $('#edit-bank').on('input', function () {

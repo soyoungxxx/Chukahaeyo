@@ -27,6 +27,10 @@ $(document).on('click', '#like', function () {
     }
 })
 
+$(document).on('click', 'map > img', function () {
+    console.log(1);
+})
+
 function confetti() {
     jsConfetti.addConfetti({
         emojis: emoji,
@@ -113,6 +117,13 @@ function getMap(roadAddr) {
                 position: coords
             });
             map.setCenter(coords);
+
+            kakao.maps.event.addListener(marker, 'click', function() {
+                window.open("https://map.kakao.com/link/map/"+roadAddr+","+result[0].y+","+result[0].x);
+
+            });
         }
     });
 }
+
+// 마커에 클릭 이벤트를 등록한다 (우클릭 : rightclick)
