@@ -35,13 +35,9 @@ public class PaymentService {
 
     //@Transactional
     public int processPayment(PaymentDTO paymentDTO) {
-        try {
-            PaymentVO paymentVO = PaymentDTO.of(paymentDTO);
-            paymentMapper.insertPayment(paymentVO);
-            return paymentVO.getPayID();
-        } catch (Exception e) {
-            throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "PaymentDTO를 PaymentVO로 변환 실패");
-        }
+        PaymentVO paymentVO = PaymentDTO.of(paymentDTO);
+        paymentMapper.insertPayment(paymentVO);
+        return paymentVO.getPayID();
     }
 
     public String getToken() {
