@@ -43,7 +43,6 @@
     width: 100%;
 }
 
-
 .mypage-menu a {
     color: black; /* a 태그 글씨 색 검은색으로 설정 */
     text-decoration: none; /* 링크 밑줄 제거 */
@@ -89,7 +88,6 @@
     margin: 40px auto 0 30px;
     height: 150px;
     width: 700px;
-
     font-family: "Noto Sans KR", sans-serif;
 }
 
@@ -101,7 +99,6 @@
 .changeInfo > p {
     display: block;
     text-align: left;
-
     font-size: 16px;
     color: #535353;
     padding: 0;
@@ -178,36 +175,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-
     backdrop-filter: blur(2px);
-
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1;
 }
 
-
 .popup-body {
     width: 450px;
     height: 330px;
-
     padding: 40px;
-
     text-align: center;
     background-color: white;
-
     border: 4px solid #B5B5B5;
     box-shadow: 0 2px 2px 0 #B5B5B5;
 }
 
 .pwd-auth-popup {
     display: block;
-    border: 0px;
+    border: 0;
     position: relative;
 }
 
@@ -215,7 +205,7 @@
     font-family: "Noto Sans KR", sans-serif;
     font-size: 20px;
     font-weight: bold;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .pwd-auth-form > p {
@@ -251,14 +241,11 @@
 
     width: 90px;
     height: 40px;
-
     line-height: 35px;
     background-color: #efefef;
 
-
     border-radius: 4px;
     border: 2px solid #B5B5B5;
-
     cursor: pointer;
 }
 
@@ -277,12 +264,10 @@
     width: 240px;
     height: 40px;
     line-height: 40px;
-
     border-radius: 10px;
 }
 
 /*회원 탈퇴 페이지*/
-
 .unregister-page {
     margin: 40px 0 0 40px;
 }
@@ -398,7 +383,7 @@
 }
 
 /*결제 내역*/
-.payment-list-wrap{
+.payment-list-wrap {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -407,15 +392,13 @@
     align-items: center;
 }
 
-.payment-list-nav{
+.payment-list-nav {
     margin-top: 15px !important;
 }
 
 .payment-list {
     display: flex;
-
     margin: 20px 0 0 20px;
-
     width: 95%;
     border: 1px solid #000000;
 }
@@ -436,10 +419,9 @@
     height: 120px;
     object-fit: cover;
     margin: 5px;
-
     max-width: 100%;
     box-sizing: border-box;
-    filter: drop-shadow(2px 2px 2px rgba(200, 200, 200, 0.5) );
+    filter: drop-shadow(2px 2px 2px rgba(200, 200, 200, 0.5));
 }
 
 .payment-info {
@@ -460,7 +442,7 @@
     margin: 5px;
 }
 
-.cancel-info{
+.cancel-info {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -495,7 +477,6 @@
     font-size: 24px;
     font-weight: 600;
     color: #4B5CFF;
-
     align-items: center;
     line-height: 430px;
 }

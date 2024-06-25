@@ -10,7 +10,7 @@ public class ShortUrlDTO {
     private String cardUrl; //단축 url
     private String cardQR;
 
-    public static CardVO of(ShortUrlDTO shortUrlDTO){
+    public static CardVO of(ShortUrlDTO shortUrlDTO) {
         CardVO cardVO = new CardVO();
         cardVO.setCardURL(shortUrlDTO.getCardUrl());
         cardVO.setCardQR(shortUrlDTO.getCardQR());

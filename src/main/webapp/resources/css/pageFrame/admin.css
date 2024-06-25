@@ -38,7 +38,6 @@
     margin: 30px 200px -10px 0;
 }
 
-
 .admin-header > hr {
     margin: 0 auto;
     width: 85%;
@@ -91,11 +90,11 @@
 }
 
 /* 관리자 페이지 로그인 */
-.login_header{
+.login_header {
     display: flex;
 }
 
-.login_title{
+.login_title {
     font-family: "Noto Sans KR", sans-serif;
     font-size: 28px;
     letter-spacing: -2px;
@@ -104,7 +103,7 @@
     line-height: 24px;
 }
 
-.login_header_line{
+.login_header_line {
     width: 90%;
     min-width: 800px;
     border: black solid 1px;
@@ -119,7 +118,7 @@
     height: 600px;
 }
 
-.login_form > h3{
+.login_form > h3 {
     margin-top: 100px;
     font-family: "Noto Sans KR", sans-serif;
     font-size: 28px;
@@ -179,9 +178,7 @@
 /* 관리자 페이지 주문목록 */
 .payment-list {
     display: flex;
-
     margin: 10px 0 0 20px;
-
     width: 90%;
     border: 1px solid #A5A5A5;
 }
@@ -189,10 +186,8 @@
 .payment-item {
     align-items: flex-start;
     flex-wrap: wrap;
-
     display: block;
     width: 15%;
-
     /*padding: 10px;*/
     margin: 5px 0 5px 5px;
 }
@@ -218,7 +213,7 @@
     position: relative;
     margin: 10px 0 0 0;
 
-    width:85%;
+    width: 85%;
     min-width: 170px;
 }
 

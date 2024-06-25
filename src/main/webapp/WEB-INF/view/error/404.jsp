@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isErrorPage="true" %>
 <% response.setStatus(200); %>
 
@@ -16,6 +16,7 @@
             padding: 0;
             height: 100%;
         }
+
         .main {
             display: flex;
             flex-direction: column;
@@ -24,14 +25,16 @@
             min-height: 100vh;
             text-align: center;
         }
-        .404ErrorPage-content {
-                max-width: 600px;
-                padding: 20px;
-            }
-        .404ErrorPage-content img {
-                max-width: 100%;
-                height: auto;
-            }
+
+        .ErrorPage404-content {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .ErrorPage404-content img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -39,10 +42,10 @@
 <main class="main">
     <div class="sticker1"></div>
     <div style="width: 100%;">
-        <div class="404ErrorPage">
-            <div class="404ErrorPage-wrap">
-                <div class="404ErrorPage-content">
-                    <img src="/resources/img/error/404%20logo.png" alt="404 에러 페이지 이미지" style="width: 50%;"><br><br></ㅠㄱ><br>
+        <div class="ErrorPage404">
+            <div class="ErrorPage404-wrap">
+                <div class="ErrorPage404-content">
+                    <img src="/resources/img/error/404%20logo.png" alt="404 에러 페이지 이미지" style="width: 50%;"><br><br><br>
                     <img src="/resources/img/error/404%20text.png" alt="404 에러 페이지 이미지" style="width: 40%;"><br><br>
                 </div>
             </div>

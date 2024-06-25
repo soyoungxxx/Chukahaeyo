@@ -13,13 +13,13 @@
 
 </body>
 <script>
-    $(function() {
+    $(function () {
         $("#scr").before('${cardVO.cardDesign}');
         $(".like-number").text(${cardVO.cardLikeCnt});
         $(".uploadedImage").attr("src", "${cardVO.cardImage}");
         emoji = '${cardVO.cardEmojis}'.split(",");
         <c:forEach items="${guestBooks}" var="item">
-            showGuestBook('${item.guestName}', '${item.guestBookText}');
+        showGuestBook('${item.guestName}', '${item.guestBookText}');
         </c:forEach>
     })
     const cardID = ${cardVO.cardID};

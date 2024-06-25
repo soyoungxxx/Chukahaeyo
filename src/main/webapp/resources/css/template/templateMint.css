@@ -15,7 +15,7 @@
 }
 
 .card-roof-img {
-    content:url("/resources/img/card/humanBirthday/mint/card-top.png");
+    content: url("/resources/img/card/humanBirthday/mint/card-top.png");
     width: 578px;
     height: 378px;
     margin-top: 40px;
@@ -32,7 +32,7 @@
     z-index: 100;
 }
 
-.card-name{
+.card-name {
     color: #2653F0 !important;
     font-family: "Jua", sans-serif;
     font-size: 80px;
@@ -58,7 +58,7 @@
     margin-left: 420px;
 }
 
-#like{
+#like {
     margin: 40px 0 5px 0;
     width: 61px;
     height: 84px;
@@ -89,62 +89,74 @@
 .card-main-content, .card-content {
     background: #F5FFF4;
 }
-.card-message{
+
+.card-message {
     color: #14316B !important;
     font-family: "Noto Sans KR", sans-serif;
     font-size: 28px;
     z-index: 20;
 }
-.card-date{
+
+.card-date {
     color: #747474 !important;
     font-family: "Lexend", sans-serif;
     margin-top: 10px;
 }
-.extra-time, .extra-preparation{
+
+.extra-time, .extra-preparation {
     color: #14316B;
 }
-.card-like-text{
+
+.card-like-text {
     color: #3C3AB3;
     font-family: "Noto Sans KR", sans-serif;
     font-size: 20px
 }
-.like-number{
+
+.like-number {
     color: #3C3AB3;
     font-family: "Noto Sans KR", sans-serif;
 }
-.guestbook-title{
+
+.guestbook-title {
     font-family: "Noto Sans KR", sans-serif;
     font-weight: bold;
     color: #3C3AB3;
     font-size: 24px;
     padding-left: 10px;
 }
-.guestbook-divider{
+
+.guestbook-divider {
     border: 1.5px #849FFF solid;
     color: #849FFF;
 }
-.guest-message{
+
+.guest-message {
     border: 2px #849FFF solid;
     color: #3C3AB3;
     background-color: #F5FFF4;
     font-family: "Noto Sans KR", sans-serif;
 }
-.guest-nickname{
+
+.guest-nickname {
     border: 2px #849FFF solid;
     color: #3C3AB3;
     background-color: #F5FFF4;
     font-family: "Noto Sans KR", sans-serif;
 }
-.guest-nickname::placeholder, .guest-message::placeholder
-, .guest-message{
+
+.guest-nickname::placeholder, .guest-message::placeholder, .guest-message {
     color: #3C3AB3;
 }
-.guestbook-submit-button{
+
+.guestbook-submit-button {
     color: #FFF;
 }
+
 .message-block.odd {
     background-color: #e1f4e0;
 }
+
 .guestbook-submit-button {
     color: white;
     border: 0;

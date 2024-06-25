@@ -16,7 +16,7 @@
 /* 로그인 */
 .login_form {
     display: block;
-    border: 0px;
+    border: 0;
     position: relative;
     margin: 20px auto;
     height: 150px;
@@ -58,11 +58,11 @@
     cursor: pointer;
     width: 300px;
     margin: 40px auto;
-    padding: 7px 0px;
+    padding: 7px 0;
 
     color: #FFFFFF;
     border-radius: 7px;
-    border: 0px;
+    border: 0;
     background-color: #FFC2C2;
 }
 
@@ -365,7 +365,7 @@
 }
 
 /* 이메일 인증 팝업 */
-.email-auth-popup{
+.email-auth-popup {
     margin-top: 65px;
 }
 
@@ -374,7 +374,7 @@
     font-size: 18px;
 }
 
-.email-auth-popup > img{
+.email-auth-popup > img {
     width: 270px;
     width: 250px;
 }
@@ -385,23 +385,25 @@
 
 
 /* 이메일 인증 전 회원가입 완료 팝업 */
-#successRegisterPopup > .popup-body{
+#successRegisterPopup > .popup-body {
     width: 420px;
     height: 540px;
 }
+
 .success-auth-popup {
-    margin-top:20px;
+    margin-top: 20px;
     margin-bottom: 60px;
 }
+
 .success-auth-popup > p {
     font-family: "Noto Sans KR", sans-serif;
     font-size: 18px;
     font-weight: 500;
-    margin-top:60px;
+    margin-top: 60px;
     margin-bottom: 60px;
 }
 
-.success-auth-popup > img{
+.success-auth-popup > img {
     width: 180px;
     height: 180px;
 }

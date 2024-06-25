@@ -22,7 +22,8 @@
             <div class="slideshow-container">
                 <c:forEach var="card" items="${top3Cards}">
                     <div class="slides fade">
-                        <div class="main-card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}" data-url="card/completedCard/${card.cardID}">
+                        <div class="main-card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}"
+                             data-url="card/completedCard/${card.cardID}">
                             <div class="card-image" onclick="redirectToUrl(this)">
                                 <img src="resources/img/main/main0${card.categoryID}.png" alt="" style="width:100%">
                                 <div class="main-overlay">
@@ -38,9 +39,12 @@
 
             <!-- 내생일, 반려동물 생일, 단체 행사 링크 -->
             <div class="navigator">
-                <img src="resources/img/main/mainbear1.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/myCard">
-                <img src="resources/img/main/mainbear2.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/myPet">
-                <img src="resources/img/main/mainbear3.png" alt="" class="main-bear" onclick="redirectToUrl(this)" data-url="card/edit/invitation">
+                <img src="resources/img/main/mainbear1.png" alt="" class="main-bear" onclick="redirectToUrl(this)"
+                     data-url="card/edit/myCard">
+                <img src="resources/img/main/mainbear2.png" alt="" class="main-bear" onclick="redirectToUrl(this)"
+                     data-url="card/edit/myPet">
+                <img src="resources/img/main/mainbear3.png" alt="" class="main-bear" onclick="redirectToUrl(this)"
+                     data-url="card/edit/invitation">
             </div>
 
             <!-- 명예의 전당 -->

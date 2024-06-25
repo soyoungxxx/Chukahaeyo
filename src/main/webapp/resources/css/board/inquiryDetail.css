@@ -1,18 +1,16 @@
-
 /*font*/
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
 
-body .container{
+body .container {
     font-family: "Noto Sans KR", sans-serif;
-  }  
-/*font*/
+}
 
 .container {
     padding: 40px 0 0 40px;
 }
 
 /*inquiry-info*/
-.inquiry-info{
+.inquiry-info {
     width: 100%;
     min-height: 50px;
     border-top: 1px solid #414141;
@@ -20,7 +18,7 @@ body .container{
     border-bottom: 1px solid #D2D2D2;
 }
 
-.inquiry-info .inquiry-info-title{
+.inquiry-info .inquiry-info-title {
     font-size: 20px;
 }
 
@@ -30,20 +28,18 @@ body .container{
     padding: 15px;
 }
 
-.inquiry-info-sub{
+.inquiry-info-sub {
     padding-top: 15px;
     font-size: 15px;
     color: #1F1F1F;
 }
 
-.inquiry-content{
+.inquiry-content {
     width: 100%;
 }
 
-
-
 /*inquiry-answer*/
-.inquiry-answer{
+.inquiry-answer {
     width: 100%;
     border-top: 1px solid #CCCCCC;
     border-bottom: 1px solid #CCCCCC;
@@ -51,21 +47,19 @@ body .container{
 
 }
 
-.inquiry-answer-info{
+.inquiry-answer-info {
     padding-top: 15px;
     color: #D1A25B;
 }
-
 
 .inquiry-list {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
-.inquiry-list-button{
+.inquiry-list-button {
     margin-top: 15px;
     width: 100px;
     height: 50px;

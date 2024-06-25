@@ -1,7 +1,7 @@
 #card-bg {
     content: url("/resources/img/card/animalBirthday/whiteDog/bg.png");
     width: 200%;
-    position:absolute;
+    position: absolute;
     object-fit: cover;
     object-position: top;
 }
@@ -36,7 +36,7 @@
 .more-card {
     font-size: 15px;
     margin-left: 350px;
-    background-color:#F5EBEB;
+    background-color: #F5EBEB;
     padding: 7px;
 }
 
@@ -44,7 +44,7 @@
     background-color: white;
 }
 
-.like-btn{
+.like-btn {
     position: relative;
 }
 
@@ -58,66 +58,65 @@
 }
 
 
-
 /* 컬러 바꾸기 */
-.card-name{
+.card-name {
     color: #61281B !important;
 }
 
-.card-date{
+.card-date {
     color: #61281B !important;
 }
 
-.extra-time{
+.extra-time {
     color: #61281B !important;
 }
 
-.extra-preparation{
+.extra-preparation {
     color: #61281B !important;
 }
 
-.card-like-text{
+.card-like-text {
     color: #61281B !important;
 }
 
-.like-number{
+.like-number {
     color: #61281B !important;
 }
 
-.guestbook-title{
+.guestbook-title {
     color: #61281B;
 }
 
-.guestbook-divider{
+.guestbook-divider {
     border: 1.5px #61281B solid;
     color: #61281B;
 }
 
-.guest-message{
+.guest-message {
     border: 2px #61281B solid;
     color: #61281B;
     background-color: #FFFFFF;
 }
 
-.guest-nickname{
+.guest-nickname {
     border: 2px #61281B solid;
     color: #61281B;
     background-color: #FFFFFF;
 }
 
-.guest-nickname::placeholder{
+.guest-nickname::placeholder {
     color: #61281B;
 }
 
-.guest-message::placeholder{
+.guest-message::placeholder {
     color: #61281B;
 }
 
-.guest-message{
+.guest-message {
     color: #61281B;
 }
 
-.geustbook-submit-button{
+.geustbook-submit-button {
     color: #61281B;
 }
 

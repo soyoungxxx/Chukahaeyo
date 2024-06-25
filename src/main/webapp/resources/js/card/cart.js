@@ -38,10 +38,7 @@ function updateReceipt() {
 function deleteCard(cardID, event) {
     if (confirm("정말로 삭제하겠습니까?")) {
         $.ajax({
-            url: '/deleteCard',
-            type: 'POST',
-            data: {cardID: cardID},
-            success: function (response) {
+            url: '/deleteCard', type: 'POST', data: {cardID: cardID}, success: function (response) {
                 if (response.status === 'success') {
                     alert("카드가 삭제되었습니다.");
                     $(event.target).closest('.card').remove(); // DOM에서 카드 제거
@@ -118,18 +115,14 @@ function proceedToPayment() {
                             // 각 카드의 결제 상태 업데이트
                             selectedCards.forEach(card => {
                                 $.ajax({
-                                    url: '/updateCardPaymentStatus',
-                                    type: 'POST',
-                                    data: {cardID: card.cardID}, // payID 추가
-                                    async: false,
-                                    success: function (response) {
+                                    url: '/updateCardPaymentStatus', type: 'POST', data: {cardID: card.cardID}, // payID 추가
+                                    async: false, success: function (response) {
                                         if (response.status === 'success') {
                                             console.log("카드 결제 상태 업데이트 성공:", response.message);
                                         } else {
                                             console.log("카드 결제 상태 업데이트 실패:", response.message);
                                         }
-                                    },
-                                    error: function (xhr, status, error) {
+                                    }, error: function (xhr, status, error) {
                                         console.log("카드 결제 상태 업데이트 중 오류 발생:", error);
                                     }
                                 });

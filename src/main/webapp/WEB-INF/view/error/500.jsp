@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page isErrorPage="true" %>
 <% response.setStatus(200); %>
 <!DOCTYPE html>
@@ -15,6 +15,7 @@
             padding: 0;
             height: 100%;
         }
+
         .main {
             display: flex;
             flex-direction: column;
@@ -23,14 +24,16 @@
             min-height: 100vh;
             text-align: center;
         }
-        .500ErrorPage-content {
-                max-width: 600px;
-                padding: 20px;
-            }
-        .500ErrorPage-content img {
-                max-width: 100%;
-                height: auto;
-            }
+
+        .ErrorPage500-content {
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .ErrorPage500-content img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -38,9 +41,9 @@
 <main class="main">
     <div class="sticker1"></div>
     <div style="width: 100%;">
-        <div class="500ErrorPage">
-            <div class="500ErrorPage-wrap">
-                <div class="500ErrorPage-content">
+        <div class="ErrorPage500">
+            <div class="ErrorPage500-wrap">
+                <div class="ErrorPage500-content">
                     <img src="/resources/img/error/500%20logo.png" alt="500 에러 페이지 이미지" style="width: 50%;"><br><br><br>
                     <img src="/resources/img/error/500%20text.png" alt="500 에러 페이지 이미지" style="width: 40%;"><br><br>
                 </div>
