@@ -40,7 +40,6 @@ function requestPay() {
                     receiptURL: rsp.receipt_url
                 }),
                 success: function (response) {
-                    console.log("response" + response)
                     saveHiddenData();
                     $('#cardIsPaid').val('true');
                     $(window).off('beforeunload');
