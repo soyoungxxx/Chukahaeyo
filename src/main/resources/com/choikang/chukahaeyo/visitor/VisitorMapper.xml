@@ -2,17 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.choikang.chukahaeyo.visitor.VisitorMapper">
     <insert id="insertCookie" parameterType="com.choikang.chukahaeyo.visitor.model.VisitorVO">
-        INSERT INTO Visitor(
-            visitorCookie, visitDate
-        )
-        VALUES (
-                   #{visitorCookie}, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR)
-               )
+        INSERT INTO Visitor(visitorCookie, visitDate)
+        VALUES (#{visitorCookie}, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR))
     </insert>
     <select id="selectVisitor" parameterType="com.choikang.chukahaeyo.visitor.model.VisitorVO" resultType="int">
-        SELECT COUNT(*) FROM Visitor
+        SELECT COUNT(*)
+        FROM Visitor
         WHERE SUBSTR(visitDate, 1, 10) BETWEEN #{startDate} AND #{endDate}
-        GROUP BY DATE(visitDate)
-        ORDER BY DATE(visitDate);
+        GROUP BY DATE (visitDate)
+        ORDER BY DATE (visitDate);
     </select>
 </mapper>

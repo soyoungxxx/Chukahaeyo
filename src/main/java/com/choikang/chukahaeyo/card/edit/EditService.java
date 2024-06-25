@@ -8,7 +8,6 @@ import com.choikang.chukahaeyo.card.model.TemplateVO;
 import com.nhncorp.lucy.security.xss.XssFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -47,7 +46,6 @@ public class EditService {
         // XSS filter 적용해서 html 문법 필터링하기
         XssFilter filter = XssFilter.getInstance("lucy-xss-superset-sax.xml", true);
         cardVO.setCardDesign(filter.doFilter(cardVO.getCardDesign()));
-
         cardMapper.insertCardInDatabase(cardVO);
     }
 
@@ -62,6 +60,7 @@ public class EditService {
     public void insertCardGuestBook(GuestBookVO guestBookVO) {
         cardMapper.insertCardGuestBook(guestBookVO);
     }
+
     public List<GuestBookVO> selectGuestBooks(int cardID) {
         return cardMapper.selectGuestBooks(cardID);
     }

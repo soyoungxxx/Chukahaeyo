@@ -8,5 +8,6 @@ import java.util.List;
 @Mapper
 public interface VisitorMapper {
     void insertCookie(VisitorVO visitorVO);
+
     List<Integer> selectVisitor(VisitorVO visitorVO);
 }

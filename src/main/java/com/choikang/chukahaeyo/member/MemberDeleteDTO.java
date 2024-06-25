@@ -5,15 +5,10 @@ import java.util.List;
 public class MemberDeleteDTO {
     private List<String> memberIds;
 
-    // 기본 생성자
-    public MemberDeleteDTO() {}
-
-    // getter와 setter
-    public List<String> getMemberIds() {
-        return memberIds;
+    public MemberDeleteDTO() {
     }
 
-    public void setMemberIds(List<String> memberIds) {
-        this.memberIds = memberIds;
+    public List<String> getMemberIds() {
+        return memberIds;
     }
 }

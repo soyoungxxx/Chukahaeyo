@@ -13,8 +13,8 @@
     <script>
         const pwdRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,20}$/;
 
-        $(document).ready(function() {
-            $('#memberCheckPwd').on('keydown', function(event) {
+        $(document).ready(function () {
+            $('#memberCheckPwd').on('keydown', function (event) {
                 if (event.key === 'Enter') {
                     authPwd();
                 }
@@ -79,7 +79,7 @@
             }
         }
 
-        function checkInput(){
+        function checkInput() {
             if ($("#memberPwd").val() == '') {
                 alert("비밀번호를 입력해 주세요");
                 $("#memberPwd").focus();
@@ -122,7 +122,7 @@
         </div>
 
         <div class="mypage">
-            <div class="mypage-wrap" >
+            <div class="mypage-wrap">
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <%@ include file="/WEB-INF/view/mypage/include/checkPwdAuth.jsp" %>
                 <div class="mypage-content" id="changeInfoContent">

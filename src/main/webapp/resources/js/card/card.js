@@ -1,6 +1,6 @@
 // 캔버스 객체 불러와서 컨페티로 등록하기
 var canvas = document.querySelector("canvas");
-const jsConfetti = new JSConfetti({ canvas });
+const jsConfetti = new JSConfetti({canvas});
 
 $(document).ready(function(){
     if ($('.extra-address').text() != null) {
@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 // like 버튼 클릭 시 숫자 올라가고, 이모티콘 컨페티 터지는 효과
 var emoji = ["🎉", "🎊", "✨", "🎈"];
-$(document).on('click', '#like', function() {
+$(document).on('click', '#like', function () {
     let likeNumber = Number($(".like-number").text()) + 1;
     if (window.location.pathname.includes('/card/edit/')) {
         $(".like-number").text(likeNumber);
@@ -35,7 +35,7 @@ function confetti() {
     });
 }
 
-$(document).on('click', '.guestbook-submit-button', function() {
+$(document).on('click', '.guestbook-submit-button', function () {
     var name = $(".guest-nickname").val();
     var message = $(".guest-message").val();
 

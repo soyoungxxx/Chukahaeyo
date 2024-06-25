@@ -16,6 +16,7 @@
             margin-top: 100px;
             padding: 20px;
         }
+
         .ErrorPage500-content img {
             max-width: 100%;
             height: auto;

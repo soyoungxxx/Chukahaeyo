@@ -60,7 +60,7 @@
                 <h3 class="login_title">축하해요<br>ADMIN</h3>
             </div>
 
-            <hr class = "login_header_line">
+            <hr class="login_header_line">
 
             <div class="login_form">
                 <h3>LOGIN</h3>

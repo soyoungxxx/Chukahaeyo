@@ -7,7 +7,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
         sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
         dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
         s = '',
-        toFixedFix = function(n, prec) {
+        toFixedFix = function (n, prec) {
             var k = Math.pow(10, prec);
             return '' + Math.round(n * k) / k;
         };
@@ -24,13 +24,13 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 function dateFormat(date) {
-    return  date.getFullYear() +
+    return date.getFullYear() +
         '-' + ((date.getMonth()) < 9 ? "0" + (date.getMonth()) : (date.getMonth())) +
         '-' + ((date.getDate() < 9 ? "0" + (date.getDate()) : date.getDate()));
 }
 
 function dateFormat2(date) {
-    return  (date.getMonth()) + '월 ' + date.getDate() + '일';
+    return (date.getMonth()) + '월 ' + date.getDate() + '일';
 }
 
 function monthDateFormat(date) {
@@ -40,21 +40,20 @@ function monthDateFormat(date) {
 // 날짜 설정하기
 let todayDate = new Date();
 const year = todayDate.getFullYear();
-const month = todayDate.getMonth()+1;
+const month = todayDate.getMonth() + 1;
 const date = todayDate.getDate();
 
 const endDate = dateFormat(new Date(year, month, date));
-const startDate = dateFormat(new Date(year, month, date-6))
-
+const startDate = dateFormat(new Date(year, month, date - 6))
 
 
 let visitData = [];
-$(document).ready(function() {
+$(document).ready(function () {
     $.ajax({ // 방문자 수 차트
         url: '/admin/visitor.do',
         type: 'GET',
-        data: {startDate:startDate, endDate:endDate},
-        success: function(result) {
+        data: {startDate: startDate, endDate: endDate},
+        success: function (result) {
             while (result.length < 7) {
                 result.unshift(0);
             }
@@ -64,12 +63,12 @@ $(document).ready(function() {
                 type: 'line',
                 data: {
                     labels: [
-                        dateFormat2(new Date(year, month, date-6)),
-                        dateFormat2(new Date(year, month, date-5)),
-                        dateFormat2(new Date(year, month, date-4)),
-                        dateFormat2(new Date(year, month, date-3)),
-                        dateFormat2(new Date(year, month, date-2)),
-                        dateFormat2(new Date(year, month, date-1)),
+                        dateFormat2(new Date(year, month, date - 6)),
+                        dateFormat2(new Date(year, month, date - 5)),
+                        dateFormat2(new Date(year, month, date - 4)),
+                        dateFormat2(new Date(year, month, date - 3)),
+                        dateFormat2(new Date(year, month, date - 2)),
+                        dateFormat2(new Date(year, month, date - 1)),
                         month + '월 ' + date + '일'
                     ],
                     datasets: [{
@@ -89,7 +88,7 @@ $(document).ready(function() {
                     }],
                 },
                 options: {
-                    font : {
+                    font: {
                         size: 50
                     },
                     maintainAspectRatio: false,
@@ -119,7 +118,7 @@ $(document).ready(function() {
                                 maxTicksLimit: 5,
                                 padding: 10,
                                 // Include a dollar sign in the ticks
-                                callback: function(value, index, values) {
+                                callback: function (value, index, values) {
                                     if (index === values.length - 1) return "";
                                     return number_format(value) + '명';
                                 }
@@ -151,7 +150,7 @@ $(document).ready(function() {
                         mode: 'index',
                         caretPadding: 10,
                         callbacks: {
-                            label: function(tooltipItem, chart) {
+                            label: function (tooltipItem, chart) {
                                 var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
                                 return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
                             }
@@ -160,7 +159,7 @@ $(document).ready(function() {
                 }
             });
         },
-        error: function() {
+        error: function () {
             alert("방문자 수를 불러오는 데 실패했습니다.");
         }
     });
@@ -168,13 +167,13 @@ $(document).ready(function() {
     $.ajax({ // 매출 차트는 아니고 그냥 매출
         url: '/admin/payment.do',
         type: 'GET',
-        data: {date:dateFormat(new Date(year, month, date))},
-        success: function(result) {
+        data: {date: dateFormat(new Date(year, month, date))},
+        success: function (result) {
             $('#dailyAmount').text(number_format(result[0]));
             $('#monthlyAmount').text(number_format(result[1]));
             $('#yearlyAmount').text(number_format(result[2]));
         },
-        error: function() {
+        error: function () {
             alert("매출을 불러오는 데 실패했습니다.");
         }
     });
@@ -182,8 +181,8 @@ $(document).ready(function() {
     $.ajax({
         url: '/admin/member/count.do',
         type: 'GET',
-        data: {date:dateFormat(new Date(year, month, date))},
-        success: function(result) {
+        data: {date: dateFormat(new Date(year, month, date))},
+        success: function (result) {
             $('#member-count').text(number_format(result) + '명');
         }
     })
@@ -191,8 +190,8 @@ $(document).ready(function() {
     $.ajax({ // 월 매출 차트
         url: '/admin/month/payment.do',
         type: 'GET',
-        data: {date:dateFormat(new Date(year, month, date))},
-        success: function(result) {
+        data: {date: dateFormat(new Date(year, month, date))},
+        success: function (result) {
             while (result.length < 6) {
                 result.unshift(0);
             }
@@ -202,11 +201,11 @@ $(document).ready(function() {
                 type: 'bar',
                 data: {
                     labels: [
-                        monthDateFormat(new Date(year, month-5, date)),
-                        monthDateFormat(new Date(year, month-4, date)),
-                        monthDateFormat(new Date(year, month-3, date)),
-                        monthDateFormat(new Date(year, month-2, date)),
-                        monthDateFormat(new Date(year, month-1, date)),
+                        monthDateFormat(new Date(year, month - 5, date)),
+                        monthDateFormat(new Date(year, month - 4, date)),
+                        monthDateFormat(new Date(year, month - 3, date)),
+                        monthDateFormat(new Date(year, month - 2, date)),
+                        monthDateFormat(new Date(year, month - 1, date)),
                         monthDateFormat(new Date(year, month, date)),
                     ],
                     datasets: [{
@@ -246,7 +245,7 @@ $(document).ready(function() {
                                 min: 0,
                                 maxTicksLimit: 5,
                                 padding: 10,
-                                callback: function(value, index, values) {
+                                callback: function (value, index, values) {
                                     if (index === values.length - 1) return "";
                                     return number_format(value) + '원';
                                 }
@@ -276,7 +275,7 @@ $(document).ready(function() {
                         displayColors: false,
                         caretPadding: 10,
                         callbacks: {
-                            label: function(tooltipItem, chart) {
+                            label: function (tooltipItem, chart) {
                                 var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
                                 return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '원';
                             }
@@ -285,7 +284,7 @@ $(document).ready(function() {
                 }
             });
         },
-        error: function() {
+        error: function () {
             alert("월매출을 불러오는 데 실패했습니다.");
         }
     });
@@ -293,8 +292,8 @@ $(document).ready(function() {
     $.ajax({ // 월 매출 차트
         url: '/admin/category/payment.do',
         type: 'GET',
-        data: {date:dateFormat(new Date(year, month, date))},
-        success: function(result) {
+        data: {date: dateFormat(new Date(year, month, date))},
+        success: function (result) {
             console.log(result);
 
             // Pie Chart Example
@@ -329,7 +328,7 @@ $(document).ready(function() {
                 },
             });
         },
-        error: function() {
+        error: function () {
             alert("카테고리별 매출을 불러오는 데 실패했습니다.");
         }
     });
