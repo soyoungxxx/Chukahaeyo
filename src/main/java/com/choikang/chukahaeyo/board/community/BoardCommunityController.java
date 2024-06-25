@@ -1,6 +1,5 @@
 package com.choikang.chukahaeyo.board.community;
 
-
 import com.choikang.chukahaeyo.board.model.CommunityVO;
 import com.choikang.chukahaeyo.common.s3.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-
 @Controller
 @RequestMapping("/board")
 public class BoardCommunityController {
@@ -35,61 +33,58 @@ public class BoardCommunityController {
 
     @GetMapping("/service")
     public String serviceFaq() {
-
         return "board/service/faq";
     }
 
     @GetMapping("/community/list")
-    public String communityList(@ModelAttribute CommunityVO vo , HttpServletRequest req) {
+    public String communityList(@ModelAttribute CommunityVO vo, HttpServletRequest req) {
         req.setAttribute("map", boardCommunityService.getCommunityList(vo));
-
         return "board/comunityList";
     }
 
     @GetMapping("/community/mylist")
-    public String communityMyList(@ModelAttribute CommunityVO vo , HttpServletRequest req , HttpSession session) {
-        vo.setMemberID((int)session.getAttribute("memberID"));
+    public String communityMyList(@ModelAttribute CommunityVO vo, HttpServletRequest req, HttpSession session) {
+        vo.setMemberID((int) session.getAttribute("memberID"));
         req.setAttribute("map", boardCommunityService.getCommunityMyList(vo));
 
         return "board/myCommunityList";
     }
 
     @GetMapping("/community/detail")
-    public String communityDetail(CommunityVO vo,HttpServletRequest req , HttpSession session) {
-        if( session.getAttribute("memberID") == null){
+    public String communityDetail(CommunityVO vo, HttpServletRequest req, HttpSession session) {
+        if (session.getAttribute("memberID") == null) {
             vo.setMemberID(0);
-        }else {
-            vo.setMemberID((int)session.getAttribute("memberID"));
+        } else {
+            vo.setMemberID((int) session.getAttribute("memberID"));
         }
-        if( session.getAttribute("memberName") == null){
+        if (session.getAttribute("memberName") == null) {
             vo.setMemberName("");
-        }else {
+        } else {
             vo.setMemberName(String.valueOf(session.getAttribute("memberName")));
         }
-        req.setAttribute("object" , boardCommunityService.getCommunityDetail(vo));
+        req.setAttribute("object", boardCommunityService.getCommunityDetail(vo));
 
         return "board/communityDetail";
     }
 
     @GetMapping("/community/write")
     public String communityWriteView(CommunityVO vo) throws UnsupportedEncodingException {
-
         return "board/communityPost";
     }
 
     @GetMapping("/community/update")
-    public String communityUpdateView(CommunityVO vo , HttpServletRequest req , HttpSession session) throws UnsupportedEncodingException {
-        if( session.getAttribute("memberID") == null){
+    public String communityUpdateView(CommunityVO vo, HttpServletRequest req, HttpSession session) throws UnsupportedEncodingException {
+        if (session.getAttribute("memberID") == null) {
             vo.setMemberID(0);
-        }else {
-            vo.setMemberID((int)session.getAttribute("memberID"));
+        } else {
+            vo.setMemberID((int) session.getAttribute("memberID"));
         }
-        if( session.getAttribute("memberName") == null){
+        if (session.getAttribute("memberName") == null) {
             vo.setMemberName("");
-        }else {
+        } else {
             vo.setMemberName(String.valueOf(session.getAttribute("memberName")));
         }
-        req.setAttribute("object" ,boardCommunityService.getCommunityDetail(vo));
+        req.setAttribute("object", boardCommunityService.getCommunityDetail(vo));
 
         return "board/communityUpdate";
     }
@@ -97,23 +92,20 @@ public class BoardCommunityController {
     @PostMapping("/community/update")
     public String communityUpdateAction(CommunityVO vo) throws UnsupportedEncodingException {
         boardCommunityService.updateCommunity(vo);
-
-        return "redirect:detail?commID="+vo.getCommID();
+        return "redirect:detail?commID=" + vo.getCommID();
     }
 
     @PostMapping("/community/delete")
     public String communityDeleteAction(CommunityVO vo) throws UnsupportedEncodingException {
         boardCommunityService.deleteCommunity(vo);
-
         return "redirect:list";
     }
 
     @PostMapping("/community/write")
-    public String communityWriteInsert(@ModelAttribute CommunityVO vo , HttpSession session) throws UnsupportedEncodingException {
-        vo.setMemberID((int)session.getAttribute("memberID"));
+    public String communityWriteInsert(@ModelAttribute CommunityVO vo, HttpSession session) throws UnsupportedEncodingException {
+        vo.setMemberID((int) session.getAttribute("memberID"));
         boardCommunityService.insertCommunity(vo);
-
-        return "redirect:detail?commID="+vo.getCommID()+"&ismy="+vo.getIsmy();
+        return "redirect:detail?commID=" + vo.getCommID() + "&ismy=" + vo.getIsmy();
     }
 
     @PostMapping(value = "/community/image-upload")
@@ -144,6 +136,7 @@ public class BoardCommunityController {
             return ResponseEntity.badRequest().body("이미지 업로드 실패");
         }
     }
+
     @PostMapping(value = "/community/image-delete")
     //@RequestParam은 자바스크립트에서 설정한 이름과 반드시 같아야 함
     public ResponseEntity<?> imageDelete(@RequestParam("file") String fileName) throws IllegalStateException, IOException {
@@ -161,10 +154,10 @@ public class BoardCommunityController {
     @ResponseBody
     @GetMapping("/community/heartred")
     public Map communityHeartred(CommunityVO vo, HttpSession session) {
-        if( session.getAttribute("memberID") == null){
+        if (session.getAttribute("memberID") == null) {
             vo.setMemberID(0);
-        }else {
-            vo.setMemberID((int)session.getAttribute("memberID"));
+        } else {
+            vo.setMemberID((int) session.getAttribute("memberID"));
         }
         Map<String, Object> map = new HashMap<>();
         map.put("isRed", boardCommunityService.deleteHeart(vo));
@@ -176,10 +169,10 @@ public class BoardCommunityController {
     @ResponseBody
     @GetMapping("/community/heartblack")
     public Map communityHeartblack(CommunityVO vo, HttpSession session) {
-        if( session.getAttribute("memberID") == null){
+        if (session.getAttribute("memberID") == null) {
             vo.setMemberID(0);
-        }else {
-            vo.setMemberID((int)session.getAttribute("memberID"));
+        } else {
+            vo.setMemberID((int) session.getAttribute("memberID"));
         }
         Map<String, Object> map = new HashMap<>();
         map.put("isRed", boardCommunityService.insertHeart(vo));

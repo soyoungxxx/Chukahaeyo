@@ -53,9 +53,11 @@
                                     </div>
                                     <div class="right-section">
                                         <button class="toggle-public" data-card-id="${card.cardID}">
-                                            <img src="<c:out value='${card.cardIsPublic ? "/resources/img/cart/unlock.png" : "/resources/img/cart/lock.png"}'/>" alt="카드 공개 상태" class="${card.cardIsPublic ? 'unlock' : 'lock'}">
+                                            <img src="<c:out value='${card.cardIsPublic ? "/resources/img/cart/unlock.png" : "/resources/img/cart/lock.png"}'/>"
+                                                 alt="카드 공개 상태" class="${card.cardIsPublic ? 'unlock' : 'lock'}">
                                         </button>
-                                        <button class="copy-button" data-card-id="${card.cardID}" data-clipboard-text="">
+                                        <button class="copy-button" data-card-id="${card.cardID}"
+                                                data-clipboard-text="">
                                             URL 복사
                                         </button>
                                     </div>
@@ -71,27 +73,27 @@
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 <script>
-    $(document).ready(function() {
-        $('.card').each(function() {
+    $(document).ready(function () {
+        $('.card').each(function () {
             const cardElement = $(this);
             const cardId = cardElement.data('card-id');
-            getShortUrl(cardId, function(shortUrl) {
+            getShortUrl(cardId, function (shortUrl) {
                 cardElement.find('.card-link').attr('href', shortUrl);
                 cardElement.find('.copy-button').attr('data-clipboard-text', shortUrl);
             });
         });
 
         // Clipboard.js 초기화
-        new ClipboardJS('.copy-button').on('success', function(e) {
+        new ClipboardJS('.copy-button').on('success', function (e) {
             console.log(e.text);
             alert('URL이 복사되었습니다.');
-        }).on('error', function(e) {
+        }).on('error', function (e) {
             console.error('URL 복사 실패: ', e);
             alert('URL 복사에 실패했습니다.');
         });
 
         // 공개 상태 토글
-        $('.toggle-public').on('click', function() {
+        $('.toggle-public').on('click', function () {
             const button = $(this);
             const cardId = button.data('card-id');
             const cardName = button.closest('.card').data('card-name');
@@ -99,8 +101,8 @@
             $.ajax({
                 url: '/card/togglePublicStatus',
                 type: 'POST',
-                data: { cardID: cardId },
-                success: function(response) {
+                data: {cardID: cardId},
+                success: function (response) {
                     const img = button.find('img');
                     const isPublic = img.attr('src').includes('unlock');
                     img.attr('src', isPublic ? '/resources/img/cart/lock.png' : '/resources/img/cart/unlock.png');
@@ -112,7 +114,7 @@
                     // 공개 상태 변경 알림
                     alert(cardName + ' 카드를 ' + (isPublic ? '비공개' : '공개') + ' 상태로 바꿉니다.');
                 },
-                error: function(err) {
+                error: function (err) {
                     console.error('공개 상태 변경 실패: ', err);
                     alert('공개 상태 변경에 실패했습니다.');
                 }
@@ -125,10 +127,10 @@
             url: '/url/shorts',
             type: 'GET',
             data: {cardID: cardId},
-            success: function(shortUrl) {
+            success: function (shortUrl) {
                 callback(shortUrl);
             },
-            error: function(err) {
+            error: function (err) {
                 console.error('짧은 URL 가져오기 실패: ', err);
                 alert('짧은 URL 가져오기에 실패했습니다.');
             }

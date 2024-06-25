@@ -28,7 +28,8 @@
                     <div class="service-menu">
                         <ul>
                             <li><a href="/board/service" id="service">자주 묻는 질문</a></li>
-                            <li><a href="/board/inquiry/list?page=1&query=${memberName}&querytype=writer" id="inquiry">1:1 문의하기</a></li>
+                            <li><a href="/board/inquiry/list?page=1&query=${memberName}&querytype=writer" id="inquiry">1:1
+                                문의하기</a></li>
                         </ul>
                     </div>
                 </div>
