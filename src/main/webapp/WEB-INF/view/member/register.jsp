@@ -21,8 +21,9 @@
         const pwdRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,20}$/;
 
         function inputCheck() {
+            // 입력 정보 공백 확인
             if ($("#memberEmail").val() == '') {
-                alert("이메일을 입력해주세요");
+                alert("이메일을 입력해주세요.");
                 $("#memberEmail").focus();
                 return false;
             }
@@ -45,28 +46,27 @@
                 return false;
             }
             if (!pwdRegex.test($("#memberPwd").val())) {
-                alert("비밀번호를 올바른 형식으로 작성해주세요.");
+                alert("비밀번호를 다시 입력해주세요.");
                 $("#memberPwd").focus();
                 return false;
             }
             if ($("#pwdCheck").val() !== $("#memberPwd").val()) {
-                alert("비밀번호 확인란과 비밀번호가 일치하지 않습니다. 비밀번호 확인란을 다시 작성해주십시오.");
+                alert("비밀번호 확인란과 비밀번호가 일치하지 않습니다.");
                 $("#pwdCheck").focus();
                 return false;
             }
 
             if ($("#memberName").val() == '') {
-                alert("이름을 입력해주세요");
+                alert("이름을 입력해주세요.");
                 $("#memberName").focus();
                 return false;
             }
 
             var checkAgreeValue = $("#checkAgree").attr('data-value');
             if (checkAgreeValue == '0') {
-                alert("약관에 동의해야 회원가입이 가능합니다");
+                alert("약관에 동의해야 회원가입이 가능합니다.");
                 return false;
             }
-
 
             regist();
         }
@@ -91,7 +91,6 @@
                 alert("이미 중복 인증을 진행하였습니다.");
                 return;
             }
-
             checkDuplicate();
         }
 
