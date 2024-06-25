@@ -1,7 +1,7 @@
 #card-bg {
     content: url("/resources/img/card/animalBirthday/whiteDog/bg.png");
-    width: 200%;
-    position: absolute;
+    width: 157%;
+    position:absolute;
     object-fit: cover;
     object-position: top;
 }
