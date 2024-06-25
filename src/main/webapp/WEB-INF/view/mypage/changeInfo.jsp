@@ -72,6 +72,8 @@
             if ($("#pwdCheck").val() !== $("#memberPwd").val()) {
                 alert("비밀번호 확인란과 비밀번호가 일치하지 않습니다.");
                 $("#pwdCheck").focus();
+                var text = document.getElementById("checkPwdMsg");
+                text.style.display = "block";
                 return false;
             } else {
                 var text = document.getElementById("checkPwdMsg");
@@ -133,7 +135,7 @@
                             <p>이메일은 수정할 수 없습니다. </p>
                             <ul>
                                 <li>
-                                    <input type="text" id="memberEmail" name="memberEmail" placeholder="${memberEmail}"
+                                    <input type="text" id="memberEmail" name="memberEmail" placeholder="${member.memberEmail}"
                                            readonly
                                            onclick="clickEmail();">
                                 </li>
@@ -144,13 +146,13 @@
                                 </li>
 
                                 <li>
-                                    <input type="password" id="pwdCheck" name="pwdCheck" placeholder="비밀번호 확인"
+                                    <input type="password" id="pwdCheck" name="pwdCheck"  placeholder="비밀번호 확인"
                                            onchange="return checkDuplPwd();">
                                     <p id="checkPwdMsg"> 비밀번호가 확인되었습니다 ✅</p>
                                 </li>
 
                                 <li>
-                                    <input type="text" id="memberName" name="memberName" placeholder="이름">
+                                    <input type="text" id="memberName" name="memberName" value="${member.memberName}" placeholder="이름">
                                 </li>
                             </ul>
 

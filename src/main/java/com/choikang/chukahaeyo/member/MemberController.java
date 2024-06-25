@@ -133,8 +133,8 @@ public class MemberController {
     @GetMapping("/mypage/changeInfo")
     public String changeInfo(HttpSession session, Model model) {
         int id = (int) session.getAttribute("memberID");
-        String memberEmail = (service.getUserInfoById(id)).getMemberEmail();
-        model.addAttribute("memberEmail", memberEmail);
+        MemberVO memberVO = service.getUserInfoById(id);
+        model.addAttribute("member", memberVO);
         return "/mypage/changeInfo";
     }
 
@@ -160,7 +160,6 @@ public class MemberController {
     public String changeMemberInfo(HttpSession session, Model model, MemberVO memberVO) {
         int id = (int) session.getAttribute("memberID");
         memberVO.setMemberID(id);
-        System.out.println(memberVO);
 
         if (service.changeMemberInfo(memberVO) != 0) {
             model.addAttribute("msg", "회원 정보가 수정되었습니다");
