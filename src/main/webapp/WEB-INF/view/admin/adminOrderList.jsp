@@ -92,6 +92,7 @@
                                         <th>주문자명</th>
                                         <th>주문자 이메일</th>
                                         <th>주문일자</th>
+                                        <th>주문목록</th>
                                         <th class="payment-status">주문상태
                                             <div class="pay-tooltip">
                                                 <img src="/resources/img/admin/help-mark.png" class="order-status-info"
@@ -102,6 +103,11 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <c:if test="${payments.size()==0}">
+                                        <tr>
+                                            <td colspan="8" class="payment-not-exist">결제 정보가 존재하지 않습니다.</td>
+                                        </tr>
+                                    </c:if>
                                     <c:forEach var="payment" items="${payments}">
                                         <tr>
                                             <td>${payment.payID}</td>
@@ -114,6 +120,9 @@
                                             <td>${payment.memberEmail}</td>
                                             <td>
                                                 <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.payDate}"/>
+                                            </td>
+                                            <td>
+                                                <a>여기에 링크 </a>
                                             </td>
                                             <c:if test="${payment.canceledAt == 0}">
                                                 <td class="success-payment">
