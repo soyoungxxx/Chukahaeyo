@@ -22,7 +22,6 @@ html, .body {
     background-image: url("/resources/img/header/left-stickers.png");
     background-repeat: no-repeat;
     background-position: 0 100px;
-    z-index: 10;
 }
 
 .sticker2 {
