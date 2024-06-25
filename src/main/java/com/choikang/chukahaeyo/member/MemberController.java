@@ -121,7 +121,8 @@ public class MemberController {
 
     // 회원가입: 멤버 인증, 이메일을 통해 링크 인증 완료 시 DB상의 isAuth 상태 변경
     @GetMapping("/member/verify")
-    public String verify(Model model, @RequestParam("memberID") int memberID) {
+    public String verify(Model model, @RequestParam("data") String encryptedData) {
+        int memberID = Integer.parseInt(service.decrypt(encryptedData));
         if (service.getUserInfoById(memberID).isMemberAuth()) {
             model.addAttribute("msg", "이미 인증된 회원입니다.");
             model.addAttribute("closeWindow", true);

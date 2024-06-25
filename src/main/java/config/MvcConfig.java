@@ -41,6 +41,15 @@ public class MvcConfig implements WebMvcConfigurer {
     @Value("${db.password}")
     private String password;
 
+    @Value("${spring.mail.host}")
+    private String mailHost;
+    @Value("${spring.mail.port}")
+    private int mailPort;
+    @Value("${spring.mail.username}")
+    private String mailUser;
+    @Value("${spring.mail.password}")
+    private String mailPassword;
+
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.jsp("/WEB-INF/view/", ".jsp");
@@ -125,10 +134,10 @@ public class MvcConfig implements WebMvcConfigurer {
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.naver.com");
-        mailSender.setPort(465);
-        mailSender.setUsername("dawndawnchoi@naver.com");
-        mailSender.setPassword("rnlcksgek0");
+        mailSender.setHost(mailHost);
+        mailSender.setPort(mailPort);
+        mailSender.setUsername(mailUser);
+        mailSender.setPassword(mailPassword);
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
