@@ -15,7 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -64,8 +66,10 @@ public class EditController {
 
     @GetMapping("/completedCard/{cardID}")
     public String getCompletedCardPage(@PathVariable int cardID, Model model) {
-        String originUrl = "/completedCard/{cardID}";
+        String originUrl = "/completedCard/" + cardID;
         String encodeUrl = Base64Util.encode(originUrl);
+        model.addAttribute("encodedUrl", encodeUrl); //인코딩된 URL을 사용자에게 전달
+
         // 카드 정보, editService 호출 후 뷰에 값 전달
         CardVO cardVO = editService.getCompletedCardPage(cardID);
         model.addAttribute("cardVO", cardVO);
@@ -78,10 +82,14 @@ public class EditController {
         List<GuestBookVO> guestBooks = editService.selectGuestBooks(cardVO.getCardID());
         model.addAttribute("guestBooks", guestBooks);
 
-        return "card/encodeUrl";
+        return "card/completedCard";
     }
 
-
+    @GetMapping("/completedCard")
+    public void decodeCompletedCardPage(@RequestParam("encodedUrl") String encodedUrl, HttpServletResponse response) throws IOException {
+        String decodedUrl = Base64Util.decode(encodedUrl);
+        response.sendRedirect(decodedUrl);
+    }
     @PostMapping("/completedCard/like.do")
     public ResponseEntity<String> updateCardLike(int cardID) {
         try {
