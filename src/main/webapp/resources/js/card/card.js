@@ -16,8 +16,8 @@ $(document).on('click', '#like', function () {
         $(".like-number").text(likeNumber);
         confetti();
     } else { // db 업데이트
-        $(".like-number").text(likeNumber);
         confetti();
+        $(".like-number").text(likeNumber);
         $.ajax({
             url: '/card/completedCard/like.do',
             type: 'POST',
