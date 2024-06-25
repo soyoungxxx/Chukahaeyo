@@ -1,4 +1,4 @@
-import com.choikang.chukahaeyo.common.Decode;
+import com.choikang.chukahaeyo.common.DecodeUniCode;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -12,11 +12,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = {config.MvcConfig.class})
 @WebAppConfiguration
 @Slf4j
-public class DecodeTest {
+public class DecodeUniCodeTest {
 
     @Test
     public void getDecode() {
-        String a = Decode.unicodeDecode("\\uc548\\ub155\\ud558\\uc138\\uc694");
+        String a = DecodeUniCode.unicodeDecode("\\uc548\\ub155\\ud558\\uc138\\uc694");
         System.out.println("decode:" + a);
     }
 }
