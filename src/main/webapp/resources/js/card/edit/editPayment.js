@@ -85,7 +85,6 @@ document.getElementById('edit-pay-button').addEventListener('click', function ()
 
 // hidden input 값 설정
 function saveHiddenData() {
-    console.log(1);
     $(".guest-messages").empty();
     $('#map').text("");
     $('#map').removeAttr("style");
