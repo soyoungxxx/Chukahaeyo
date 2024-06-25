@@ -2,6 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+    <meta property="og:title" content="${cardVO.cardName}">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="${cardVO.cardImage}">
+    <meta property="og:description" content="카드를 열어주세요 .">
     <link rel="stylesheet" href="/resources/css/template/cardCommon.css"/>
     <link rel="stylesheet" href="/resources/css/template/${css}.css"/>
     <title>${cardVO.cardName}</title>
