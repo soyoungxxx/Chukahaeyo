@@ -46,7 +46,7 @@
                         <div class="edit-div-components">
                             <span class="head-text">이름</span>
                             <span class="edit-warn-text">필수 항목입니다.</span>
-                            <input type="text" class="edit-text" id="edit-name" maxlength="7"/>
+                            <input type="text" class="edit-text" id="edit-name" maxlength="11"/>
                         </div>
                         <hr>
                         <div class="edit-div-components">

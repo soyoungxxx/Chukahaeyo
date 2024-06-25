@@ -2,26 +2,11 @@
 var canvas = document.querySelector("canvas");
 const jsConfetti = new JSConfetti({ canvas });
 
-const image = $("#card-bg")
-const imageBasicHeight = image.height();
-image.height(0);
-
-window.addEventListener('load', getHeight)
-window.addEventListener('resize', getHeight);
-window.addEventListener('load', function() {
-    if (window.location.pathname.includes('/completedCard') && $('.extra-address').val() != null) {
+$(document).ready(function(){
+    if ($('.extra-address').text() != null) {
         getMap($('.extra-address').text())
     }
 })
-
-function getHeight() {
-    var docHeight = $(".card-roof-img").height() + $('.card-content').height() + 100;
-    if (imageBasicHeight <= docHeight) {
-        image.height(imageBasicHeight);
-    } else {
-        image.height(docHeight);
-    }
-}
 
 // like 버튼 클릭 시 숫자 올라가고, 이모티콘 컨페티 터지는 효과
 var emoji = ["🎉", "🎊", "✨", "🎈"];
@@ -29,26 +14,26 @@ $(document).on('click', '#like', function() {
     let likeNumber = Number($(".like-number").text()) + 1;
     if (window.location.pathname.includes('/card/edit/')) {
         $(".like-number").text(likeNumber);
+        confetti();
     } else { // db 업데이트
+        $(".like-number").text(likeNumber);
+        confetti();
         $.ajax({
             url: '/card/completedCard/like.do',
             type: 'POST',
             data: {cardID:cardID},
-            async: false,
-            success: function(result) {
-                $(".like-number").text(likeNumber);
-            },
-            error: function() {
-                alert("like db 업데이트에 실패했습니다.");
-            }
+            async: false
         });
     }
+})
+
+function confetti() {
     jsConfetti.addConfetti({
         emojis: emoji,
         emojiSize: 200,
         confettiNumber: 30,
     });
-})
+}
 
 $(document).on('click', '.guestbook-submit-button', function() {
     var name = $(".guest-nickname").val();
@@ -62,7 +47,6 @@ $(document).on('click', '.guestbook-submit-button', function() {
             alert("빈 칸은 입력하실 수 없습니다.");
             return;
         }
-
         // ajax
         $.ajax({
             url: '/card/completedCard/guestBook.do',
@@ -72,18 +56,17 @@ $(document).on('click', '.guestbook-submit-button', function() {
                 guestName: name,
                 guestBookText: message,
                 cardID: cardID
-            }),
-            success: function(response) {
-
-            },
-            error : function(response) {
-                console.log("방명록 업데이트에 실패하였습니다.");
-            }
+            })
         });
     }
-
     showGuestBook(name, message);
 })
+
+$(document).on('click', '.more-card', function() {
+    if (!window.location.pathname.includes('/card/edit/')) {
+        location.href='/gallery'
+    }
+});
 
 function showGuestBook(name, message) {
     var img, imgName;
@@ -113,7 +96,7 @@ function showGuestBook(name, message) {
 function getMap(roadAddr) {
     var mapContainer = document.getElementById('map'),
         mapOption = {
-            center: new kakao.maps.LatLng(37.56691, 126.97873), // 지도의 중심좌표
+            center: new kakao.maps.LatLng(0, 0), // 지도의 중심좌표
             level: 1, // 지도의 확대 레벨
             mapTypeId: kakao.maps.MapTypeId.ROADMAP // 지도종류
         };
@@ -125,21 +108,11 @@ function getMap(roadAddr) {
     geocoder.addressSearch(roadAddr, function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
             var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
             var marker = new kakao.maps.Marker({
                 map: map,
                 position: coords
             });
-
             map.setCenter(coords);
         }
     });
 }
-
-$(document).on('click', '.more-card', function() {
-    if (window.location.pathname.includes('/card/edit/')) {
-
-    } else {
-        location.href='/gallery'
-    }
-});
