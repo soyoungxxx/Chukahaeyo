@@ -1,4 +1,4 @@
-package com.choikang.chukahaeyo.exception;
+package com.choikang.chukahaeyo.interceptor;
 
 import com.choikang.chukahaeyo.visitor.VisitorService;
 import com.choikang.chukahaeyo.visitor.model.VisitorVO;
@@ -9,7 +9,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 @Component

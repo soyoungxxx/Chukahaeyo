@@ -1,7 +1,7 @@
 package config;
 
-import com.choikang.chukahaeyo.exception.CompletedCardInterceptor;
-import com.choikang.chukahaeyo.exception.CookieInterceptor;
+import com.choikang.chukahaeyo.interceptor.CompletedCardInterceptor;
+import com.choikang.chukahaeyo.interceptor.CookieInterceptor;
 import com.choikang.chukahaeyo.interceptor.AccessControlInterceptor;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.annotations.Mapper;
@@ -110,9 +110,9 @@ public class MvcConfig implements WebMvcConfigurer {
         PropertyPlaceholderConfigurer config = new PropertyPlaceholderConfigurer();
         String value = System.getProperty("spring.profiles.active");
         if ("aws".equals(value)) {
-            config.setLocations(new FileSystemResource("/home/ubuntu/shinhan_team2_chukahaeyo/apache-tomcat-9.0.89/webapps/db.properties"));
+            config.setLocations(new FileSystemResource("/home/ubuntu/shinhan_team2_chukahaeyo/apache-tomcat-9.0.89/webapps/application.properties"));
         } else {
-            config.setLocations(new ClassPathResource("db.properties"));
+            config.setLocations(new ClassPathResource("application.properties"));
         }
         return config;
     }
