@@ -46,7 +46,7 @@
                         <div class="edit-div-components">
                             <span class="head-text">이름</span>
                             <span class="edit-warn-text">필수 항목입니다.</span>
-                            <input type="text" class="edit-text" id="edit-name" maxlength="7"/>
+                            <input type="text" class="edit-text" id="edit-name" maxlength="11"/>
                         </div>
                         <hr>
                         <div class="edit-div-components">
@@ -180,7 +180,8 @@
             </div>
             <div class="edit-frame-div">
                 <c:forEach items="${list}" var="t">
-                    <img src="${t.templateThumbnail}" class="edit-frame" id="${t.templateID}" style="cursor: pointer;"> <br>
+                    <img src="${t.templateThumbnail}" class="edit-frame" id="${t.templateID}" style="cursor: pointer;">
+                    <br>
                 </c:forEach>
             </div>
         </div>

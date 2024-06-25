@@ -32,7 +32,4 @@ public class InquiryVO {
 
     private int startIdx;
 
-    public int getStartIdx() {
-        return (Integer.parseInt(page)-1) * 10;
-    }
 }

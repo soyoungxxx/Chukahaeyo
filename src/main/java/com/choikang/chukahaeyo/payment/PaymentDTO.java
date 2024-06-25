@@ -19,7 +19,7 @@ public class PaymentDTO {
     private String receiptURL; //영수증 url
     private int memberID;
 
-    public static PaymentVO of(PaymentDTO paymentDTO){
+    public static PaymentVO of(PaymentDTO paymentDTO) {
         PaymentVO paymentVO = new PaymentVO();
         paymentVO.setApplyNum(paymentDTO.getApplyNum());
         paymentVO.setMemberEmail(paymentDTO.getMemberEmail());

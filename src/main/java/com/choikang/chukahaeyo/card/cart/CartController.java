@@ -19,7 +19,7 @@ import java.util.Map;
 @Controller
 public class CartController {
     @Autowired
-    private CardService cardService; // 카드 서비스 의존성 주입
+    private CardService cardService;
 
     @GetMapping("/cart")
     public String cart(HttpSession session, Model model) {

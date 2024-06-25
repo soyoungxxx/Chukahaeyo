@@ -26,5 +26,7 @@ public class CardVO {
     private boolean cardIsPaid;
     private int memberID;
 
-    public boolean getCardIsPaid() {return cardIsPaid;}
+    public boolean getCardIsPaid() {
+        return cardIsPaid;
+    }
 }

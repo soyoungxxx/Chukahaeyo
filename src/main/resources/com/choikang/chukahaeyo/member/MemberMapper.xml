@@ -10,73 +10,100 @@
     </select>
 
     <insert id="register" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
-        INSERT INTO Members(
-            memberEmail, memberPwd, memberName, memberRegisterDate , memberAuth, memberWithdraw
-            )
-        VALUES (
-            #{memberEmail}, MD5(#{memberPwd}), #{memberName}, NOW(), false, false
-            )
+        INSERT INTO Members(memberEmail, memberPwd, memberName, memberRegisterDate, memberAuth, memberWithdraw)
+        VALUES (#{memberEmail}, MD5(#{memberPwd}), #{memberName}, NOW(), false, false)
     </insert>
 
     <select id="checkEmailDuplicate" parameterType="String" resultType="int">
-        SELECT count(*) FROM Members WHERE memberEmail = #{memberEmail}
+        SELECT count(*)
+        FROM Members
+        WHERE memberEmail = #{memberEmail}
     </select>
 
     <select id="getUserInfoByEmail" parameterType="String" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
-        SELECT * FROM Members WHERE memberEmail = #{memberEmail}
+        SELECT *
+        FROM Members
+        WHERE memberEmail = #{memberEmail}
     </select>
 
     <select id="getUserInfoById" parameterType="int" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
-        SELECT * FROM Members WHERE memberID = #{memberID}
+        SELECT *
+        FROM Members
+        WHERE memberID = #{memberID}
     </select>
 
     <update id="memberVerify" parameterType="int">
-        UPDATE Members SET memberAuth=true WHERE memberID = #{memberID}
+        UPDATE Members
+        SET memberAuth= true
+        WHERE memberID = #{memberID}
     </update>
 
     <delete id="unsign" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
-        UPDATE Members SET memberWithdraw=true where memberID = #{memberID} AND memberPwd = MD5(#{memberPwd})
+        UPDATE Members
+        SET memberWithdraw= true
+        where memberID = #{memberID}
+          AND memberPwd = MD5(#{memberPwd})
     </delete>
 
 
-
-    <select id="validatePwd" parameterType="com.choikang.chukahaeyo.member.model.MemberVO" resultType="java.lang.Integer">
-        SELECT memberID from Members where (memberID = #{memberID} AND memberPwd = MD5(#{memberPwd}))
+    <select id="validatePwd" parameterType="com.choikang.chukahaeyo.member.model.MemberVO"
+            resultType="java.lang.Integer">
+        SELECT memberID
+        from Members
+        where (memberID = #{memberID} AND memberPwd = MD5(#{memberPwd}))
     </select>
 
     <update id="changeMemberInfo" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
-        UPDATE Members SET memberName = #{memberName}, memberPwd = MD5(#{memberPwd}) WHERE memberID = #{memberID}
+        UPDATE Members
+        SET memberName = #{memberName},
+            memberPwd  = MD5(#{memberPwd})
+        WHERE memberID = #{memberID}
     </update>
-    
-    <select id="getCardList"  parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
-        SELECT * from Card where memberID = #{memberID}
+
+    <select id="getCardList" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT *
+        from Card
+        where memberID = #{memberID}
     </select>
 
-    <select id="getPaymentList"  parameterType="int" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
-        SELECT * from Payment where memberID = #{memberID} ORDER BY payDate DESC;
+    <select id="getCardAllList" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT *
+        from Card
     </select>
 
-    <select id="adminLogin" parameterType="com.choikang.chukahaeyo.member.model.AdminVO" resultType="com.choikang.chukahaeyo.member.model.AdminVO">
-        SELECT * FROM Admins WHERE adminEmail = #{adminEmail} AND adminPwd = MD5(#{adminPwd})
+    <select id="adminLogin" parameterType="com.choikang.chukahaeyo.member.model.AdminVO"
+            resultType="com.choikang.chukahaeyo.member.model.AdminVO">
+        SELECT *
+        FROM Admins
+        WHERE adminEmail = #{adminEmail}
+          AND adminPwd = MD5(#{adminPwd})
     </select>
 
-    <select id="getPaymentAllList"  resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
-        SELECT * from Payment ORDER BY payDate DESC;
+    <select id="getPaymentAllList" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        SELECT *
+        from Payment
+        ORDER BY payDate DESC;
     </select>
 
     <select id="getMemberAllList" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
-        SELECT * from Members
+        SELECT *
+        from Members
     </select>
 
     <update id="withdrawMember" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
-        UPDATE Members SET memberWithdraw=true where memberID = #{memberID}
+        UPDATE Members
+        SET memberWithdraw= true
+        where memberID = #{memberID}
     </update>
 
     <select id="selectTodayRegisterMember" parameterType="String" resultType="int">
-        SELECT COUNT(*) FROM Members WHERE DATE(memberRegisterDate) = #{date}
+        SELECT COUNT(*)
+        FROM Members
+        WHERE DATE (memberRegisterDate) = #{date}
     </select>
 
-    <select id="getFilteredPaymentList" parameterType="map" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+    <select id="getFilteredPaymentList" parameterType="map"
+            resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
         SELECT * FROM Payment
         WHERE 1=1
         <if test="startDate != null and startDate != ''">

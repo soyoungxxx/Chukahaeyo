@@ -18,7 +18,7 @@ public class S3Test {
     S3Service s3Service;
 
     @Test
-    public void cancelTest(){
+    public void cancelTest() {
         s3Service.deleteFile("d26e29fe-fb0b-4807-bb1d-.png");
     }
 }

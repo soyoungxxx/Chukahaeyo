@@ -14,11 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -62,7 +59,7 @@ public class EditController {
         } else {
             redirectURL = "/cart";
         }
-        System.out.println("edit/card.do redirectURL:"+redirectURL);
+        System.out.println("edit/card.do redirectURL:" + redirectURL);
         return "redirect:" + redirectURL;
     }
 
@@ -70,18 +67,17 @@ public class EditController {
     public String getCompletedCardPage(@PathVariable int cardID) {
         String originUrl = "completedCard/" + cardID;
         String encodeUrl = Base64Util.encode(originUrl);
-
         return "redirect:/card/" + encodeUrl;
     }
+
     @GetMapping("/{encodedUrl}")
     public String decodeCompletedCardPage(@PathVariable String encodedUrl, Model model) {
         try {
             // URL 디코딩
             String decodedUrl = Base64Util.decode(encodedUrl);
-            System.out.println("받아와 디코딩된 url : " + decodedUrl);
             String[] parts = decodedUrl.split("/");
             int cardID = Integer.parseInt(parts[parts.length - 1]);
-            System.out.println("카드 ID : " + cardID);
+
             // 카드 정보 가져오기
             CardVO cardVO = editService.getCompletedCardPage(cardID);
             model.addAttribute("cardVO", cardVO);
@@ -123,5 +119,4 @@ public class EditController {
             return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
         }
     }
-
 }

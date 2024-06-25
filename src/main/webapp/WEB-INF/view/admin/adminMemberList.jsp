@@ -43,14 +43,15 @@
                             <h6 class="m-0 font-weight-bold text-primary">회원목록</h6>
                         </div>
                         <div class="card-body">
-                            <div class = "member-top">
+                            <div class="member-top">
                                 <p id="selected-count">0개 항목 선택</p>
                                 <div class="member-btns">
                                     <input type="button" value="전체 선택" class="select-btn" id="checking-all-member"
                                            onclick="selectAll();">
                                     <input type="button" value="전체 취소" class="select-btn" id="unchecking-all-member"
                                            onclick="deselectAll();">
-                                    <input type="button" value="회원 삭제" class="select-btn" id="delete-member" onclick="deleteMembers();">
+                                    <input type="button" value="회원 삭제" class="select-btn" id="delete-member"
+                                           onclick="deleteMembers();">
                                 </div>
 
                             </div>
@@ -156,9 +157,9 @@
         updateSelectedCount();
     }
 
-    function deleteMembers(){
+    function deleteMembers() {
         var selectedMembers = [];
-        $('.member-select-btn:checked').each(function() {
+        $('.member-select-btn:checked').each(function () {
             selectedMembers.push($(this).attr('id').replace('checkbox', ''));
         });
 
@@ -174,11 +175,11 @@
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({memberIds: selectedMembers}),
-            success: function() {
+            success: function () {
                 alert("회원 삭제가 완료되었습니다.");
                 location.reload();
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 alert("회원 삭제 중 오류가 발생했습니다.");
                 console.error(error);
             }

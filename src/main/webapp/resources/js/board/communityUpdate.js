@@ -88,7 +88,7 @@ $(document).ready(function () {
         data_3.setAttribute('name', 'commID');
         data_3.setAttribute('value', commID);
 
-		// form 태그에 input 태그 넣고 summit 가능하게 처리
+        // form 태그에 input 태그 넣고 summit 가능하게 처리
         form.appendChild(data_1);
         form.appendChild(data_2);
         form.appendChild(data_3);

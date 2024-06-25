@@ -7,7 +7,8 @@
         WHERE commID = #{commID}
     </select>
 
-    <select id="list" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO" resultType="com.choikang.chukahaeyo.board.model.ReplyVO">
+    <select id="list" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO"
+            resultType="com.choikang.chukahaeyo.board.model.ReplyVO">
         SELECT replyID,
                replyContent,
                replyGno,
@@ -24,7 +25,8 @@
 
     <insert id="mainInsert" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO">
         INSERT INTO Reply (replyContent, replyGno, replyOno, replyNested, replyPostDate, memberID, commID)
-        VALUES (#{replyContent}, #{replyGno}, 0, 0, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR), #{memberID}, #{commID})
+        VALUES (#{replyContent}, #{replyGno}, 0, 0, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR), #{memberID},
+        #{commID})
         <selectKey keyProperty="replyID" order="AFTER" resultType="int">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -48,7 +50,8 @@
 
     <insert id="subInsert" parameterType="com.choikang.chukahaeyo.board.model.ReplyVO">
         INSERT INTO Reply (replyContent, replyGno, replyOno, replyNested, replyPostDate, memberID, commID)
-        VALUES (#{replyContent}, #{replyGno}, #{replyOno}, #{replyNested}+1, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR), #{memberID}, #{commID})
+        VALUES (#{replyContent}, #{replyGno}, #{replyOno}, #{replyNested}+1, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9
+        HOUR), #{memberID}, #{commID})
         <selectKey keyProperty="replyID" order="AFTER" resultType="int">
             SELECT LAST_INSERT_ID()
         </selectKey>

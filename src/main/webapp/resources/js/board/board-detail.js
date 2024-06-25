@@ -18,11 +18,7 @@ window.addEventListener('load', function (e) {
             document.body.appendChild(form);
 
             form.submit();
-
-
         }
-
-
     });
 
 

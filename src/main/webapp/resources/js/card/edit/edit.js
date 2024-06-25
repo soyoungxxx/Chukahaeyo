@@ -20,7 +20,7 @@ $(document).ready(function () {
     $('#edit-days').on('apply.daterangepicker', function (ev, picker) {
         var startDate = picker.startDate.format('YYYY/MM/DD');
         var endDate = picker.endDate.format('YYYY/MM/DD');
-        var selectDates = startDate+ ' - ' + endDate;
+        var selectDates = startDate + ' - ' + endDate;
         $(this).val(selectDates);
         $('.card-date').text(selectDates)
         $('#cardStartDate').val(startDate);
@@ -81,8 +81,10 @@ $('#publicButton').click(function () {
     if (isPublicValue === 'true') {
         $('#public').val('false');
         $('#publicButton').val('비공개');
+        alert("카드를 공개로 변경하시겠습니까? 모두가 볼 수 있는 카드 갤러리에 업로드 됩니다.");
     } else {
         $('#public').val('true');
         $('#publicButton').val('공개');
+        alert("카드가 비공개로 변경되었습니다.");
     }
 })
