@@ -4,7 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <title>고객센터</title>
+    <title>축하해요</title>
+    <link rel="icon" href="/resources/img/logo/favicon.png"/>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/resources/css/template/cardCommon.css"/>
     <link rel="stylesheet" href="/resources/css/template/${css}.css"/>
     <title>${cardVO.cardName}</title>
+    <link rel="icon" href="/resources/img/logo/favicon.png"/>
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/js-confetti@0.9.0/dist/js-confetti.browser.js"></script>
