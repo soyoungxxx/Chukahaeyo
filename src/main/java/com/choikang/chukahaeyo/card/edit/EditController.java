@@ -69,7 +69,7 @@ public class EditController {
     public RedirectView getCompletedCardPage(@PathVariable int cardID) {
         String originUrl = "/card/completedCard/" + cardID;
         String encodeUrl = Base64Util.encode(originUrl);
-        return new RedirectView("/card/" + encodeUrl);
+        return new RedirectView("http://3.36.97.132:9090/card/" + encodeUrl);
     }
 
     @GetMapping("/card/{encodedUrl}")
