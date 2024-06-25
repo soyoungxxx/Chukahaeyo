@@ -41,6 +41,15 @@ public class MvcConfig implements WebMvcConfigurer {
     @Value("${db.password}")
     private String password;
 
+    @Value("${spring.mail.host}")
+    private String mailHost;
+    @Value("${spring.mail.port}")
+    private int mailPort;
+    @Value("${spring.mail.username}")
+    private String mailUser;
+    @Value("${spring.mail.password}")
+    private String mailPassword;
+
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.jsp("/WEB-INF/view/", ".jsp");
@@ -110,9 +119,9 @@ public class MvcConfig implements WebMvcConfigurer {
         PropertyPlaceholderConfigurer config = new PropertyPlaceholderConfigurer();
         String value = System.getProperty("spring.profiles.active");
         if ("aws".equals(value)) {
-            config.setLocations(new FileSystemResource("/home/ubuntu/shinhan_team2_chukahaeyo/apache-tomcat-9.0.89/webapps/db.properties"));
+            config.setLocations(new FileSystemResource("/home/ubuntu/shinhan_team2_chukahaeyo/apache-tomcat-9.0.89/webapps/application.properties"));
         } else {
-            config.setLocations(new ClassPathResource("db.properties"));
+            config.setLocations(new ClassPathResource("application.properties"));
         }
         return config;
     }
@@ -125,10 +134,10 @@ public class MvcConfig implements WebMvcConfigurer {
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.naver.com");
-        mailSender.setPort(465);
-        mailSender.setUsername("dawndawnchoi@naver.com");
-        mailSender.setPassword("rnlcksgek0");
+        mailSender.setHost(mailHost);
+        mailSender.setPort(mailPort);
+        mailSender.setUsername(mailUser);
+        mailSender.setPassword(mailPassword);
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
