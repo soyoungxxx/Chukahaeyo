@@ -1,4 +1,4 @@
-window.addEventListener('load' , function(e){
+window.addEventListener('load', function (e) {
     $(".delete").click(function (e) {
         if (confirm("정말로 지우시겠습니까?")) {
             let commID = $(".board-id").val();
@@ -368,10 +368,10 @@ window.addEventListener('load' , function(e){
 
     $(".list").click(function (e) {
         let ismy = $(".ismy").val();
-        if(ismy == 'true'){
+        if (ismy == 'true') {
             location.href = '/board/community/mylist?query=' + $(".query").val() + '&querytype=' + $(".querytype").val() + '&page=' + $(".page").val() + '&sort=' + $(".sort").val();
 
-        }else {
+        } else {
             location.href = '/board/community/list?query=' + $(".query").val() + '&querytype=' + $(".querytype").val() + '&page=' + $(".page").val() + '&sort=' + $(".sort").val();
 
         }

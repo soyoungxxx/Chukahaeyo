@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
 
 /*header container css*/
-.header{
+.header {
     width: 100%;
     min-width: 1400px;
     display: flex;
@@ -19,12 +19,12 @@
     background-image: url("/resources/img/logo/logo3.png");
     background-size: contain;
     background-repeat: no-repeat;
-    cursor : pointer;
+    cursor: pointer;
     margin-right: 30px;
 }
 
 /*nav1*/
-.nav1{
+.nav1 {
     display: flex;
     flex-direction: row;
     font-family: "Jua", sans-serif;
@@ -33,10 +33,12 @@
     height: 20px;
     gap: 25px;
 }
+
 .nav1 a {
     color: #ACACAC;
 }
-.nav1 .gallery-community{
+
+.nav1 .gallery-community {
     color: #949FFF;
 }
 
@@ -79,6 +81,7 @@
     align-items: flex-end;
     margin: 0 0 5px 45px;
 }
+
 .nav2 a {
     color: black;
     margin: 0 10px 0 10px;

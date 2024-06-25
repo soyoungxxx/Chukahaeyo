@@ -27,12 +27,12 @@
 .more-card {
     font-size: 15px;
     margin-left: 350px;
-    background-color:#F5E7B6;
+    background-color: #F5E7B6;
     padding: 7px;
 }
 
 .frame-deco1 {
-    content:url("/resources/img/card/animalBirthday/yellow/balloon.png");
+    content: url("/resources/img/card/animalBirthday/yellow/balloon.png");
     width: 163px !important;
     height: 145px !important;
     position: absolute;
@@ -74,7 +74,7 @@
     margin-top: 450px;
 }
 
-.crown-img{
+.crown-img {
     content: url("/resources/img/card/animalBirthday/yellow/crown.png");
     width: 70px !important;
     height: 55px !important;
@@ -82,13 +82,13 @@
     margin-top: 150px;
 }
 
-.uploadedImage-wrap{
+.uploadedImage-wrap {
     width: 540px;
     height: 540px;
     position: relative;
 }
 
-#like{
+#like {
     width: 68px;
     height: 75px;
     background: url("/resources/img/card/animalBirthday/yellow/giftbox.png") no-repeat center center;
@@ -100,7 +100,7 @@
 }
 
 .background-deco1 {
-    content:url("/resources/img/card/animalBirthday/yellow/firecracker.png");
+    content: url("/resources/img/card/animalBirthday/yellow/firecracker.png");
     width: 145px !important;
     height: 145px !important;
     position: absolute;
@@ -111,7 +111,7 @@
 }
 
 .background-deco2 {
-    content:url("/resources/img/card/animalBirthday/yellow/firecracker.png");
+    content: url("/resources/img/card/animalBirthday/yellow/firecracker.png");
     width: 145px !important;
     height: 145px !important;
     position: absolute;
@@ -122,7 +122,7 @@
 }
 
 .background-deco3 {
-    content:url("/resources/img/card/animalBirthday/yellow/letter.png");
+    content: url("/resources/img/card/animalBirthday/yellow/letter.png");
     width: 145px !important;
     height: 145px !important;
     position: absolute;
@@ -133,7 +133,7 @@
 }
 
 .background-deco4 {
-    content:url("/resources/img/card/animalBirthday/yellow/balloon.png");
+    content: url("/resources/img/card/animalBirthday/yellow/balloon.png");
     width: 163px !important;
     height: 145px !important;
     position: absolute;
@@ -144,64 +144,64 @@
 }
 
 /* 컬러 바꾸기 */
-.card-name{
+.card-name {
     color: #61281B;
 }
 
-.card-date{
+.card-date {
     color: #61281B;
 }
 
-.extra-time{
+.extra-time {
     color: #61281B;
 }
 
-.extra-preparation{
+.extra-preparation {
     color: #61281B;
 }
 
-.card-like-text{
+.card-like-text {
     color: #61281B;
 }
 
-.like-number{
+.like-number {
     color: #61281B;
 }
 
-.guestbook-title{
+.guestbook-title {
     color: #61281B;
 }
 
-.guestbook-divider{
+.guestbook-divider {
     border: 1.5px #61281B solid;
     color: #61281B;
 }
 
-.guest-message{
+.guest-message {
     border: 2px #61281B solid;
     color: #61281B;
     background-color: #FFFDD6;
 }
 
-.guest-nickname{
+.guest-nickname {
     border: 2px #61281B solid;
     color: #61281B;
     background-color: #FFFDD6;
 }
 
-.guest-nickname::placeholder{
+.guest-nickname::placeholder {
     color: #61281B;
 }
 
-.guest-message::placeholder{
+.guest-message::placeholder {
     color: #61281B;
 }
 
-.guest-message{
+.guest-message {
     color: #61281B;
 }
 
-.geustbook-submit-button{
+.geustbook-submit-button {
     color: #61281B;
 }
 

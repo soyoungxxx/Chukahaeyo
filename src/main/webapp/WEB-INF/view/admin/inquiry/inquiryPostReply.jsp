@@ -120,7 +120,9 @@
                                     </div>
 
                                     <div class="inquiry-list-list">
-                                        <div class="inquiry-list-button" onclick="location.href='/admin/inquiry/allInquiryList'">목록</div>
+                                        <div class="inquiry-list-button"
+                                             onclick="location.href='/admin/inquiry/allInquiryList'">목록
+                                        </div>
                                         <c:if test="${object.adminID == 0}">
                                             <div class="inquiry-list-answer">답변</div>
                                         </c:if>

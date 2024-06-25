@@ -27,7 +27,7 @@ public class BoardInquiryService {
         map.put("list", list);
 
         // 하단에 페이징처리
-        int endPage = (int)(Math.ceil(Integer.parseInt(inquiryVO.getPage())/10.0)*10);
+        int endPage = (int) (Math.ceil(Integer.parseInt(inquiryVO.getPage()) / 10.0) * 10);
         int startPage = endPage - 9;
         if (endPage > totalPage) endPage = totalPage;
         boolean isPrev = startPage > 1;

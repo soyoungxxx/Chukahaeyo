@@ -1,12 +1,5 @@
-﻿
-/*font*/
+﻿/*font*/
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
-
-body .container{
-
-}
-
-
 
 .container {
     font-family: "Noto Sans KR", sans-serif;
@@ -20,8 +13,6 @@ body .container{
     /*margin: 0 !important;*/
     padding: 0 !important;
 }
-
-
 
 /*inquiry-logo*/
 .inquiry-logo {
@@ -41,10 +32,8 @@ body .container{
     width: 95%;
     flex-direction: row;
     justify-content: end;
-
     font-size: 14px;
     margin: 10px auto 15px auto;
-
 }
 
 .search .selectbox {
@@ -53,7 +42,7 @@ body .container{
     /*border-radius: 10px;*/
 }
 
-.search .sort-box{
+.search .sort-box {
     width: 100px;
     height: 35px;
     /*font-size: 12px;*/
@@ -75,10 +64,9 @@ body .container{
     border: none;
     background-color: #949FFF;
     /*border-radius: 10px;*/
-    cursor : pointer;
+    cursor: pointer;
     font-weight: 500;
 }
-
 
 /*list*/
 .list .list-board {
@@ -88,7 +76,7 @@ body .container{
 }
 
 /*list-ellipsis*/
-.list-board{
+.list-board {
     width: 95%;
     margin-left: 0;
 }
@@ -97,7 +85,6 @@ body .container{
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-
     height: 50px;
     line-height: 50px;
 }
@@ -106,7 +93,6 @@ body .container{
 .list .list-board .list-title {
     border-bottom: 1px solid #B9B5B5;
     background-color: #F3F3F3;
-
 }
 
 .list .list-board .list-title .no {
@@ -135,12 +121,9 @@ body .container{
 }
 
 
-
-
 /*list-data*/
 .list .list-board .list-data {
     border-bottom: 1px solid #B9B5B5;
-
 }
 
 .list .list-board .list-data .no {
@@ -152,14 +135,12 @@ body .container{
     width: 435px;
     text-align: start;
     padding-left: 37.5px;
-
     color: #98897B;
 }
 
 .list .list-board .list-data .title a {
     color: #98897B;
 }
-
 
 .list .list-board .list-data .writer {
     width: 75px;
@@ -172,12 +153,11 @@ body .container{
 }
 
 
-
-
-.list .list-board .list-data .is-answered{
+.list .list-board .list-data .is-answered {
     width: 60px;
     text-align: center;
 }
+
 .list .list-board .list-data .is-answered .is-answered-img {
     width: 22px;
     height: 22px;
@@ -196,12 +176,8 @@ body .container{
 }
 
 
-
-
-
-
 /*write-button*/
-.write-button{
+.write-button {
     width: 80px;
     height: 40px;
     line-height: 40px;
@@ -218,17 +194,7 @@ body .container{
     color: white;
 }
 
-
-
-
-
-
-
-
-
-
 /*paging*/
-
 .paging {
     display: flex;
     flex-direction: row;
@@ -251,8 +217,7 @@ body .container{
     margin-right: 5px;
 }
 
-
-.paging .current{
+.paging .current {
     display: inline-block;
     text-decoration: none;
     color: #949FFF;
@@ -263,5 +228,4 @@ body .container{
     text-align: center;
     font-weight: bold;
     margin: 5px;
-
 }

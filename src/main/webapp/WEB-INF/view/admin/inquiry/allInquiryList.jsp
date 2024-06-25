@@ -134,22 +134,26 @@
                                     <ul class='pagination'>
                                         <c:if test="${map.isPrev }">
                                             <li class="page-item">
-                                                <a class="page-link"  href="allInquiryList?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
+                                                <a class="page-link"
+                                                   href="allInquiryList?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
                                                     < </a></li>
                                         </c:if>
                                         <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
                                             <c:if test="${p == inquiryVO.page}">
-                                                <li class="page-item ${i == currentPage ? 'active' : ''}"><a class="page-link"  href='#;' class='current'>${p}</a></li>
+                                                <li class="page-item ${i == currentPage ? 'active' : ''}"><a
+                                                        class="page-link" href='#;' class='current'>${p}</a></li>
                                             </c:if>
                                             <c:if test="${p != inquiryVO.page}">
                                                 <li class="page-item">
-                                                    <a class="page-link" href='allInquiryList?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a>
+                                                    <a class="page-link"
+                                                       href='allInquiryList?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}'>${p}</a>
                                                 </li>
                                             </c:if>
                                         </c:forEach>
                                         <c:if test="${map.isNext }">
                                             <li>
-                                                <a class="page-link" href="allInquiryList?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
+                                                <a class="page-link"
+                                                   href="allInquiryList?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}&sort=${inquiryVO.sort}">
                                                     > </a></li>
                                         </c:if>
                                     </ul>
@@ -168,15 +172,8 @@
         </div>
     </div>
     <!-- End of Content Wrapper -->
-
     <%@ include file="/WEB-INF/view/include/adminLogoutModal.jsp" %>
-
 </main>
-
-<script>
-
-</script>
-
 
 <!-- Bootstrap core JavaScript-->
 <script src="/resources/js/admin/jquery.js"></script>

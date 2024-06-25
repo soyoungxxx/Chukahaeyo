@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 public class ReplyVO {
     private int replyID;
     private String replyContent;
+    private String memberName;
     private int replyGno;
     private int replyOno;
     private int replyNested;
@@ -15,5 +16,4 @@ public class ReplyVO {
     private int memberID;
     private int commID;
 
-    private String memberName;
 }

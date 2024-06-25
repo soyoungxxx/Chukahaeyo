@@ -1,10 +1,9 @@
 /*font*/
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
 
-body .container{
+body .container {
     font-family: "Noto Sans KR", sans-serif;
-  }  
-/*font*/
+}
 
 .container {
     margin: 40px 0 0 40px;
@@ -22,7 +21,6 @@ body .container{
     /*display: flex;*/
     flex-direction: row;
     justify-content: end;
-
     margin-bottom: 15px;
     margin-right: 200px;
 }
@@ -38,19 +36,17 @@ body .container{
     width: 90px;
     height: 28px;
     font-size: 12px;
-    
 }
 
 .search .submitbox {
     width: 37px;
     height: 30px;
     font-size: 12px;
-
     color: white;
     border: none;
     background-color: #949FFF;
     border-radius: 10px;
-    cursor : pointer;
+    cursor: pointer;
 }
 
 /*list*/
@@ -74,7 +70,6 @@ body .container{
 .list .list-board .list-title {
     border-bottom: 1px solid #B9B5B5;
     background-color: #F3F3F3;
-
 }
 
 .list .list-board .list-title .no {
@@ -103,7 +98,6 @@ body .container{
 }
 
 /*list-data*/
-
 .list .list-board .list-data {
     border-bottom: 1px solid #B9B5B5;
 }
@@ -135,10 +129,11 @@ body .container{
     text-align: center;
 }
 
-.list .list-board .list-data .is-answered{
+.list .list-board .list-data .is-answered {
     width: 60px;
     text-align: center;
 }
+
 .list .list-board .list-data .is-answered .is-answered-img {
     width: 20px;
     height: 20px;
@@ -150,13 +145,13 @@ body .container{
 .list .list-board .list-no-data {
     text-align: center;
     border-bottom: 1px solid #B9B5B5;
-    
+
     height: 50px;
     line-height: 50px;
 }
 
 /*write-button*/
-.write-button{
+.write-button {
     float: right;
     width: 138px;
     height: 40px;
@@ -169,6 +164,7 @@ body .container{
     border-radius: 10px;
     margin-bottom: 20px;
 }
+
 .write-button a {
     color: white;
 }
@@ -195,7 +191,7 @@ body .container{
     margin-right: 5px;
 }
 
-.paging .current{
+.paging .current {
     display: inline-block;
     text-decoration: none;
     color: #949FFF;

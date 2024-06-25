@@ -37,11 +37,11 @@
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 <script>
-    $(document).ready(function() {
-        new ClipboardJS('.copy').on('success', function(e) {
+    $(document).ready(function () {
+        new ClipboardJS('.copy').on('success', function (e) {
             console.log(e.text);
             alert('URL이 복사되었습니다.');
-        }).on('error', function(e) {
+        }).on('error', function (e) {
             console.error('URL 복사 실패: ', e);
             alert('URL 복사에 실패했습니다.');
         });
