@@ -42,7 +42,7 @@ $(document).on('click', '.guestbook-submit-button', function () {
     $(".guest-nickname").val("");
     $(".guest-message").val("");
 
-    if (window.location.pathname.includes("/completedCard")) {
+    if (!window.location.pathname.includes("/edit")) {
         if (name === "" || message === "") {
             alert("빈 칸은 입력하실 수 없습니다.");
             return;
