@@ -59,6 +59,21 @@
             document.body.appendChild(form);
             form.submit();
         }
+
+        function openCard(cardID){
+            $.ajax({
+                url: '/url/shorts',
+                type: 'GET',
+                data: {cardID: cardID},
+                success: function (shortUrl) {
+                    location.href=shortUrl;
+                },
+                error: function (err) {
+                    console.error('짧은 URL 가져오기 실패: ', err);
+                    alert('해당 카드를 열 수 없습니다.');
+                }
+            });
+        }
     </script>
 </head>
 <body>
@@ -89,7 +104,7 @@
 
                                     <c:forEach var="card" items="${cardList}">
                                         <c:if test="${card.payID == payment.payID}">
-                                            <a href="#">
+                                            <a href="javascript:openCard('${card.cardID}');">
                                                 <img src="${card.templateThumbnail}" class="payment-item-img">
                                             </a>
                                         </c:if>

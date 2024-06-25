@@ -11053,6 +11053,24 @@ a.text-dark:focus {
     overflow: visible;
 }
 
+.card-list{
+    align-items: flex-start;
+    flex-wrap: wrap;
+    display: block;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.payment-card-item{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    margin: 2px;
+    max-width: 100%;
+    box-sizing: border-box;
+    filter: drop-shadow(2px 2px 2px rgba(200, 200, 200, 0.2));
+}
+
 .order-status-info {
     width: 16px;
     height: 16px;
@@ -11066,7 +11084,7 @@ a.text-dark:focus {
 
 .pay-tooltip .tooltip-text {
     visibility: hidden;
-    width: 200px;
+    width: 270px;
     background-color: black;
     color: #fff;
     text-align: center;
@@ -11075,11 +11093,17 @@ a.text-dark:focus {
     padding: 5px;
     position: absolute;
     z-index: 100;
-    top: 50%; /* 툴팁의 위치를 아래로 설정 */
+    top: 75%; /* 툴팁의 위치를 아래로 설정 */
     left: -400%;
     transform: translateX(-50%);
     opacity: 0;
     transition: opacity 0.3s;
+}
+
+.card-list-tooltip > .tooltip-text{
+    width: 250px;
+    top: 75%; /* 툴팁의 위치를 아래로 설정 */
+    left: 400%; /* 툴팁의 위치를 아래로 설정 */
 }
 
 .pay-tooltip:hover .tooltip-text {

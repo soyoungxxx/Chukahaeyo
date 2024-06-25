@@ -163,6 +163,9 @@ public class MemberService {
         return memberMapper.getPaymentAllList();
     }
 
+    // 카드 전체 내역 가져오기
+    public List<CardVO> getCardAllList() {return memberMapper.getCardAllList();}
+
     // 필터링된 결제 내역 가져오기
     public List<PaymentVO> getFilteredPaymentList(String startDate, String endDate, String status, String search) {
         return memberMapper.getFilteredPaymentList(startDate, endDate, status, search);
