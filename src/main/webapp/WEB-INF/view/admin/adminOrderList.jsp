@@ -92,12 +92,18 @@
                                         <th>주문자명</th>
                                         <th>주문자 이메일</th>
                                         <th>주문일자</th>
-                                        <th>주문목록</th>
+                                        <th>카드목록
+                                            <div class="pay-tooltip card-list-tooltip">
+                                                <img src="/resources/img/admin/help-mark.png" class="order-status-info"
+                                                     alt="info">
+                                                <div class="tooltip-text">이미지를 클릭하면 카드를 확인할 수 있습니다.</div>
+                                            </div>
+                                        </th>
                                         <th class="payment-status">주문상태
                                             <div class="pay-tooltip">
                                                 <img src="/resources/img/admin/help-mark.png" class="order-status-info"
                                                      alt="info">
-                                                <div class="tooltip-text">상태 내역을 클릭하면 영수증을 확인하실 수 있습니다.</div>
+                                                <div class="tooltip-text">상태 내역을 클릭하면 영수증을 확인할 수 있습니다.</div>
                                             </div>
                                         </th>
                                     </tr>
@@ -108,9 +114,9 @@
                                             <td colspan="8" class="payment-not-exist">결제 정보가 존재하지 않습니다.</td>
                                         </tr>
                                     </c:if>
-                                    <c:forEach var="payment" items="${payments}">
+                                    <c:forEach var="payment" items="${payments}" varStatus="status">
                                         <tr>
-                                            <td>${payment.payID}</td>
+                                            <td>${status.index + 1}</td>
                                             <td>${payment.merchantUid}</td>
                                             <td>
                                                 <fmt:formatNumber type="number" maxFractionDigits="3"
@@ -122,7 +128,15 @@
                                                 <fmt:formatDate pattern="yyyy.MM.dd" value="${payment.payDate}"/>
                                             </td>
                                             <td>
-                                                <a>여기에 링크 </a>
+                                                <div class="card-list">
+                                                    <c:forEach var="card" items="${cardList}">
+                                                        <c:if test="${card.payID == payment.payID}">
+                                                            <a href="javascript:openCard(${card.cardID});">
+                                                                <img src="${card.templateThumbnail}" class="payment-card-item" alt="카드 썸네일 이미지">
+                                                            </a>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </div>
                                             </td>
                                             <c:if test="${payment.canceledAt == 0}">
                                                 <td class="success-payment">
@@ -184,6 +198,21 @@
         input.value = pageNumber;
         form.appendChild(input);
         form.submit();
+    }
+
+    function openCard(cardID){
+        $.ajax({
+            url: '/url/shorts',
+            type: 'GET',
+            data: {cardID: cardID},
+            success: function (shortUrl) {
+                window.open(shortUrl);
+            },
+            error: function (err) {
+                console.error('짧은 URL 가져오기 실패: ', err);
+                alert('해당 카드를 열 수 없습니다.');
+            }
+        });
     }
 </script>
 
