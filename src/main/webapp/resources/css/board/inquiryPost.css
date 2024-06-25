@@ -1,7 +1,7 @@
 /*font*/
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
 
-body .container{
+body .container {
     font-family: "Noto Sans KR", sans-serif;
 }
 
@@ -12,24 +12,24 @@ body .container{
 }
 
 /*title-container*/
-.title-container{
+.title-container {
     margin-bottom: 30px;
 }
 
-.title-container .title-text{
+.title-container .title-text {
     width: 90%;
     height: 40px;
     font-size: 15px;
-    border:solid 1px #ccc;
+    border: solid 1px #ccc;
     border-radius: 10px;
 }
 
-.data-container .data-text{
+.data-container .data-text {
     width: 100%;
 }
 
 /*write-button*/
-.write-button{
+.write-button {
     float: right;
     margin-top: 20px;
     align-self: self-end;

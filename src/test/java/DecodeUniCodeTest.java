@@ -13,7 +13,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 @Slf4j
 public class DecodeUniCodeTest {
-
     @Test
     public void getDecode() {
         String a = DecodeUniCode.unicodeDecode("\\uc548\\ub155\\ud558\\uc138\\uc694");

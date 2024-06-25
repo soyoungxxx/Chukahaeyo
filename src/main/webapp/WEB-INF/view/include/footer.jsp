@@ -16,6 +16,7 @@
         <a href="/board/inquiry/list?page=1&query=${sessionScope.login.memberName}&querytype=writer">1:1 문의</a>
     </div>
     <div>
-        <img src="${pageContext.request.contextPath}/resources/img/logo/gray-logo.png" style="width: 180px; height: 55px;">
+        <img src="${pageContext.request.contextPath}/resources/img/logo/gray-logo.png"
+             style="width: 180px; height: 55px;">
     </div>
 </footer>

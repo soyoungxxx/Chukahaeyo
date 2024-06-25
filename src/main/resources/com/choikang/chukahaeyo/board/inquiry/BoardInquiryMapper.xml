@@ -5,7 +5,8 @@
         <where>
             <if test="query != null and query != ''">
                 <if test="querytype == 'all'">
-                    inquiryQuestionTitle LIKE '%${query}%' OR inquiryQuestion LIKE '%${query}%' OR memberName LIKE '%${query}%'
+                    inquiryQuestionTitle LIKE '%${query}%' OR inquiryQuestion LIKE '%${query}%' OR memberName LIKE
+                    '%${query}%'
                 </if>
                 <if test="querytype == 'titlecontent'">
                     inquiryQuestionTitle LIKE '%${query}%' OR inquiryQuestion LIKE '%${query}%'
@@ -35,8 +36,10 @@
         <include refid="searchSql"/>
     </select>
 
-    <select id="getInquiryList" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO" resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
-        SELECT inquiryID , inquiryQuestion , inquiryQuestionTitle , inquiryAnswer , inquiryPostDate , i.memberID , adminID , memberEmail , memberName
+    <select id="getInquiryList" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO"
+            resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
+        SELECT inquiryID , inquiryQuestion , inquiryQuestionTitle , inquiryAnswer , inquiryPostDate , i.memberID ,
+        adminID , memberEmail , memberName
         FROM Inquiry i LEFT JOIN Members m ON m.memberID = i.memberID
         <include refid="searchSql"/>
         ORDER BY inquiryPostDate DESC
@@ -55,15 +58,28 @@
         </selectKey>
     </insert>
 
-    <select id="getInquiryDetail" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO" resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
-        SELECT inquiryID , inquiryQuestion , inquiryQuestionTitle , inquiryAnswer , inquiryPostDate , i.memberID , adminID , memberEmail , memberName
-        FROM Inquiry i LEFT JOIN Members m ON m.memberID = i.memberID
+    <select id="getInquiryDetail" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO"
+            resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
+        SELECT inquiryID,
+               inquiryQuestion,
+               inquiryQuestionTitle,
+               inquiryAnswer,
+               inquiryPostDate,
+               i.memberID,
+               adminID,
+               memberEmail,
+               memberName
+        FROM Inquiry i
+                 LEFT JOIN Members m ON m.memberID = i.memberID
         WHERE inquiryID = #{inquiryID}
     </select>
 
     <update id="insertAnswer" parameterType="com.choikang.chukahaeyo.board.model.InquiryVO">
         <![CDATA[
-        UPDATE Inquiry SET inquiryAnswer = #{inquiryAnswer} , adminID = #{adminID} WHERE inquiryID = #{inquiryID}
+        UPDATE Inquiry
+        SET inquiryAnswer = #{inquiryAnswer},
+            adminID       = #{adminID}
+        WHERE inquiryID = #{inquiryID}
         ]]>
     </update>
 </mapper>

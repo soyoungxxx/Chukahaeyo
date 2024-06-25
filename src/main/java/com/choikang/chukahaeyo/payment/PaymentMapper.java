@@ -9,15 +9,17 @@ import java.util.List;
 @Mapper
 public interface PaymentMapper {
     void insertPayment(PaymentVO paymentVO); //결제 정보를 DB에 저장
+
     void cancelPayment(PaymentVO paymentVO);
 
     void deletePayment(PaymentVO paymentVO);
 
     // select 매출
     int selectPaymentDaySum(String date);
+
     int selectPaymentMonthSum(String date);
+
     int selectPaymentYearSum(String date);
 
     List<Integer> selectSixMonthsSum(String date);
-
 }

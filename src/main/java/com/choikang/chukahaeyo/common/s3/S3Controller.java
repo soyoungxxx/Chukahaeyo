@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class S3Controller {
-
     @Autowired
     private S3Service s3Service;
 

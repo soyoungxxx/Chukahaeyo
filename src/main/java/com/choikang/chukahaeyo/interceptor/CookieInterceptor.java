@@ -22,7 +22,7 @@ public class CookieInterceptor implements HandlerInterceptor {
     }
 
     private boolean checkCookie(HttpServletRequest request, HttpServletResponse response) {
-        if (request.getCookies() ==  null) { // 쿠키가 있으면 return false
+        if (request.getCookies() == null) { // 쿠키가 있으면 return false
             createCookie(response);
         }
         return true;

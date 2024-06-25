@@ -1,6 +1,5 @@
 package com.choikang.chukahaeyo.common;
 
-
 public class DecodeUniCode {
     public static String unicodeDecode(String uniCode) { //유니코드 -> 한글 변환
         StringBuffer sb = new StringBuffer(); //변환할 문자를 저장할 buffer

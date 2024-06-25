@@ -36,19 +36,11 @@ public enum ErrorCode {
      */
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "내부 서버 오류가 발생했습니다."),
 
-
-
     /**
      * 505 HTTP VERSION NOT SUPPORTED
      */
-    UNSUPPORTED_HTTP_ERROR(HttpStatus.HTTP_VERSION_NOT_SUPPORTED, "지원하지 않는 HTTP 버전입니다.")
-    ;
-
+    UNSUPPORTED_HTTP_ERROR(HttpStatus.HTTP_VERSION_NOT_SUPPORTED, "지원하지 않는 HTTP 버전입니다.");
 
     private final HttpStatus httpStatus;
     private final String message;
-
-    public int getHttpStatusCode() {
-        return httpStatus.value();
-    }
 }

@@ -37,9 +37,7 @@ public class PaymentService {
     public int processPayment(PaymentDTO paymentDTO) {
         try {
             PaymentVO paymentVO = PaymentDTO.of(paymentDTO);
-            System.out.println("[DEBUG] PaymentVO: " + paymentVO);
             paymentMapper.insertPayment(paymentVO);
-            System.out.println("[service] DTO를 VO로 변환 완료");
             return paymentVO.getPayID();
         } catch (Exception e) {
             throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "PaymentDTO를 PaymentVO로 변환 실패");
@@ -47,13 +45,8 @@ public class PaymentService {
     }
 
     public String getToken() {
-        System.out.println("key : " + key);
-        System.out.println("secret Key : " + secretKey);
-
-
         try {
             String apiUrl = "https://api.iamport.kr/users/getToken"; // 요청을 보낼 api 주소
-
             RestTemplate restTemplate = new RestTemplate(); // body 설정
 
             HttpHeaders headers = new HttpHeaders(); // header 설정
@@ -64,7 +57,7 @@ public class PaymentService {
             keyMap.put("imp_secret", secretKey);
             ObjectMapper objectMapper = new ObjectMapper();
             String keyJson = objectMapper.writeValueAsString(keyMap);
-            System.out.println("keyJson : " + keyJson);
+
             HttpEntity<String> requestEntity = new HttpEntity<>(keyJson, headers); // HttpEntity 객체 생성
             ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntity, String.class);
 
@@ -84,6 +77,7 @@ public class PaymentService {
             throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, ErrorCode.INTERNAL_SERVER_ERROR.getMessage());
         }
     }
+
     @Transactional
     public void cancelPayment(int payID, String payNo) {
         try {
@@ -91,8 +85,6 @@ public class PaymentService {
 
             HttpHeaders headers = new HttpHeaders();
             String accessToken = getToken();
-            System.out.println("accessToken : " + accessToken);
-
             headers.set("Authorization", "Bearer " + accessToken);
             headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -101,23 +93,18 @@ public class PaymentService {
             Map<String, String> keyMap = new HashMap<>();
             keyMap.put("imp_uid", payNo);
             keyMap.put("reason", "단순 고객 변심");
+
             ObjectMapper objectMapper = new ObjectMapper();
             String keyJson = objectMapper.writeValueAsString(keyMap);
-            System.out.println("keyJson : " + keyJson);
 
             HttpEntity<String> requestEntity = new HttpEntity<>(keyJson, headers);
             ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntity, String.class);
 
             if (responseEntity.getStatusCode() == HttpStatus.OK) {
-                System.out.println("결제 취소 성공");
-                System.out.println("responseEntity : " + responseEntity);
-                System.out.println("응답 코드 : " + responseEntity.getStatusCode());
                 String responseBody = responseEntity.getBody();
                 JSONParser jsonParser = new JSONParser();
                 JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
                 JSONObject resultObject = (JSONObject) jsonObject.get("response"); //response값만 추출
-
-                System.out.println("resultObject : " + resultObject);
 
                 long canceledAt = (Long) resultObject.get("cancelled_at"); //취소 시각. 결제 취소가 아니면 0
                 String failReason = (String) resultObject.get("fail_reason"); //결제 실패 사유. 결제 성공 시 null값.
@@ -138,8 +125,6 @@ public class PaymentService {
 
                 paymentMapper.cancelPayment(paymentVO);
                 paymentMapper.deletePayment(paymentVO);
-
-                System.out.println("DB 저장 성공");
             } else {
                 throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "결제 취소에 실패하였습니다.");
             }

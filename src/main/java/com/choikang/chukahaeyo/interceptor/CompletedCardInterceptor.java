@@ -18,10 +18,9 @@ public class CompletedCardInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Map<String, String> pathVariables = (Map<String, String>) request
-                                .getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-        System.out.println(pathVariables.get("cardID"));
+                .getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         int cardID = Integer.parseInt(pathVariables.get("cardID"));
-        if(!checkCardIsPublic(cardID)) {
+        if (!checkCardIsPublic(cardID)) {
             response.sendRedirect(request.getContextPath() + "/");
             return false;
         }

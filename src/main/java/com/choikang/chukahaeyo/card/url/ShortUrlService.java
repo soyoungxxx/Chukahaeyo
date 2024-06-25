@@ -59,7 +59,6 @@ public class ShortUrlService {
 
                 CardVO cardVO = ShortUrlDTO.of(shortUrlDTO);
                 cardMapper.insertUrl(cardVO);
-
                 return shortUrl;
             } else {
                 throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR, "URL 단축에 실패했습니다.");

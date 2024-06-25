@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
@@ -46,7 +45,6 @@ public class BoardCommunityController {
     public String communityMyList(@ModelAttribute CommunityVO vo, HttpServletRequest req, HttpSession session) {
         vo.setMemberID((int) session.getAttribute("memberID"));
         req.setAttribute("map", boardCommunityService.getCommunityMyList(vo));
-
         return "board/myCommunityList";
     }
 
@@ -63,7 +61,6 @@ public class BoardCommunityController {
             vo.setMemberName(String.valueOf(session.getAttribute("memberName")));
         }
         req.setAttribute("object", boardCommunityService.getCommunityDetail(vo));
-
         return "board/communityDetail";
     }
 
@@ -85,7 +82,6 @@ public class BoardCommunityController {
             vo.setMemberName(String.valueOf(session.getAttribute("memberName")));
         }
         req.setAttribute("object", boardCommunityService.getCommunityDetail(vo));
-
         return "board/communityUpdate";
     }
 
@@ -162,7 +158,6 @@ public class BoardCommunityController {
         Map<String, Object> map = new HashMap<>();
         map.put("isRed", boardCommunityService.deleteHeart(vo));
         map.put("boardLike", boardCommunityService.getLikeCount(vo));
-
         return map;
     }
 
@@ -177,7 +172,6 @@ public class BoardCommunityController {
         Map<String, Object> map = new HashMap<>();
         map.put("isRed", boardCommunityService.insertHeart(vo));
         map.put("boardLike", boardCommunityService.getLikeCount(vo));
-
         return map;
     }
 }

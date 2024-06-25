@@ -1,6 +1,6 @@
 // 캔버스 객체 불러와서 컨페티로 등록하기
 var canvas = document.querySelector("canvas");
-const jsConfetti = new JSConfetti({ canvas });
+const jsConfetti = new JSConfetti({canvas});
 
 const image = $("#card-bg")
 const imageBasicHeight = image.height();
@@ -8,7 +8,7 @@ image.height(0);
 
 window.addEventListener('load', getHeight)
 window.addEventListener('resize', getHeight);
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     if (window.location.pathname.includes('/completedCard') && $('.extra-address').val() != null) {
         getMap($('.extra-address').text())
     }
@@ -25,7 +25,7 @@ function getHeight() {
 
 // like 버튼 클릭 시 숫자 올라가고, 이모티콘 컨페티 터지는 효과
 var emoji = ["🎉", "🎊", "✨", "🎈"];
-$(document).on('click', '#like', function() {
+$(document).on('click', '#like', function () {
     let likeNumber = Number($(".like-number").text()) + 1;
     if (window.location.pathname.includes('/card/edit/')) {
         $(".like-number").text(likeNumber);
@@ -33,12 +33,12 @@ $(document).on('click', '#like', function() {
         $.ajax({
             url: '/card/completedCard/like.do',
             type: 'POST',
-            data: {cardID:cardID},
+            data: {cardID: cardID},
             async: false,
-            success: function(result) {
+            success: function (result) {
                 $(".like-number").text(likeNumber);
             },
-            error: function() {
+            error: function () {
                 alert("like db 업데이트에 실패했습니다.");
             }
         });
@@ -50,7 +50,7 @@ $(document).on('click', '#like', function() {
     });
 })
 
-$(document).on('click', '.guestbook-submit-button', function() {
+$(document).on('click', '.guestbook-submit-button', function () {
     var name = $(".guest-nickname").val();
     var message = $(".guest-message").val();
 
@@ -73,10 +73,10 @@ $(document).on('click', '.guestbook-submit-button', function() {
                 guestBookText: message,
                 cardID: cardID
             }),
-            success: function(response) {
+            success: function (response) {
 
             },
-            error : function(response) {
+            error: function (response) {
                 console.log("방명록 업데이트에 실패하였습니다.");
             }
         });
@@ -136,10 +136,10 @@ function getMap(roadAddr) {
     });
 }
 
-$(document).on('click', '.more-card', function() {
+$(document).on('click', '.more-card', function () {
     if (window.location.pathname.includes('/card/edit/')) {
 
     } else {
-        location.href='/gallery'
+        location.href = '/gallery'
     }
 });
