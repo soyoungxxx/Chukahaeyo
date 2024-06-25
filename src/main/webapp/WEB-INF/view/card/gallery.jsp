@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>명예의 전당</title>
+    <link rel="icon" href="/resources/img/logo/favicon.png"/>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/gallery.css"/>

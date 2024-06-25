@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>축하해요</title>
+    <link rel="icon" href="/resources/img/logo/favicon.png"/>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>

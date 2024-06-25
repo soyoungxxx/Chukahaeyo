@@ -7,7 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>축하해요 커뮤니티</title>
+    <title>축하해요</title>
+    <link rel="icon" href="/resources/img/logo/favicon.png"/>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/resources/css/pageFrame/reset.css"/>
     <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
