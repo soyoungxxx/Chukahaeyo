@@ -51,7 +51,7 @@ function requestPay() {
                 }
             });
         } else {
-            console.log("결제 실패", rsp);
+            console.log("결제 실패 : ", rsp);
             alert('Payment failed: ' + rsp.error_msg);
         }
     });
