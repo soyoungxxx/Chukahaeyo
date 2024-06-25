@@ -45,7 +45,7 @@
                                         <span class="no">1.</span>
                                         <span class="title">축하 카드 에디터는 어떻게 사용하나요?</span>
                                     </span>
-                                <img class="arrow" src="/resources/img/board/toggle.png">
+                                <a class="arrow"></a>
                             </div>
                             <div class="content">
                                 상단 메뉴바(네비게이터)를 통해 각 분류에 맞는 축하카드를 생성할 수 있습니다.<br>
@@ -67,7 +67,7 @@
                                     <span class="no">2.</span>
                                     <span class="title">주문한 카드를 수정하거나 취소할 수 있나요?</span>
                                 </span>
-                                <img class="arrow" src="/resources/img/board/toggle.png">
+                                <a class="arrow"></a>
                             </div>
                             <div class="content">
                                 장바구니에 담기거나 이미 결제가 된 카드는 수정이 불가능합니다. 만일 수정이 필요할 시 삭제 후 재생성을 진행해주셔야 합니다. 더불어 결제된 카드를 취소할 시
@@ -80,7 +80,7 @@
                                     <span class="no">3.</span>
                                     <span class="title">생성한 페이지를 얼마나 유지할 수 있나요?</span>
                                 </span>
-                                <img class="arrow" src="/resources/img/board/toggle.png">
+                                <a class="arrow"></a>
                             </div>
                             <div class="content">
                                 생성된 페이지 링크의 제한 기간은 없으나, 축하 기간이 길어지거나 페이지를 유지해야하는 기간이 길어질 시 가격 측정 내규에 따라 추가요금을 요청할 수
@@ -93,7 +93,7 @@
                                     <span class="no">4.</span>
                                     <span class="title">같은 이메일로 가입이 가능한가요?</span>
                                 </span>
-                                <img class="arrow" src="/resources/img/board/toggle.png">
+                                <a class="arrow"></a>
                             </div>
                             <div class="content">
                                 동일한 이메일로 중복 가입은 불가능합니다. 이는 회원탈퇴를 한 계정도 동일하게 적용되며, 만일 동일 아이디로 재가입이 필요할 시 고객센터로 문의바랍니다.
