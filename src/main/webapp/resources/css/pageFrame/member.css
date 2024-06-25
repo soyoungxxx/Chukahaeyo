@@ -218,31 +218,31 @@
 }
 
 .register_form p {
-    display: block;
     text-align: center;
-
     font-family: "Noto Sans KR", sans-serif;
     font-size: 12px;
     font-weight: bold;
     margin: 0;
     padding: 0;
-
 }
 
-.register_form #check_fail {
+#check-fail, #pwd-check-fail {
     color: red;
-    visibility: collapse;
-
+    display: none;
 }
 
-.register_form #check_success {
+#check-success, #check-duplmail {
     color: forestgreen;
-    visibility: collapse;
+    display: none;
 }
 
-.register_form .check_result {
+.register_form .check-result {
+    display: flex;
+    justify-content: flex-end;
+
     height: 10px;
-    margin-top: -10px;
+    width: 480px;
+    margin: -10px auto 0 auto;
     padding: 0;
 }
 

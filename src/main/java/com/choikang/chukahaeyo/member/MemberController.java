@@ -15,7 +15,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MemberController {
@@ -119,7 +121,8 @@ public class MemberController {
 
     // 회원가입: 멤버 인증, 이메일을 통해 링크 인증 완료 시 DB상의 isAuth 상태 변경
     @GetMapping("/member/verify")
-    public String verify(Model model, @RequestParam("memberID") int memberID) {
+    public String verify(Model model, @RequestParam("data") String encryptedData) {
+        int memberID = Integer.parseInt(service.decrypt(encryptedData));
         if (service.getUserInfoById(memberID).isMemberAuth()) {
             model.addAttribute("msg", "이미 인증된 회원입니다.");
             model.addAttribute("closeWindow", true);
@@ -176,24 +179,48 @@ public class MemberController {
         }
     }
 
-    // 결제내역: 회원의 결제 내역 가져오기
-    @GetMapping("/mypage/myHistory")
+
+    // 결제내역: 회원의 결제 내역 가져오기(get)
+    @GetMapping ("/mypage/myHistory")
     public String getPayHistoryCard(HttpSession session, Model model) {
+        // 세션에서 memberID 가져온 후 해당 유저의 카드 리스트 조회
         int memberID = (int) session.getAttribute("memberID");
         List<CardVO> cardList = service.getCardList(memberID);
-        List<PaymentVO> paymentList = service.getPaymentList(memberID);
 
-        Timestamp twoDaysAgo = new Timestamp(System.currentTimeMillis() - 2L * 24 * 60 * 60 * 1000); // 2일 전의 Timestamp 계산
-        for (PaymentVO payment : paymentList) {
-            Timestamp tempDate = payment.getPayDate();
-            if (tempDate != null && twoDaysAgo.before(tempDate)) {
-                payment.setIsWithinTwoDays(1);
-            } else {
-                payment.setIsWithinTwoDays(0);
-            }
-        }
+        // 서비스를 통해 페이징 처리, 취소 가능 여부 체크 후 결제 내역 객체 저장
+        Map<String, Object> map =  service.paginationPayment(1 , 3 , null);
+        List<PaymentVO> paymentList = service.checkCancelable((List<PaymentVO>)map.get("paymentList"));
+
+        // 전달 객체에 담기
         model.addAttribute("cardList", cardList);
         model.addAttribute("paymentList", paymentList);
+        model.addAttribute("currentPage", 1);
+        model.addAttribute("pageSize", 3);
+        model.addAttribute("totalPages", (Integer)map.get("totalPages"));
+        System.out.println(map.get("totalPages"));
+
+        return "/mypage/myHistory";
+    }
+
+    // 결제내역: 회원의 결제 내역 가져오기(post)
+    @PostMapping ("/mypage/myHistory")
+    public String getPayHistoryCard(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page,
+                                    @RequestParam(defaultValue = "3") int size) {
+        // 세션에서 memberID 가져온 후 해당 유저의 카드 리스트 조회
+        int memberID = (int) session.getAttribute("memberID");
+        List<CardVO> cardList = service.getCardList(memberID);
+
+        // 서비스를 통해 페이징 처리, 취소 가능 여부 체크 후 결제 내역 객체 저장
+        Map<String, Object> map =  service.paginationPayment(page, size, null);
+        List<PaymentVO> paymentList = service.checkCancelable((List<PaymentVO>)map.get("paymentList"));
+
+        // 전달 객체에 담기
+        model.addAttribute("cardList", cardList);
+        model.addAttribute("paymentList", paymentList);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("pageSize", size);
+        model.addAttribute("totalPages", (Integer)map.get("totalPages"));
+
         return "/mypage/myHistory";
     }
 
@@ -201,26 +228,19 @@ public class MemberController {
     @GetMapping("/admin/adminOrderList")
     public String getAllPaymentList(Model model, @RequestParam(defaultValue = "1") int page,
                                     @RequestParam(defaultValue = "10") int size) {
-        List<PaymentVO> paymentList = service.getPaymentAllList();
+        Map<String, Object> map =  service.paginationPayment(page, size, null);
+        List<PaymentVO> paymentList = (List<PaymentVO>)map.get("paymentList");
 
-        int totalPayments = paymentList.size();
-        int totalPages = (int) Math.ceil((double) totalPayments / size);
-
-        int start = (page - 1) * size;
-        int end = Math.min(start + size, totalPayments);
-
-        List<PaymentVO> payments = paymentList.subList(start, end);
-
-        model.addAttribute("payments", payments);
-
+        model.addAttribute("payments", paymentList);
         model.addAttribute("currentPage", page);
         model.addAttribute("pageSize", size);
-        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("totalPages", (Integer)map.get("totalPages"));
 
         return "/admin/adminOrderList";
     }
 
     // 관리자: 결제 내역 필터해서 가져오기
+    // required: false로 하지않으면 필수 요소로 설정됨.
     @PostMapping("/admin/adminOrderList")
     public String getFilteredPaymentList(Model model,
                                          @RequestParam(name = "page", required = false, defaultValue = "1") int page,
@@ -229,22 +249,18 @@ public class MemberController {
                                          @RequestParam(required = false) String endDate,
                                          @RequestParam(required = false) String status,
                                          @RequestParam(required = false) String search) {
-        // required: false로 하지않으면 필수 요소로 설정됨.
-        List<PaymentVO> paymentList = service.getFilteredPaymentList(startDate, endDate, status, search);
 
-        int totalPayments = paymentList.size();
-        int totalPages = (int) Math.ceil((double) totalPayments / size);
+        List<PaymentVO> filteredPaymentList = service.getFilteredPaymentList(startDate, endDate, status, search);
 
-        int start = (page - 1) * size;
-        int end = Math.min(start + size, totalPayments);
+        Map<String, Object> map =  service.paginationPayment(page, size, filteredPaymentList);
+        List<PaymentVO> paymentList = service.checkCancelable((List<PaymentVO>)map.get("paymentList"));
 
-        List<PaymentVO> payments = paymentList.subList(start, end);
-
-        model.addAttribute("payments", payments);
+        model.addAttribute("payments", paymentList);
         model.addAttribute("currentPage", page);
         model.addAttribute("pageSize", size);
-        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("totalPages", (Integer)map.get("totalPages"));
 
+        // 다른 페이지(1, 2,...)로 넘어갈 시에도 필터값 유지를 위해 model에 저장
         model.addAttribute("startDate", startDate);
         model.addAttribute("endDate", endDate);
         model.addAttribute("status", status);
