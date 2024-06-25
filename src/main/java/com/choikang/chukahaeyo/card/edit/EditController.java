@@ -4,6 +4,7 @@ import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.card.model.GuestBookVO;
 import com.choikang.chukahaeyo.card.model.TemplateVO;
 import com.choikang.chukahaeyo.card.url.ShortUrlService;
+import com.choikang.chukahaeyo.common.Base64Util;
 import com.choikang.chukahaeyo.exception.ErrorCode;
 import com.choikang.chukahaeyo.exception.SuccessCode;
 import com.choikang.chukahaeyo.common.s3.S3Service;
@@ -61,22 +62,24 @@ public class EditController {
         return "redirect:" + redirectURL;
     }
 
-    //    @GetMapping("/completedCard/{cardID}")
-//    public String getCompletedCardPage(@PathVariable int cardID, Model model) {
-//        // 카드 정보, editService 호출 후 뷰에 값 전달
-//        CardVO cardVO = editService.getCompletedCardPage(cardID);
-//        model.addAttribute("cardVO", cardVO);
-//
-//        // 카드의 css 정보
-//        String css = cardVO.getTemplateThumbnail().substring(25, cardVO.getTemplateThumbnail().length() - 4);
-//        model.addAttribute("css", css);
-//
-//        // 방명록 정보, editService 호출 후 뷰에 값 전달
-//        List<GuestBookVO> guestBooks = editService.selectGuestBooks(cardVO.getCardID());
-//        model.addAttribute("guestBooks", guestBooks);
-//
-//        return "card/completedCard";
-//    }
+    @GetMapping("/completedCard/{cardID}")
+    public String getCompletedCardPage(@PathVariable int cardID, Model model) {
+        String originUrl = "/completedCard/{cardID}";
+        String encodeUrl = Base64Util.encode(originUrl);
+        // 카드 정보, editService 호출 후 뷰에 값 전달
+        CardVO cardVO = editService.getCompletedCardPage(cardID);
+        model.addAttribute("cardVO", cardVO);
+
+        // 카드의 css 정보
+        String css = cardVO.getTemplateThumbnail().substring(25, cardVO.getTemplateThumbnail().length() - 4);
+        model.addAttribute("css", css);
+
+        // 방명록 정보, editService 호출 후 뷰에 값 전달
+        List<GuestBookVO> guestBooks = editService.selectGuestBooks(cardVO.getCardID());
+        model.addAttribute("guestBooks", guestBooks);
+
+        return encodeUrl;
+    }
 
 
     @PostMapping("/completedCard/like.do")
