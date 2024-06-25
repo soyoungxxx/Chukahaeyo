@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -8,10 +8,10 @@
     <meta charset="utf-8">
     <title>축하해요 1:1문의</title>
     <META name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="/resources/css/pageFrame/common.css" />
-    <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css" />
-    <link rel="stylesheet" href="/resources/css/board/inquiryList.css" />
-    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css" />
+    <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/mypage.css"/>
+    <link rel="stylesheet" href="/resources/css/board/inquiryList.css"/>
+    <link rel="stylesheet" href="/resources/css/pageFrame/reset.css"/>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
@@ -35,14 +35,21 @@
                             <a href="write">1:1 문의하기</a>
                         </div>
                         <div class="search">
-                            <form action="list" >
+                            <form action="list">
                                 <select class="selectbox" name="querytype">
-                                    <option value="all" <c:if test="${inquiryVO.querytype == 'all'}">selected</c:if>>전체</option>
-                                    <option value="titlecontent" <c:if test="${inquiryVO.querytype == 'titlecontent'}">selected</c:if>>제목+내용</option>
-                                    <option value="writer" <c:if test="${inquiryVO.querytype == 'writer'}">selected</c:if>>작성자</option>
+                                    <option value="all" <c:if test="${inquiryVO.querytype == 'all'}">selected</c:if>>
+                                        전체
+                                    </option>
+                                    <option value="titlecontent"
+                                            <c:if test="${inquiryVO.querytype == 'titlecontent'}">selected</c:if>>제목+내용
+                                    </option>
+                                    <option value="writer"
+                                            <c:if test="${inquiryVO.querytype == 'writer'}">selected</c:if>>작성자
+                                    </option>
                                 </select>
-                                <input class="textbox" type="text" placeholder="검색어" name="query" value="${inquiryVO.query}"/>
-                                <input class="submitbox" type="submit" value="검색" />
+                                <input class="textbox" type="text" placeholder="검색어" name="query"
+                                       value="${inquiryVO.query}"/>
+                                <input class="submitbox" type="submit" value="검색"/>
                             </form>
                         </div>
                         <div class="list">
@@ -67,9 +74,12 @@
                                 <c:forEach var="vo" items="${map.list}" varStatus="status">
                                     <tr class="list-data">
                                         <th class="no">${status.index+1}</th>
-                                        <th class="title"><a href="detail?inquiryID=${vo.inquiryID}&query=${inquiryVO.query}&querytype=${inquiryVO.querytype}&page=${inquiryVO.page}">${vo.inquiryQuestionTitle}</a></th>
+                                        <th class="title"><a
+                                                href="detail?inquiryID=${vo.inquiryID}&query=${inquiryVO.query}&querytype=${inquiryVO.querytype}&page=${inquiryVO.page}">${vo.inquiryQuestionTitle}</a>
+                                        </th>
                                         <th class="writer">${vo.memberName}</th>
-                                        <th class="regdate"><fmt:formatDate value="${vo.inquiryPostDate }" pattern="YYYY.MM.dd"/></th>
+                                        <th class="regdate"><fmt:formatDate value="${vo.inquiryPostDate }"
+                                                                            pattern="YYYY.MM.dd"/></th>
                                         <th class="is-answered">
                                             <c:if test="${vo.adminID != 0}">
                                                 <img class="is-answered-img" src="/resources/img/board/checked.png">
@@ -82,18 +92,24 @@
                         </div>
                         <ul class='paging'>
                             <c:if test="${map.isPrev }">
-                                <li><a href="list?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}"> < </a></li>
+                                <li>
+                                    <a href="list?page=${map.startPage-1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}">
+                                        < </a></li>
                             </c:if>
                             <c:forEach var="p" begin="${map.startPage}" end="${map.endPage}">
                                 <c:if test="${p == inquiryVO.page}">
                                     <li><a href='#;' class='current'>${p}</a></li>
                                 </c:if>
                                 <c:if test="${p != inquiryVO.page}">
-                                    <li><a href='list?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}'>${p}</a></li>
+                                    <li>
+                                        <a href='list?page=${p}&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}'>${p}</a>
+                                    </li>
                                 </c:if>
                             </c:forEach>
                             <c:if test="${map.isNext }">
-                                <li><a href="list?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}"> > </a></li>
+                                <li>
+                                    <a href="list?page=${map.endPage+1 }&querytype=${inquiryVO.querytype}&query=${inquiryVO.query}">
+                                        > </a></li>
                             </c:if>
                         </ul>
                     </div>

@@ -19,7 +19,7 @@ public class AccessControlInterceptor implements HandlerInterceptor {
         boolean isAdminLoggedIn = session.getAttribute("adminLogin") != null;
 
         // 비로그인 상태에서 접근할 수 없는 경로
-        if (!isLoggedIn && (uri.startsWith("/mypage/") || uri.startsWith("/cart") || uri.startsWith("/card/edit/") || uri.startsWith("/payments/")|| uri.startsWith("/board/community/write"))) {
+        if (!isLoggedIn && (uri.startsWith("/mypage/") || uri.startsWith("/cart") || uri.startsWith("/card/edit/") || uri.startsWith("/payments/") || uri.startsWith("/board/community/write"))) {
             String queryString = request.getQueryString();
             String target = uri + (queryString == null ? "" : "?" + queryString);
 
@@ -45,7 +45,6 @@ public class AccessControlInterceptor implements HandlerInterceptor {
             response.sendRedirect(request.getContextPath() + "/");
             return false;
         }
-
         return true;
     }
 }

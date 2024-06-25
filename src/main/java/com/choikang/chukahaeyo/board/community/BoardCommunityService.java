@@ -42,7 +42,7 @@ public class BoardCommunityService {
         map.put("list", list);
 
         // 하단에 페이징처리
-        int endPage = (int)(Math.ceil(Integer.parseInt(vo.getPage())/10.0)*10);
+        int endPage = (int) (Math.ceil(Integer.parseInt(vo.getPage()) / 10.0) * 10);
         int startPage = endPage - 9;
         if (endPage > totalPage) endPage = totalPage;
         boolean isPrev = startPage > 1;
@@ -56,8 +56,6 @@ public class BoardCommunityService {
 
     public void insertCommunity(CommunityVO vo) {
         boardCommunityMapper.insertCommunity(vo);
-
-
     }
 
     public CommunityVO getCommunityDetail(CommunityVO vo) {
@@ -67,9 +65,7 @@ public class BoardCommunityService {
 
     public int deleteHeart(CommunityVO vo) {
         boardCommunityMapper.deleteHeart(vo);
-
         return boardCommunityMapper.getRedCount(vo);
-
     }
 
     public int getLikeCount(CommunityVO vo) {
@@ -78,7 +74,6 @@ public class BoardCommunityService {
 
     public Object insertHeart(CommunityVO vo) {
         boardCommunityMapper.insertHeart(vo);
-
         return boardCommunityMapper.getRedCount(vo);
     }
 
@@ -89,22 +84,15 @@ public class BoardCommunityService {
     public void deleteCommunity(CommunityVO vo) {
         CommunityVO contentVO = boardCommunityMapper.getCommunityDetail(vo);
         String html = contentVO.getCommContents();
-
         String regex = "<img\\s+src=\"([^\"]+)\"";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(html);
-        while(matcher.find()){
+        while (matcher.find()) {
             String srcValue = matcher.group(1);
-
             String[] srcValues = srcValue.split("/");
-            String fileName = srcValues[srcValues.length-1];
-
-            System.out.println("fileName: "+fileName);
+            String fileName = srcValues[srcValues.length - 1];
             s3Service.deleteFile(fileName);
-
         }
-
-
         ReplyVO replyVO = new ReplyVO();
         replyVO.setCommID(vo.getCommID());
         boardCommentMapper.deleteComment(replyVO);
@@ -125,7 +113,7 @@ public class BoardCommunityService {
         map.put("list", list);
 
         // 하단에 페이징처리
-        int endPage = (int)(Math.ceil(Integer.parseInt(vo.getPage())/10.0)*10);
+        int endPage = (int) (Math.ceil(Integer.parseInt(vo.getPage()) / 10.0) * 10);
         int startPage = endPage - 9;
         if (endPage > totalPage) endPage = totalPage;
         boolean isPrev = startPage > 1;

@@ -64,7 +64,7 @@ public class MemberService {
         int memberID = selectMemberId(memberEmail);
 
         String encryptedData = encrypt(memberID + ":" + memberEmail);
-        if(encryptedData != null && encryptedData.contains("/")){
+        if (encryptedData != null && encryptedData.contains("/")) {
             encryptedData = encryptedData.replace('/', '@');
         }
 
@@ -118,7 +118,7 @@ public class MemberService {
     // 회원가입: 암호화 된 링크 접속 가능하도록 복호화
     public String decrypt(String strToDecrypt) {
         try {
-            if(strToDecrypt != null && strToDecrypt.contains("@")){
+            if (strToDecrypt != null && strToDecrypt.contains("@")) {
                 strToDecrypt = strToDecrypt.replace('@', '/');
                 System.out.println("Modified Data: " + strToDecrypt);
             }
@@ -158,7 +158,6 @@ public class MemberService {
         return memberMapper.getCardList(memberID);
     }
 
-
     // 결제내역 가져오기
     public List<PaymentVO> getPaymentAllList() {
         return memberMapper.getPaymentAllList();
@@ -180,18 +179,17 @@ public class MemberService {
     }
 
     // 결제내역 페이지네이션
-    public Map<String, Object> paginationPayment(int page, int size,  List<PaymentVO> paymentList){
+    public Map<String, Object> paginationPayment(int page, int size, List<PaymentVO> paymentList) {
         // return으로 전달할 Map 객체
         Map<String, Object> map = new HashMap<>();
 
         // 전체 paymentList조회
-        if(paymentList == null){
+        if (paymentList == null) {
             paymentList = getPaymentAllList();
         }
 
         int totalPayments = paymentList.size();
         int totalPages = (int) Math.ceil((double) totalPayments / size);
-
         int start = (page - 1) * size;
         int end = Math.min(start + size, totalPayments);
 
@@ -199,13 +197,12 @@ public class MemberService {
 
         map.put("paymentList", payments);
         map.put("totalPages", totalPages);
-        System.out.println(map.get("totalPages"));
 
         return map;
     }
 
     // 결제내역: 2일이내 목록 필터
-    public List<PaymentVO> checkCancelable(List<PaymentVO> payments){
+    public List<PaymentVO> checkCancelable(List<PaymentVO> payments) {
         Timestamp twoDaysAgo = new Timestamp(System.currentTimeMillis() - 2L * 24 * 60 * 60 * 1000); // 2일 전의 Timestamp 계산
         for (PaymentVO payment : payments) {
             Timestamp tempDate = payment.getPayDate();
@@ -218,9 +215,9 @@ public class MemberService {
         return payments;
     }
 
-
-    public void withdrawMember(MemberVO memberVO){memberMapper.withdrawMember(memberVO);}
-
+    public void withdrawMember(MemberVO memberVO) {
+        memberMapper.withdrawMember(memberVO);
+    }
 
     public int selectTodayRegisterMember(String date) {
         return memberMapper.selectTodayRegisterMember(date);

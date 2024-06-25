@@ -108,15 +108,13 @@
                 $("#memberPwd").focus();
                 $('#pwd-check-fail').css('display', 'block');
                 return false;
-            }
-            else{
+            } else {
                 $('#pwd-check-fail').css('display', 'none');
-                if(($("#pwdCheck").val() != null && $("#pwdCheck").val() != "")){
-                    if($("#pwdCheck").val() !== $("#memberPwd").val()){
+                if (($("#pwdCheck").val() != null && $("#pwdCheck").val() != "")) {
+                    if ($("#pwdCheck").val() !== $("#memberPwd").val()) {
                         $('#check-fail').css('display', 'block');
                         $('#check-success').css('display', 'none');
-                    }
-                    else{
+                    } else {
                         $('#check-fail').css('display', 'none');
                         $('#check-success').css('display', 'block');
                     }
@@ -130,8 +128,7 @@
                 $("#pwdCheck").focus();
                 $('#check-fail').css('display', 'block');
                 $('#check-success').css('display', 'none');
-            }
-            else{
+            } else {
                 $('#check-success').css('display', 'block');
                 $('#check-fail').css('display', 'none');
             }
@@ -217,7 +214,7 @@
 
         }
 
-        function sendEmail(){
+        function sendEmail() {
             // 이메일 인증 구현
             $.ajax({
                 url: '/member/emailAuth',
@@ -255,7 +252,8 @@
                         <div class="register_form">
                             <ul>
                                 <li class="email_check">
-                                    <input type="text" id="memberEmail" name="memberEmail" placeholder="이메일(인증 가능한 이메일을 입력해주세요.)"
+                                    <input type="text" id="memberEmail" name="memberEmail"
+                                           placeholder="이메일(인증 가능한 이메일을 입력해주세요.)"
                                            onchange="changeValueCheckEmail();">
                                     <span>
                                         <a href="javascript:checkEmail();" class="check_btn"
@@ -291,7 +289,8 @@
                                 <div class="register-agree-content">
                                     <p>회원가입 및 개인정보 이용약관에 모두 동의합니다.</p>
                                     <a class="register-agree-img" href="javascript:toggleCheckbox();">
-                                        <img src="/resources/img/member/agree-check-not.png" id="checkAgree" data-value="0"/>
+                                        <img src="/resources/img/member/agree-check-not.png" id="checkAgree"
+                                             data-value="0"/>
                                     </a>
                                 </div>
                                 <a href="javascript:openPopup();">약관내용 자세히 보기</a>

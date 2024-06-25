@@ -14,7 +14,6 @@ public class CommunityVO {
     private String isTop;
     private String sort;
     private String ismy;
-
     private Timestamp commPostDate;
     private Timestamp commEditedDate;
 
@@ -28,19 +27,12 @@ public class CommunityVO {
 
     private String isRed;
     private String boardLike;
-
     private String memberEmail;
     private String memberPwd;
     private String memberName;
-
     private String query;
     private String page;
     private String querytype;
-
     private int startIdx;
-    public int getStartIdx() {
-        return (Integer.parseInt(page) - 1) * 10;
-    }
-
     private String replyCount;
 }

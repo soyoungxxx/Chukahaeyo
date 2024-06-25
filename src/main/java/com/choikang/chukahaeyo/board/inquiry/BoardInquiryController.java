@@ -44,7 +44,6 @@ public class BoardInquiryController {
     public String inquiryWriteInsert(InquiryVO vo, HttpSession session) throws UnsupportedEncodingException {
         vo.setMemberID((int) session.getAttribute("memberID"));
         vo.setQuery(URLEncoder.encode((String) session.getAttribute("memberName"), "UTF-8"));
-
         boardInquiryService.insertInquiry(vo);
         return "redirect:detail?inquiryID=" + vo.getInquiryID() + "&query=" + vo.getQuery() + "&querytype=writer";
     }
@@ -62,7 +61,6 @@ public class BoardInquiryController {
             vo.setMemberName(String.valueOf(session.getAttribute("memberName")));
         }
         model.addAttribute("object", boardInquiryService.getInquiryDetail(vo));
-
         return "mypage/inquiry/inquiryDetail";
     }
 }

@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/resources/css/pageFrame/common.css"/>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         var isLoggedIn = ${not empty sessionScope.login ? 'true' : 'false'};
 
         $(".gallery-community-bar").click(function (e) {

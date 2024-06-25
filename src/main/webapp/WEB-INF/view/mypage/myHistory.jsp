@@ -105,7 +105,8 @@
                                         <p class="cancel-info">취소된 상품입니다.</p>
                                     </c:if>
                                     <c:if test="${payment.isWithinTwoDays == '1' && payment.canceledAt == 0}">
-                                        <a href="#" onclick="cancelPayment('${payment.payID}', '${payment.payNo}');">취소</a>
+                                        <a href="#"
+                                           onclick="cancelPayment('${payment.payID}', '${payment.payNo}');">취소</a>
                                     </c:if>
                                 </div>
                             </div>
@@ -119,8 +120,9 @@
                                        tabindex="-1">Previous</a>
                                 </li>
 
-                                <c:set var="startPage" value="${currentPage - (currentPage mod 10) + 1}" />
-                                <c:set var="endPage" value="${startPage + 9 <= totalPages ? startPage + 9 : totalPages}" />
+                                <c:set var="startPage" value="${currentPage - (currentPage mod 10) + 1}"/>
+                                <c:set var="endPage"
+                                       value="${startPage + 9 <= totalPages ? startPage + 9 : totalPages}"/>
                                 <script>
                                     console.log(${startPage});
                                     console.log(${endPage});

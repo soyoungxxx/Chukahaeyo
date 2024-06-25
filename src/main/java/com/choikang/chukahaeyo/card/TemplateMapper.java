@@ -12,5 +12,4 @@ public interface TemplateMapper {
 
     // 프레임 프리뷰에 띄우기
     String selectPreviewFrame(int templateId);
-
 }

@@ -20,7 +20,7 @@ $(document).ready(function () {
     $('#edit-days').on('apply.daterangepicker', function (ev, picker) {
         var startDate = picker.startDate.format('YYYY/MM/DD');
         var endDate = picker.endDate.format('YYYY/MM/DD');
-        var selectDates = startDate+ ' - ' + endDate;
+        var selectDates = startDate + ' - ' + endDate;
         $(this).val(selectDates);
         $('.card-date').text(selectDates)
         $('#cardStartDate').val(startDate);

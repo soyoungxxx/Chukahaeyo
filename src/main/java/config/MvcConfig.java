@@ -31,7 +31,6 @@ import java.util.Properties;
 //@EnableTransactionManagement
 //@PropertySource("classpath:application.properties")
 public class MvcConfig implements WebMvcConfigurer {
-
     @Value("${db.driver}")
     private String driver;
     @Value("${db.url}")
@@ -40,7 +39,6 @@ public class MvcConfig implements WebMvcConfigurer {
     private String username;
     @Value("${db.password}")
     private String password;
-
     @Value("${spring.mail.host}")
     private String mailHost;
     @Value("${spring.mail.port}")

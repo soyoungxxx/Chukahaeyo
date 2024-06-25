@@ -13,7 +13,6 @@ public class BoardInquiryService {
     @Autowired
     BoardInquiryMapper boardInquiryMapper;
 
-
     public Map getInquiryList(InquiryVO inquiryVO) {
         int count = boardInquiryMapper.count(inquiryVO); // 총개수
         // 총페이지수
