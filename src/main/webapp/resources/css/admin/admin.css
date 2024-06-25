@@ -11044,6 +11044,11 @@ a.text-dark:focus {
     text-decoration: none;
 }
 
+.payment-not-exist{
+    text-align: center;
+    height: 80px;
+}
+
 
 .payment-status{
     overflow: visible;
