@@ -37,8 +37,6 @@
                     $(el).summernote('insertImage', data, function ($image) {
                         image.css('width', "100%");
                     });
-                    // 값이 잘 넘어오는지 콘솔 확인 해보셔도됩니다.
-                    console.log(data);
                 }
             });
         }
