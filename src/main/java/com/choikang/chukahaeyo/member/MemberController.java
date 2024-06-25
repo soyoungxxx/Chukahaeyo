@@ -291,13 +291,18 @@ public class MemberController {
     // 로그아웃(일반 회원, 관리자)
     @GetMapping("/logout")
     public String logout(HttpSession session, HttpServletRequest request, Model model) {
-        session.invalidate();
-
         String beforePage = request.getHeader("Referer");
         model.addAttribute("msg", "로그아웃 되었습니다.");
         if (beforePage.contains("admin")) {
+            session.removeAttribute("adminLogin");
+            session.removeAttribute("adminID");
+            session.removeAttribute("adminEmail");
             model.addAttribute("url", "/admin/adminLogin");
         } else {
+            session.removeAttribute("login");
+            session.removeAttribute("memberID");
+            session.removeAttribute("memberEmail");
+            session.removeAttribute("memberName");
             model.addAttribute("url", "/");
         }
         return "include/alert";
