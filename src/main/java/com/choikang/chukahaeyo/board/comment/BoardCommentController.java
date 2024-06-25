@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
-
 @Controller
 @RequestMapping("/board")
 public class BoardCommentController {
@@ -23,7 +22,6 @@ public class BoardCommentController {
     @ResponseBody
     @GetMapping("/comment/list")
     public Map commentList(ReplyVO vo, Model model) {
-
         return boardCommentService.index(vo);
     }
 
@@ -31,7 +29,6 @@ public class BoardCommentController {
     @PostMapping("/comment/mainwrite")
     public int commentMainWrite(ReplyVO vo, HttpSession session) {
         vo.setMemberID((int) session.getAttribute("memberID"));
-
         return boardCommentService.mainInsert(vo);
     }
 
@@ -39,7 +36,6 @@ public class BoardCommentController {
     @PostMapping("/comment/subwrite")
     public int commentSubWrite(ReplyVO vo, HttpSession session) {
         vo.setMemberID((int) session.getAttribute("memberID"));
-
         return boardCommentService.subInsert(vo);
     }
 }

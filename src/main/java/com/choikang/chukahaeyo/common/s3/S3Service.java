@@ -2,7 +2,6 @@ package com.choikang.chukahaeyo.common.s3;
 
 import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.choikang.chukahaeyo.exception.ErrorCode;
@@ -11,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -52,7 +52,7 @@ public class S3Service {
     }
 
     //파일을 S3 bucket에 업로드
-    public String saveFile(MultipartFile file){
+    public String saveFile(MultipartFile file) {
         System.out.println("컨트롤러에서 받아온 file명 : " + file);
         String fileName = createFileName(file.getOriginalFilename());
         System.out.println("서버에서 생성한 파일 이름 : " + fileName);
@@ -60,12 +60,12 @@ public class S3Service {
         metadata.setContentLength(file.getSize());
         metadata.setContentType(file.getContentType());
 
-        try{
+        try {
             amazonS3.putObject(bucket, fileName, file.getInputStream(), metadata);
-        } catch(SdkClientException e){
+        } catch (SdkClientException e) {
             System.out.println("AWS SDK 클라이언트에서 문제 발생");
             throw new CustomException(ErrorCode.NOT_FOUND_IMAGE_EXCEPTION, "AWS SDK 클라이언트에서 문제가 발생하였습니다.");
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("파일 업로드 중 문제 발생");
             throw new CustomException(ErrorCode.NOT_FOUND_IMAGE_EXCEPTION, "AWS에서 파일 업로드 중 문제가 발생하였습니다.");
         }
@@ -81,7 +81,7 @@ public class S3Service {
         return UUID.randomUUID().toString().concat(getFileExtension(fileName));
     }
 
-    public void deleteFile(String fileName){
+    public void deleteFile(String fileName) {
         System.out.println("받아온 삭제할 파일명 : " + fileName);
         amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
     }

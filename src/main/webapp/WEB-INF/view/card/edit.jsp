@@ -180,7 +180,8 @@
             </div>
             <div class="edit-frame-div">
                 <c:forEach items="${list}" var="t">
-                    <img src="${t.templateThumbnail}" class="edit-frame" id="${t.templateID}" style="cursor: pointer;"> <br>
+                    <img src="${t.templateThumbnail}" class="edit-frame" id="${t.templateID}" style="cursor: pointer;">
+                    <br>
                 </c:forEach>
             </div>
         </div>

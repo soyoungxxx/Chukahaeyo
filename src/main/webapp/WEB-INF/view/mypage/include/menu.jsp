@@ -14,7 +14,7 @@
 <div class="v-line"></div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const menuItems = document.querySelectorAll('.mypage-menu ul li a');
         const currentUrl = window.location.pathname;
 
@@ -25,7 +25,7 @@
         });
 
         menuItems.forEach(item => {
-            item.addEventListener('click', function(e) {
+            item.addEventListener('click', function (e) {
                 e.preventDefault();
 
                 menuItems.forEach(item => {

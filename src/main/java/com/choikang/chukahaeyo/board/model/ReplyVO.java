@@ -15,5 +15,4 @@ public class ReplyVO {
     private Timestamp replyPostDate;
     private int memberID;
     private int commID;
-
 }

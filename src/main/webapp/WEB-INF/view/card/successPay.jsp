@@ -21,7 +21,8 @@
             <img src="/resources/img/payment/paySuccessCheck.png" alt="결제 성공 체크 이미지" style="width: 10%;"><br><br>
             <img src="/resources/img/payment/successPayText.png" alt="결제 성공 텍스트 이미지" style="width: 20%;"><br><br><br>
             <div class="url-container">
-                <b>카드 URL</b> <span class="url" id="shortUrl"><a href="${param.shortUrl}" target="_blank">${param.shortUrl}</a></span>
+                <b>카드 URL</b> <span class="url" id="shortUrl"><a href="${param.shortUrl}"
+                                                                 target="_blank">${param.shortUrl}</a></span>
             </div>
             <div class="buttons">
                 <div class="button-copy">

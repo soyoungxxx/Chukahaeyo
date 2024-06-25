@@ -8,7 +8,8 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
         typeof define === 'function' && define.amd ? define(factory) :
             global.moment = factory()
-}(this, (function () { 'use strict';
+}(this, (function () {
+    'use strict';
 
     var hookCallback;
 
@@ -728,7 +729,7 @@
             u;
         for (u in unitsObj) {
             if (hasOwnProp(unitsObj, u)) {
-                units.push({ unit: u, priority: priorities[u] });
+                units.push({unit: u, priority: priorities[u]});
             }
         }
         units.sort(function (a, b) {
@@ -2802,10 +2803,12 @@
     }
 
     // constant that refers to the ISO standard
-    hooks.ISO_8601 = function () {};
+    hooks.ISO_8601 = function () {
+    };
 
     // constant that refers to the RFC 2822 form
-    hooks.RFC_2822 = function () {};
+    hooks.RFC_2822 = function () {
+    };
 
     // date from string and format string
     function configFromStringAndFormat(config) {
@@ -3020,7 +3023,7 @@
         config._locale = config._locale || getLocale(config._l);
 
         if (input === null || (format === undefined && input === '')) {
-            return createInvalid({ nullInput: true });
+            return createInvalid({nullInput: true});
         }
 
         if (typeof input === 'string') {
@@ -3364,7 +3367,8 @@
 
     // This function will be called whenever a moment is mutated.
     // It is intended to keep the offset in sync with the timezone.
-    hooks.updateOffset = function () {};
+    hooks.updateOffset = function () {
+    };
 
     // MOMENTS
 
@@ -3624,7 +3628,7 @@
     function momentsDifference(base, other) {
         var res;
         if (!(base.isValid() && other.isValid())) {
-            return { milliseconds: 0, months: 0 };
+            return {milliseconds: 0, months: 0};
         }
 
         other = cloneWithOffset(other, base);
@@ -4063,7 +4067,7 @@
             this.isValid() &&
             ((isMoment(time) && time.isValid()) || createLocal(time).isValid())
         ) {
-            return createDuration({ to: this, from: time })
+            return createDuration({to: this, from: time})
                 .locale(this.locale())
                 .humanize(!withoutSuffix);
         } else {
@@ -4080,7 +4084,7 @@
             this.isValid() &&
             ((isMoment(time) && time.isValid()) || createLocal(time).isValid())
         ) {
-            return createDuration({ from: this, to: time })
+            return createDuration({from: this, to: time})
                 .locale(this.locale())
                 .humanize(!withoutSuffix);
         } else {

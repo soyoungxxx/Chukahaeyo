@@ -18,7 +18,6 @@ public enum SuccessCode {
     CREATE_SHORT_URL_SUCCESS(HttpStatus.CREATED, "단축 url 생성을 성공했습니다."),
     GET_ACCESS_TOKEN(HttpStatus.OK, "ACCESS_TOKEN을 성공적으로 가져왔습니다."),
 
-
     /**
      * 201 CREATED
      */
@@ -30,7 +29,6 @@ public enum SuccessCode {
     CANCEL_SUCCESS(HttpStatus.OK, "취소를 성공했습니다."),
     LIKE_UPDATE_SUCCESS(HttpStatus.OK, "좋아요 업데이트를 성공했습니다."),
     DELETE_SUCCESS(HttpStatus.OK, "S3 bucket에서 사진을 성공적으로 삭제하였습니다.");
-
 
     private final HttpStatus httpStatus;
     private final String message;
