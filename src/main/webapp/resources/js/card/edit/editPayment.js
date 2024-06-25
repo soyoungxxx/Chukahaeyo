@@ -41,13 +41,11 @@ function requestPay() {
                 }),
                 success: function (response) {
                     console.log("response" + response)
-                    if (response > -1) {
-                        saveHiddenData();
-                        $('#cardIsPaid').val('true');
-                        $(window).off('beforeunload');
-                        $('#payID').val(response);
-                        $('#cart-submit-button').click();
-                    }
+                    saveHiddenData();
+                    $('#cardIsPaid').val('true');
+                    $(window).off('beforeunload');
+                    $('#payID').val(response);
+                    $('#cart-submit-button').click();
                 },
                 error: function (xhr, status, error) {
                     console.log("결제 후 DB 저장 실패", error);
