@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -64,11 +65,18 @@ public class EditController {
         return "redirect:" + redirectURL;
     }
 
-    @GetMapping("/completedCard/{cardID}")
-    public String getCompletedCardPage(@PathVariable int cardID, Model model) {
-        String originUrl = "/completedCard/" + cardID;
+    @GetMapping("/card/completedCard/{cardID}")
+    public RedirectView getCompletedCardPage(@PathVariable int cardID) {
+        String originUrl = "/card/completedCard/" + cardID;
         String encodeUrl = Base64Util.encode(originUrl);
-        model.addAttribute("encodedUrl", encodeUrl); //인코딩된 URL을 사용자에게 전달
+        return new RedirectView("/card/" + encodeUrl);
+    }
+
+    @GetMapping("/card/{encodedUrl}")
+    public String decodeCompletedCardPage(@PathVariable String encodedUrl, Model model) {
+        String decodedUrl = Base64Util.decode(encodedUrl);
+        String[] parts = decodedUrl.split("/");
+        int cardID = Integer.parseInt(parts[parts.length - 1]);
 
         // 카드 정보, editService 호출 후 뷰에 값 전달
         CardVO cardVO = editService.getCompletedCardPage(cardID);
@@ -85,11 +93,6 @@ public class EditController {
         return "card/completedCard";
     }
 
-    @GetMapping("/completedCard")
-    public void decodeCompletedCardPage(@RequestParam("encodedUrl") String encodedUrl, HttpServletResponse response) throws IOException {
-        String decodedUrl = Base64Util.decode(encodedUrl);
-        response.sendRedirect(decodedUrl);
-    }
     @PostMapping("/completedCard/like.do")
     public ResponseEntity<String> updateCardLike(int cardID) {
         try {
