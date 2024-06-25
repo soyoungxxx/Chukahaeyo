@@ -69,9 +69,7 @@ public class EditController {
     @GetMapping("/completedCard/{cardID}")
     public String getCompletedCardPage(@PathVariable int cardID) {
         String originUrl = "completedCard/" + cardID;
-        System.out.println("원래 url : " + originUrl);
         String encodeUrl = Base64Util.encode(originUrl);
-        System.out.println("암호화된 Url : " + encodeUrl);
 
         return "redirect:/card/" + encodeUrl;
     }
