@@ -6,7 +6,7 @@ public class XSSFilterTest {
     XssFilter filter = XssFilter.getInstance("lucy-xss-superset-sax.xml", true);
 
     @Test
-    public void testDirtyCodeFiltering() throws Exception {
+    public void testDirtyCodeFiltering() {
         String dirty = "<script></script>";
         String clean = filter.doFilter(dirty);
         String expected = "&lt;script&gt;&lt;/script&gt;"; // 예상 문자열
