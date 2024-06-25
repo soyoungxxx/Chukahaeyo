@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.Timestamp;
 import java.util.HashMap;
@@ -38,15 +40,15 @@ public class MemberController {
     // 관리자 로그인
     @PostMapping("/adminLogin")
     public String adminLogin(Model model, AdminVO adminVO, HttpSession session) {
-        AdminVO login = service.adminLogin(adminVO);
-        if (login == null) {
+        AdminVO adminLogin = service.adminLogin(adminVO);
+        if (adminLogin == null) {
             model.addAttribute("msg", "아이디 혹은 비밀번호를 다시 확인하세요.");
             model.addAttribute("url", "/admin/adminLogin");
             return "include/alert";
         } else {
-            session.setAttribute("login", login); // login 객체 또는 true 설정
-            session.setAttribute("adminID", login.getAdminID());
-            session.setAttribute("adminEmail", login.getAdminEmail());
+            session.setAttribute("adminLogin", adminLogin);
+            session.setAttribute("adminID", adminLogin.getAdminID());
+            session.setAttribute("adminEmail", adminLogin.getAdminEmail());
 
             // 리다이렉트할 URI 확인
             String redirectURI = (String) session.getAttribute("redirectURI");
@@ -298,6 +300,7 @@ public class MemberController {
     @GetMapping("/logout")
     public String logout(HttpSession session, HttpServletRequest request, Model model) {
         session.invalidate();
+
         String beforePage = request.getHeader("Referer");
         model.addAttribute("msg", "로그아웃 되었습니다.");
         if (beforePage.contains("admin")) {
