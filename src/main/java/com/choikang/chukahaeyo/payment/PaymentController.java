@@ -17,16 +17,11 @@ public class PaymentController {
 
     @PostMapping("/process")
     public ResponseEntity<String> processPayment(@RequestBody PaymentDTO paymentDTO, HttpSession session) {
-        try {
-            paymentDTO.setMemberID((Integer) session.getAttribute("memberID"));
-            paymentDTO.setMemberName(session.getAttribute("memberName").toString());
-            paymentDTO.setMemberEmail(session.getAttribute("memberEmail").toString());
-            int payID = paymentService.processPayment(paymentDTO);
-            return new ResponseEntity<>(Integer.toString(payID), SuccessCode.PAYMENT_SUCCESS.getHttpStatus());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(ErrorCode.INTERNAL_SERVER_ERROR.getMessage(), ErrorCode.INTERNAL_SERVER_ERROR.getHttpStatus());
-        }
+        paymentDTO.setMemberID((Integer) session.getAttribute("memberID"));
+        paymentDTO.setMemberName(session.getAttribute("memberName").toString());
+        paymentDTO.setMemberEmail(session.getAttribute("memberEmail").toString());
+        int payID = paymentService.processPayment(paymentDTO);
+        return new ResponseEntity<>(Integer.toString(payID), SuccessCode.PAYMENT_SUCCESS.getHttpStatus());
     }
 
     @GetMapping("/success")

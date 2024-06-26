@@ -6,6 +6,7 @@ import com.choikang.chukahaeyo.member.model.MemberVO;
 import com.choikang.chukahaeyo.payment.model.PaymentVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -36,7 +37,9 @@ public interface MemberMapper {
     Integer validatePwd(MemberVO memberVO);
 
     // 회원 정보 수정
-    int changeMemberInfo(MemberVO memberVO);
+    int changeMemberInfo(
+            @Param("memberID") int memberID,
+            @Param("changeInfo") MemberVO changeInfo);
 
     // 카드 목록 가져오기
     List<CardVO> getCardList(int memberID);

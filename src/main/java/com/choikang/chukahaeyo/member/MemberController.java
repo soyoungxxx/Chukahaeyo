@@ -157,11 +157,11 @@ public class MemberController {
 
     // 회원 정보 수정: 회원 정보 수정
     @PostMapping("/mypage/changeInfo")
-    public String changeMemberInfo(HttpSession session, Model model, MemberVO memberVO) {
+    public String changeMemberInfo(HttpSession session, Model model, MemberVO changeInfo) {
         int id = (int) session.getAttribute("memberID");
-        memberVO.setMemberID(id);
+        System.out.println(changeInfo);
 
-        if (service.changeMemberInfo(memberVO) != 0) {
+        if (service.changeMemberInfo(id, changeInfo) != 0) {
             model.addAttribute("msg", "회원 정보가 수정되었습니다");
             model.addAttribute("url", "/");
             return "include/alert";
