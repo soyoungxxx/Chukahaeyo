@@ -109,9 +109,9 @@
                                                 <td class="no-data" colspan='6'>작성글이 없습니다.</td>
                                             </tr>
                                         </c:if>
-                                        <c:forEach var="vo" items="${map.list}">
+                                        <c:forEach var="vo" items="${map.list}" varStatus="status">
                                             <tr class="list-data">
-                                                <th class="no">${vo.inquiryID}</th>
+                                                <th class="no">${status.index+1}</th>
                                                 <th class="title"><a
                                                         href="write?inquiryID=${vo.inquiryID}&query=${inquiryVO.query}&querytype=${inquiryVO.querytype}&page=${inquiryVO.page}">${vo.inquiryQuestionTitle}</a>
                                                 </th>

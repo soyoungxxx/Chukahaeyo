@@ -1,5 +1,6 @@
 package com.choikang.chukahaeyo.member;
 
+import com.choikang.chukahaeyo.board.model.InquiryVO;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
@@ -164,6 +165,11 @@ public class MemberService {
         return memberMapper.getPaymentAllList();
     }
 
+    // 사용자 결제내역 가져오기
+    public List<PaymentVO> getMemberPaymentAllList(int memberID){
+        return memberMapper.getMemberPaymentAllList(memberID);
+    }
+
     // 카드 전체 내역 가져오기
     public List<CardVO> getCardAllList() {return memberMapper.getCardAllList();}
 
@@ -182,14 +188,21 @@ public class MemberService {
         return memberMapper.getMemberAllList();
     }
 
+    // 관리자: 답변해야할 리스트 가져오기
+    public List<InquiryVO> getNotAnsweredInquiryList() {
+        return memberMapper.getNotAnsweredInquiryList();
+    }
+
     // 결제내역 페이지네이션
-    public Map<String, Object> paginationPayment(int page, int size, List<PaymentVO> paymentList) {
+    public Map<String, Object> paginationPayment(int page, int size, List<PaymentVO> paymentList, int memberID) {
         // return으로 전달할 Map 객체
         Map<String, Object> map = new HashMap<>();
 
         // 전체 paymentList조회
-        if (paymentList == null) {
+        if (paymentList == null && memberID == 0) {
             paymentList = getPaymentAllList();
+        } else if (paymentList == null) {
+            paymentList = getMemberPaymentAllList(memberID);
         }
 
         int totalPayments = paymentList.size();

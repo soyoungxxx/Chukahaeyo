@@ -1,5 +1,6 @@
 package com.choikang.chukahaeyo.member;
 
+import com.choikang.chukahaeyo.board.model.InquiryVO;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
@@ -55,12 +56,17 @@ public interface MemberMapper {
             @Param("status") String status,
             @Param("search") String search);
 
+    // 사용자 결제 내역 가져오기
+    List<PaymentVO> getMemberPaymentAllList(int memberID);
+
     // 관리자 페이지 결제 내역 가져오기
     List<PaymentVO> getPaymentAllList();
 
     // 관리자 로그인
     AdminVO adminLogin(AdminVO adminVO);
 
+    // 관리지 페이지 답변해야할 목록 가져오기
+    List<InquiryVO> getNotAnsweredInquiryList();
 
     // 관리자 페이지 멤버 목록 가져오기
     List<MemberVO> getMemberAllList();

@@ -494,8 +494,8 @@
 .payment-null > p {
     font-family: "Noto Sans KR", sans-serif;
     font-size: 24px;
-    font-weight: 600;
-    color: #4B5CFF;
+    font-weight: 500;
+    color: #535353;
     align-items: center;
-    line-height: 430px;
+    line-height: 500px;
 }

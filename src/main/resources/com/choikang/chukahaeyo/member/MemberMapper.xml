@@ -87,9 +87,17 @@
 
     <select id="getPaymentAllList" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
         SELECT *
-        from Payment
+        FROM Payment
         ORDER BY payDate DESC;
     </select>
+
+    <select id="getMemberPaymentAllList" parameterType="int" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        SELECT *
+        FROM Payment
+        WHERE memberID = #{memberID}
+        ORDER BY payDate DESC;
+    </select>
+
 
     <select id="getMemberAllList" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
         SELECT *
@@ -132,6 +140,10 @@
             AND memberName LIKE CONCAT('%', #{search}, '%')
         </if>
         ORDER BY payDate DESC
+    </select>
+
+    <select id="getNotAnsweredInquiryList" resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
+        SELECT inquiryID, inquiryQuestionTitle, inquiryPostDate FROM Inquiry WHERE inquiryAnswer IS NULL ORDER BY inquiryPostDate DESC LIMIT 3
     </select>
 
 </mapper>

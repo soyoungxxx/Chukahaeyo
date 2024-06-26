@@ -1,5 +1,6 @@
 package com.choikang.chukahaeyo.member;
 
+import com.choikang.chukahaeyo.board.model.InquiryVO;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
@@ -45,6 +46,9 @@ public class MemberController {
             session.setAttribute("adminLogin", adminLogin);
             session.setAttribute("adminID", adminLogin.getAdminID());
             session.setAttribute("adminEmail", adminLogin.getAdminEmail());
+
+            List<InquiryVO> inquiryList = service.getNotAnsweredInquiryList();
+            session.setAttribute("inquiryList", inquiryList);
 
             // 리다이렉트할 URI 확인
             String redirectURI = (String) session.getAttribute("redirectURI");
@@ -181,7 +185,7 @@ public class MemberController {
         List<CardVO> cardList = service.getCardList(memberID);
 
         // 서비스를 통해 페이징 처리, 취소 가능 여부 체크 후 결제 내역 객체 저장
-        Map<String, Object> map = service.paginationPayment(1, 3, null);
+        Map<String, Object> map = service.paginationPayment(1, 3, null, memberID);
         List<PaymentVO> paymentList = service.checkCancelable((List<PaymentVO>) map.get("paymentList"));
 
         // 전달 객체에 담기
@@ -202,7 +206,7 @@ public class MemberController {
         List<CardVO> cardList = service.getCardList(memberID);
 
         // 서비스를 통해 페이징 처리, 취소 가능 여부 체크 후 결제 내역 객체 저장
-        Map<String, Object> map = service.paginationPayment(page, size, null);
+        Map<String, Object> map = service.paginationPayment(page, size, null, memberID);
         List<PaymentVO> paymentList = service.checkCancelable((List<PaymentVO>) map.get("paymentList"));
 
         // 전달 객체에 담기
@@ -218,8 +222,11 @@ public class MemberController {
     // 관리자: 결제 내역 가져오기
     @GetMapping("/admin/adminOrderList")
     public String getAllPaymentList(Model model, @RequestParam(defaultValue = "1") int page,
-                                    @RequestParam(defaultValue = "10") int size) {
-        Map<String, Object> map = service.paginationPayment(page, size, null);
+                                    @RequestParam(defaultValue = "10") int size, HttpSession session) {
+        List<InquiryVO> inquiryList = service.getNotAnsweredInquiryList();
+        session.setAttribute("inquiryList", inquiryList);
+
+        Map<String, Object> map = service.paginationPayment(page, size, null, 0);
         List<PaymentVO> paymentList = (List<PaymentVO>) map.get("paymentList");
         List<CardVO> cardList = service.getCardAllList();
 
@@ -245,7 +252,7 @@ public class MemberController {
 
         List<PaymentVO> filteredPaymentList = service.getFilteredPaymentList(startDate, endDate, status, search);
 
-        Map<String, Object> map = service.paginationPayment(page, size, filteredPaymentList);
+        Map<String, Object> map = service.paginationPayment(page, size, filteredPaymentList, 0);
         List<PaymentVO> paymentList = service.checkCancelable((List<PaymentVO>) map.get("paymentList"));
 
         model.addAttribute("payments", paymentList);
@@ -265,7 +272,10 @@ public class MemberController {
 
     // 관리자: 멤버 모든 목록 가져오기
     @GetMapping("/admin/adminMemberList")
-    public String getAllMemberList(Model model) {
+    public String getAllMemberList(Model model, HttpSession session) {
+        List<InquiryVO> inquiryList = service.getNotAnsweredInquiryList();
+        session.setAttribute("inquiryList", inquiryList);
+
         List<MemberVO> memberList = service.getMemberAllList();
         model.addAttribute("memberList", memberList);
         return "/admin/adminMemberList";
