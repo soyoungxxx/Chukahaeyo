@@ -92,7 +92,7 @@
                 <%@ include file="/WEB-INF/view/mypage/include/menu.jsp" %>
                 <div class="mypage-content">
 
-                    <c:if test="${paymentList}==null">
+                    <c:if test="${paymentList.size() == 0}">
                         <div class="payment-null">
                             <p>결제 내역이 존재하지 않습니다.</p>
                         </div>
@@ -134,32 +134,35 @@
                         </c:forEach>
 
                         <%-- 페이징 네비게이션 --%>
-                        <nav aria-label="page-nav" class="pagination-nav payment-list-nav">
-                            <ul class="pagination">
-                                <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
-                                    <a class="page-link" href="#" onclick="submitPageForm(${currentPage - 1})"
-                                       tabindex="-1">Previous</a>
-                                </li>
-
-                                <c:set var="startPage" value="${currentPage - (currentPage mod 10) + 1}"/>
-                                <c:set var="endPage"
-                                       value="${startPage + 9 <= totalPages ? startPage + 9 : totalPages}"/>
-                                <script>
-                                    console.log(${startPage});
-                                    console.log(${endPage});
-                                </script>
-
-                                <c:forEach var="i" begin="${startPage}" end="${endPage}">
-                                    <li class="page-item ${i == currentPage ? 'active' : ''}">
-                                        <a class="page-link" href="#" onclick="submitPageForm(${i})">${i}</a>
+                        <c:if test="${paymentList.size() != 0}">
+                            <nav aria-label="page-nav" class="pagination-nav payment-list-nav">
+                                <ul class="pagination">
+                                    <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="#" onclick="submitPageForm(${currentPage - 1})"
+                                           tabindex="-1">Previous</a>
                                     </li>
-                                </c:forEach>
 
-                                <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
-                                    <a class="page-link" href="#" onclick="submitPageForm(${currentPage +1})">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                                    <c:set var="startPage" value="${currentPage - (currentPage mod 10) + 1}"/>
+                                    <c:set var="endPage"
+                                           value="${startPage + 9 <= totalPages ? startPage + 9 : totalPages}"/>
+                                    <script>
+                                        console.log(${startPage});
+                                        console.log(${endPage});
+                                    </script>
+
+                                    <c:forEach var="i" begin="${startPage}" end="${endPage}">
+                                        <li class="page-item ${i == currentPage ? 'active' : ''}">
+                                            <a class="page-link" href="#" onclick="submitPageForm(${i})">${i}</a>
+                                        </li>
+                                    </c:forEach>
+
+                                    <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                                        <a class="page-link" href="#" onclick="submitPageForm(${currentPage +1})">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </c:if>
+
                     </div>
                 </div>
             </div>

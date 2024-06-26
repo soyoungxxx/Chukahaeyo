@@ -87,9 +87,17 @@
 
     <select id="getPaymentAllList" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
         SELECT *
-        from Payment
+        FROM Payment
         ORDER BY payDate DESC;
     </select>
+
+    <select id="getMemberPaymentAllList" parameterType="int" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        SELECT *
+        FROM Payment
+        WHERE memberID = #{memberID}
+        ORDER BY payDate DESC;
+    </select>
+
 
     <select id="getMemberAllList" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
         SELECT *

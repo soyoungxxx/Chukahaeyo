@@ -185,7 +185,7 @@ public class MemberController {
         List<CardVO> cardList = service.getCardList(memberID);
 
         // 서비스를 통해 페이징 처리, 취소 가능 여부 체크 후 결제 내역 객체 저장
-        Map<String, Object> map = service.paginationPayment(1, 3, null);
+        Map<String, Object> map = service.paginationPayment(1, 3, null, memberID);
         List<PaymentVO> paymentList = service.checkCancelable((List<PaymentVO>) map.get("paymentList"));
 
         // 전달 객체에 담기
@@ -206,7 +206,7 @@ public class MemberController {
         List<CardVO> cardList = service.getCardList(memberID);
 
         // 서비스를 통해 페이징 처리, 취소 가능 여부 체크 후 결제 내역 객체 저장
-        Map<String, Object> map = service.paginationPayment(page, size, null);
+        Map<String, Object> map = service.paginationPayment(page, size, null, memberID);
         List<PaymentVO> paymentList = service.checkCancelable((List<PaymentVO>) map.get("paymentList"));
 
         // 전달 객체에 담기
@@ -226,7 +226,7 @@ public class MemberController {
         List<InquiryVO> inquiryList = service.getNotAnsweredInquiryList();
         session.setAttribute("inquiryList", inquiryList);
 
-        Map<String, Object> map = service.paginationPayment(page, size, null);
+        Map<String, Object> map = service.paginationPayment(page, size, null, 0);
         List<PaymentVO> paymentList = (List<PaymentVO>) map.get("paymentList");
         List<CardVO> cardList = service.getCardAllList();
 
@@ -252,7 +252,7 @@ public class MemberController {
 
         List<PaymentVO> filteredPaymentList = service.getFilteredPaymentList(startDate, endDate, status, search);
 
-        Map<String, Object> map = service.paginationPayment(page, size, filteredPaymentList);
+        Map<String, Object> map = service.paginationPayment(page, size, filteredPaymentList, 0);
         List<PaymentVO> paymentList = service.checkCancelable((List<PaymentVO>) map.get("paymentList"));
 
         model.addAttribute("payments", paymentList);
