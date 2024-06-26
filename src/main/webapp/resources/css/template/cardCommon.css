@@ -249,6 +249,8 @@ html {
     margin: 10px auto 0 auto;
     text-align: left;
     text-indent: 3%;
+
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .guest-nickname::placeholder,
@@ -266,7 +268,9 @@ html {
     margin: 10px auto 0 auto;
     text-align: justify;
     padding-top: 6px;
-    padding-left: 2%;
+    text-indent: 3%;
+
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .guestbook-submit-button {
