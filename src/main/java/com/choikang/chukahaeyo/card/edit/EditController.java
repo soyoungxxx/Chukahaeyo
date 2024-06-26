@@ -59,7 +59,6 @@ public class EditController {
         } else {
             redirectURL = "/cart";
         }
-        System.out.println("edit/card.do redirectURL:" + redirectURL);
         return "redirect:" + redirectURL;
     }
 

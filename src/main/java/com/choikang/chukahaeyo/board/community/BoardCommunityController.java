@@ -123,9 +123,6 @@ public class BoardCommunityController {
             // 위에서 설정한 서버 경로에 이미지 저장
             file.transferTo(new File(uploadDirectory, uuidFileName));
 
-            System.out.println("************************ 업로드 컨트롤러 실행 ************************");
-            System.out.println(uploadDirectory);
-
             // Ajax에서 업로드 된 파일의 이름을 응답 받을 수 있도록 해줍니다.
             return ResponseEntity.ok(uuidFileName);
         } catch (Exception e) {
