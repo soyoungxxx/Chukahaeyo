@@ -134,4 +134,8 @@
         ORDER BY payDate DESC
     </select>
 
+    <select id="getNotAnsweredInquiryList" resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
+        SELECT inquiryID, inquiryQuestionTitle, inquiryPostDate FROM Inquiry WHERE inquiryAnswer IS NULL ORDER BY inquiryPostDate DESC LIMIT 3
+    </select>
+
 </mapper>

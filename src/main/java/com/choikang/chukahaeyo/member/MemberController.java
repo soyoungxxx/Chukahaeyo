@@ -1,5 +1,6 @@
 package com.choikang.chukahaeyo.member;
 
+import com.choikang.chukahaeyo.board.model.InquiryVO;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
@@ -45,6 +46,9 @@ public class MemberController {
             session.setAttribute("adminLogin", adminLogin);
             session.setAttribute("adminID", adminLogin.getAdminID());
             session.setAttribute("adminEmail", adminLogin.getAdminEmail());
+
+            List<InquiryVO> inquiryList = service.getNotAnsweredInquiryList();
+            session.setAttribute("inquiryList", inquiryList);
 
             // 리다이렉트할 URI 확인
             String redirectURI = (String) session.getAttribute("redirectURI");
@@ -218,7 +222,10 @@ public class MemberController {
     // 관리자: 결제 내역 가져오기
     @GetMapping("/admin/adminOrderList")
     public String getAllPaymentList(Model model, @RequestParam(defaultValue = "1") int page,
-                                    @RequestParam(defaultValue = "10") int size) {
+                                    @RequestParam(defaultValue = "10") int size, HttpSession session) {
+        List<InquiryVO> inquiryList = service.getNotAnsweredInquiryList();
+        session.setAttribute("inquiryList", inquiryList);
+
         Map<String, Object> map = service.paginationPayment(page, size, null);
         List<PaymentVO> paymentList = (List<PaymentVO>) map.get("paymentList");
         List<CardVO> cardList = service.getCardAllList();
@@ -265,7 +272,10 @@ public class MemberController {
 
     // 관리자: 멤버 모든 목록 가져오기
     @GetMapping("/admin/adminMemberList")
-    public String getAllMemberList(Model model) {
+    public String getAllMemberList(Model model, HttpSession session) {
+        List<InquiryVO> inquiryList = service.getNotAnsweredInquiryList();
+        session.setAttribute("inquiryList", inquiryList);
+
         List<MemberVO> memberList = service.getMemberAllList();
         model.addAttribute("memberList", memberList);
         return "/admin/adminMemberList";

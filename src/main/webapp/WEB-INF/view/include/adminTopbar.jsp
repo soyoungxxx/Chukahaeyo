@@ -4,7 +4,6 @@
 
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
@@ -19,7 +18,7 @@
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3+</span>
+                <span class="badge badge-danger badge-counter">${sessionScope.inquiryList.size()}</span>
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -27,30 +26,35 @@
                 <h6 class="dropdown-header">
                     알림
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                            <i class="fas fa-file-alt text-white"></i>
+                <c:forEach var="inquiry" items="${sessionScope.inquiryList}" varStatus="status">
+                    <a class="dropdown-item d-flex align-items-center"
+                       href="/admin/inquiry/write?inquiryID=${inquiry.inquiryID}">
+                        <div class="mr-3">
+                            <c:if test="${status.index+1%2!=0}">
+                                <div class="icon-circle bg-primary">
+                                    <i class="fas fa-file-alt text-white"></i>
+                                </div>
+                            </c:if>
+                            <c:if test="${status.index+1%2==0}">
+                                <div class="icon-circle bg-success">
+                                    <i class="fas fa-donate text-white"></i>
+                                </div>
+                            </c:if>
                         </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">December 12, 2019</div>
-                        <span class="font-weight-bold">여기에 적으면 됩니다.. 알림</span>
-                    </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="mr-3">
-                        <div class="icon-circle bg-success">
-                            <i class="fas fa-donate text-white"></i>
+                        <div>
+                            <div class="small text-gray-500">
+                                <fmt:formatDate pattern="yyyy.MM.dd" value="${inquiry.inquiryPostDate}"/>
+                            </div>
+                            <span class=".font-weight-normal">
+                                    ${inquiry.inquiryQuestionTitle}
+                            </span>
                         </div>
-                    </div>
-                    <div>
-                        <div class="small text-gray-500">December 7, 2019</div>
-                        여기도 알림..입니다.. 그림은 모르겟어여
-                    </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                    </a>
+                </c:forEach>
+                <a class="dropdown-item text-center small text-gray-500" href="/admin/inquiry/allInquiryList">1:1 문의글
+                    전체보기</a>
             </div>
+
         </li>
 
         <div class="topbar-divider d-none d-sm-block"></div>
@@ -73,4 +77,5 @@
         </li>
     </ul>
 </nav>
+
 <!-- End of Topbar -->

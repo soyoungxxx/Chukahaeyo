@@ -1,5 +1,6 @@
 package com.choikang.chukahaeyo.member;
 
+import com.choikang.chukahaeyo.board.model.InquiryVO;
 import com.choikang.chukahaeyo.card.model.CardVO;
 import com.choikang.chukahaeyo.member.model.AdminVO;
 import com.choikang.chukahaeyo.member.model.MemberVO;
@@ -180,6 +181,11 @@ public class MemberService {
     // 관리자: 회원정보 가져오기
     public List<MemberVO> getMemberAllList() {
         return memberMapper.getMemberAllList();
+    }
+
+    // 관리자: 답변해야할 리스트 가져오기
+    public List<InquiryVO> getNotAnsweredInquiryList() {
+        return memberMapper.getNotAnsweredInquiryList();
     }
 
     // 결제내역 페이지네이션
