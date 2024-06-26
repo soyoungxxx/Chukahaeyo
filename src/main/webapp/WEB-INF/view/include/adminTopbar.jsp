@@ -18,7 +18,9 @@
                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">${sessionScope.inquiryList.size()}</span>
+                <span class="badge badge-danger badge-counter">
+                    ${sessionScope.inquiryList.size()}<c:if test="${sessionScope.inquiryList.size()>0}">+</c:if>
+                </span>
             </a>
             <!-- Dropdown - Alerts -->
             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -51,8 +53,7 @@
                         </div>
                     </a>
                 </c:forEach>
-                <a class="dropdown-item text-center small text-gray-500" href="/admin/inquiry/allInquiryList">1:1 문의글
-                    전체보기</a>
+                <a class="dropdown-item text-center small text-gray-500" href="/admin/inquiry/allInquiryList">1:1 문의글 전체보기</a>
             </div>
 
         </li>
