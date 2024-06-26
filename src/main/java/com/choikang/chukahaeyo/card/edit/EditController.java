@@ -83,7 +83,17 @@ public class EditController {
             model.addAttribute("cardVO", cardVO);
 
             // 카드의 CSS 정보 추출
-            String css = cardVO.getTemplateThumbnail().substring(25, cardVO.getTemplateThumbnail().length() - 4);
+            String str = cardVO.getTemplateThumbnail().substring(25, cardVO.getTemplateThumbnail().length() - 4);
+            String css = "";
+            if (str.equals("templatePrincess")) {
+                css = "templateMint";
+            } else if (str.equals("templateZoo")) {
+                css = "templateWhiteDog";
+            } else if (str.equals("templateBaseBall") || str.equals("templateTraditional")) {
+                css = "templateGreen";
+            } else {
+                css = str;
+            }
             model.addAttribute("css", css);
 
             // 방명록 정보 가져오기
