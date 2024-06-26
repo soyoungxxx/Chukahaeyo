@@ -47,10 +47,10 @@ function confetti() {
 
 $(document).on('click', '.guestbook-submit-button', function () {
     var name = $(".guest-nickname").val();
-    var message = $(".guest-message").text();
+    var message = $(".guest-message").val();
 
     $(".guest-nickname").val("");
-    $(".guest-message").text("");
+    $(".guest-message").val("");
 
     message = message.replaceAll(/(\n|\r\n)/g, "<br>");
 
