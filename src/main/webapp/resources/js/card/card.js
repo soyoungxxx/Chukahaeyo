@@ -6,6 +6,12 @@ $(document).ready(function(){
     if ($('.extra-address').text() != null) {
         getMap($('.extra-address').text())
     }
+
+    $(".guest-message").keyup(function(event) {
+        if (event.which === 13) {
+            $(".guestbook-submit-button").click();
+        }
+    });
 })
 
 // like 버튼 클릭 시 숫자 올라가고, 이모티콘 컨페티 터지는 효과
@@ -41,10 +47,12 @@ function confetti() {
 
 $(document).on('click', '.guestbook-submit-button', function () {
     var name = $(".guest-nickname").val();
-    var message = $(".guest-message").val();
+    var message = $(".guest-message").text();
 
     $(".guest-nickname").val("");
-    $(".guest-message").val("");
+    $(".guest-message").text("");
+
+    message = message.replaceAll(/(\n|\r\n)/g, "<br>");
 
     if (!window.location.pathname.includes("/edit")) {
         if (name === "" || message === "") {
