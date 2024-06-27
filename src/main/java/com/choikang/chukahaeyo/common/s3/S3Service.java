@@ -44,7 +44,6 @@ public class S3Service {
         fileValidate.add(".svg");
         fileValidate.add(".SVG");
         String idxFileName = fileName.substring(fileName.lastIndexOf("."));
-        System.out.println("idxFileName : " + idxFileName);
         if (!fileValidate.contains(idxFileName)) {
             throw new CustomException(ErrorCode.VALIDATION_IMAGE_REQUEST_FAILED, ErrorCode.VALIDATION_IMAGE_REQUEST_FAILED.getMessage());
         }
@@ -53,9 +52,7 @@ public class S3Service {
 
     //파일을 S3 bucket에 업로드
     public String saveFile(MultipartFile file) {
-        System.out.println("컨트롤러에서 받아온 file명 : " + file);
         String fileName = createFileName(file.getOriginalFilename());
-        System.out.println("서버에서 생성한 파일 이름 : " + fileName);
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentLength(file.getSize());
         metadata.setContentType(file.getContentType());
@@ -63,14 +60,10 @@ public class S3Service {
         try {
             amazonS3.putObject(bucket, fileName, file.getInputStream(), metadata);
         } catch (SdkClientException e) {
-            System.out.println("AWS SDK 클라이언트에서 문제 발생");
             throw new CustomException(ErrorCode.NOT_FOUND_IMAGE_EXCEPTION, "AWS SDK 클라이언트에서 문제가 발생하였습니다.");
         } catch (IOException e) {
-            System.out.println("파일 업로드 중 문제 발생");
             throw new CustomException(ErrorCode.NOT_FOUND_IMAGE_EXCEPTION, "AWS에서 파일 업로드 중 문제가 발생하였습니다.");
         }
-        System.out.println("파일 업로드 성공");
-        System.out.println("업로드한 파일 이름 : " + fileName);
 
         String S3Url = amazonS3.getUrl(bucket, fileName).toString();
         return S3Url; //S3에 저장된 URL을 갖고 오는 로직
@@ -82,7 +75,6 @@ public class S3Service {
     }
 
     public void deleteFile(String fileName) {
-        System.out.println("받아온 삭제할 파일명 : " + fileName);
         amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
     }
 }

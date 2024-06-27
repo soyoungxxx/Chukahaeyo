@@ -7,6 +7,5 @@ public class UUIDTest {
     public void createTest() {
         UUID uuid = UUID.randomUUID();
         String str = uuid.toString();
-        System.out.println(str);
     }
 }
