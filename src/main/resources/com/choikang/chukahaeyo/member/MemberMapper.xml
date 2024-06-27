@@ -101,7 +101,8 @@
 
     <select id="getMemberAllList" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
         SELECT *
-        from Members
+        FROM Members
+        ORDER BY memberRegisterDate DESC
     </select>
 
     <update id="withdrawMember" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">

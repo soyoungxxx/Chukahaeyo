@@ -39,7 +39,6 @@
     <div class="sticker1"></div>
     <div style="width: 100%; display: flex; flex-direction: row; justify-content: center;">
         <div class="container">
-            <div class="community-logo"></div>
             <input type="hidden" class="board-id" value="${object.commID}"/>
             <input type="hidden" class="my-member-id" value="${communityVO.memberID}"/>
             <input type="hidden" class="my-member-name" value="${communityVO.memberName}"/>

@@ -54,7 +54,7 @@
 <body>
 
 <div class="admin">
-    <form action="/adminLogin" method="post" onsubmit="return loginCheck();">
+    <form action="/admin/adminLogin" method="post" onsubmit="return loginCheck();">
         <div class="admin_login_wrap">
             <div class="login_header">
                 <h3 class="login_title">축하해요<br>ADMIN</h3>

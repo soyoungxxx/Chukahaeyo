@@ -34,8 +34,13 @@ public class MemberController {
     public void register() {
     }
 
+    // 로그인: 페이지 접근
+    @GetMapping("/admin/adminLogin")
+    public void adminLogin() {
+    }
+
     // 관리자 로그인
-    @PostMapping("/adminLogin")
+    @PostMapping("/admin/adminLogin")
     public String adminLogin(Model model, AdminVO adminVO, HttpSession session) {
         AdminVO adminLogin = service.adminLogin(adminVO);
         if (adminLogin == null) {
@@ -163,7 +168,6 @@ public class MemberController {
     @PostMapping("/mypage/changeInfo")
     public String changeMemberInfo(HttpSession session, Model model, MemberVO changeInfo) {
         int id = (int) session.getAttribute("memberID");
-        System.out.println(changeInfo);
 
         if (service.changeMemberInfo(id, changeInfo) != 0) {
             model.addAttribute("msg", "회원 정보가 수정되었습니다");

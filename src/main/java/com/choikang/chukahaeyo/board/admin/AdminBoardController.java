@@ -32,7 +32,10 @@ public class AdminBoardController {
     }
 
     @GetMapping("/write")
-    public String inquiryWrite(InquiryVO vo, Model model) {
+    public String inquiryWrite(InquiryVO vo, Model model,HttpSession session) {
+        List<InquiryVO> inquiryList = memberService.getNotAnsweredInquiryList();
+        session.setAttribute("inquiryList", inquiryList);
+
         model.addAttribute("object", boardInquiryService.getInquiryDetail(vo));
         return "admin/inquiry/inquiryPostReply";
     }
@@ -40,6 +43,7 @@ public class AdminBoardController {
     @PostMapping("/write")
     public String inquiryWriteInsert(InquiryVO vo, HttpSession session) throws UnsupportedEncodingException {
         vo.setAdminID((int) session.getAttribute("adminID"));
+
         boardInquiryService.insertAnswer(vo);
         return "redirect:write?inquiryID=" + vo.getInquiryID();
     }
