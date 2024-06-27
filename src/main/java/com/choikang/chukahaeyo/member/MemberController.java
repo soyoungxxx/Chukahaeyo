@@ -259,6 +259,8 @@ public class MemberController {
         Map<String, Object> map = service.paginationPayment(page, size, filteredPaymentList, 0);
         List<PaymentVO> paymentList = service.checkCancelable((List<PaymentVO>) map.get("paymentList"));
 
+        List<CardVO> cardList = service.getCardAllList();
+        model.addAttribute("cardList", cardList);
         model.addAttribute("payments", paymentList);
         model.addAttribute("currentPage", page);
         model.addAttribute("pageSize", size);
