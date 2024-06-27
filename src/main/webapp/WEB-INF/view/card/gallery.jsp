@@ -29,7 +29,7 @@
                 let sortedCards = Array.from(cards);
 
                 if (sortOrder === 'latest') {
-                    sortedCards.sort((a, b) => new Date(a.dataset.date) - new Date(b.dataset.date));
+                    sortedCards.sort((a, b) => new Date(b.dataset.date) - new Date(a.dataset.date));
                 } else if (sortOrder === 'popular') {
                     sortedCards.sort((a, b) => b.dataset.likes - a.dataset.likes);
                 }
@@ -77,7 +77,7 @@
 
         <div class="card-gallery">
             <c:forEach var="card" items="${cards}">
-                <div class="card" data-category="${card.categoryID}" data-date="${card.cardStartDate}"
+                <div class="card" data-category="${card.categoryID}" data-date="${card.cardDate}"
                      data-likes="${card.cardLikeCnt}">
                     <a href="card/completedCard/${card.cardID}">
                         <div class="card-image">
