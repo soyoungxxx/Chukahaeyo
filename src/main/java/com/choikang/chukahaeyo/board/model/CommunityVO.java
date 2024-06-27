@@ -25,6 +25,10 @@ public class CommunityVO {
         this.ismy = "";
     }
 
+    public int getStartIdx() {
+        return (Integer.parseInt(page)-1) * 10;
+    }
+
     private String isRed;
     private String boardLike;
     private String memberEmail;
