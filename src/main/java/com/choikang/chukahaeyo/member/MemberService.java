@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Base64Utils;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -66,12 +67,13 @@ public class MemberService {
         int memberID = selectMemberId(memberEmail);
 
         String encryptedData = encrypt(memberID + ":" + memberEmail);
-        if (encryptedData != null && encryptedData.contains("/")) {
-            encryptedData = encryptedData.replace('/', '@');
-        }
+//        if (encryptedData != null && encryptedData.contains("/")) {
+//            encryptedData = encryptedData.replace('/', '@');
+//        }
 
         // 회원가입 인증 링크
-        String verifyURL = "http://3.36.97.132:9090/member/verify?data=" + encryptedData;
+//        String verifyURL = "http://3.36.97.132:9090/member/verify?data=" + encryptedData;
+        String verifyURL = "http://localhost:9090/member/verify?data=" + encryptedData;
         String from = "dawndawnchoi@naver.com";//보내는 사람 메일주소
         String to = memberEmail; // 회원 가입 한 사람 메일 주소
         String title = "[축하해요] 회원가입 인증을 완료해주세요."; // 메일 제목
@@ -110,7 +112,9 @@ public class MemberService {
             SecretKeySpec secretKey = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-            return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+            //return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
+            //Base64Utils.encodeToUrlSafeString()
+            return Base64Utils.encodeToUrlSafeString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -120,14 +124,10 @@ public class MemberService {
     // 회원가입: 암호화 된 링크 접속 가능하도록 복호화
     public String decrypt(String strToDecrypt) {
         try {
-            if (strToDecrypt != null && strToDecrypt.contains("@")) {
-                strToDecrypt = strToDecrypt.replace('@', '/');
-                System.out.println("Modified Data: " + strToDecrypt);
-            }
             SecretKeySpec secretKey = new SecretKeySpec(SECRET_KEY.getBytes(), "AES");
             Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
-            String temp = new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
+            String temp = new String(cipher.doFinal(Base64Utils.decodeFromUrlSafeString(strToDecrypt)));
             return temp.split(":")[0];
         } catch (Exception e) {
             e.printStackTrace();
