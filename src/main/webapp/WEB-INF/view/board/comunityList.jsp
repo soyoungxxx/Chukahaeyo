@@ -59,7 +59,7 @@
                         <option value="reply" <c:if test="${communityVO.sort == 'reply'}">selected</c:if>>댓글순</option>
                         <option value="like" <c:if test="${communityVO.sort == 'like'}">selected</c:if>>좋아요순</option>
                     </select>
-                    <div>
+                    <div class="search-div">
                         <select class="selectbox" name="querytype">
                             <option value="all" <c:if test="${communityVO.querytype == 'all'}">selected</c:if>>전체
                             </option>

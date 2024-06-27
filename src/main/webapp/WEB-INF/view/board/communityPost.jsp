@@ -70,10 +70,12 @@
 <main class="main">
     <div class="sticker1"></div>
     <div style="width: 100%; display: flex; flex-direction: row; justify-content: center;">
-        <!-- //여기에 태그 만들면됨 -->
         <div class="container">
-            <div class="community-logo"></div>
             <input type="hidden" class="ismy" name="ismy" value="${communityVO.ismy}"/>
+            <div class="head-container">
+                커뮤니티 글쓰기 <div class="write-button">글쓰기</div>
+                <hr>
+            </div>
             <div class="title-container">
                 <input class="title-text" type="text" placeholder="제목을 입력하세요."/>
             </div>
@@ -81,9 +83,6 @@
                 <form method="post">
                     <textarea class="data-text" id="summernote" name="editordata"></textarea>
                 </form>
-            </div>
-            <div class="write-button">
-                글쓰기
             </div>
         </div>
     </div>

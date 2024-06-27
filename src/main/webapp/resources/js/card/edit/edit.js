@@ -46,7 +46,6 @@ $(document).ready(function () {
     })
     // 각각 library를 이용해 초기값 세팅
 
-
     // 어떤 버튼을 클릭하냐에 따라 hide and show - 날짜
     $('#edit-dayRadio').click(function () {
         $('#edit-days').hide();

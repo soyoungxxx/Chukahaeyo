@@ -29,39 +29,51 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
+    height: 50px;
 }
 
 .sort-box {
     width: 100px;
     height: 40px;
     font-size: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
+    margin: auto 0;
+
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.search-div {
+    height: 40px;
+    margin: auto 0;
 }
 
 .search .selectbox {
-    width: 120px;
-    height: 40px;
+    width: 100px;
+    height: 100%;
     font-size: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
+
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .search .textbox {
-    width: 120px;
-    height: 40px;
+    width: 140px;
+    height: 100%;
     font-size: 15px;
     border: 1px solid;
     border-color: rgb(118, 118, 118) rgb(133, 133, 133);
-    border-radius: 10px;
+    border-radius: 5px;
     box-sizing: border-box;
-    padding: 5px;
+
+    font-family: "Noto Sans KR", sans-serif;
 }
 
 .search .submitbox {
     font-family: "Noto Sans KR", sans-serif;
     width: 50px;
-    height: 40px;
-    font-size: 18px;
+    height: 100%;
+    font-size: 15px;
     color: white;
     border: none;
     background-color: #949FFF;
@@ -194,10 +206,10 @@
     background-color: #949FFF;
     color: white;
     align-self: self-end;
-    margin: 10px;
+    margin-top: 10px;
     cursor: pointer;
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .write-button a {
