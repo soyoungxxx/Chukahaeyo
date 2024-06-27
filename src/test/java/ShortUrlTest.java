@@ -20,6 +20,5 @@ public class ShortUrlTest {
     @Test
     public void shortTest() {
         String shortUrl = shortUrlService.shortUrl(17);
-        System.out.println("shortUrl : " + shortUrl);
     }
 }

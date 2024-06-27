@@ -26,20 +26,17 @@ public class Base64Test {
     @Test
     public void encoding() {
         encodeStr = Base64Util.encode(input);
-        System.out.println("인코딩 문자열 : " + encodeStr);
     }
 
     @Test
     public void decoding() {
         encodeStr = Base64Util.encode(input);
         decodeStr = Base64Util.decode(encodeStr);
-        System.out.println("디코딩 문자열 : " + decodeStr);
     }
 
     @Test
     public void equalsOrNot() {
         encodeStr = Base64Util.encode(input);
         decodeStr = Base64Util.decode(encodeStr);
-        System.out.println("같은 값인가 : " + Objects.equals(input, decodeStr));
     }
 }
