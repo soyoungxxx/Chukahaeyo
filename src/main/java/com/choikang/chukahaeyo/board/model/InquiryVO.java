@@ -13,6 +13,10 @@ public class InquiryVO {
         this.sort = "all";
     }
 
+    public int getStartIdx() {
+        return (Integer.parseInt(page)-1) * 10;
+    }
+
     private int inquiryID;
     private String inquiryQuestion;
     private String inquiryQuestionTitle;

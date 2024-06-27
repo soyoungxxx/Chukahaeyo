@@ -34,7 +34,7 @@ body, .show-gallery, .overlay, .card-gallery, .move-gallery {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px; /* 슬라이드 높이를 이미지 높이와 일치시킴 */
+    /*height: 400px; !* 슬라이드 높이를 이미지 높이와 일치시킴 *!*/
 }
 
 .slides img {
