@@ -21,18 +21,33 @@
         <div class="container">
             <!-- 이미지 슬라이드 영역 -->
             <div class="slideshow-container">
-                <c:forEach var="card" items="${top3Cards}">
-                    <div class="slides fade">
-                        <div class="main-card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}"
-                             data-url="card/completedCard/${card.cardID}">
-                            <div class="card-image" onclick="redirectToUrl(this)">
-                                <img src="resources/img/main/main0${card.categoryID}.png" alt="" style="width:100%">
-                                <div class="main-overlay">
-                                    <div class="">${card.cardName}</div>
+                <c:forEach var="card" items="${top3Cards}" varStatus="status">
+                    <c:if test="${status.index == 0}">
+                        <div class="slides fade">
+                            <div class="main-card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}"
+                                 data-url="card/completedCard/${card.cardID}">
+                                <div class="card-image" onclick="redirectToUrl(this)">
+                                    <img src="resources/img/main/main0${card.categoryID}.png" alt="" style="width:100%">
+                                    <div class="main-overlay">
+                                        <div class="">${card.cardName}</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </c:if>
+                    <c:if test="${status.index >= 1}">
+                        <div class="slides fade" style="display: none;">
+                            <div class="main-card" data-template="${card.templateThumbnail}" data-date="${card.cardDate}"
+                                 data-url="card/completedCard/${card.cardID}">
+                                <div class="card-image" onclick="redirectToUrl(this)">
+                                    <img src="resources/img/main/main0${card.categoryID}.png" alt="" style="width:100%">
+                                    <div class="main-overlay">
+                                        <div class="">${card.cardName}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:if>
                 </c:forEach>
                 <a class="prev-slide" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next-slide" onclick="plusSlides(1)">&#10095;</a>
@@ -73,7 +88,7 @@
 </main>
 <%@ include file="/WEB-INF/view/include/footer.jsp" %>
 
-<!-- 슬라이드 쇼 스크립트 -->
+<%--<!-- 슬라이드 쇼 스크립트 -->--%>
 <script>
     var slideIndex = 0;
     var slides = document.getElementsByClassName("slides");
