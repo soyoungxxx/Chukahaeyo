@@ -18,7 +18,7 @@ public class ShortUrlController {
     @GetMapping("/origin")
     @ResponseBody
     public String url() {
-        return "http://3.36.97.132:9090/payments/success"; // test용으로 URL을 미리 넣어둔 것. 추후 사용자별 카드 URL로 변경 예정
+        return "http://http://54.180.239.33/:9090/payments/success"; // test용으로 URL을 미리 넣어둔 것. 추후 사용자별 카드 URL로 변경 예정
     }
 
     @GetMapping("/shorts")

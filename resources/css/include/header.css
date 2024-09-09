@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+/*header container css*/
+.header {
+    width: 100%;
+    min-width: 1400px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    border-bottom: 1px solid black;
+    justify-content: center;
+}
+
+/* 로고 */
+.logo {
+    width: 180px;
+    height: 65px;
+    background-image: url("/resources/img/logo/logo3.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+/*nav1*/
+.nav1 {
+    display: flex;
+    flex-direction: row;
+    font-family: "Jua", sans-serif;
+    font-size: 22px;
+    margin-bottom: 10px;
+    height: 20px;
+    gap: 25px;
+}
+
+.nav1 a {
+    color: #ACACAC;
+}
+
+.nav1 .gallery-community {
+    color: #949FFF;
+}
+
+.gallery-community-menu {
+    display: none;
+    border: 1px solid black;
+    margin: 2.5px 10px 10px -32px;
+    z-index: 100;
+    background-color: white;
+    position: absolute;
+    width: 130px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.gallery-community-menu hr {
+    margin: 0;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+}
+
+.gallery-community-menu-item {
+    cursor: pointer;
+    padding: 10px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+.gallery-community-menu-item:hover {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+/*nav2*/
+.nav2 {
+    width: 230px;
+    display: flex;
+    font-family: "Noto Sans KR", sans-serif;
+    flex-direction: row;
+    align-items: flex-end;
+    margin: 0 0 5px 45px;
+}
+
+.nav2 a {
+    color: black;
+    margin: 0 10px 0 10px;
+}

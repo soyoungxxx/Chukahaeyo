@@ -30,13 +30,13 @@ public class ShortUrlService {
     public String shortUrl(int cardID) { // originUrl을 네이버 API로 보내는 메소드
         try {
 
-            String url = "http://3.36.97.132:9090/card/completedCard/" + cardID; //카드 url
-            String apiUrl = "https://openapi.naver.com/v1/util/shorturl?url=" + url; // API url
+            String url = "http://http://54.180.239.33/:9090/card/completedCard/" + cardID; //카드 url
+            String apiUrl = "https://naveropenapi.apigw.ntruss.com/util/v1/shorturl?url=" + url; // API url
 
             // 헤더 설정
             HttpHeaders headers = new HttpHeaders();
-            headers.set("X-Naver-Client-Id", clientId);
-            headers.set("X-Naver-Client-Secret", clientSecret);
+            headers.set("X-NCP-APIGW-API-KEY-ID", clientId);
+            headers.set("X-NCP-APIGW-API-KEY", clientSecret);
 
             // HttpEntity 객체 생성 (본문 없이 헤더만 포함)
             HttpEntity<String> entity = new HttpEntity<>(headers);

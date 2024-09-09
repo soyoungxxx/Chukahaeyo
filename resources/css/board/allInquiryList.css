@@ -1,0 +1,231 @@
+﻿/*font*/
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+.container {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #858796;
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /*margin: 0 !important;*/
+    padding: 0 !important;
+}
+
+/*inquiry-logo*/
+.inquiry-logo {
+    font-size: 20px;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+/*search*/
+.search {
+    display: flex;
+    width: 95%;
+    flex-direction: row;
+    justify-content: end;
+    font-size: 14px;
+    margin: 10px auto 15px auto;
+}
+
+.search .selectbox {
+    width: 100px;
+    height: 35px;
+    /*border-radius: 10px;*/
+}
+
+.search .sort-box {
+    width: 100px;
+    height: 35px;
+    /*font-size: 12px;*/
+    /*border-radius: 10px;*/
+}
+
+.search .textbox {
+    width: 200px;
+    height: 35px;
+    /*font-size: 12px;*/
+
+}
+
+.search .submitbox {
+    width: 60px;
+    height: 35px;
+    /*font-size: 12px;*/
+    color: white;
+    border: none;
+    background-color: #949FFF;
+    /*border-radius: 10px;*/
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/*list*/
+.list .list-board {
+    border-top: 1px solid black;
+    table-layout: fixed;
+    margin: auto;
+}
+
+/*list-ellipsis*/
+.list-board {
+    width: 95%;
+    margin-left: 0;
+}
+
+.list th {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 50px;
+    line-height: 50px;
+}
+
+/*list-title*/
+.list .list-board .list-title {
+    border-bottom: 1px solid #B9B5B5;
+    background-color: #F3F3F3;
+}
+
+.list .list-board .list-title .no {
+    width: 8%;
+    text-align: center;
+}
+
+.list .list-board .list-title .title {
+    width: 48%;
+    text-align: center;
+}
+
+.list .list-board .list-title .writer {
+    width: 12%;
+    text-align: center;
+}
+
+.list .list-board .list-title .regdate {
+    width: 18%;
+    text-align: center;
+}
+
+.list .list-board .list-title .is-answered {
+    width: 14%;
+    text-align: center;
+}
+
+
+/*list-data*/
+.list .list-board .list-data {
+    border-bottom: 1px solid #B9B5B5;
+}
+
+.list .list-board .list-data .no {
+    width: 60px;
+    text-align: center;
+}
+
+.list .list-board .list-data .title {
+    width: 435px;
+    text-align: start;
+    padding-left: 37.5px;
+    color: #98897B;
+}
+
+.list .list-board .list-data .title a {
+    color: #98897B;
+}
+
+.list .list-board .list-data .writer {
+    width: 75px;
+    text-align: center;
+}
+
+.list .list-board .list-data .regdate {
+    width: 90px;
+    text-align: center;
+}
+
+
+.list .list-board .list-data .is-answered {
+    width: 60px;
+    text-align: center;
+}
+
+.list .list-board .list-data .is-answered .is-answered-img {
+    width: 22px;
+    height: 22px;
+    /*position: relative;*/
+    /*top: 4px;*/
+    margin-bottom: 2px;
+}
+
+/*list-no-data*/
+.list .list-board .list-no-data {
+    text-align: center;
+    border-bottom: 1px solid #B9B5B5;
+
+    height: 50px;
+    line-height: 50px;
+}
+
+
+/*write-button*/
+.write-button {
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #949FFF;
+    color: white;
+    align-self: self-end;
+    margin: 10px;
+    cursor: pointer;
+    /*border-radius: 10px;*/
+}
+
+.write-button a {
+    color: white;
+}
+
+/*paging*/
+.paging {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    margin: 25px 0 30px 0;
+}
+
+.paging a {
+    display: inline-block;
+    text-decoration: none;
+    color: #777777;
+    border: 1px solid #D9D9D9;
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.paging .current {
+    display: inline-block;
+    text-decoration: none;
+    color: #949FFF;
+    border: 2px solid #949FFF;
+    width: 30px;
+    height: 30px;
+    line-height: 26px;
+    text-align: center;
+    font-weight: bold;
+    margin: 5px;
+}

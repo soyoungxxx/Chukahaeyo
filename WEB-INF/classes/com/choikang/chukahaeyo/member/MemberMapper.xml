@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choikang.chukahaeyo.member.MemberMapper">
+    <select id="login" parameterType="com.choikang.chukahaeyo.member.model.MemberVO"
+            resultType="com.choikang.chukahaeyo.member.model.MemberVO">
+        SELECT *
+        FROM Members
+        WHERE memberEmail = #{memberEmail}
+          AND memberPwd = MD5(#{memberPwd})
+    </select>
+
+    <insert id="register" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
+        INSERT INTO Members(memberEmail, memberPwd, memberName, memberRegisterDate, memberAuth, memberWithdraw)
+        VALUES (#{memberEmail}, MD5(#{memberPwd}), #{memberName}, NOW(), false, false)
+    </insert>
+
+    <select id="checkEmailDuplicate" parameterType="String" resultType="int">
+        SELECT count(*)
+        FROM Members
+        WHERE memberEmail = #{memberEmail}
+    </select>
+
+    <select id="getUserInfoByEmail" parameterType="String" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
+        SELECT *
+        FROM Members
+        WHERE memberEmail = #{memberEmail}
+    </select>
+
+    <select id="getUserInfoById" parameterType="int" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
+        SELECT *
+        FROM Members
+        WHERE memberID = #{memberID}
+    </select>
+
+    <update id="memberVerify" parameterType="int">
+        UPDATE Members
+        SET memberAuth= true
+        WHERE memberID = #{memberID}
+    </update>
+
+    <delete id="unsign" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
+        UPDATE Members
+        SET memberWithdraw= true
+        where memberID = #{memberID}
+          AND memberPwd = MD5(#{memberPwd})
+    </delete>
+
+
+    <select id="validatePwd" parameterType="com.choikang.chukahaeyo.member.model.MemberVO"
+            resultType="java.lang.Integer">
+        SELECT memberID
+        from Members
+        where (memberID = #{memberID} AND memberPwd = MD5(#{memberPwd}))
+    </select>
+
+    <update id="changeMemberInfo" parameterType="map">
+        UPDATE Members
+        <set>
+            <if test="changeInfo.memberName != null">
+                memberName = #{changeInfo.memberName},
+            </if>
+            <if test="changeInfo.memberPwd != null and changeInfo.memberPwd != ''">
+                memberPwd = MD5(#{changeInfo.memberPwd}),
+            </if>
+        </set>
+        WHERE memberID = #{memberID}
+    </update>
+
+    <select id="getCardList" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT *
+        from Card
+        where memberID = #{memberID}
+    </select>
+
+    <select id="getCardAllList" parameterType="int" resultType="com.choikang.chukahaeyo.card.model.CardVO">
+        SELECT *
+        from Card
+    </select>
+
+    <select id="adminLogin" parameterType="com.choikang.chukahaeyo.member.model.AdminVO"
+            resultType="com.choikang.chukahaeyo.member.model.AdminVO">
+        SELECT *
+        FROM Admins
+        WHERE adminEmail = #{adminEmail}
+          AND adminPwd = MD5(#{adminPwd})
+    </select>
+
+    <select id="getPaymentAllList" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        SELECT *
+        FROM Payment
+        ORDER BY payDate DESC;
+    </select>
+
+    <select id="getMemberPaymentAllList" parameterType="int" resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        SELECT *
+        FROM Payment
+        WHERE memberID = #{memberID}
+        ORDER BY payDate DESC;
+    </select>
+
+
+    <select id="getMemberAllList" resultType="com.choikang.chukahaeyo.member.model.MemberVO">
+        SELECT *
+        FROM Members
+        ORDER BY memberRegisterDate DESC
+    </select>
+
+    <update id="withdrawMember" parameterType="com.choikang.chukahaeyo.member.model.MemberVO">
+        UPDATE Members
+        SET memberWithdraw= true
+        where memberID = #{memberID}
+    </update>
+
+    <select id="selectTodayRegisterMember" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+        FROM Members
+        WHERE DATE (memberRegisterDate) = #{date}
+    </select>
+
+    <select id="getFilteredPaymentList" parameterType="map"
+            resultType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        SELECT * FROM Payment
+        WHERE 1=1
+        <if test="startDate != null and startDate != ''">
+            AND payDate &gt;= #{startDate}
+        </if>
+        <if test="endDate != null and endDate != ''">
+            AND payDate &lt;= #{endDate}
+        </if>
+        <if test="status != null and status != ''">
+            <choose>
+                <when test="status == 'canceled'">
+                    AND canceledAt IS NOT NULL
+                </when>
+                <otherwise>
+                    AND canceledAt IS NULL
+                </otherwise>
+            </choose>
+        </if>
+        <if test="search != null and search != ''">
+            AND memberName LIKE CONCAT('%', #{search}, '%')
+        </if>
+        ORDER BY payDate DESC
+    </select>
+
+    <select id="getNotAnsweredInquiryList" resultType="com.choikang.chukahaeyo.board.model.InquiryVO">
+        SELECT inquiryID, inquiryQuestionTitle, inquiryPostDate FROM Inquiry WHERE inquiryAnswer IS NULL ORDER BY inquiryPostDate DESC LIMIT 3
+    </select>
+
+</mapper>

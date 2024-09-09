@@ -1,0 +1,126 @@
+.mypage-content {
+    width: 100%;
+    margin: auto;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+    width: 100%;
+    max-height: 720px; /* 스크롤 가능한 최대 높이 설정 */
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.align-to-left {
+    margin-right: auto;
+}
+
+.card {
+    position: relative;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-image img {
+    width: 100%;
+    display: block;
+    filter: blur(1px);
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    word-wrap: break-word;
+}
+
+.card-overlay {
+    font-family: "Jua", sans-serif;
+    font-size: 22px;
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    width: 70%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.card a {
+    color: black;
+    text-decoration: none; /* 링크 밑줄 제거 */
+    white-space: nowrap; /* 줄 넘김 방지 */
+}
+
+.card a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.card a:visited {
+    color: black;
+}
+
+.card-info {
+    font-family: "Noto Sans KR", sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px 10px 20px;
+}
+
+.card-info > .left-section {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    padding-top: -5px;
+    word-wrap: break-word;
+}
+
+.card-info > .right-section {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.card-info > .right-section > .copy-button {
+    font-family: "Noto Sans KR", sans-serif;
+    border: none;
+    border-radius: 10px;
+    background-color: #4B5CFF;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    color: white;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+}
+
+.toggle-public {
+    font-size: 24px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s; /* 눌렀다 켜지는 느낌을 위한 트랜지션 */
+}
+
+.toggle-public img {
+    padding-top: 4px;
+    width: 35px;
+}
+
+.toggle-public:active {
+    transform: scale(0.9); /* 눌렀을 때 살짝 줄어드는 효과 */
+}

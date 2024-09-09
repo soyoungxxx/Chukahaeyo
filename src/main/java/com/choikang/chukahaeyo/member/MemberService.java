@@ -72,7 +72,7 @@ public class MemberService {
 //        }
 
         // 회원가입 인증 링크
-        String verifyURL = "http://3.36.97.132:9090/member/verify?data=" + encryptedData;
+        String verifyURL = "http://http://54.180.239.33/:9090/member/verify?data=" + encryptedData;
 //        String verifyURL = "http://localhost:9090/member/verify?data=" + encryptedData;
         String from = "dawndawnchoi@naver.com";//보내는 사람 메일주소
         String to = memberEmail; // 회원 가입 한 사람 메일 주소

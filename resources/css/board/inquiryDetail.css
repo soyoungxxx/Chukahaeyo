@@ -1,0 +1,70 @@
+/*font*/
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+body .container {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.container {
+    padding: 40px 0 0 40px;
+}
+
+/*inquiry-info*/
+.inquiry-info {
+    width: 100%;
+    min-height: 50px;
+    border-top: 1px solid #414141;
+    background-color: #F2F2F2;
+    border-bottom: 1px solid #D2D2D2;
+}
+
+.inquiry-info .inquiry-info-title {
+    font-size: 20px;
+}
+
+.inquiry-info-title, .inquiry-info-sub,
+.inquiry-answer-info, .inquiry-content-sub,
+.inquiry-answer-content {
+    padding: 15px;
+}
+
+.inquiry-info-sub {
+    padding-top: 15px;
+    font-size: 15px;
+    color: #1F1F1F;
+}
+
+.inquiry-content {
+    width: 100%;
+}
+
+/*inquiry-answer*/
+.inquiry-answer {
+    width: 100%;
+    border-top: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+    background-color: #FBFAF6;
+
+}
+
+.inquiry-answer-info {
+    padding-top: 15px;
+    color: #D1A25B;
+}
+
+.inquiry-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inquiry-list-button {
+    margin-top: 15px;
+    width: 100px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border: 1px solid black;
+    cursor: pointer;
+}

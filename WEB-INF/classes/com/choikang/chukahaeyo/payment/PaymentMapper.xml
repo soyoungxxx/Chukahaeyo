@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.choikang.chukahaeyo.payment.PaymentMapper">
+    <!-- 결제 정보 삽입 -->
+    <insert id="insertPayment" parameterType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        INSERT INTO Payment (payDate,
+        payNo,
+        payAmount,
+        memberID,
+        receiptURL,
+        merchantUid,
+        memberEmail,
+        memberName)
+        VALUES (DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 9 HOUR),
+        #{payNo},
+        #{payAmount},
+        #{memberID},
+        #{receiptURL},
+        #{merchantUid},
+        #{memberEmail},
+        #{memberName})
+        <selectKey order="AFTER" keyProperty="payID" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <update id="cancelPayment" parameterType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        UPDATE Payment
+        SET canceledAt       = #{canceledAt},
+            failReason       = #{failReason},
+            cancelReceiptURL = #{cancelReceiptURL}
+        WHERE payNo = #{payNo}
+    </update>
+
+
+    <delete id="deletePayment" parameterType="com.choikang.chukahaeyo.payment.model.PaymentVO">
+        UPDATE Card
+        SET isCanceled = true
+        WHERE payID = #{payID}
+    </delete>
+
+
+    <select id="selectPaymentDaySum" parameterType="String" resultType="int">
+        SELECT IFNULL(SUM(payAmount), 0)
+        FROM Payment
+        WHERE canceledAt IS NULL
+          AND DATE (payDate) = #{date}
+    </select>
+
+
+    <select id="selectPaymentMonthSum" parameterType="String" resultType="int">
+        SELECT IFNULL(SUM(payAmount), 0)
+        FROM Payment
+        WHERE canceledAt IS NULL
+            AND MONTH (
+            payDate) = MONTH (#{date})
+          AND YEAR (payDate) = YEAR (#{date})
+    </select>
+
+    <select id="selectPaymentYearSum" parameterType="String" resultType="int">
+        SELECT IFNULL(SUM(payAmount), 0)
+        FROM Payment
+        WHERE canceledAt IS NULL
+                  AND YEAR (payDate) = YEAR (#{date})
+    </select>
+
+    <select id="selectSixMonthsSum" parameterType="String" resultType="int">
+        SELECT SUM(payAmount)
+        FROM Payment
+        WHERE canceledAt IS NULL AND
+            MONTH (
+            payDate) BETWEEN MONTH (#{date})
+          AND MONTH (DATE_ADD(#{date}
+            , INTERVAL -6 MONTH))
+        GROUP BY MONTH (payDate)
+    </select>
+</mapper>

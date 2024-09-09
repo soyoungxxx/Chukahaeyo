@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&family=Jua&family=Lexend:wght@100..900&display=swap');
+
+.card-upper {
+    background: #F5FFF4;
+    width: 100%;
+    height: 550px;
+    text-align: center;
+}
+
+.card-top-img {
+    width: 70px;
+    height: 55px;
+}
+
+.card-roof-img {
+    content: url("/resources/img/card/humanBirthday/mint/card-top.png");
+    width: 578px;
+    height: 378px;
+    margin-top: 40px;
+}
+
+.card-basic-container {
+    margin-top: 90px;
+}
+
+.card-content-divider {
+    margin: 40px 0;
+    border: #EAEFFF 5px solid;
+    width: 80%;
+    z-index: 100;
+}
+
+.card-name {
+    color: #2653F0 !important;
+    font-family: "Jua", sans-serif;
+    font-size: 80px;
+    font-weight: 500;
+    letter-spacing: -3px;
+}
+
+.content-deco1 {
+    content: url("/resources/img/card/humanBirthday/mint/star1.png");
+    width: 124px !important;
+    height: 122px !important;
+    position: absolute;
+    margin-top: 580px;
+    margin-left: -420px;
+}
+
+.content-deco2 {
+    content: url("/resources/img/card/humanBirthday/mint/star2.png");
+    width: 124px !important;
+    height: 122px !important;
+    position: absolute;
+    margin-top: 1000px;
+    margin-left: 420px;
+}
+
+#like {
+    margin: 40px 0 5px 0;
+    width: 61px;
+    height: 84px;
+    background: url("/resources/img/card/humanBirthday/mint/cake.png") no-repeat center center;
+    background-size: cover;
+}
+
+.cookie-box {
+    display: inline-block;
+}
+
+.cookie {
+    content: url("/resources/img/card/humanBirthday/mint/cookie.png");
+    width: 180px !important;
+    height: 180px !important;
+    float: right;
+    margin-bottom: -40px;
+}
+
+.more-card {
+    font-size: 15px;
+    margin-left: 240px;
+    background-color: #e1f4e0;
+    padding: 7px;
+}
+
+/* 컬러 바꾸기 */
+.card-main-content, .card-content {
+    background: #F5FFF4;
+}
+
+.card-message {
+    color: #14316B !important;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 28px;
+    z-index: 20;
+}
+
+.card-date {
+    color: #747474 !important;
+    font-family: "Lexend", sans-serif;
+    margin-top: 10px;
+}
+
+.extra-time, .extra-preparation {
+    color: #14316B;
+}
+
+.card-like-text {
+    color: #3C3AB3;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 20px
+}
+
+.like-number {
+    color: #3C3AB3;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.guestbook-title {
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: bold;
+    color: #3C3AB3;
+    font-size: 24px;
+    padding-left: 10px;
+}
+
+.guestbook-divider {
+    border: 1.5px #849FFF solid;
+    color: #849FFF;
+}
+
+.guest-message {
+    border: 2px #849FFF solid;
+    color: #3C3AB3;
+    background-color: #F5FFF4;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.guest-nickname {
+    border: 2px #849FFF solid;
+    color: #3C3AB3;
+    background-color: #F5FFF4;
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.guest-nickname::placeholder, .guest-message::placeholder, .guest-message {
+    color: #3C3AB3;
+}
+
+.guestbook-submit-button {
+    color: #FFF;
+}
+
+.message-block.odd {
+    background-color: #e1f4e0;
+}
+
+.guestbook-submit-button {
+    color: white;
+    border: 0;
+    background-color: #3C3AB3;
+}

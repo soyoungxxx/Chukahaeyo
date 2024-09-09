@@ -1,0 +1,130 @@
+#card-bg {
+    content: url("/resources/img/card/animalBirthday/whiteDog/bg.png");
+    width: 157%;
+    position:absolute;
+    object-fit: cover;
+    object-position: top;
+}
+
+.card-name {
+    color: #373B3C;
+    font-size: 47px;
+    font-family: Jua;
+}
+
+.card-top-img {
+    content: url("/resources/img/card/animalBirthday/whiteDog/heart.png");
+    transform: rotate(-5.69deg);
+}
+
+.card-roof-img {
+    content: url("/resources/img/card/animalBirthday/whiteDog/top.png");
+}
+
+/* roof 아래쪽, 모든 콘텐츠가 들어가는 곳 */
+.card-main-content {
+    background-color: white;
+}
+
+/* 이미지와 텍스트 */
+.card-content {
+    margin-top: -110px;
+    background-color: white;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.2));
+}
+
+.more-card {
+    font-size: 15px;
+    margin-left: 350px;
+    background-color: #F5EBEB;
+    padding: 7px;
+}
+
+.message-block.odd {
+    background-color: white;
+}
+
+.like-btn {
+    position: relative;
+}
+
+#like {
+    background: url('/resources/img/card/animalBirthday/whiteDog/footBtn.png') no-repeat center center;
+    background-size: cover;
+}
+
+.animated-button:active {
+    transform: scale(1.2);
+}
+
+
+/* 컬러 바꾸기 */
+.card-name {
+    color: #61281B !important;
+}
+
+.card-date {
+    color: #61281B !important;
+}
+
+.extra-time {
+    color: #61281B !important;
+}
+
+.extra-preparation {
+    color: #61281B !important;
+}
+
+.card-like-text {
+    color: #61281B !important;
+}
+
+.like-number {
+    color: #61281B !important;
+}
+
+.guestbook-title {
+    color: #61281B;
+}
+
+.guestbook-divider {
+    border: 1.5px #61281B solid;
+    color: #61281B;
+}
+
+.guest-message {
+    border: 2px #61281B solid;
+    color: #61281B;
+    background-color: #FFFFFF;
+}
+
+.guest-nickname {
+    border: 2px #61281B solid;
+    color: #61281B;
+    background-color: #FFFFFF;
+}
+
+.guest-nickname::placeholder {
+    color: #61281B;
+}
+
+.guest-message::placeholder {
+    color: #61281B;
+}
+
+.guest-message {
+    color: #61281B;
+}
+
+.geustbook-submit-button {
+    color: #61281B;
+}
+
+.message-block.odd {
+    background-color: #F5EBEB;
+}
+
+.guestbook-submit-button {
+    background: #61281B;
+    color: white;
+}

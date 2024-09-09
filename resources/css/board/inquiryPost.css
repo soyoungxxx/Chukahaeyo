@@ -1,0 +1,44 @@
+/*font*/
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+body .container {
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+.container {
+    margin: 40px 0 0 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+/*title-container*/
+.title-container {
+    margin-bottom: 30px;
+}
+
+.title-container .title-text {
+    width: 90%;
+    height: 40px;
+    font-size: 15px;
+    border: solid 1px #ccc;
+    border-radius: 10px;
+}
+
+.data-container .data-text {
+    width: 100%;
+}
+
+/*write-button*/
+.write-button {
+    float: right;
+    margin-top: 20px;
+    align-self: self-end;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #949FFF;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+}
